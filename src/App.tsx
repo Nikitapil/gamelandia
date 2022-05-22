@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import { AppHeader } from './components/AppHeader/AppHeader';
+import { MainPage } from './Pages/MainPage';
+import { MatchMatch } from './Pages/MatchMatch';
+import './styles/App.scss';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AppHeader/>
+      <main className='main'>
+        <Routes>
+          <Route path='/' element={<MainPage/>}/>
+          <Route path='/match-match' element={<MatchMatch/>}/>
+        </Routes>
+      </main>
     </div>
   );
 }

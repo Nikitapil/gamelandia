@@ -1,0 +1,32 @@
+.header {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    background-color: #1C1C1C;
+}
+.header__container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header__title {
+    color: #00C4F0;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 32px;
+}
+.nav-bar__links {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-bar__link {
+    color: #E4E4E4;
+    text-decoration: none;
+    transition: 0.4s;
+    cursor: pointer;
+    &:hover {
+        color: #00C4F0;
+    }
+}
+
