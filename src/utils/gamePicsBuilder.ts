@@ -10,13 +10,15 @@ import giene from '../assets/matchMatch/giene.jpeg'
 import littledog from '../assets/matchMatch/littledog.jpeg'
 import racoon from '../assets/matchMatch/racoon.jpeg'
 import quizzer from '../assets/gamepictures/quizzer.png'
+import chess from '../assets/gamepictures/chess.jpeg'
 interface IGamePics {
     [key: string]: string
 }
 
 export const gamePics: IGamePics = {
     default: defaultPic,
-    quizzer: quizzer
+    quizzer: quizzer,
+    chess: chess
 }
 
 export const matchMatchPics = [
