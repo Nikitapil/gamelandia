@@ -13,20 +13,6 @@ export class King extends Figure {
         this.name = FigureNames.KING
     }
 
-    // isUnderAttack() {
-    //     for (let i = 0; i< this.cell.board.cells.length; i++) {
-    //         const row = this.cell.board.cells[i]
-            
-    //         for (let j = 0; j < row.length; j++) {
-    //             const cell = row[j]                                
-    //             if (cell.figure?.canMove(this.cell)) {
-    //                 console.log('under attack', this.name);
-    //             }
-    //         }
-    //     }
-    //     console.log('not')
-    // }
-
     canMove(target: Cell): boolean {
         if(!super.canMove(target)) {
             return false
@@ -37,9 +23,6 @@ export class King extends Figure {
         if((dx <= 1 && dy<=1) && !(dx === 0 && dy ===0)) {
             return true
         }
-        // 0 1
-        // 1 0
-        // 1 1
         return false
     }
 }

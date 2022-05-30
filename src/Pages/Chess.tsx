@@ -19,10 +19,10 @@ export const Chess = () => {
         setCurrentPlayer(whitePlayer)
     }
 
-    useEffect(() => {
-        restart()
-        setCurrentPlayer(whitePlayer)
-    }, [])
+    // useEffect(() => {
+    //     restart()
+    //     setCurrentPlayer(whitePlayer)
+    // }, [])
 
    const swapPlayer = () => {
       setCurrentPlayer(currentPlayer?.color === Colors.WHITE ? blackPlayer: whitePlayer)
@@ -30,7 +30,9 @@ export const Chess = () => {
 
   return (
     <div className='chess container'>
-      <div className='chess_timer'><ChessTimer currentPlayer={currentPlayer} restart={restart}/></div>
+      <div className='chess_timer'>
+        <ChessTimer currentPlayer={currentPlayer} restart={restart}/>
+      </div>
         <ChessBoardComponent board={board} setBoard={setBoard} currentPlayer={currentPlayer} swapPlayer ={swapPlayer}/>
         <div className='lost'>
           <LostFigures title='Black' figures={board.lostBlackFigures} />

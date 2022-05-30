@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from "react";
-import { FigureNames } from "../../constants/chess";
 import { Board } from "../../models/chess/Board";
 import { Cell } from "../../models/chess/Cell";
 import { Player } from "../../models/chess/Player";
@@ -22,9 +21,12 @@ export const ChessBoardComponent: FC<ChessBoardComponentProps> = ({
 
   const click = (cell: Cell) => {
     if(selectedCell && selectedCell !==cell && selectedCell.figure?.canMove(cell)) {
-      selectedCell.moveFigure(cell)
+      const move = selectedCell.moveFigure(cell)
+      board.checkIfKingIsUnderAttack()
       setSelectedCell(null)
-      swapPlayer()
+      if(move) {
+        swapPlayer()
+      }
     }
 
     else if(cell.figure && cell.figure.color === currentPlayer?.color) {
@@ -49,7 +51,10 @@ export const ChessBoardComponent: FC<ChessBoardComponentProps> = ({
 
   return (
     <div>
-      <h3 className="current-player">Current Player: {currentPlayer?.color}</h3>
+      <div className="game-information">
+        <h3 className="current-player">Current Player: {currentPlayer?.color}</h3>
+        <p className="king__attacked">{board.underAttackMessage}</p>
+      </div>
       <div className="board">
         {board.cells.map((row, idx) => (
           <React.Fragment key={idx}>

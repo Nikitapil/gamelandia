@@ -16,6 +16,7 @@ export class Board {
         white: null,
         black: null
     }
+    underAttackMessage = ''
     public initCells() {
         for (let i = 0; i < 8; i++) {
             const row: Cell[] = []
@@ -91,6 +92,19 @@ export class Board {
         newBoard.lostBlackFigures = this.lostBlackFigures
         newBoard.lostWhightFigures = this.lostWhightFigures
         newBoard.kings = this.kings
+        newBoard.underAttackMessage = this.underAttackMessage
         return newBoard
+    }
+
+    checkIfKingIsUnderAttack() {
+        if(this.kings.white?.cell.isUnderAttack()) {
+            this.underAttackMessage = 'White king is under attack'
+            return
+        }
+        if(this.kings.black?.cell.isUnderAttack()) {
+            this.underAttackMessage = 'Black king is under attack'
+            return
+        }
+        this.underAttackMessage = ''
     }
 }

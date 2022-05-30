@@ -104,5 +104,38 @@
             color: $mainColor;
         }
     }
+    .game-information {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .king__attacked {
+        color: red;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 700;
+        }
+    }
+    .timer-modal {
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+    }
+    .timer-input {
+        height: 30px;
+        margin-bottom: 10px;
+        padding: 0 5px;
+    }
+    .timer-button {
+        background-color: #1C1C1C;
+        color: $mainColor;
+        border: none;
+        border-radius: 6px;
+        transition: 0.4s;
+        margin-bottom: 10px;
+        padding: 5px;
+        &:hover {
+            background-color: #0e0d0d;
+        }
+    }
 }
 

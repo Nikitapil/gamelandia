@@ -1,3 +1,4 @@
+import { FigureNames } from '../../constants/chess';
 import { Board } from './Board';
 import { Colors } from "./Colors";
 import { Figure } from "./figures/figure";
@@ -21,9 +22,11 @@ export class Cell {
         this.id = Math.random()
     }
 
-    setFigure(figure: Figure) {
+    setFigure(figure: Figure | null) {
         this.figure = figure
-        this.figure.cell = this
+        if (this.figure) {
+            this.figure.cell = this
+        }
     }
 
     addLostfigure(figure:Figure) {
@@ -36,8 +39,18 @@ export class Cell {
             if (target.figure) {
                 this.addLostfigure(target.figure)
             }
+            const targetFigure = target.figure || null
             target.setFigure(this.figure)
             this.figure = null
+            if(this.board.kings[target.figure?.color!]?.cell.isUnderAttack()) {
+                if (targetFigure) {
+                    targetFigure.color === Colors.BLACK ?  this.board.lostBlackFigures.pop() : this.board.lostWhightFigures.pop()
+                }
+                this.setFigure(target.figure!)
+                target.setFigure(targetFigure)
+                return false
+            }
+            return true
         }
     }
 
@@ -103,13 +116,13 @@ export class Cell {
             for (let j = 0; j < row.length; j++) {
                 const cell = row[j]                                
                 if (cell.figure?.canMove(this)) {
-                    console.log('true');
                     return true
                 }
             }
         }
-        console.log('false');
         
         return false
     }
+
+    
 }
