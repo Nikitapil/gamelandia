@@ -1,57 +1,57 @@
-@import './vars.scss';
+@import "./vars.scss";
 
 .main-page__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .main-page__title {
-    color:  $mainColor;
-    font-size: 28px;
-    margin-bottom: 20px;
+  color: $mainColor;
+  font-size: 28px;
+  margin-bottom: 20px;
 }
 .game-card {
-    display: flex;
-    flex-direction: column;
-    max-width: 300px;
-    border: 1px solid $titleColor;
-    border-radius: 30px;
-    overflow: hidden;
-    text-decoration: none;
-    transition: 0.4s;
-    &:hover {
-        border: 2px solid $titleColor;
-    }
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  border: 1px solid $titleColor;
+  border-radius: 30px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: 0.4s;
+  &:hover {
+    border: 2px solid $titleColor;
+  }
 }
 .game-card__picture {
+  max-width: 100%;
+  border-bottom: 1px solid #1c1c1c;
+  img {
     max-width: 100%;
-    border-bottom: 1px solid #1C1C1C;
-    img {
-        max-width: 100%;
-    }
+  }
 }
 .game-info {
-    padding: 5px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+  padding: 5px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 .game-title {
-    text-align: center;
-    color: $titleColor;
-    font-weight: 700;
-    font-size: 20px;
-    margin-bottom: 10px;
+  text-align: center;
+  color: $titleColor;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 .game-description {
-    color: $mainColor;
-    line-height: 18px;
+  color: $mainColor;
+  line-height: 18px;
 }
 .games {
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(auto-fit, 300px);
-    gap: 20px;
-    justify-content: center;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, 300px);
+  gap: 20px;
+  justify-content: center;
 }

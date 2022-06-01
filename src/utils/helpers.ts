@@ -1,7 +1,7 @@
 export const shuffleArray = (arr: any[]) => {
-    return arr.sort(() => Math.random() - 0.5)
-}
+  return arr.sort(() => Math.random() - 0.5);
+};
 
 export const getuniqArrayObjects = (arr: any[]) => {
-    return arr.map(item => ({...item}))
-}
+  return arr.map((item) => ({ ...item }));
+};

@@ -1,10 +1,10 @@
-@import './nullstyle.scss';
-@import './vars.scss';
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+@import "./nullstyle.scss";
+@import "./vars.scss";
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap");
 
 body {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .container {
@@ -15,5 +15,5 @@ body {
 
 .main {
   min-height: calc(100vh - 80px);
-  background: linear-gradient(130.68deg, #414141 0%, #2D2D2D 100.52%);
+  background: linear-gradient(130.68deg, #414141 0%, #2d2d2d 100.52%);
 }

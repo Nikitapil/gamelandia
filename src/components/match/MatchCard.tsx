@@ -3,21 +3,31 @@ import back from "../../assets/matchMatch/back.jpeg";
 
 interface MatchCardProps {
   onClick: (name: string, id: number) => void;
-  flipped: boolean,
-  pic:string,
-  name: string,
-  id: number,
-  disabled: boolean
+  flipped: boolean;
+  pic: string;
+  name: string;
+  id: number;
+  disabled: boolean;
 }
 
-export const MatchCard:FC<MatchCardProps> = ({flipped, pic, name, onClick, id, disabled}) => {
-
+export const MatchCard: FC<MatchCardProps> = ({
+  flipped,
+  pic,
+  name,
+  onClick,
+  id,
+  disabled,
+}) => {
   const clickHandeler = () => {
-    onClick(name, id)
+    onClick(name, id);
   };
 
   return (
-    <button className={`matchcard ${flipped ? 'flipped' : ''}`} onClick={clickHandeler} disabled={disabled}>
+    <button
+      className={`matchcard ${flipped ? "flipped" : ""}`}
+      onClick={clickHandeler}
+      disabled={disabled}
+    >
       <div className="flipper">
         <div className="front">
           <img src={back} alt="shrek cat" />

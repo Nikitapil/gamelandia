@@ -19,7 +19,6 @@ export class Figure {
   }
 
   canMove(target: Cell): boolean {
-      
     if (target.figure?.color === this.color) {
       return false;
     }
@@ -32,4 +31,5 @@ export class Figure {
     return true;
   }
   moveFigure(target: Cell) {}
+  checkIfEndOfBoard() {}
 }
