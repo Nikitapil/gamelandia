@@ -27,6 +27,7 @@ export const MatchCard: FC<MatchCardProps> = ({
       className={`matchcard ${flipped ? "flipped" : ""}`}
       onClick={clickHandeler}
       disabled={disabled}
+      data-testid='match-card'
     >
       <div className="flipper">
         <div className="front">

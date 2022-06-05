@@ -15,7 +15,7 @@ export const ModalContainer: FC<ModalContainerProps> = ({
 }) => {
   return (
     <div className="modal" onClick={closeModal}>
-      <div className="modal__content" onClick={(e) => e.stopPropagation()}>
+      <div className="modal__content" onClick={(e) => e.stopPropagation()} data-testid='modal-content'>
         <button className="modal__close-btn" onClick={closeModal}>
           <FontAwesomeIcon icon={faXmark} />
         </button>

@@ -3,6 +3,7 @@ import { AppHeader } from "./components/AppHeader/AppHeader";
 import { Chess } from "./Pages/Chess";
 import { MainPage } from "./Pages/MainPage";
 import { MatchMatch } from "./Pages/MatchMatch";
+import { TicTacToe } from "./Pages/TicTacToe";
 import "./styles/App.scss";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/match-match" element={<MatchMatch />} />
           <Route path="/chess" element={<Chess />} />
+          <Route path="/tictac" element={<TicTacToe />} />
         </Routes>
       </main>
     </div>

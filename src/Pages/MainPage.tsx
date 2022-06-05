@@ -5,7 +5,7 @@ import { games } from "../constants/games";
 import "../styles/mainpage.scss";
 export const MainPage = () => {
   return (
-    <div className="container main-page__container">
+    <div className="container main-page__container" data-testid='main-page'>
       <h2 className="main-page__title">
         Welcome to Gamelandia! Please choose your game...
       </h2>

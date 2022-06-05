@@ -25,4 +25,12 @@ export const games = [
     path: "chess",
     isOutside: false,
   },
+  {
+    id: 4,
+    gameName: "Tic Tac Toe",
+    pictureName: "ticTacToe",
+    description: "Standard tic toe game ",
+    path: "tictac",
+    isOutside: false,
+  },
 ];

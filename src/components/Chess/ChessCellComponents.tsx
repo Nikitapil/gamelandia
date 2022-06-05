@@ -9,9 +9,9 @@ interface ChessCellComponentsProps {
 
 export const ChessCellComponents:FC<ChessCellComponentsProps> = ({cell, selected, click}) => {
   return (
-    <div className={`cell ${cell.color} ${selected ? 'selected' : ''} ${cell.figure && cell.available ? 'attack-available' : ''}`} onClick={() => click(cell)}>
-        {!cell.figure && cell.available && <div className='available'></div>}
-        {cell.figure?.logo && <img src={cell.figure?.logo} alt={cell.figure?.name}/>}
+    <div data-testid='chess-cell' className={`cell ${cell.color} ${selected ? 'selected' : ''} ${cell.figure && cell.available ? 'attack-available' : ''}`} onClick={() => click(cell)}>
+        {!cell.figure && cell.available && <div data-testid='available-dot' className='available'></div>}
+        {cell.figure?.logo && <img data-testid='figure-logo' src={cell.figure?.logo} alt={cell.figure?.name}/>}
     </div>
   )
 }

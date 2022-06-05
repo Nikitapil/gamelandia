@@ -13,7 +13,7 @@ export const WinnerModal: FC<WinnerModalProps> = ({ color, newGame }) => {
 
   return (
     <ModalContainer title={winner + " WINS"} closeModal={newGame}>
-      <button className="chess__new-game" onClick={newGame}>
+      <button data-testid='newGame-btn' className="chess__new-game" onClick={newGame}>
         New Game
       </button>
     </ModalContainer>

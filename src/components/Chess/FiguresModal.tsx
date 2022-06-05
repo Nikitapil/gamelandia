@@ -56,24 +56,28 @@ export const FiguresModal: FC<FiguresModalProps> = ({
         <button
           className="figure-button"
           onClick={() => chooseFigure(FigureNames.BISHOP)}
+          data-testid='bishop-btn'
         >
           <FontAwesomeIcon icon={faChessBishop} /> Bishop
         </button>
         <button
           className="figure-button"
           onClick={() => chooseFigure(FigureNames.KNIGHT)}
+          data-testid='knight-btn'
         >
           <FontAwesomeIcon icon={faChessKnight} /> Knight
         </button>
         <button
           className="figure-button"
           onClick={() => chooseFigure(FigureNames.QUEEN)}
+          data-testid='queen-btn'
         >
           <FontAwesomeIcon icon={faChessQueen} /> Queen
         </button>
         <button
           className="figure-button"
           onClick={() => chooseFigure(FigureNames.ROOK)}
+          data-testid='rook-btn'
         >
           <FontAwesomeIcon icon={faChessRook} /> Rook
         </button>

@@ -81,7 +81,7 @@ export const ChessTimer: FC<ChessTimerProps> = ({
 
   return (
     <div>
-      <button onClick={() => setIsModalOpen(true)} className="chess__restart">
+      <button onClick={() => setIsModalOpen(true)} className="chess__restart" data-testid='chess__restart'>
         Restart game
       </button>
       <div className="chess-timer__time">

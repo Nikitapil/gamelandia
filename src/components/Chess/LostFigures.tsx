@@ -12,7 +12,7 @@ export const LostFigures: FC<LostFiguresProps> = ({ title, figures }) => {
       <h3 className="lost-figures__title">{title}:</h3>
       {figures.map((figure) => (
         <div key={figure.id} className="lost-figures__item">
-          {figure.name} {figure.logo && <img src={figure.logo} />}
+          {figure.name} {figure.logo && <img src={figure.logo} alt="figure icon" />}
         </div>
       ))}
     </div>

@@ -21,7 +21,7 @@ export const TimerModal: FC<TimerModalProps> = ({ start, closeModal }) => {
   };
 
   return (
-    <div className="timer-modal">
+    <div className="timer-modal" data-testid='timer-modal'>
       <label>
         <input
           type="number"
@@ -29,10 +29,11 @@ export const TimerModal: FC<TimerModalProps> = ({ start, closeModal }) => {
           placeholder="Time"
           value={time}
           onChange={timeChangeHandler}
+          data-testid='time-input'
         />{" "}
         min
       </label>
-      <button className="timer-button" onClick={onStart}>
+      <button className="timer-button" onClick={onStart} data-testid='chess-start-button'>
         Start
       </button>
     </div>

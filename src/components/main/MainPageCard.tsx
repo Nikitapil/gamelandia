@@ -17,7 +17,7 @@ export const MainPageCard: FC<MainPageCardProps> = ({
   return (
     <Link to={to} className="game-card">
       <div className="game-card__picture">
-        <img src={gamePics[pictureName]} alt="Game logo" />
+        <img data-testid='game-pic' src={gamePics[pictureName]} alt="Game logo" />
       </div>
       <div className="game-info">
         <h1 className="game-title">{gameName}</h1>
