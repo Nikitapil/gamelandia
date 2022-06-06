@@ -25,6 +25,7 @@ export const ChessTimer: FC<ChessTimerProps> = ({
   const [whiteTime, setWhiteTime] = useState(300);
   const timer = useRef<null | ReturnType<typeof setInterval>>(null);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const startTimer = () => {
     if (timer.current) {
       clearInterval(timer.current);

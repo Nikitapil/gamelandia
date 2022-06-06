@@ -45,6 +45,7 @@ export const ChessBoardComponent: FC<ChessBoardComponentProps> = ({
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const highLightCells = () => {
     board.highLightCells(selectedCell);
     updateBoard();
