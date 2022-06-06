@@ -13,7 +13,6 @@ export const AppHeader = () => {
                 Main
               </Link>
             </li>
-            <li className="nav-bar__link">Games</li>
           </ul>
         </nav>
       </div>
