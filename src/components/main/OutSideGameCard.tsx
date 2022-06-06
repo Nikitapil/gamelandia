@@ -14,7 +14,7 @@ export const OutSidePageCard: FC<MainPageCardProps> = ({
   to,
 }) => {
   return (
-    <a href={to} className="game-card" target="_blank">
+    <a href={to} className="game-card" target="_blank" rel="noreferrer">
       <div className="game-card__picture">
         <img data-testid='game-pic' src={gamePics[pictureName]} alt="Game logo" />
       </div>

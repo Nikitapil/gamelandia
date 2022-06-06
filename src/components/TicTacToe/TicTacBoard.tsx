@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { TicBoard } from '../../models/ticTacToe/TicBoard'
 import { TicCell } from '../../models/ticTacToe/TicCell'
 import { TicTacCell } from './TicTacCell'

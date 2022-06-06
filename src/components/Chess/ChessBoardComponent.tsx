@@ -61,7 +61,7 @@ export const ChessBoardComponent: FC<ChessBoardComponentProps> = ({
 
   useEffect(() => {
     highLightCells();
-  }, [selectedCell]);
+  }, [highLightCells, selectedCell]);
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MatchCard } from "../components/match/MatchCard";
 import { card } from "../domain/matchMatch";
 import "../styles/match.scss";

@@ -50,7 +50,7 @@ export const ChessTimer: FC<ChessTimerProps> = ({
 
   useEffect(() => {
     startTimer();
-  }, [currentPlayer]);
+  }, [currentPlayer, startTimer]);
 
   useEffect(() => {
     if (whiteTime <= 0) {
@@ -66,7 +66,7 @@ export const ChessTimer: FC<ChessTimerProps> = ({
           setWinner(Colors.WHITE)
     }
     
-  }, [whiteTime, blackTime])
+  }, [whiteTime, blackTime, setWinner])
 
   const handleRestart = (time: number = 300) => {
     setBlackTime(time);
