@@ -1,4 +1,3 @@
-import { ESnakeDirections } from './../../constants/snake';
 import { SnakeCellModel } from './SnakeCellModel';
 import { SnakeModel } from './SnakeModel';
 export class SnakeElemModel {

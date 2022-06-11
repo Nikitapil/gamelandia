@@ -5,7 +5,7 @@ import { SnakeBoardModel } from "../models/snake/SnakeBoardModel";
 import "../styles/snake.scss";
 export const Snake = () => {
   const [board, setBoard] = useState<SnakeBoardModel | null>(null);
-  const [gameOver, setGameOver] = useState("");
+  const [gameOver, setGameOver] = useState('');
   const [isClickAvailable, setIsClickAvailable] = useState(true)
   const [timer, setTimer] = useState(100)
   const [isNewGameButtonDisabled, setIsNewGameButtonDisabled] = useState(false)
@@ -13,7 +13,7 @@ export const Snake = () => {
 
 
   const onKeyPress = (e: React.KeyboardEvent) => {
-    if (board?.snake && isClickAvailable) {
+    if (board?.snake && isClickAvailable && !gameOver) {
       if (
         e.code === "ArrowRight" &&
         board.snake.direction !== ESnakeDirections.LEFT &&
@@ -74,7 +74,10 @@ export const Snake = () => {
   }
 
   const onStartGame = () => {
-    
+      if (!isNewGameButtonDisabled) {
+        setIsNewGameButtonDisabled(true)
+        startMoving()
+      }
   };
 
   const onMove = () => {
@@ -92,6 +95,7 @@ export const Snake = () => {
   useEffect(() => {
     if (board?.gameOver) {
       setGameOver("GameOver");
+      setIsNewGameButtonDisabled(false)
       if (movingTimeOut.current) {
         clearInterval(movingTimeOut.current);
       }
@@ -101,8 +105,8 @@ export const Snake = () => {
   return (
     <div className="snake__container container" onKeyDown={onKeyPress}>
       <h2 className="snake__title">Snake Game</h2>
-      <button onClick={onStartGame}>Start game</button>
-      <button onClick={startMoving}>TEST</button>
+      {!isNewGameButtonDisabled && <button onClick={newGame}>New Game</button>}
+      {!gameOver && <button onClick={onStartGame}>Start game</button>}
       <p>{gameOver}</p>
       <SnakeBoard board={board} />
     </div>

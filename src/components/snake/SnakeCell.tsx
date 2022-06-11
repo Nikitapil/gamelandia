@@ -13,7 +13,7 @@ export const SnakeCell:FC<SnakeCellProps> = ({cell}) => {
     const classes = useMemo(() => {
         const base = 'snake-cell'
         if(cell.elem) {
-            return base + ' ' + 'with-snake'
+            return `${base} with-snake`
         }
         return base
     }, [cell.elem])
