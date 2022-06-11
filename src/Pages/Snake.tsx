@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { SnakeBoard } from "../components/snake/SnakeBoard";
 import { ESnakeDirections } from "../constants/snake";
 import { SnakeBoardModel } from "../models/snake/SnakeBoardModel";
@@ -7,6 +7,7 @@ export const Snake = () => {
   const [board, setBoard] = useState<SnakeBoardModel | null>(null);
   const [gameOver, setGameOver] = useState('');
   const [isClickAvailable, setIsClickAvailable] = useState(true)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [timer, setTimer] = useState(100)
   const [isNewGameButtonDisabled, setIsNewGameButtonDisabled] = useState(false)
   const movingTimeOut = useRef<null | ReturnType<typeof setInterval>>(null);
