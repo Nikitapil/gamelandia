@@ -31,3 +31,51 @@
 .with-snake {
     background-color: #adff2f;
 }
+.snake__btns {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    margin-bottom: 10px;
+    align-items: center;
+    p {
+        color: $mainColor;
+    }
+}
+
+.snake__btn {
+    border: none;
+    padding: 0 5px;
+    background-color: #3bf851;
+    border-radius: 6px;
+    transition: 0.4s;
+    height: 25px;
+    font-size: 22px;
+    &:hover {
+      background-color: #48b73c;
+    }
+}
+.snake__difficulty {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 10px;
+    p {
+        color: $mainColor;
+    }
+    button {
+        background-color: $titleColor;
+        border: none;
+        border-radius: 6px;
+        transition: 0.4s;
+        padding: 0 5px;
+        &:hover {
+            background-color: #3c9eb7;
+          }
+    }
+}
+.snake-current-level {
+    background: #3bf851 !important;
+    &:hover {
+        background-color: #48b73c !important;
+      }
+}

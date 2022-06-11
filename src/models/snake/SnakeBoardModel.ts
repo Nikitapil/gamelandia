@@ -6,6 +6,7 @@ export class SnakeBoardModel {
     cells:SnakeCellModel[][] = [];
     snake: SnakeModel | null = null
     gameOver:boolean = false
+    score: number = 0
     initCells() {
         for (let i = 0; i<20; i++) {
             const row = []

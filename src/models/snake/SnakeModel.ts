@@ -47,6 +47,7 @@ export class SnakeModel {
         }
         this.elems.unshift(new SnakeElemModel(nextCell!, this))
         if(nextCell?.food) {
+            this.board.score++
             nextCell.food = false
             this.board.addFood()
         }

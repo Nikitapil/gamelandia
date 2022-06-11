@@ -5,13 +5,11 @@ import { SnakeBoardModel } from "../models/snake/SnakeBoardModel";
 import "../styles/snake.scss";
 export const Snake = () => {
   const [board, setBoard] = useState<SnakeBoardModel | null>(null);
-  const [gameOver, setGameOver] = useState('');
-  const [isClickAvailable, setIsClickAvailable] = useState(true)
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [timer, setTimer] = useState(100)
-  const [isNewGameButtonDisabled, setIsNewGameButtonDisabled] = useState(false)
+  const [gameOver, setGameOver] = useState("");
+  const [isClickAvailable, setIsClickAvailable] = useState(true);
+  const [timer, setTimer] = useState(100);
+  const [isNewGameButtonDisabled, setIsNewGameButtonDisabled] = useState(false);
   const movingTimeOut = useRef<null | ReturnType<typeof setInterval>>(null);
-
 
   const onKeyPress = (e: React.KeyboardEvent) => {
     if (board?.snake && isClickAvailable && !gameOver) {
@@ -22,7 +20,7 @@ export const Snake = () => {
       ) {
         board?.snake?.changeDirection(ESnakeDirections.RIGHT);
         startMoving();
-        redisableClick()
+        redisableClick();
       }
       if (
         e.code === "ArrowDown" &&
@@ -31,7 +29,7 @@ export const Snake = () => {
       ) {
         board?.snake?.changeDirection(ESnakeDirections.BOTTOM);
         startMoving();
-        redisableClick()
+        redisableClick();
       }
       if (
         e.code === "ArrowUp" &&
@@ -40,7 +38,7 @@ export const Snake = () => {
       ) {
         board?.snake?.changeDirection(ESnakeDirections.TOP);
         startMoving();
-        redisableClick()
+        redisableClick();
       }
       if (
         e.code === "ArrowLeft" &&
@@ -49,36 +47,36 @@ export const Snake = () => {
       ) {
         board?.snake?.changeDirection(ESnakeDirections.LEFT);
         startMoving();
-        redisableClick()
+        redisableClick();
       }
     }
   };
 
   const redisableClick = () => {
-    setIsClickAvailable(false)
+    setIsClickAvailable(false);
     setTimeout(() => {
-        setIsClickAvailable(true)
-    }, timer)
-  }
+      setIsClickAvailable(true);
+    }, timer);
+  };
 
   useEffect(() => {
-    newGame()
+    newGame();
   }, []);
 
   const newGame = () => {
-    setGameOver('')
+    setGameOver("");
     const newBoard = new SnakeBoardModel();
     newBoard.initCells();
     newBoard?.addSnake();
-    newBoard?.addFood()
+    newBoard?.addFood();
     setBoard(newBoard);
-  }
+  };
 
   const onStartGame = () => {
-      if (!isNewGameButtonDisabled) {
-        setIsNewGameButtonDisabled(true)
-        startMoving()
-      }
+    if (!isNewGameButtonDisabled) {
+      setIsNewGameButtonDisabled(true);
+      startMoving();
+    }
   };
 
   const onMove = () => {
@@ -96,7 +94,7 @@ export const Snake = () => {
   useEffect(() => {
     if (board?.gameOver) {
       setGameOver("GameOver");
-      setIsNewGameButtonDisabled(false)
+      setIsNewGameButtonDisabled(false);
       if (movingTimeOut.current) {
         clearInterval(movingTimeOut.current);
       }
@@ -106,8 +104,42 @@ export const Snake = () => {
   return (
     <div className="snake__container container" onKeyDown={onKeyPress}>
       <h2 className="snake__title">Snake Game</h2>
-      {!isNewGameButtonDisabled && <button onClick={newGame}>New Game</button>}
-      {!gameOver && <button onClick={onStartGame}>Start game</button>}
+      <div className="snake__btns">
+        {!isNewGameButtonDisabled && (
+          <button className="snake__btn" onClick={newGame}>
+            New Game
+          </button>
+        )}
+        {!gameOver && (
+          <button className="snake__btn" onClick={onStartGame}>
+            Start game
+          </button>
+        )}
+        <p>Score: {board?.score}</p>
+      </div>
+      {!isNewGameButtonDisabled && (
+        <div className="snake__difficulty">
+          <p>Difficulty:</p>
+          <button
+            className={`${timer === 150 ? "snake-current-level" : ""}`}
+            onClick={() => setTimer(150)}
+          >
+            Easy
+          </button>
+          <button
+            className={`${timer === 100 ? "snake-current-level" : ""}`}
+            onClick={() => setTimer(100)}
+          >
+            Medium
+          </button>
+          <button
+            className={`${timer === 50 ? "snake-current-level" : ""}`}
+            onClick={() => setTimer(50)}
+          >
+            Hard
+          </button>
+        </div>
+      )}
       <p>{gameOver}</p>
       <SnakeBoard board={board} />
     </div>
