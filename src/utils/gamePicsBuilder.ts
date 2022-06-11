@@ -12,6 +12,7 @@ import racoon from "../assets/matchMatch/racoon.jpeg";
 import quizzer from "../assets/gamepictures/quizzer.png";
 import chess from "../assets/gamepictures/chess.jpeg";
 import ticTacToe from "../assets/gamepictures/ticTacToe.jpeg";
+import snake from "../assets/gamepictures/snake.jpeg";
 interface IGamePics {
   [key: string]: string;
 }
@@ -20,7 +21,8 @@ export const gamePics: IGamePics = {
   default: defaultPic,
   quizzer: quizzer,
   chess: chess,
-  ticTacToe:ticTacToe
+  ticTacToe:ticTacToe,
+  snake: snake
 };
 
 export const matchMatchPics = [

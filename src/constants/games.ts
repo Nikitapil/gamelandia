@@ -33,4 +33,12 @@ export const games = [
     path: "tictac",
     isOutside: false,
   },
+  {
+    id: 5,
+    gameName: "Snake",
+    pictureName: "snake",
+    description: "Classic snake game",
+    path: "snake",
+    isOutside: false,
+  },
 ];
