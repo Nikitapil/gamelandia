@@ -93,7 +93,7 @@ export const Snake = () => {
 
   useEffect(() => {
     if (board?.gameOver) {
-      setGameOver("GameOver");
+      setGameOver("GameOver!!!");
       setIsNewGameButtonDisabled(false);
       if (movingTimeOut.current) {
         clearInterval(movingTimeOut.current);
@@ -140,7 +140,7 @@ export const Snake = () => {
           </button>
         </div>
       )}
-      <p>{gameOver}</p>
+      <p className="snake__game-over">{gameOver}</p>
       <SnakeBoard board={board} />
     </div>
   );
