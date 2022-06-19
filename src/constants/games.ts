@@ -41,4 +41,12 @@ export const games = [
     path: "snake",
     isOutside: false,
   },
+  {
+    id: 6,
+    gameName: "BattleShip",
+    pictureName: "battleship",
+    description: "Classic battleship game",
+    path: "battleship",
+    isOutside: false,
+  },
 ];
