@@ -22,3 +22,10 @@ export const setCurrentFreeShip = (payload: BattleShipElemModel | null) => {
         payload
     }
 }
+
+export const setBattleShipEnemyBoard = (payload: BattleshipBoardModel | null) => {
+    return {
+        type: BattleShipActionsTypes.SET_ENEMY_BOARD,
+        payload
+    }
+}

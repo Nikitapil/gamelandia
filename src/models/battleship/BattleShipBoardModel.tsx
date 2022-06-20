@@ -1,13 +1,15 @@
 import { EBattleShipElemDirection } from "../../constants/battleship";
 import { BattleshipCellModel } from "./BattleShipCellModel";
 import { BattleShipElemModel } from "./BattleShipElemModel";
+
 export class BattleshipBoardModel {
   cells: BattleshipCellModel[][] = [];
   freeElems: BattleShipElemModel[] = [];
   isEnemyBoard = false
-
-  constructor(isEnemyBoard = false) {
+  ships: BattleShipElemModel[] = [];
+  constructor(isEnemyBoard = false, ships = []) {
     this.isEnemyBoard = isEnemyBoard
+    this.ships = ships
   }
 
   initCells() {
@@ -112,6 +114,11 @@ export class BattleshipBoardModel {
       this.freeElems = this.freeElems.filter(el => el.id !==currentElem.id)
       this.setAllCellUnavailableForAdd()
   }
+  this.ships.push(currentElem)
   } 
+
+  checkWinner() {
+    return this.ships.every(ship => ship.isDestroyed)
+  }
 
 }

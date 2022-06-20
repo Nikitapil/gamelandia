@@ -7,6 +7,7 @@ import {
 const initialState: IBattleShipState = {
   freeShips: [],
   board: null,
+  enemyBoard: null,
   currentFreeShip: null,
 };
 
@@ -19,8 +20,10 @@ export const battleshipReducer = (
       return { ...state, freeShips: action.payload };
     case BattleShipActionsTypes.SET_BOARD:
       return { ...state, board: action.payload };
-      case BattleShipActionsTypes.SET_CURRENT_FREE_SHIP:
-        return { ...state, currentFreeShip: action.payload };
+    case BattleShipActionsTypes.SET_CURRENT_FREE_SHIP:
+      return { ...state, currentFreeShip: action.payload };
+    case BattleShipActionsTypes.SET_ENEMY_BOARD:
+      return {...state, enemyBoard: action.payload}
     default:
       return state;
   }

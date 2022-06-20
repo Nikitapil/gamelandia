@@ -16,6 +16,9 @@
   width: 30px;
   height: 30px;
   border: 1px solid $titleColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .battleship-elems {
@@ -28,12 +31,12 @@
   gap: 10px;
 }
 .battship-elem {
-    &.VERTICAL {
-        width: 30px;
-    }
-    &.HORIZONTAL {
-     height: 30px;
-    }
+  &.VERTICAL {
+    width: 30px;
+  }
+  &.HORIZONTAL {
+    height: 30px;
+  }
   height: 30px;
   border: 2px solid $titleColor;
   background: #00c4f04a;
@@ -43,45 +46,45 @@
   &.size_4 {
     width: 120px;
     &.VERTICAL {
-        width: 30px;
-        height: 120px;
+      width: 30px;
+      height: 120px;
     }
   }
   &.size_3 {
     width: 90px;
     &.VERTICAL {
-        width: 30px;
-        height: 90px;
+      width: 30px;
+      height: 90px;
     }
   }
   &.size_2 {
     width: 60px;
     &.VERTICAL {
-        width: 30px;
-        height: 60px;
+      width: 30px;
+      height: 60px;
     }
   }
   &.size_1 {
     width: 30px;
     &.VERTICAL {
-        width: 30px;
-        height: 30px;
+      width: 30px;
+      height: 30px;
     }
   }
 }
 .battship-elembtn {
-    border: none;
-    background: none;
-    color: $mainColor;
+  border: none;
+  background: none;
+  color: $mainColor;
 }
 .ship-selected {
-    border: 2px solid #ff0000
+  border: 2px solid #ff0000;
 }
 .battship-highlighted {
-    background-color: green;
+  background-color: green;
 }
 .with-ship {
-    background-color: #00c4f04a;
+  background-color: #00c4f04a;
 }
 
 .battleship-btn {
@@ -126,4 +129,31 @@
 
 .battleship__rooms-link {
   color: $titleColor;
+}
+
+.battleship__boards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.battleship__missed {
+  font-size: 8px;
+  color: $mainColor;
+}
+.battleship__under-attack {
+  font-size: 28px;
+  color: red;
+  font-weight: 700;
+}
+.battleship__destroyed {
+  background-color: #ff00009d;
+  .battleship__under-attack {
+    color: black;
+  }
+}
+.battleship__current-player {
+  color: $mainColor;
+  margin-bottom: 10px;
+  font-size: 18px;
 }

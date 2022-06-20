@@ -39,7 +39,7 @@ export const BattleShipRooms:FC<BattleShipRoomsProps> = ({firestore}) => {
                 {filteredRooms?.map(room => (
                     <tr key={room.id}>
                     <td>
-                        <Link to={`/battleship/${room.id}`} className='room-link'>Room 1</Link>
+                        <Link to={`/battleship/${room.id}`} className='room-link'>{room.name}</Link>
                     </td>
                 </tr>
                 ))}

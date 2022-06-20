@@ -8,6 +8,7 @@ import { setBattleShipBoard, setFreeShips, setCurrentFreeShip } from '../../redu
 import { Firestore } from 'firebase/firestore'
 import { useParams } from 'react-router-dom';
 import { doc, collection, query, where, orderBy, addDoc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { mapCellsToFirebase, mapShipsToFirebase } from '../../utils/battleship/battleShipMappers';
 interface BattleshipElemsProps {
   roomData: any
   firestore: Firestore
@@ -33,9 +34,9 @@ export const BattleshipElems:FC<BattleshipElemsProps> = ({firestore, roomData, m
  const setIsReady = () => {
     const newData = {
       ...roomData,
-      [myPlayer]:  {...roomData[myPlayer], isReady: true}
+      [myPlayer]:  {...roomData[myPlayer], isReady: true, cells: mapCellsToFirebase(board?.cells!), ships: mapShipsToFirebase(board?.ships!)}
     }
-    console.log(newData);
+    console.log(board?.ships);
     
   setDoc(doc(firestore, 'battleship', id!), newData)
  }    
