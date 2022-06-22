@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { setBattleShipBoard, setFreeShips, setCurrentFreeShip } from '../../redux/battleships/battleshipActions';
 import { Firestore } from 'firebase/firestore'
 import { useParams } from 'react-router-dom';
-import { doc, collection, query, where, orderBy, addDoc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { mapCellsToFirebase, mapShipsToFirebase } from '../../utils/battleship/battleShipMappers';
 interface BattleshipElemsProps {
   roomData: any

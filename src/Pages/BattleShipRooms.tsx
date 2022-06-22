@@ -1,8 +1,8 @@
-import React, { FC, useEffect, useMemo } from 'react'
+import React, { FC, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { useCollectionData, useCollection  } from "react-firebase-hooks/firestore";
+import { useCollectionData, } from "react-firebase-hooks/firestore";
 import '../styles/battleship.scss'
-import { doc, collection, query, where, orderBy, addDoc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { doc, collection, setDoc } from 'firebase/firestore';
 import { Firestore } from 'firebase/firestore'
 
 interface BattleShipRoomsProps {
@@ -10,7 +10,7 @@ interface BattleShipRoomsProps {
 }
  
 export const BattleShipRooms:FC<BattleShipRoomsProps> = ({firestore}) => {
-    const [rooms, loading, error, snapshot] = useCollectionData(collection(firestore, 'battleship'))
+    const [rooms] = useCollectionData(collection(firestore, 'battleship'))
     const createRoom = async () => {
         const newRoom = {
             player1: null,
@@ -23,7 +23,7 @@ export const BattleShipRooms:FC<BattleShipRoomsProps> = ({firestore}) => {
     }
 
     const filteredRooms = useMemo(() => {
-        return rooms?.filter(room => !room.palyer1 || !room.player2)
+        return rooms?.filter(room => !room.palyer1 || !room.player2).sort((a, b) => parseInt(a.name.match(/\d+/)) -  parseInt(b.name.match(/\d+/)))
     }, [rooms])
 
   return (
@@ -32,7 +32,7 @@ export const BattleShipRooms:FC<BattleShipRoomsProps> = ({firestore}) => {
         <table className='battlship-rooms__table'>
             <thead>
                 <tr>
-                    <td><button onClick={createRoom}>Create room</button></td>
+                    <td><button className='create-room__btn' onClick={createRoom}>Create room</button></td>
                 </tr>
             </thead>
             <tbody>

@@ -23,9 +23,8 @@ const app = initializeApp(firebaseConfig)
 const auth = getAuth()
 const firestore = getFirestore(app)
 function App() {
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const {notification} = useTypedSelector(appSelector)
-
   
 
   return (

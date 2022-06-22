@@ -4,7 +4,6 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { BattleshipCellModel } from "../../models/battleship/BattleShipCellModel";
 import {
   setBattleShipBoard,
-  setBattleShipEnemyBoard,
   setCurrentFreeShip,
   setFreeShips,
 } from "../../redux/battleships/battleshipActions";
@@ -54,7 +53,6 @@ export const BattleshipCell: FC<BattleshipCellProps> = ({
     if (cell.board.isEnemyBoard && roomData.currentPlayer !== secondPlayer) {
       console.log("attack");
       cell.setIsAttacked();
-      // dispatch(setBattleShipEnemyBoard(enemyBoard));
       const isWinner = enemyBoard?.checkWinner()
       const newData = {
         ...roomData,
@@ -62,8 +60,8 @@ export const BattleshipCell: FC<BattleshipCellProps> = ({
           ...roomData[secondPlayer],
           cells: mapCellsToFirebase(enemyBoard?.cells!),
           ships: mapShipsToFirebase(enemyBoard?.ships!),
-          winner: isWinner ? roomData.currentPlayer : ''
         },
+        winner: isWinner ? roomData.currentPlayer : ''
       };
       if (!cell.elem) {
         newData.currentPlayer = secondPlayer;
@@ -79,6 +77,7 @@ export const BattleshipCell: FC<BattleshipCellProps> = ({
         : { className: "battleship__missed", icon: faCircle };
     }
     return null;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cell.isAttacked]);
 
   return (

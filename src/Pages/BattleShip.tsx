@@ -1,13 +1,13 @@
 import React, { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { BattleshipBoard } from "../components/Battleship/BattleshipBoard";
 import { BattleshipElems } from "../components/Battleship/BattleshipElems";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { BattleshipBoardModel } from "../models/battleship/BattleShipBoardModel";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, deleteDoc } from "firebase/firestore";
 import { Auth } from "firebase/auth";
 import { Firestore } from "firebase/firestore";
 import {
@@ -29,15 +29,18 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [user] = useAuthState(auth);
-  const [roomData, loading, error, snapshot] = useDocumentData(
+  const [roomData, loading] = useDocumentData(
     doc(firestore, "battleship", id!)
   );
-  const { board, enemyBoard } = useTypedSelector(battleShipSelector);
+  const { board, enemyBoard } =
+    useTypedSelector(battleShipSelector);
   const [isFull, setIsFull] = useState(false);
   const [myPlayer, setMyPlayer] = useState("");
   const [secondPlayer, setSecondPlayer] = useState("");
   const [isDataFromServer, setIsDataFromServer] = useState(false);
   const [isGameStarted, setIsGameStarted] = useState(false);
+  const navigate = useNavigate();
+  const [winner, setWinner] = useState("");
 
   useEffect(() => {
     if (roomData?.player1 && roomData?.player2) {
@@ -75,7 +78,6 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
       setMyPlayer("player2");
       setSecondPlayer("player1");
     }
-    console.log(roomData);
     if (roomData && roomData.player1?.isReady && roomData.player2?.isReady) {
       if (!roomData.currentPlayer) {
         setDoc(doc(firestore, "battleship", id!), {
@@ -112,6 +114,11 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
       );
       dispatch(setBattleShipEnemyBoard(newEnemyBoard));
     }
+    if (roomData?.winner) {
+      setWinner(roomData?.winner)
+      deleteDoc(doc(firestore, "battleship", id!))
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomData, user, myPlayer]);
 
   useEffect(() => {
@@ -122,7 +129,12 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
       dispatch(setFreeShips(newBoard.freeElems));
       dispatch(setBattleShipBoard(newBoard));
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFull, loading, isDataFromServer]);
+
+  if(!roomData && !loading && !winner) {
+    navigate('/battleship')
+  }
 
   if (isFull) {
     return (
@@ -135,11 +147,26 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
     );
   }
 
+  if (winner) {
+    return (
+      <div className="container battleship-winner__container">
+        <h2 className="battleship-winner__title">The winner is {winner}</h2>
+        <Link className="battleship__rooms-link" to="/battleship">
+          Go to Rooms
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div className="container battleship">
       <h2 className="page-title">Battleship</h2>
       {loading && <HorizotalLoader color="blue" />}
-      {roomData?.currentPlayer && <h3 className="battleship__current-player">Current player: {roomData.currentPlayer}</h3>}
+      {roomData?.currentPlayer && (
+        <h3 className="battleship__current-player">
+          Current player: {roomData.currentPlayer}
+        </h3>
+      )}
       <div className="battleship__boards">
         <div className="battleship__my-board">
           {board && !loading && (
@@ -162,14 +189,14 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
             )}
         </div>
         <div className="battleship__enemy-board">
-          {isGameStarted && enemyBoard && (
+          {isGameStarted && enemyBoard ? (
             <BattleshipBoard
               firestore={firestore}
               secondPlayer={secondPlayer}
               roomData={roomData}
               isEnemy={true}
             />
-          )}
+          ) : (<div className="battle-ship__waiting">Waiting for second player...</div>)}
         </div>
       </div>
     </div>

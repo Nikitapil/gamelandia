@@ -23,5 +23,22 @@ export class BattleshipCellModel {
 
     setIsAttacked() {
         this.isAttacked = true
+        if (this.elem?.isDestroyed) {
+            const cells = this.board.cells
+            let tempCells:BattleshipCellModel[]  = []
+            this.elem.cells.forEach(cell => {
+                const y = cell.y
+                const x = cell.x
+                if(cells[y+1]) {
+                    tempCells.push(cells[y+1][x], cells[y+1][x+1], cells[y+1][x-1])
+                }
+                if(cells[y-1]) {
+                    tempCells.push(cells[y-1][x], cells[y-1][x+1], cells[y-1][x-1])
+                }
+                tempCells.push(cells[y][x-1], cells[y][x+1])
+            })
+            tempCells = tempCells.filter(cell => !!cell && !cell.elem)
+            tempCells.forEach(cell => cell.isAttacked = true)
+        }
     }
 }
