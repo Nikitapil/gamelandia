@@ -28,12 +28,11 @@ interface BattleShipProps {
 export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [user] = useAuthState(auth);
+  const [user, isUserLoading] = useAuthState(auth);
   const [roomData, loading] = useDocumentData(
     doc(firestore, "battleship", id!)
   );
-  const { board, enemyBoard } =
-    useTypedSelector(battleShipSelector);
+  const { board, enemyBoard } = useTypedSelector(battleShipSelector);
   const [isFull, setIsFull] = useState(false);
   const [myPlayer, setMyPlayer] = useState("");
   const [secondPlayer, setSecondPlayer] = useState("");
@@ -55,6 +54,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
     if (!roomData?.player1 && user && roomData) {
       const player1 = {
         uid: user.uid,
+        name: user.displayName,
         cells: [],
       };
       setDoc(doc(firestore, "battleship", id!), { ...roomData, player1 });
@@ -66,6 +66,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
     ) {
       const player2 = {
         uid: user.uid,
+        name: user.displayName,
         cells: [],
       };
       setDoc(doc(firestore, "battleship", id!), { ...roomData, player2 });
@@ -115,10 +116,10 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
       dispatch(setBattleShipEnemyBoard(newEnemyBoard));
     }
     if (roomData?.winner) {
-      setWinner(roomData?.winner)
-      deleteDoc(doc(firestore, "battleship", id!))
+      setWinner(roomData?.winner);
+      deleteDoc(doc(firestore, "battleship", id!));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomData, user, myPlayer]);
 
   useEffect(() => {
@@ -129,11 +130,15 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
       dispatch(setFreeShips(newBoard.freeElems));
       dispatch(setBattleShipBoard(newBoard));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFull, loading, isDataFromServer]);
 
-  if(!roomData && !loading && !winner) {
-    navigate('/battleship')
+  if (!roomData && !loading && !winner) {
+    navigate("/battleship");
+  }
+
+  if (!isUserLoading && !user) {
+    navigate("/login?page=battleship");
   }
 
   if (isFull) {
@@ -164,7 +169,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
       {loading && <HorizotalLoader color="blue" />}
       {roomData?.currentPlayer && (
         <h3 className="battleship__current-player">
-          Current player: {roomData.currentPlayer}
+          Current player: {roomData[roomData.currentPlayer].name}
         </h3>
       )}
       <div className="battleship__boards">
@@ -196,7 +201,11 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
               roomData={roomData}
               isEnemy={true}
             />
-          ) : (<div className="battle-ship__waiting">Waiting for second player...</div>)}
+          ) : (
+            <div className="battle-ship__waiting">
+              Waiting for second player...
+            </div>
+          )}
         </div>
       </div>
     </div>

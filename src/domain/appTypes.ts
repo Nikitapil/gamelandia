@@ -14,7 +14,7 @@ export interface AppInitialState {
 
 interface ISetNotification {
   type: EAppActionstypes.SET_NOTIFICATION;
-  payload: Inotification
+  payload: Inotification;
 }
 
-export type AppActions = ISetNotification
+export type AppActions = ISetNotification;

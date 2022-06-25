@@ -28,6 +28,7 @@ export const BattleShipElem:FC<BattleShipElemProps> = ({elem}) => {
 
     const currentClass = useMemo(() => {
         return elem.id === currentFreeShip?.id ? 'ship-selected' : ''
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentFreeShip])
     
   return (

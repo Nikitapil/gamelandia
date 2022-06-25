@@ -9,11 +9,11 @@ interface AppHeaderProps {
 }
 
 export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
 
-  const onSignOut = async() => {
-      await signOut(auth)
-  }
+  const onSignOut = async () => {
+    await signOut(auth);
+  };
 
   return (
     <header className="header">
@@ -47,7 +47,9 @@ export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
             ) : (
               <li>
                 {" "}
-                <button className="logout-btn" onClick={onSignOut}>Logout</button>
+                <button className="logout-btn" onClick={onSignOut}>
+                  Logout
+                </button>
               </li>
             )}
           </ul>

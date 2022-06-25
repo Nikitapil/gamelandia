@@ -23,7 +23,7 @@ export const battleshipReducer = (
     case BattleShipActionsTypes.SET_CURRENT_FREE_SHIP:
       return { ...state, currentFreeShip: action.payload };
     case BattleShipActionsTypes.SET_ENEMY_BOARD:
-      return {...state, enemyBoard: action.payload}
+      return { ...state, enemyBoard: action.payload };
     default:
       return state;
   }

@@ -5,11 +5,11 @@ import { BattleShipElemModel } from "./BattleShipElemModel";
 export class BattleshipBoardModel {
   cells: BattleshipCellModel[][] = [];
   freeElems: BattleShipElemModel[] = [];
-  isEnemyBoard = false
+  isEnemyBoard = false;
   ships: BattleShipElemModel[] = [];
   constructor(isEnemyBoard = false, ships = []) {
-    this.isEnemyBoard = isEnemyBoard
-    this.ships = ships
+    this.isEnemyBoard = isEnemyBoard;
+    this.ships = ships;
   }
 
   initCells() {
@@ -22,21 +22,21 @@ export class BattleshipBoardModel {
     }
   }
 
- private createFourBattleElem() {
+  private createFourBattleElem() {
     this.freeElems.push(new BattleShipElemModel(4));
   }
 
- private createThreeBattleElems() {
+  private createThreeBattleElems() {
     this.freeElems.push(new BattleShipElemModel(3), new BattleShipElemModel(3));
   }
- private createTwoBattleElems() {
+  private createTwoBattleElems() {
     this.freeElems.push(
       new BattleShipElemModel(2),
       new BattleShipElemModel(2),
       new BattleShipElemModel(2)
     );
   }
- private createOneBattleElems() {
+  private createOneBattleElems() {
     this.freeElems.push(
       new BattleShipElemModel(1),
       new BattleShipElemModel(1),
@@ -53,72 +53,82 @@ export class BattleshipBoardModel {
   }
 
   private setAllCellUnavailableForAdd() {
-    this.cells.forEach(row => {
-        row.forEach(cell => {
-            cell.isAddAvailable = false
-        })
-    })
+    this.cells.forEach((row) => {
+      row.forEach((cell) => {
+        cell.isAddAvailable = false;
+      });
+    });
   }
 
-  checkIsAddAvailable(cell:BattleshipCellModel, currentElem:BattleShipElemModel ) {
-    this.setAllCellUnavailableForAdd()
-    let cells:BattleshipCellModel[] = []
-        for (let i = 0; i< currentElem.size; i++) {
-            if (currentElem.direction === EBattleShipElemDirection.HORIZONTAL) {
-                cells.push(this.cells[cell.y][cell.x + i])
-            } else {
-                if (!this.cells[cell.y+i]) {
-                    return false
-                }
-                cells.push(this.cells[cell.y+i][cell.x])
-            }
+  checkIsAddAvailable(
+    cell: BattleshipCellModel,
+    currentElem: BattleShipElemModel
+  ) {
+    this.setAllCellUnavailableForAdd();
+    let cells: BattleshipCellModel[] = [];
+    for (let i = 0; i < currentElem.size; i++) {
+      if (currentElem.direction === EBattleShipElemDirection.HORIZONTAL) {
+        cells.push(this.cells[cell.y][cell.x + i]);
+      } else {
+        if (!this.cells[cell.y + i]) {
+          return false;
         }
-        if (cells.some(item => item === undefined)) {
-            return false
-        }
-        cells.forEach(c => {
-            if (this.cells[c.y+1]) {
-                cells.push(this.cells[c.y+1][c.x],  this.cells[c.y+1][c.x+1], this.cells[c.y+1][c.x-1])
-            }
-            if(this.cells[c.y-1]) {
-                cells.push(this.cells[c.y-1][c.x],  this.cells[c.y-1][c.x-1], this.cells[c.y-1][c.x+1])
-            }
-            cells.push(this.cells[c.y][c.x+1], this.cells[c.y][c.x-1])
-        })
-        cells = cells.filter(item => item)
-        if(cells.every(item => item.isEmpty)) {
-            return true
-        }
-        return false
+        cells.push(this.cells[cell.y + i][cell.x]);
+      }
+    }
+    if (cells.some((item) => item === undefined)) {
+      return false;
+    }
+    cells.forEach((c) => {
+      if (this.cells[c.y + 1]) {
+        cells.push(
+          this.cells[c.y + 1][c.x],
+          this.cells[c.y + 1][c.x + 1],
+          this.cells[c.y + 1][c.x - 1]
+        );
+      }
+      if (this.cells[c.y - 1]) {
+        cells.push(
+          this.cells[c.y - 1][c.x],
+          this.cells[c.y - 1][c.x - 1],
+          this.cells[c.y - 1][c.x + 1]
+        );
+      }
+      cells.push(this.cells[c.y][c.x + 1], this.cells[c.y][c.x - 1]);
+    });
+    cells = cells.filter((item) => item);
+    if (cells.every((item) => item.isEmpty)) {
+      return true;
+    }
+    return false;
   }
 
-  highlightCells(cell:BattleshipCellModel, currentElem:BattleShipElemModel) {
-    for (let i = 0; i< currentElem.size; i++) {
-        if (currentElem.direction === EBattleShipElemDirection.HORIZONTAL) {
-            this.cells[cell.y][cell.x + i].isAddAvailable = true
-        } else {
-            this.cells[cell.y+i][cell.x].isAddAvailable = true
-        }
+  highlightCells(cell: BattleshipCellModel, currentElem: BattleShipElemModel) {
+    for (let i = 0; i < currentElem.size; i++) {
+      if (currentElem.direction === EBattleShipElemDirection.HORIZONTAL) {
+        this.cells[cell.y][cell.x + i].isAddAvailable = true;
+      } else {
+        this.cells[cell.y + i][cell.x].isAddAvailable = true;
+      }
     }
   }
 
-  addShipOnBoard(cell:BattleshipCellModel, currentElem:BattleShipElemModel) {
-    for (let i = 0; i< currentElem.size; i++) {
+  addShipOnBoard(cell: BattleshipCellModel, currentElem: BattleShipElemModel) {
+    for (let i = 0; i < currentElem.size; i++) {
       if (currentElem.direction === EBattleShipElemDirection.HORIZONTAL) {
-          this.cells[cell.y][cell.x + i].elem = currentElem
-          currentElem.cells.push(this.cells[cell.y][cell.x + i])
+        this.cells[cell.y][cell.x + i].elem = currentElem;
+        currentElem.cells.push(this.cells[cell.y][cell.x + i]);
       } else {
-          this.cells[cell.y+i][cell.x].elem = currentElem
-          currentElem.cells.push(this.cells[cell.y+i][cell.x])
+        this.cells[cell.y + i][cell.x].elem = currentElem;
+        currentElem.cells.push(this.cells[cell.y + i][cell.x]);
       }
-      this.freeElems = this.freeElems.filter(el => el.id !==currentElem.id)
-      this.setAllCellUnavailableForAdd()
+      this.freeElems = this.freeElems.filter((el) => el.id !== currentElem.id);
+      this.setAllCellUnavailableForAdd();
+    }
+    this.ships.push(currentElem);
   }
-  this.ships.push(currentElem)
-  } 
 
   checkWinner() {
-    return this.ships.every(ship => ship.isDestroyed)
+    return this.ships.every((ship) => ship.isDestroyed);
   }
-
 }

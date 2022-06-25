@@ -22,9 +22,9 @@ export const gamePics: IGamePics = {
   default: defaultPic,
   quizzer: quizzer,
   chess: chess,
-  ticTacToe:ticTacToe,
+  ticTacToe: ticTacToe,
   snake: snake,
-  battleship: battleship
+  battleship: battleship,
 };
 
 export const matchMatchPics = [

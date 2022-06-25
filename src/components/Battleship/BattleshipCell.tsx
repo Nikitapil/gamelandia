@@ -50,10 +50,13 @@ export const BattleshipCell: FC<BattleshipCellProps> = ({
       dispatch(setFreeShips(board?.freeElems!));
       dispatch(setCurrentFreeShip(null));
     }
-    if (cell.board.isEnemyBoard && roomData.currentPlayer !== secondPlayer) {
-      console.log("attack");
+    if (
+      cell.board.isEnemyBoard &&
+      roomData.currentPlayer !== secondPlayer &&
+      !cell.isAttacked
+    ) {
       cell.setIsAttacked();
-      const isWinner = enemyBoard?.checkWinner()
+      const isWinner = enemyBoard?.checkWinner();
       const newData = {
         ...roomData,
         [secondPlayer]: {
@@ -61,7 +64,7 @@ export const BattleshipCell: FC<BattleshipCellProps> = ({
           cells: mapCellsToFirebase(enemyBoard?.cells!),
           ships: mapShipsToFirebase(enemyBoard?.ships!),
         },
-        winner: isWinner ? roomData.currentPlayer : ''
+        winner: isWinner ? roomData[roomData.currentPlayer].name : "",
       };
       if (!cell.elem) {
         newData.currentPlayer = secondPlayer;
@@ -77,7 +80,7 @@ export const BattleshipCell: FC<BattleshipCellProps> = ({
         : { className: "battleship__missed", icon: faCircle };
     }
     return null;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cell.isAttacked]);
 
   return (
