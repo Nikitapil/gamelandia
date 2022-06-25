@@ -17,6 +17,7 @@
 }
 .nav-bar__links {
   display: flex;
+  align-items: center;
   gap: 10px;
 }
 
@@ -25,6 +26,15 @@
   text-decoration: none;
   transition: 0.4s;
   cursor: pointer;
+  &:hover {
+    color: #00c4f0;
+  }
+}
+.logout-btn {
+  color: #e4e4e4;
+  border: none;
+  background: none;
+  transition: 0.4s;
   &:hover {
     color: #00c4f0;
   }

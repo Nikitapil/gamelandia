@@ -13,6 +13,7 @@ import quizzer from "../assets/gamepictures/quizzer.png";
 import chess from "../assets/gamepictures/chess.jpeg";
 import ticTacToe from "../assets/gamepictures/ticTacToe.jpeg";
 import snake from "../assets/gamepictures/snake.jpeg";
+import battleship from "../assets/gamepictures/battleship.webp";
 interface IGamePics {
   [key: string]: string;
 }
@@ -21,8 +22,9 @@ export const gamePics: IGamePics = {
   default: defaultPic,
   quizzer: quizzer,
   chess: chess,
-  ticTacToe:ticTacToe,
-  snake: snake
+  ticTacToe: ticTacToe,
+  snake: snake,
+  battleship: battleship,
 };
 
 export const matchMatchPics = [

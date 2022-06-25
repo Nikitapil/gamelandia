@@ -17,3 +17,10 @@ body {
   min-height: calc(100vh - 80px);
   background: linear-gradient(130.68deg, #414141 0%, #2d2d2d 100.52%);
 }
+
+.page-title {
+  font-size: 32px;
+  color: $titleColor;
+  font-family: "Permanent Marker", cursive;
+  margin-bottom: 10px;
+}

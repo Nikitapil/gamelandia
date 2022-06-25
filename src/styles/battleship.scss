@@ -1,0 +1,187 @@
+@import "./vars.scss";
+
+.battleship {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.battleship__board {
+  width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.battleship__cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid $titleColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.battleship-elems {
+  width: 300px;
+  border: 2px solid $titleColor;
+  margin-top: 20px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.battship-elem {
+  &.VERTICAL {
+    width: 30px;
+  }
+  &.HORIZONTAL {
+    height: 30px;
+  }
+  height: 30px;
+  border: 2px solid $titleColor;
+  background: #00c4f04a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &.size_4 {
+    width: 120px;
+    &.VERTICAL {
+      width: 30px;
+      height: 120px;
+    }
+  }
+  &.size_3 {
+    width: 90px;
+    &.VERTICAL {
+      width: 30px;
+      height: 90px;
+    }
+  }
+  &.size_2 {
+    width: 60px;
+    &.VERTICAL {
+      width: 30px;
+      height: 60px;
+    }
+  }
+  &.size_1 {
+    width: 30px;
+    &.VERTICAL {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+.battship-elembtn {
+  border: none;
+  background: none;
+  color: $mainColor;
+}
+.ship-selected {
+  border: 2px solid #ff0000;
+}
+.battship-highlighted {
+  background-color: green;
+}
+.with-ship {
+  background-color: #00c4f04a;
+}
+
+.battleship-btn {
+  background-color: #ff0000;
+  color: $mainColor;
+  border: none;
+  padding: 0 10px;
+  height: 30px;
+  transition: 0.4s;
+  &:hover {
+    background-color: #920101;
+  }
+}
+.battlship-rooms__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.battlship-rooms__table {
+  border-collapse: collapse;
+  width: 100%;
+  td {
+    border: 1px solid $titleColor;
+    padding: 10px;
+  }
+  tr {
+    min-width: 300px;
+  }
+}
+
+.room-link {
+  color: $mainColor;
+}
+
+.battleship__full-message {
+  text-align: center;
+  padding-top: 10px;
+  font-size: 20px;
+  color: $mainColor;
+}
+
+.battleship__rooms-link {
+  color: $titleColor;
+}
+
+.battleship__boards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.battleship__missed {
+  font-size: 8px;
+  color: $mainColor;
+}
+.battleship__under-attack {
+  font-size: 28px;
+  color: red;
+  font-weight: 700;
+}
+.battleship__destroyed {
+  background-color: #ff00009d;
+  .battleship__under-attack {
+    color: black;
+  }
+}
+.battleship__current-player {
+  color: $mainColor;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.battleship-winner__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.battleship-winner__title {
+  font-size: 24px;
+  color: $mainColor;
+}
+.create-room__btn {
+  background-color: #adff2f;
+  border: none;
+  padding: 3px 5px;
+  border-radius: 5px;
+  transition: 0.4s;
+  &:hover {
+    background-color: rgb(136, 201, 37);
+  }
+}
+.battle-ship__waiting {
+  width: 300px;
+  height: 300px;
+  padding: 20px;
+  color: $mainColor;
+  font-size: 18px;
+  border: 1px solid $titleColor;
+}
