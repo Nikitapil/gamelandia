@@ -1,4 +1,15 @@
 import { rootReducer } from "./rootReducer";
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
+import { all } from "redux-saga/effects";
+import { snakeSaga } from "./snake/snakeSagas";
+import createSagaMiddleware from "redux-saga";
 
-export const store = createStore(rootReducer);
+const sagaMiddleware = createSagaMiddleware();
+
+export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+
+function* rootSaga() {
+  yield all([snakeSaga()]);
+}
+
+sagaMiddleware.run(rootSaga);

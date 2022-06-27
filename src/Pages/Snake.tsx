@@ -1,16 +1,28 @@
-import React, { useEffect, useRef, useState } from "react";
+import { Auth } from "firebase/auth";
+import React, { FC, useEffect, useRef, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useDispatch } from "react-redux";
+import { ScoreBoard } from "../components/snake/ScoreBoard";
 import { SnakeBoard } from "../components/snake/SnakeBoard";
 import { ESnakeDirections } from "../constants/snake";
 import { SnakeBoardModel } from "../models/snake/SnakeBoardModel";
+import { fetchSnakeBestScoore } from "../redux/snake/snakeActions";
+import { SnakeService } from "../services/SnakeService";
 import "../styles/snake.scss";
-export const Snake = () => {
+
+interface SnakeProps {
+  auth: Auth;
+}
+
+export const Snake: FC<SnakeProps> = ({ auth }) => {
   const [board, setBoard] = useState<SnakeBoardModel | null>(null);
   const [gameOver, setGameOver] = useState("");
   const [isClickAvailable, setIsClickAvailable] = useState(true);
   const [timer, setTimer] = useState(100);
   const [isNewGameButtonDisabled, setIsNewGameButtonDisabled] = useState(false);
   const movingTimeOut = useRef<null | ReturnType<typeof setInterval>>(null);
-
+  const [user, isUserLoading] = useAuthState(auth);
+  const dispatch = useDispatch();
   const onKeyPress = (e: React.KeyboardEvent) => {
     if (board?.snake && isClickAvailable && !gameOver) {
       if (
@@ -98,6 +110,10 @@ export const Snake = () => {
       if (movingTimeOut.current) {
         clearInterval(movingTimeOut.current);
       }
+      SnakeService.setRecord(board.score, timer);
+      setTimeout(() => {
+        dispatch(fetchSnakeBestScoore());
+      }, 1500);
     }
   }, [board?.gameOver]);
 
@@ -141,7 +157,10 @@ export const Snake = () => {
         </div>
       )}
       <p className="snake__game-over">{gameOver}</p>
-      <SnakeBoard board={board} />
+      <div className="snake__boards">
+        <SnakeBoard board={board} />
+        {user && <ScoreBoard user={user} />}
+      </div>
     </div>
   );
 };
