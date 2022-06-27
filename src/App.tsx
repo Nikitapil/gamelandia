@@ -36,7 +36,7 @@ function App() {
           <Route path="/match-match" element={<MatchMatch />} />
           <Route path="/chess" element={<Chess />} />
           <Route path="/tictac" element={<TicTacToe />} />
-          <Route path="/snake" element={<Snake />} />
+          <Route path="/snake" element={<Snake auth={auth} />} />
           <Route
             path="/battleship"
             element={<BattleShipRooms firestore={firestore} auth={auth} />}
