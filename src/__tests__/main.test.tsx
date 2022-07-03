@@ -1,12 +1,19 @@
 import { render, screen } from "@testing-library/react";
+import { createStore } from "redux";
 import App from "../App";
 import { MainPageCard } from "../components/main/MainPageCard";
 import { OutSidePageCard } from "../components/main/OutSideGameCard";
-import { renderWithRouter } from "../utils/test/utils";
+import { rootReducer } from "../redux/rootReducer";
+import { renderWithRedux, renderWithRouter } from "../utils/test/utils";
 
 describe('mainpage tests', () => {
+    let store: any
+    beforeEach(() => {
+        store = createStore(rootReducer);
+    })
+
     test('all render main page', () => {
-        render(renderWithRouter(<App />));
+        render(renderWithRedux(<App />, '/', store));
         const mainPage = screen.getByTestId('main-page')
         expect(mainPage).toBeInTheDocument()
     })
@@ -17,7 +24,7 @@ describe('mainpage tests', () => {
     })
 
     test('gameCard inside', () => {
-        render(renderWithRouter(<MainPageCard to='' gameName="" />));
+        render(renderWithRouter(<MainPageCard to='' gameName="" labels={[]} />));
         const img = screen.getByTestId('game-pic')
         expect((img as HTMLImageElement).src).not.toBe(undefined)
     })
