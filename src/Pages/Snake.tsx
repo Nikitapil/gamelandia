@@ -8,6 +8,8 @@ import { ESnakeDirections } from "../constants/snake";
 import { SnakeBoardModel } from "../models/snake/SnakeBoardModel";
 import { fetchSnakeBestScoore } from "../redux/snake/snakeActions";
 import { SnakeService } from "../services/SnakeService";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faCircleChevronUp, faCircleChevronLeft, faCircleChevronRight, faCircleChevronDown} from "@fortawesome/free-solid-svg-icons";
 import "../styles/snake.scss";
 
 interface SnakeProps {
@@ -23,10 +25,10 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
   const movingTimeOut = useRef<null | ReturnType<typeof setInterval>>(null);
   const [user, isUserLoading] = useAuthState(auth);
   const dispatch = useDispatch();
-  const onKeyPress = (e: React.KeyboardEvent) => {
+  const onKeyPress = (e: React.KeyboardEvent, btn: null | string = null) => {
     if (board?.snake && isClickAvailable && !gameOver) {
       if (
-        e.code === "ArrowRight" &&
+        (e.code === "ArrowRight" || btn === 'right') &&
         board.snake.direction !== ESnakeDirections.LEFT &&
         board.snake.direction !== ESnakeDirections.RIGHT
       ) {
@@ -35,7 +37,7 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
         redisableClick();
       }
       if (
-        e.code === "ArrowDown" &&
+       ( e.code === "ArrowDown" || btn === 'down') &&
         board.snake.direction !== ESnakeDirections.TOP &&
         board.snake.direction !== ESnakeDirections.BOTTOM
       ) {
@@ -44,7 +46,7 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
         redisableClick();
       }
       if (
-        e.code === "ArrowUp" &&
+        (e.code === "ArrowUp" || btn === 'up') &&
         board.snake.direction !== ESnakeDirections.TOP &&
         board.snake.direction !== ESnakeDirections.BOTTOM
       ) {
@@ -53,7 +55,7 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
         redisableClick();
       }
       if (
-        e.code === "ArrowLeft" &&
+        (e.code === "ArrowLeft" || btn === 'left') &&
         board.snake.direction !== ESnakeDirections.LEFT &&
         board.snake.direction !== ESnakeDirections.RIGHT
       ) {
@@ -159,6 +161,14 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
       <p className="snake__game-over">{gameOver}</p>
       <div className="snake__boards">
         <SnakeBoard board={board} />
+        <div className="snake__controlls">
+          <button onClick={(e: any) =>onKeyPress(e, 'up') } className='snake-controlls__btn'><FontAwesomeIcon icon={faCircleChevronUp}/></button>
+          <div className="snake-controlls__sides">
+            <button onClick={(e: any) =>onKeyPress(e, 'left') } className='snake-controlls__btn'><FontAwesomeIcon icon={faCircleChevronLeft}/></button>
+            <button onClick={(e: any) =>onKeyPress(e, 'right') } className='snake-controlls__btn'><FontAwesomeIcon icon={faCircleChevronRight}/></button>
+          </div>
+          <button onClick={(e: any) =>onKeyPress(e, 'down') } className='snake-controlls__btn'><FontAwesomeIcon icon={faCircleChevronDown}/></button>
+        </div>
         {user && <ScoreBoard user={user} />}
       </div>
     </div>

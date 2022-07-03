@@ -66,7 +66,7 @@ export const ChessBoardComponent: FC<ChessBoardComponentProps> = ({
   }, [selectedCell]);
 
   return (
-    <div>
+    <div className="chess-board">
       <div className="game-information">
         <h3 className="current-player">
           Current Player: {currentPlayer?.color}

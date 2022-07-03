@@ -30,6 +30,13 @@
   transition: 0.5s linear;
   width: 100px;
   height: 100px;
+  img {
+    max-width: 100%;
+  }
+  @media (max-width: 560px) {
+    width:60px;
+    height: 60px;
+  }
 }
 
 .front,
@@ -51,8 +58,11 @@
 
 .match__cards {
   display: grid;
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: repeat(5, 105px);
   gap: 5px;
+  @media (max-width: 560px) {
+    grid-template-columns: repeat(5, 65px);
+  }
 }
 
 .match__win,

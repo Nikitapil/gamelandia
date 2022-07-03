@@ -17,6 +17,12 @@
   display: flex;
   flex-wrap: wrap;
   max-width: 400px;
+  @media (max-width: 625px) {
+    margin: 0 auto;
+  }
+  @media (max-width: 445px) {
+    max-width: 300px;
+  }
 }
 .snake-cell {
   width: 20px;
@@ -27,6 +33,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: 445px) {
+    width: 15px;
+    height:15px;
+  }
 }
 .with-snake {
   background-color: #adff2f;
@@ -87,7 +97,12 @@
 }
 .snake__boards {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+  @media (max-width: 520px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .score-board {
   display: flex;
@@ -98,6 +113,12 @@
   border-radius: 15px;
   background-color: rgba(0, 0, 0, 0.273);
   margin-right: -200px;
+  @media (max-width: 780px) {
+    margin-right: 0;
+  }
+  @media (max-width: 625px) {
+    margin: 0 auto;
+  }
 }
 .score-board__title {
   color: #3bf851;
@@ -120,4 +141,25 @@
   &:first-child {
     margin-bottom: 10px;
   }
+}
+
+.snake__controlls {
+  display: none;
+  @media (max-width: 520px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+}
+.snake-controlls__btn {
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #3bf851;
+}
+
+.snake-controlls__sides {
+  display: flex;
+  gap: 40px;
 }
