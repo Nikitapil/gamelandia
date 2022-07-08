@@ -43,7 +43,7 @@ export const SignUp: FC<SignUpProps> = ({ auth }) => {
   };
 
   return (
-    <div className="auth-container">
+    <div className="auth-container" data-testid='signup-page'>
       <AuthForm
         formTitle="Sign Up"
         submit={submit}

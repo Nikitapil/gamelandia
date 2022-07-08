@@ -17,7 +17,7 @@ export const TicTacToe = () => {
     }, [])
 
   return (
-    <div className='container tic-tac-container'>
+    <div className='container tic-tac-container' data-testid='tic-tac-page'>
       <h1 className='tic-tac__title'>Tic Tac Toe</h1>
       <button className='tic-tac__restart' onClick={restart}>Restart</button>
         <TicTacBoard winner={winner} setWinner={setWinner}  setBoard={setBoard} board={board} />

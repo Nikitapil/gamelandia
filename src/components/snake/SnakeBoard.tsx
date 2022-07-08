@@ -8,7 +8,7 @@ interface snakeBoardProps {
 
 export const SnakeBoard:FC<snakeBoardProps> = ({board}) => {
   return (
-    <div className='snake-board'>
+    <div className='snake-board' data-testid='snake-board'>
         {board?.cells.map(row => row.map(cell => <SnakeCell cell={cell} key={cell.id}/>))}
     </div>
   )

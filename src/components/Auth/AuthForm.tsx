@@ -43,6 +43,7 @@ export const AuthForm: FC<AuthFormProps> = ({
       <input
         className="auth-form__input"
         type="email"
+        data-testid='email-input'
         placeholder="Your email"
         name="email"
         value={formData.email}
@@ -60,6 +61,7 @@ export const AuthForm: FC<AuthFormProps> = ({
         <input
           className="auth-form__input"
           type="text"
+          data-testid='display-name'
           placeholder="Your name"
           required
           name="displayName"
@@ -67,7 +69,7 @@ export const AuthForm: FC<AuthFormProps> = ({
           onChange={onChangeUserName}
         />
       )}
-      <button className="auth-form__button" type="submit">
+      <button className="auth-form__button" type="submit" data-testid='submit'>
         {formTitle}
       </button>
     </form>

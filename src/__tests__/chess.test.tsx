@@ -111,6 +111,15 @@ describe('chess tests', () => {
         render(renderWithRouter(<ChessCellComponents cell={board.cells[0][0]} click={click} selected={false} />));
         expect(screen.getByTestId('figure-logo')).toBeInTheDocument()
     })
+    test('should set winner', () => {
+        render(renderWithRouter(<Chess />));
+        userEvent.click(screen.getByTestId('chess-start-button'))
+        expect(screen.queryByTestId('timer-modal')).not.toBeInTheDocument()
+        userEvent.click(screen.getByTestId('give-up-btn'))
+        expect(screen.getByTestId('newGame-btn')).toBeInTheDocument()
+        userEvent.click(screen.getByTestId('newGame-btn'))
+        expect(screen.getByTestId('timer-modal')).toBeInTheDocument()
+    })
 })
 
 describe('chess classes test', () => {

@@ -44,7 +44,7 @@ export const SignIn: FC<SignInProps> = ({ auth }) => {
   return (
     <div className="auth-container">
       <AuthForm formTitle="Sign In" submit={submit} />
-      <Link className="auth-link" to={registeredLink}>
+      <Link className="auth-link" to={registeredLink} data-testid='signup-link'>
         Not registered yet? Just do it.
       </Link>
     </div>

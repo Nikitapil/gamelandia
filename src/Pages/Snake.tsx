@@ -120,7 +120,7 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
   }, [board?.gameOver]);
 
   return (
-    <div className="snake__container container" onKeyDown={onKeyPress}>
+    <div className="snake__container container" onKeyDown={onKeyPress} data-testid='snake-page'>
       <h2 className="snake__title">Snake Game</h2>
       <div className="snake__btns">
         {!isNewGameButtonDisabled && (
@@ -129,7 +129,7 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
           </button>
         )}
         {!gameOver && (
-          <button className="snake__btn" onClick={onStartGame}>
+          <button className="snake__btn" onClick={onStartGame} data-testid='start-game'>
             Start game
           </button>
         )}
@@ -141,18 +141,21 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
           <button
             className={`${timer === 150 ? "snake-current-level" : ""}`}
             onClick={() => setTimer(150)}
+            data-testid='easy-level'
           >
             Easy
           </button>
           <button
             className={`${timer === 100 ? "snake-current-level" : ""}`}
             onClick={() => setTimer(100)}
+            data-testid='medium-level'
           >
             Medium
           </button>
           <button
             className={`${timer === 50 ? "snake-current-level" : ""}`}
             onClick={() => setTimer(50)}
+            data-testid='hard-level'
           >
             Hard
           </button>

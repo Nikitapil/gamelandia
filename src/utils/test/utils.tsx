@@ -10,7 +10,7 @@ export const renderWithRouter = (component: ReactElement, initialRoute='/') => {
     )
 }
 
-export const renderWithRedux = (component: ReactElement, initialRoute='/', store: any) => {
+export const renderWithRedux = (component: ReactElement | any, initialRoute='/', store: any) => {
     return (
         <Provider store={store}>
             <MemoryRouter initialEntries={[initialRoute]}>

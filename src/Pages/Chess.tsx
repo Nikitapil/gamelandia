@@ -55,7 +55,7 @@ export const Chess = () => {
           setIsModalOpen={setIsTimerModalOpen}
           setWinner={setWinner}
         />
-        <button className="chess__give-up" onClick={() => endGame()}>
+        <button className="chess__give-up" data-testid='give-up-btn' onClick={() => endGame()}>
           Give Up
         </button>
       </div>
