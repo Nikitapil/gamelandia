@@ -10,7 +10,7 @@ interface ChessTimerProps {
   endGame: () => void;
   isModalOpen: boolean;
   setIsModalOpen: (bool:boolean) => void;
-  setWinner: (color:Colors) => void
+  setWinner: (color:Colors) => void;
 }
 
 export const ChessTimer: FC<ChessTimerProps> = ({

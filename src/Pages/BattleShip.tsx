@@ -19,6 +19,7 @@ import { battleShipSelector } from "../redux/battleships/battleshipSelectors";
 import "../styles/battleship.scss";
 import { HorizotalLoader } from "../components/UI/Loaders/HorizotalLoader";
 import { mapFromFireBaseToBattleShip } from "../utils/battleship/battleShipMappers";
+import { FullRoomMessage } from "../components/common/FullRoomMessage";
 
 interface BattleShipProps {
   firestore: Firestore;
@@ -143,12 +144,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
 
   if (isFull) {
     return (
-      <h2 className="battleship__full-message">
-        The room is full please choose another one or create new.{" "}
-        <Link className="battleship__rooms-link" to="/battleship">
-          Go to Rooms
-        </Link>{" "}
-      </h2>
+      <FullRoomMessage page="/battleship"/>
     );
   }
 
