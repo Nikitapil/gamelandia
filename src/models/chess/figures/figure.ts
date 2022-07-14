@@ -5,14 +5,18 @@ import { Cell } from "../Cell";
 export class Figure {
   color: Colors;
   logo: typeof logo | null;
-  cell: Cell;
+  cell: Cell | null;
   name: FigureNames;
   id: number;
 
-  constructor(color: Colors, cell: Cell) {
+  constructor(color: Colors, cell?: Cell) {
     this.color = color;
-    this.cell = cell;
-    this.cell.figure = this;
+    if (cell) {
+      this.cell = cell;
+      this.cell.figure = this;
+    } else {
+      this.cell = null
+    }
     this.logo = null;
     this.name = FigureNames.FIGURE;
     this.id = Math.random();

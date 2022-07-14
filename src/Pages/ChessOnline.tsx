@@ -3,7 +3,7 @@ import { doc, Firestore, setDoc } from "firebase/firestore";
 import React, { FC, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDocumentData } from "react-firebase-hooks/firestore";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ChessBoardComponent } from "../components/Chess/ChessBoardComponent";
 import { ChessTimer } from "../components/Chess/ChessTimer";
 import { LostFigures } from "../components/Chess/LostFigures";
@@ -14,6 +14,7 @@ import { Board } from "../models/chess/Board";
 import { Colors } from "../models/chess/Colors";
 import { Player } from "../models/chess/Player";
 import "../styles/chess.scss";
+import { chessBoardToFirebaseMapper, mapBoardFromFireBase } from "../utils/chess/chessMapper";
 
 interface ChessOnlineProps {
   firestore: Firestore;
@@ -29,12 +30,17 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
   const [whitePlayer, setWhitePlayer] = useState(new Player(Colors.WHITE));
   const [blackPlayer, setBlackPlayer] = useState(new Player(Colors.BLACK));
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
-  const [myPlayer, setMyPlayer] = useState(null);
+  const [myPlayer, setMyPlayer] = useState('');
+  const [enemyPlayer, setEnemyPlayer] = useState('');
   const [winner, setWinner] = useState("");
   const [isFull, setIsFull] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
-    if (roomData?.player1 && roomData?.player2) {
+
+    if (!isUserLoading && !user) {
+      navigate("/login?page=chess/rooms");
+    }
+    if (user && roomData?.player1 && roomData?.player2) {
       if (
         roomData?.player1.uid !== user?.uid &&
         roomData?.player2.uid !== user?.uid
@@ -42,15 +48,52 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
         setIsFull(true);
         return;
       }
-      if(!roomData.isGameStarted) {
+      if (!roomData.isGameStarted) {
+        board.initCells()
+        board.addFigures()
         setDoc(doc(firestore, "chess", id!), {
-            ...roomData,
-            isGameStarted: true
-        })
+          ...roomData,
+          isGameStarted: true,
+          board: chessBoardToFirebaseMapper(board),
+          currentPlayer: roomData.player1
+        });
       }
     }
+    if (roomData?.board) {
+      const currPlayer = new Player(roomData.currentPlayer.color)
+      const newBoard = mapBoardFromFireBase(roomData.board)
+      setBoard(newBoard)
+      setCurrentPlayer(currPlayer)
+    }
+    if (roomData && user && !roomData.player1) {
+      const player1 = {
+        uid: user.uid,
+        name: user.displayName,
+        color: Colors.WHITE,
+      };
+      setDoc(doc(firestore, "chess", id!), { ...roomData, player1 });
+    } else if (
+      roomData &&
+      user &&
+      !roomData.player2 &&
+      roomData.player1.uid !== user.uid
+    ) {
+      const player2 = {
+        uid: user.uid,
+        name: user.displayName,
+        color: Colors.BLACK,
+      };
+      setDoc(doc(firestore, "chess", id!), { ...roomData, player2 });
+    }
+    if (user && roomData && roomData.player1?.uid === user.uid) {
+      setMyPlayer('player1')
+      setEnemyPlayer('player2')
+    } else if (user && roomData && roomData.player2?.uid === user.uid) {
+      setMyPlayer("player2");
+      setEnemyPlayer("player1");
+    }
     console.log(roomData);
-  }, [roomData, user]);
+  }, [roomData, user, isUserLoading]);
 
   const restart = () => {
     setWinner("");
@@ -75,8 +118,12 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
     );
   };
 
+  if(!roomData && !loading && !winner) {
+    navigate('/chess/rooms')
+  }
+
   if (isFull) {
-    return <FullRoomMessage page="/chess/rooms" />
+    return <FullRoomMessage page="/chess/rooms" />;
   }
 
   if (!roomData?.isGameStarted) {

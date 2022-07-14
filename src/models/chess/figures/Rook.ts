@@ -6,7 +6,7 @@ import blackLogo from "../../../assets/checkmates/black-rook.png";
 import whiteLogo from "../../../assets/checkmates/white-rook.png";
 
 export class Rook extends Figure {
-  constructor(color: Colors, cell: Cell) {
+  constructor(color: Colors, cell?: Cell) {
     super(color, cell);
     this.logo = color === Colors.BLACK ? blackLogo : whiteLogo;
     this.name = FigureNames.ROOK;
@@ -17,8 +17,8 @@ export class Rook extends Figure {
       return false;
     }
     if (
-      this.cell.isEmptyHorizontal(target) ||
-      this.cell.isEmptyVertical(target)
+      this.cell!.isEmptyHorizontal(target) ||
+      this.cell!.isEmptyVertical(target)
     ) {
       return true;
     }

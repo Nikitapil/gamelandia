@@ -6,7 +6,7 @@ import blackLogo from "../../../assets/checkmates/black-queen.png";
 import whiteLogo from "../../../assets/checkmates/white-queen.png";
 
 export class Queen extends Figure {
-  constructor(color: Colors, cell: Cell) {
+  constructor(color: Colors, cell?: Cell) {
     super(color, cell);
     this.logo = color === Colors.BLACK ? blackLogo : whiteLogo;
     this.name = FigureNames.QUEEN;
@@ -17,9 +17,9 @@ export class Queen extends Figure {
       return false;
     }
     if (
-      this.cell.isEmptyVertical(target) ||
-      this.cell.isEmptyHorizontal(target) ||
-      this.cell.isEmptyDiagonal(target)
+      this.cell!.isEmptyVertical(target) ||
+      this.cell!.isEmptyHorizontal(target) ||
+      this.cell!.isEmptyDiagonal(target)
     ) {
       return true;
     }

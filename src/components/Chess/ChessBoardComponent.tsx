@@ -1,3 +1,5 @@
+import { User } from "firebase/auth";
+import { DocumentData } from "firebase/firestore";
 import React, { FC, useEffect, useState } from "react";
 import { FigureNames } from "../../constants/chess";
 import { Board } from "../../models/chess/Board";
@@ -11,6 +13,7 @@ interface ChessBoardComponentProps {
   setBoard: (board: Board) => void;
   currentPlayer: Player | null;
   swapPlayer: () => void;
+  isClickAvailable?:boolean
 }
 
 export const ChessBoardComponent: FC<ChessBoardComponentProps> = ({
@@ -18,10 +21,14 @@ export const ChessBoardComponent: FC<ChessBoardComponentProps> = ({
   setBoard,
   currentPlayer,
   swapPlayer,
+  isClickAvailable = true
 }) => {
   const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
   const [pawnCell, setPawnCell] = useState<Cell | null>(null);
   const click = (cell: Cell) => {
+    if(!isClickAvailable) {
+      return
+    }
     if (
       selectedCell &&
       selectedCell !== cell &&
