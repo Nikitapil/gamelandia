@@ -35,7 +35,6 @@ export const ChessOnlineTimer: FC<ChessOnlineTimerProps> = ({
   };
 
   const startTimer = () => {
-    console.log(time)
     if (timer.current) {
       clearInterval(timer.current);
     }
