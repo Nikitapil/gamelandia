@@ -26,7 +26,7 @@ export const games = [
     description: "Chess game for 2 players",
     path: "chess",
     isOutside: false,
-    labels: ['2 players']
+    labels: ['2 players', 'online', 'offline']
   },
   {
     id: 6,
