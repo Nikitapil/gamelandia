@@ -211,6 +211,9 @@
     &:hover {
       background-color: #b73c3c;
     }
+    &:disabled {
+      background-color: gray;
+    }
     @media (max-width: 460px) {
       font-size: 16px;
     }

@@ -16,7 +16,6 @@ interface ChessTimerProps {
 export const ChessTimer: FC<ChessTimerProps> = ({
   currentPlayer,
   restart,
-  endGame,
   isModalOpen,
   setIsModalOpen,
   setWinner
@@ -38,6 +37,10 @@ export const ChessTimer: FC<ChessTimerProps> = ({
   };
 
   const decrementBlackTimer = () => {
+    if (blackTime <= 0) {
+      setWinner(Colors.WHITE)
+      clearInterval(timer.current!);
+    }
     setBlackTime((prev) => prev - 1);
   };
 

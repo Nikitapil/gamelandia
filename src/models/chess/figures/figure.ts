@@ -35,5 +35,7 @@ export class Figure {
     return true;
   }
   moveFigure(target: Cell) {}
-  checkIfEndOfBoard() {}
+  checkIfEndOfBoard() {
+    return false
+  }
 }

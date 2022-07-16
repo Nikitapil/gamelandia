@@ -19,3 +19,8 @@ export interface IFirebaseChessBoard {
   lostWhightFigures: IFireBaseChessFigure[];
   underAttackMessage: string;
 }
+
+export interface IChessTime {
+  black: number;
+  white: number
+}

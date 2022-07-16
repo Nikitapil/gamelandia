@@ -1,5 +1,3 @@
-import { User } from "firebase/auth";
-import { DocumentData } from "firebase/firestore";
 import React, { FC, useEffect, useState } from "react";
 import { FigureNames } from "../../constants/chess";
 import { Board } from "../../models/chess/Board";

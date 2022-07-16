@@ -22,7 +22,10 @@ export const ChessRooms: FC<ChessRoomsProps> = ({ firestore, auth }) => {
       player1: null,
       player2: null,
       currentPlayer: null,
-      timer: timer,
+      time: {
+        black: timer,
+        white: timer
+      },
       board: null,
       winner: '',
       isGameStarted: false,

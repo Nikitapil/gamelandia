@@ -1,15 +1,16 @@
 import { Auth } from "firebase/auth";
-import { doc, Firestore, setDoc } from "firebase/firestore";
-import React, { FC, useEffect, useState } from "react";
+import { deleteDoc, doc, Firestore, setDoc } from "firebase/firestore";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import { useNavigate, useParams } from "react-router-dom";
 import { ChessBoardComponent } from "../components/Chess/ChessBoardComponent";
-import { ChessTimer } from "../components/Chess/ChessTimer";
 import { LostFigures } from "../components/Chess/LostFigures";
 import { ChessOnlineLoader } from "../components/Chess/online/ChessOnlineLoader";
-import { WinnerModal } from "../components/Chess/WinnerModal";
+import { ChessOnlineTimer } from "../components/Chess/online/ChessOnlineTimer";
 import { FullRoomMessage } from "../components/common/FullRoomMessage";
+import { WinnerCommon } from "../components/common/WinnerCommon";
+import { IChessTime } from "../domain/chessTypes";
 import { Board } from "../models/chess/Board";
 import { Colors } from "../models/chess/Colors";
 import { Player } from "../models/chess/Player";
@@ -26,14 +27,12 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
   const [user, isUserLoading] = useAuthState(auth);
   const [roomData, loading] = useDocumentData(doc(firestore, "chess", id!));
   const [board, setBoard] = useState<Board>(new Board());
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [whitePlayer, setWhitePlayer] = useState(new Player(Colors.WHITE));
-  const [blackPlayer, setBlackPlayer] = useState(new Player(Colors.BLACK));
+  const [whitePlayer] = useState(new Player(Colors.WHITE));
+  const [blackPlayer] = useState(new Player(Colors.BLACK));
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
-  const [myPlayer, setMyPlayer] = useState('');
-  const [enemyPlayer, setEnemyPlayer] = useState('');
   const [winner, setWinner] = useState("");
   const [isFull, setIsFull] = useState(false);
+  const [time, setTime] = useState<IChessTime | null>(null)
   const navigate = useNavigate();
   useEffect(() => {
 
@@ -57,6 +56,7 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
           board: chessBoardToFirebaseMapper(board),
           currentPlayer: roomData.player1
         });
+        setTime(roomData.time)
       }
     }
     if (roomData?.board) {
@@ -64,6 +64,7 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
       const newBoard = mapBoardFromFireBase(roomData.board)
       setBoard(newBoard)
       setCurrentPlayer(currPlayer)
+      setTime(roomData.time)
     }
     if (roomData && user && !roomData.player1) {
       const player1 = {
@@ -85,34 +86,37 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
       };
       setDoc(doc(firestore, "chess", id!), { ...roomData, player2 });
     }
-    if (user && roomData && roomData.player1?.uid === user.uid) {
-      setMyPlayer('player1')
-      setEnemyPlayer('player2')
-    } else if (user && roomData && roomData.player2?.uid === user.uid) {
-      setMyPlayer("player2");
-      setEnemyPlayer("player1");
+    if(roomData?.winner) {
+      setWinner(roomData.winner.name)
+      deleteDoc(doc(firestore, "chess", id!));
     }
-    console.log(roomData);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomData, user, isUserLoading]);
 
-  const restart = () => {
-    setWinner("");
-    const newBoard = new Board();
-    newBoard.initCells();
-    newBoard.addFigures();
-    setBoard(newBoard);
-    setCurrentPlayer(whitePlayer);
-  };
+  const isClickAvailable =useMemo(() => {
+      return roomData && roomData?.currentPlayer?.uid === user?.uid
+  }, [roomData, user?.uid])
 
   const endGame = (color?: string) => {
     if (!color) {
-      const winColor =
-        currentPlayer?.color === Colors.WHITE ? Colors.BLACK : Colors.WHITE;
-      setWinner(winColor);
+      setDoc(doc(firestore, "chess", id!), {
+        ...roomData,
+        winner: roomData?.currentPlayer
+      });
     }
   };
 
   const swapPlayer = () => {
+    if (roomData) {
+      const nextPlayer = currentPlayer?.color === Colors.WHITE ? roomData.player2 : roomData.player1
+      setDoc(doc(firestore, "chess", id!), {
+        ...roomData,
+        isGameStarted: true,
+        board: chessBoardToFirebaseMapper(board),
+        currentPlayer: nextPlayer,
+        time: time
+      });
+    }
     setCurrentPlayer(
       currentPlayer?.color === Colors.WHITE ? blackPlayer : whitePlayer
     );
@@ -126,16 +130,22 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
     return <FullRoomMessage page="/chess/rooms" />;
   }
 
-  if (!roomData?.isGameStarted) {
+  if (!roomData?.isGameStarted && !winner) {
     return <ChessOnlineLoader />;
+  }
+
+  if (winner) {
+    return <WinnerCommon page="/chess/rooms" winner={winner} />
   }
 
   return (
     <div className="chess container">
       <div className="chess_timer">
+        {time &&  <ChessOnlineTimer setTime={setTime} time={time} endGame={endGame} currentPlayer={currentPlayer} />}
         <button
           className="chess__give-up"
           data-testid="give-up-btn"
+          disabled={!isClickAvailable}
           onClick={() => endGame()}
         >
           Give Up
@@ -146,10 +156,11 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
         setBoard={setBoard}
         currentPlayer={currentPlayer}
         swapPlayer={swapPlayer}
+        isClickAvailable={isClickAvailable}
       />
       <div className="lost">
-        <LostFigures title="Black" figures={board.lostBlackFigures} />
-        <LostFigures title="White" figures={board.lostWhightFigures} />
+        <LostFigures title={"Black " + roomData?.player2.name} figures={board.lostBlackFigures} />
+        <LostFigures title={"White " +  roomData?.player1.name} figures={board.lostWhightFigures} />
       </div>
     </div>
   );
