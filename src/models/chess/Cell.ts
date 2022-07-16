@@ -49,7 +49,7 @@ export class Cell {
       const targetFigure = target.figure || null;
       target.setFigure(this.figure);
       this.figure = null;
-      if (this.board.kings[target.figure?.color!]?.cell.isUnderAttack()) {
+      if (this.board.kings[target.figure?.color!]?.cell!.isUnderAttack()) {
         if (targetFigure) {
           targetFigure.color === Colors.BLACK
             ? this.board.lostBlackFigures.pop()

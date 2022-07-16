@@ -97,11 +97,11 @@ export class Board {
   }
 
   checkIfKingIsUnderAttack() {
-    if (this.kings.white?.cell.isUnderAttack()) {
+    if (this.kings.white?.cell!.isUnderAttack()) {
       this.underAttackMessage = "White king is under attack";
       return;
     }
-    if (this.kings.black?.cell.isUnderAttack()) {
+    if (this.kings.black?.cell!.isUnderAttack()) {
       this.underAttackMessage = "Black king is under attack";
       return;
     }

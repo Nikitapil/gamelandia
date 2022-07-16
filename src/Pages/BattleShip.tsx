@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { BattleshipBoard } from "../components/Battleship/BattleshipBoard";
 import { BattleshipElems } from "../components/Battleship/BattleshipElems";
 import { useTypedSelector } from "../hooks/useTypedSelector";
@@ -19,6 +19,8 @@ import { battleShipSelector } from "../redux/battleships/battleshipSelectors";
 import "../styles/battleship.scss";
 import { HorizotalLoader } from "../components/UI/Loaders/HorizotalLoader";
 import { mapFromFireBaseToBattleShip } from "../utils/battleship/battleShipMappers";
+import { FullRoomMessage } from "../components/common/FullRoomMessage";
+import { WinnerCommon } from "../components/common/WinnerCommon";
 
 interface BattleShipProps {
   firestore: Firestore;
@@ -143,24 +145,12 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
 
   if (isFull) {
     return (
-      <h2 className="battleship__full-message">
-        The room is full please choose another one or create new.{" "}
-        <Link className="battleship__rooms-link" to="/battleship">
-          Go to Rooms
-        </Link>{" "}
-      </h2>
+      <FullRoomMessage page="/battleship"/>
     );
   }
 
   if (winner) {
-    return (
-      <div className="container battleship-winner__container">
-        <h2 className="battleship-winner__title">The winner is {winner}</h2>
-        <Link className="battleship__rooms-link" to="/battleship">
-          Go to Rooms
-        </Link>
-      </div>
-    );
+    return <WinnerCommon page="/battleship" winner={winner} />
   }
 
   return (

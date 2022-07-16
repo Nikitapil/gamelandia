@@ -18,6 +18,9 @@ import { Notification } from "./components/UI/Notification";
 import { useTypedSelector } from "./hooks/useTypedSelector";
 import { appSelector } from "./redux/appStore/appSelectors";
 import { BattleShipRooms } from "./Pages/BattleShipRooms";
+import { ChessTypes } from "./Pages/ChessTypes";
+import { ChessRooms } from "./Pages/ChessRooms";
+import { ChessOnline } from "./Pages/ChessOnline";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -34,7 +37,10 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="*" element={<MainPage />} />
           <Route path="/match-match" element={<MatchMatch />} />
-          <Route path="/chess" element={<Chess />} />
+          <Route path="/chess" element={<ChessTypes />} />
+          <Route path="/chess/offline" element={<Chess />} />
+          <Route path="/chess/rooms" element={<ChessRooms auth={auth} firestore={firestore} />} />
+          <Route path="/chess/rooms/:id" element={<ChessOnline auth={auth} firestore={firestore} />} />
           <Route path="/tictac" element={<TicTacToe />} />
           <Route path="/snake" element={<Snake auth={auth} />} />
           <Route

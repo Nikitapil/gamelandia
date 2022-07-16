@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 
 interface TimerModalProps {
-  start: (time?: number) => void;
+  start: (time: number) => void;
   closeModal: () => void;
 }
 
