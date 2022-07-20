@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import back from "../../assets/matchMatch/back.jpeg";
-
+import matchStyles from '../../styles/match.module.scss'
 interface MatchCardProps {
   onClick: (name: string, id: number) => void;
   flipped: boolean;
@@ -24,16 +24,16 @@ export const MatchCard: FC<MatchCardProps> = ({
 
   return (
     <button
-      className={`matchcard ${flipped ? "flipped" : ""}`}
+      className={`${matchStyles.matchcard} ${flipped ? matchStyles.flipped : ""}`}
       onClick={clickHandeler}
       disabled={disabled}
       data-testid='match-card'
     >
-      <div className="flipper">
-        <div className="front">
+      <div className={matchStyles.flipper}>
+        <div className={matchStyles.front}>
           <img src={back} alt="shrek cat" />
         </div>
-        <div className="back">
+        <div className={matchStyles.back}>
           <img src={pic} alt="shrek cat" />
         </div>
       </div>

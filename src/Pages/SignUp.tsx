@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import { AuthForm } from "../components/Auth/AuthForm";
-import "../styles/auth.scss";
+import authStyles from '../styles/auth.module.scss'
 import { Auth } from "firebase/auth";
 import {
   useCreateUserWithEmailAndPassword,
@@ -43,7 +43,7 @@ export const SignUp: FC<SignUpProps> = ({ auth }) => {
   };
 
   return (
-    <div className="auth-container" data-testid='signup-page'>
+    <div className={authStyles['auth-container']} data-testid='signup-page'>
       <AuthForm
         formTitle="Sign Up"
         submit={submit}

@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-
+import authStyles from '../../styles/auth.module.scss'
 interface AuthFormProps {
   formTitle: string;
   submit: (email: string, password: string) => void;
@@ -38,10 +38,10 @@ export const AuthForm: FC<AuthFormProps> = ({
   };
 
   return (
-    <form className="auth-form" onSubmit={onSubmit}>
-      <h2 className="auth-form__title">{formTitle}</h2>
+    <form className={authStyles['auth-form']} onSubmit={onSubmit}>
+      <h2 className={authStyles['auth-form__title']}>{formTitle}</h2>
       <input
-        className="auth-form__input"
+        className={authStyles['auth-form__input']}
         type="email"
         data-testid='email-input'
         placeholder="Your email"
@@ -50,7 +50,7 @@ export const AuthForm: FC<AuthFormProps> = ({
         onChange={onInput}
       />
       <input
-        className="auth-form__input"
+        className={authStyles['auth-form__input']}
         type="password"
         placeholder="Your password"
         name="password"
@@ -59,7 +59,7 @@ export const AuthForm: FC<AuthFormProps> = ({
       />
       {isSignUp && (
         <input
-          className="auth-form__input"
+          className={authStyles['auth-form__input']}
           type="text"
           data-testid='display-name'
           placeholder="Your name"
@@ -69,7 +69,7 @@ export const AuthForm: FC<AuthFormProps> = ({
           onChange={onChangeUserName}
         />
       )}
-      <button className="auth-form__button" type="submit" data-testid='submit'>
+      <button className={authStyles['auth-form__button']} type="submit" data-testid='submit'>
         {formTitle}
       </button>
     </form>

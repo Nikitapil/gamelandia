@@ -2,14 +2,14 @@ import React from "react";
 import { MainPageCard } from "../components/main/MainPageCard";
 import { OutSidePageCard } from "../components/main/OutSideGameCard";
 import { games } from "../constants/games";
-import "../styles/mainpage.scss";
+import mainStyles from '../styles/mainpage.module.scss'
 export const MainPage = () => {
   return (
-    <div className="container main-page__container" data-testid="main-page">
-      <h2 className="main-page__title">
+    <div className={`container ${mainStyles['main-page__container']}`} data-testid="main-page">
+      <h2 className={mainStyles['main-page__title']}>
         Welcome to Gamelandia! Please choose your game...
       </h2>
-      <div className="games">
+      <div className={mainStyles.games}>
         {games.map((game) =>
           game.isOutside ? (
             <OutSidePageCard

@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
-import "../../styles/header.scss";
 import { Auth, signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { HorizotalLoader } from "../UI/Loaders/HorizotalLoader";
+import headerStyles from '../../styles/header.module.scss'
 interface AppHeaderProps {
   auth: Auth;
 }
@@ -16,13 +16,13 @@ export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
   };
 
   return (
-    <header className="header">
-      <div className="container header__container">
-        <h1 className="header__title">GameLandia</h1>
-        <nav className="header__nav-bar nav-bar">
-          <ul className="nav-bar__links">
+    <header className={headerStyles.header}>
+      <div className={`container ${headerStyles.header__container}`}>
+        <h1 className={headerStyles.header__title}>GameLandia</h1>
+        <nav className={headerStyles['header__nav-bar']}>
+          <ul className={headerStyles['nav-bar__links']}>
             <li>
-              <Link className="nav-bar__link" to="/">
+              <Link className={headerStyles['nav-bar__link']} to="/">
                 Main
               </Link>
             </li>
@@ -33,13 +33,13 @@ export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
             ) : !user ? (
               <React.Fragment>
                 <li>
-                  <Link className="nav-bar__link" to="/login">
+                  <Link className={headerStyles['nav-bar__link']} to="/login">
                     Sign in
                   </Link>
                 </li>
                 <li>
                   {" "}
-                  <Link className="nav-bar__link" to="/registration">
+                  <Link className={headerStyles['nav-bar__link']} to="/registration">
                     Sign up
                   </Link>
                 </li>
@@ -47,7 +47,7 @@ export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
             ) : (
               <li>
                 {" "}
-                <button className="logout-btn" onClick={onSignOut}>
+                <button className={headerStyles['logout-btn']} onClick={onSignOut}>
                   Logout
                 </button>
               </li>

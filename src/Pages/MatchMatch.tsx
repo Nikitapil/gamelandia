@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { MatchCard } from "../components/match/MatchCard";
 import { card } from "../domain/matchMatch";
-import "../styles/match.scss";
 import { matchMatchPics } from "../utils/gamePicsBuilder";
 import { getuniqArrayObjects, shuffleArray } from "../utils/helpers";
+import matchStyles from '../styles/match.module.scss'
 export const MatchMatch = () => {
   const [cards, setCards] = useState<card[]>([]);
   const [currentOpened, setCurrentOpened] = useState<card | null>(null);
@@ -90,32 +90,32 @@ export const MatchMatch = () => {
   }, [attempts]);
 
   return (
-    <div className="match container">
-      <h1 className="match__title">Match-Match Game</h1>
-      <p className="match__description">
+    <div className={`${matchStyles.match} container`}>
+      <h1 className={matchStyles.match__title}>Match-Match Game</h1>
+      <p className={matchStyles.match__description}>
         Just click on cards and find the same.
       </p>
-      <p className="match__description">
+      <p className={matchStyles.match__description}>
         {" "}
-        Attempts: <span className="attempts_counter">{attempts}/25</span>
+        Attempts: <span className={matchStyles.attempts_counter}>{attempts}/25</span>
       </p>
       {isWin && (
-        <p className="match__win">
+        <p className={matchStyles.match__win}>
           You Win!!!{" "}
-          <button className="match__new-game" onClick={newGame}>
+          <button className={matchStyles['match__new-game']} onClick={newGame}>
             New Game
           </button>
         </p>
       )}
       {isLoose && (
-        <p className="match__loose">
+        <p className={matchStyles.match__loose}>
           You Loose{" "}
-          <button className="match__new-game" onClick={newGame}>
+          <button className={matchStyles['match__new-game']} onClick={newGame}>
             New Game
           </button>
         </p>
       )}
-      <div className="match__cards">
+      <div className={matchStyles.match__cards}>
         {cards.map((card, idx) => {
           return (
             <MatchCard

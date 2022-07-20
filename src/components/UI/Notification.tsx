@@ -3,14 +3,13 @@ import { useDispatch } from "react-redux";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { setAppNotification } from "../../redux/appStore/appActions";
 import { appSelector } from "../../redux/appStore/appSelectors";
-import "../../styles/notification.scss";
-
+import notificationStyles from '../../styles/notification.module.scss'
 export const Notification = () => {
   const { notification } = useTypedSelector(appSelector);
   const dispatch = useDispatch();
 
   const classes = useMemo(() => {
-    return ["notification", `notification-${notification.type}`];
+    return [notificationStyles.notification, notificationStyles[`notification-${notification.type}`]];
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
