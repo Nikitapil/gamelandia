@@ -12,7 +12,6 @@ export class Pawn extends Figure {
     this.name = FigureNames.PAWN;
   }
 
-  isFirstStep: boolean = true;
 
   canMove(target: Cell): boolean {
     if (!super.canMove(target)) {
@@ -48,6 +47,10 @@ export class Pawn extends Figure {
 
   moveFigure(target: Cell): void {
     super.moveFigure(target);
-    this.isFirstStep = false;
+  }
+
+  get isFirstStep() {
+    const startPoint = this.color === Colors.WHITE ? 6 : 1
+    return this.cell?.y === startPoint
   }
 }
