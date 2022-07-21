@@ -3,7 +3,7 @@ import React, { FC, useMemo } from "react";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { battleShipSelector } from "../../redux/battleships/battleshipSelectors";
 import { BattleshipCell } from "./BattleshipCell";
-
+import battlShipStyles from '../../styles/battleship.module.scss'
 interface BattleshipBoardProps {
   isEnemy: boolean;
   roomData: any;
@@ -24,7 +24,7 @@ export const BattleshipBoard: FC<BattleshipBoardProps> = ({
   }, [isEnemy, board, enemyBoard]);
 
   return (
-    <div className="battleship__board">
+    <div className={battlShipStyles.battleship__board}>
       {thisBoard?.cells.map((row) =>
         row.map((cell) => (
           <BattleshipCell

@@ -16,12 +16,11 @@ import {
   setFreeShips,
 } from "../redux/battleships/battleshipActions";
 import { battleShipSelector } from "../redux/battleships/battleshipSelectors";
-import "../styles/battleship.scss";
 import { HorizotalLoader } from "../components/UI/Loaders/HorizotalLoader";
 import { mapFromFireBaseToBattleShip } from "../utils/battleship/battleShipMappers";
 import { FullRoomMessage } from "../components/common/FullRoomMessage";
 import { WinnerCommon } from "../components/common/WinnerCommon";
-
+import battlshipStyles from '../styles/battleship.module.scss'
 interface BattleShipProps {
   firestore: Firestore;
   auth: Auth;
@@ -154,16 +153,16 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
   }
 
   return (
-    <div className="container battleship">
+    <div className={`container ${battlshipStyles.battleship}`}>
       <h2 className="page-title">Battleship</h2>
       {loading && <HorizotalLoader color="blue" />}
       {roomData?.currentPlayer && (
-        <h3 className="battleship__current-player">
+        <h3 className={battlshipStyles['battleship__current-player']}>
           Current player: {roomData[roomData.currentPlayer].name}
         </h3>
       )}
-      <div className="battleship__boards">
-        <div className="battleship__my-board">
+      <div className={battlshipStyles.battleship__boards}>
+        <div className={battlshipStyles['battleship__my-board']}>
           {board && !loading && (
             <BattleshipBoard
               firestore={firestore}
@@ -183,7 +182,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
               />
             )}
         </div>
-        <div className="battleship__enemy-board">
+        <div className={battlshipStyles['battleship__enemy-board']}>
           {isGameStarted && enemyBoard ? (
             <BattleshipBoard
               firestore={firestore}
@@ -192,7 +191,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
               isEnemy={true}
             />
           ) : (
-            <div className="battle-ship__waiting">
+            <div className={battlshipStyles['battle-ship__waiting']}>
               Waiting for second player...
             </div>
           )}

@@ -1,6 +1,5 @@
 import React, { FC, useMemo } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import "../styles/battleship.scss";
 import { doc, collection, setDoc } from "firebase/firestore";
 import { Firestore } from "firebase/firestore";
 import { Auth } from "firebase/auth";

@@ -16,6 +16,7 @@ import {
   mapShipsToFirebase,
 } from "../../utils/battleship/battleShipMappers";
 import { useParams } from "react-router-dom";
+import battlShipStyles from '../../styles/battleship.module.scss'
 interface BattleshipCellProps {
   cell: BattleshipCellModel;
   roomData: any;
@@ -76,8 +77,8 @@ export const BattleshipCell: FC<BattleshipCellProps> = ({
   const icon = useMemo(() => {
     if (cell.isAttacked) {
       return cell.elem
-        ? { className: "battleship__under-attack", icon: faXmark }
-        : { className: "battleship__missed", icon: faCircle };
+        ? { className: battlShipStyles['battleship__under-attack'], icon: faXmark }
+        : { className: battlShipStyles.battleship__missed, icon: faCircle };
     }
     return null;
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -85,10 +86,10 @@ export const BattleshipCell: FC<BattleshipCellProps> = ({
 
   return (
     <div
-      className={`battleship__cell ${
-        cell.isAddAvailable ? "battship-highlighted" : ""
-      } ${cell.elem && !cell.board.isEnemyBoard ? "with-ship" : ""} ${
-        cell.elem?.isDestroyed ? "battleship__destroyed" : ""
+      className={`${battlShipStyles.battleship__cell} ${
+        cell.isAddAvailable ? battlShipStyles['battship-highlighted'] : ""
+      } ${cell.elem && !cell.board.isEnemyBoard ? battlShipStyles['with-ship'] : ""} ${
+        cell.elem?.isDestroyed ? battlShipStyles.battleship__destroyed : ""
       }`}
       onMouseOver={onMouseOver}
       onClick={onClick}
