@@ -1,5 +1,5 @@
 import { User } from "firebase/auth";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { fetchSnakeBestScoore } from "../../redux/snake/snakeActions";
