@@ -1,5 +1,5 @@
 import { Firestore } from "firebase/firestore";
-import React, { FC, useMemo } from "react";
+import React, { FC, memo, useMemo } from "react";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { battleShipSelector } from "../../redux/battleships/battleshipSelectors";
 import { BattleshipCell } from "./BattleshipCell";
@@ -11,7 +11,7 @@ interface BattleshipBoardProps {
   firestore: Firestore;
 }
 
-export const BattleshipBoard: FC<BattleshipBoardProps> = ({
+export const BattleshipBoard: FC<BattleshipBoardProps> = memo(({
   isEnemy,
   roomData,
   secondPlayer,
@@ -38,4 +38,4 @@ export const BattleshipBoard: FC<BattleshipBoardProps> = ({
       )}
     </div>
   );
-};
+})

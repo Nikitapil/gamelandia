@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, memo, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { BattleshipCellModel } from "../../models/battleship/BattleShipCellModel";
@@ -24,7 +24,7 @@ interface BattleshipCellProps {
   firestore: Firestore;
 }
 
-export const BattleshipCell: FC<BattleshipCellProps> = ({
+export const BattleshipCell: FC<BattleshipCellProps> = memo(({
   cell,
   roomData,
   secondPlayer,
@@ -97,4 +97,4 @@ export const BattleshipCell: FC<BattleshipCellProps> = ({
       {icon && <FontAwesomeIcon {...icon} />}
     </div>
   );
-};
+})

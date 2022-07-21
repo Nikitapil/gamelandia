@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import back from "../../assets/matchMatch/back.jpeg";
 import matchStyles from '../../styles/match.module.scss'
 interface MatchCardProps {
@@ -10,7 +10,7 @@ interface MatchCardProps {
   disabled: boolean;
 }
 
-export const MatchCard: FC<MatchCardProps> = ({
+export const MatchCard: FC<MatchCardProps> = memo(({
   flipped,
   pic,
   name,
@@ -39,4 +39,4 @@ export const MatchCard: FC<MatchCardProps> = ({
       </div>
     </button>
   );
-};
+});

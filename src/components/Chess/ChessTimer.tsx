@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, memo, useEffect, useRef, useState } from "react";
 import { Colors } from "../../models/chess/Colors";
 import { Player } from "../../models/chess/Player";
 import { ModalContainer } from "../UI/ModalContainer";
@@ -13,7 +13,7 @@ interface ChessTimerProps {
   setWinner: (color:Colors) => void;
 }
 
-export const ChessTimer: FC<ChessTimerProps> = ({
+export const ChessTimer: FC<ChessTimerProps> = memo(({
   currentPlayer,
   restart,
   isModalOpen,
@@ -107,4 +107,4 @@ export const ChessTimer: FC<ChessTimerProps> = ({
       )}
     </div>
   );
-};
+})

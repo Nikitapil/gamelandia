@@ -1,11 +1,11 @@
-import React, { FC, useState } from "react";
+import React, { FC, memo, useState } from "react";
 
 interface TimerModalProps {
   start: (time: number) => void;
   closeModal: () => void;
 }
 
-export const TimerModal: FC<TimerModalProps> = ({ start, closeModal }) => {
+export const TimerModal: FC<TimerModalProps> = memo(({ start, closeModal }) => {
   const [time, setTime] = useState(60);
 
   const timeChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,4 +38,4 @@ export const TimerModal: FC<TimerModalProps> = ({ start, closeModal }) => {
       </button>
     </div>
   );
-};
+});

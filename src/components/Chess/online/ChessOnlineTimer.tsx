@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef } from "react";
+import React, { FC, memo, useEffect, useRef } from "react";
 import { IChessTime } from "../../../domain/chessTypes";
 import { Colors } from "../../../models/chess/Colors";
 import { Player } from "../../../models/chess/Player";
@@ -10,7 +10,7 @@ interface ChessOnlineTimerProps {
   endGame: () => void;
 }
 
-export const ChessOnlineTimer: FC<ChessOnlineTimerProps> = ({
+export const ChessOnlineTimer: FC<ChessOnlineTimerProps> = memo(({
   time, 
   currentPlayer,
   endGame,
@@ -64,4 +64,4 @@ export const ChessOnlineTimer: FC<ChessOnlineTimerProps> = ({
       </div>
     </div>
   );
-};
+})

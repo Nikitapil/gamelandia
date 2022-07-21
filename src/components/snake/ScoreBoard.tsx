@@ -1,5 +1,5 @@
 import { User } from "firebase/auth";
-import React, { FC, useEffect } from "react";
+import React, { FC, memo, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { fetchSnakeBestScoore } from "../../redux/snake/snakeActions";
@@ -10,7 +10,7 @@ interface ScoreBoardProps {
   user: User | null | undefined;
 }
 
-export const ScoreBoard: FC<ScoreBoardProps> = ({ user }) => {
+export const ScoreBoard: FC<ScoreBoardProps> = memo(({ user }) => {
   const { allBestScores, myBestScores } = useTypedSelector(snakeSelector);
   const dispatch = useDispatch();
 
@@ -46,4 +46,4 @@ export const ScoreBoard: FC<ScoreBoardProps> = ({ user }) => {
       </div>
     </div>
   );
-};
+})

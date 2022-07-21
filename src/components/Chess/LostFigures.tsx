@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { Figure } from "../../models/chess/figures/figure";
 
 interface LostFiguresProps {
@@ -6,7 +6,7 @@ interface LostFiguresProps {
   figures: Figure[];
 }
 
-export const LostFigures: FC<LostFiguresProps> = ({ title, figures }) => {
+export const LostFigures: FC<LostFiguresProps> = memo(({ title, figures }) => {
   return (
     <div className="lost-figures">
       <h3 className="lost-figures__title">{title}:</h3>
@@ -17,4 +17,4 @@ export const LostFigures: FC<LostFiguresProps> = ({ title, figures }) => {
       ))}
     </div>
   );
-};
+});
