@@ -1,4 +1,4 @@
-import { EAppActionstypes, Inotification } from "../../domain/appTypes";
+import { EAppActionstypes, IBreabcrumb, Inotification } from "../../domain/appTypes";
 
 export const setAppNotification = (payload: Inotification) => {
   return {
@@ -6,3 +6,10 @@ export const setAppNotification = (payload: Inotification) => {
     payload,
   };
 };
+
+export const setBreadCrumbs = (payload: IBreabcrumb[]) => {
+  return {
+    type: EAppActionstypes.SET_BREADCRAMBS,
+    payload
+  }
+}
