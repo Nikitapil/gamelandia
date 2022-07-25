@@ -4,6 +4,8 @@ import { doc, collection, setDoc } from "firebase/firestore";
 import { Firestore } from "firebase/firestore";
 import { Auth } from "firebase/auth";
 import { RoomsCommon } from "../components/common/RoomsCommon";
+import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
+import { breadcrumbs } from "../constants/breadcrumbs";
 
 interface BattleShipRoomsProps {
   firestore: Firestore;
@@ -14,6 +16,7 @@ export const BattleShipRooms: FC<BattleShipRoomsProps> = ({
   firestore,
   auth,
 }) => {
+  useBreadcrumbs([breadcrumbs.main, breadcrumbs.battleshipRooms]);
   const [rooms] = useCollectionData(collection(firestore, "battleship"));
   const createRoom = async () => {
     const newRoom = {
@@ -35,6 +38,11 @@ export const BattleShipRooms: FC<BattleShipRoomsProps> = ({
   }, [rooms]);
 
   return (
-    <RoomsCommon rooms={filteredRooms} auth={auth} createRoom={createRoom} page='battleship' />
+    <RoomsCommon
+      rooms={filteredRooms}
+      auth={auth}
+      createRoom={createRoom}
+      page="battleship"
+    />
   );
 };

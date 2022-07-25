@@ -20,13 +20,20 @@ import { HorizotalLoader } from "../components/UI/Loaders/HorizotalLoader";
 import { mapFromFireBaseToBattleShip } from "../utils/battleship/battleShipMappers";
 import { FullRoomMessage } from "../components/common/FullRoomMessage";
 import { WinnerCommon } from "../components/common/WinnerCommon";
-import battlshipStyles from '../styles/battleship.module.scss'
+import battlshipStyles from "../styles/battleship.module.scss";
+import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
+import { breadcrumbs } from "../constants/breadcrumbs";
 interface BattleShipProps {
   firestore: Firestore;
   auth: Auth;
 }
 
 export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
+  useBreadcrumbs([
+    breadcrumbs.main,
+    breadcrumbs.battleshipRooms,
+    breadcrumbs.battleship,
+  ]);
   const dispatch = useDispatch();
   const { id } = useParams();
   const [user, isUserLoading] = useAuthState(auth);
@@ -143,13 +150,11 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
   }
 
   if (isFull) {
-    return (
-      <FullRoomMessage page="/battleship"/>
-    );
+    return <FullRoomMessage page="/battleship" />;
   }
 
   if (winner) {
-    return <WinnerCommon page="/battleship" winner={winner} />
+    return <WinnerCommon page="/battleship" winner={winner} />;
   }
 
   return (
@@ -157,12 +162,12 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
       <h2 className="page-title">Battleship</h2>
       {loading && <HorizotalLoader color="blue" />}
       {roomData?.currentPlayer && (
-        <h3 className={battlshipStyles['battleship__current-player']}>
+        <h3 className={battlshipStyles["battleship__current-player"]}>
           Current player: {roomData[roomData.currentPlayer].name}
         </h3>
       )}
       <div className={battlshipStyles.battleship__boards}>
-        <div className={battlshipStyles['battleship__my-board']}>
+        <div className={battlshipStyles["battleship__my-board"]}>
           {board && !loading && (
             <BattleshipBoard
               firestore={firestore}
@@ -182,7 +187,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
               />
             )}
         </div>
-        <div className={battlshipStyles['battleship__enemy-board']}>
+        <div className={battlshipStyles["battleship__enemy-board"]}>
           {isGameStarted && enemyBoard ? (
             <BattleshipBoard
               firestore={firestore}
@@ -191,7 +196,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
               isEnemy={true}
             />
           ) : (
-            <div className={battlshipStyles['battle-ship__waiting']}>
+            <div className={battlshipStyles["battle-ship__waiting"]}>
               Waiting for second player...
             </div>
           )}

@@ -6,12 +6,15 @@ import { setAppNotification } from "../redux/appStore/appActions";
 import { authErrorMessages } from "../constants/appMessages";
 import { AuthForm } from "../components/Auth/AuthForm";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import authStyles from '../styles/auth.module.scss'
+import authStyles from "../styles/auth.module.scss";
+import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
+import { breadcrumbs } from "../constants/breadcrumbs";
 interface SignInProps {
   auth: Auth;
 }
 
 export const SignIn: FC<SignInProps> = ({ auth }) => {
+  useBreadcrumbs([breadcrumbs.main, breadcrumbs.login]);
   const [signInWithEmailAndPassword, , , error] =
     useSignInWithEmailAndPassword(auth);
   const [searchParams] = useSearchParams();
@@ -42,9 +45,13 @@ export const SignIn: FC<SignInProps> = ({ auth }) => {
   }, [searchParams]);
 
   return (
-    <div className={authStyles['auth-container']}>
+    <div className={authStyles["auth-container"]}>
       <AuthForm formTitle="Sign In" submit={submit} />
-      <Link className={authStyles['auth-link']} to={registeredLink} data-testid='signup-link'>
+      <Link
+        className={authStyles["auth-link"]}
+        to={registeredLink}
+        data-testid="signup-link"
+      >
         Not registered yet? Just do it.
       </Link>
     </div>

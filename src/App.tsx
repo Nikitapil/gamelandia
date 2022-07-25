@@ -21,6 +21,7 @@ import { BattleShipRooms } from "./Pages/BattleShipRooms";
 import { ChessTypes } from "./Pages/ChessTypes";
 import { ChessRooms } from "./Pages/ChessRooms";
 import { ChessOnline } from "./Pages/ChessOnline";
+import { Breadcrumbs } from "./components/UI/Breadcrumbs";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -28,19 +29,25 @@ const firestore = getFirestore(app);
 function App() {
   const [user] = useAuthState(auth);
   const { notification } = useTypedSelector(appSelector);
-
   return (
     <div className="App">
       <AppHeader auth={auth} />
       <main className="main">
+        <Breadcrumbs />
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="*" element={<MainPage />} />
           <Route path="/match-match" element={<MatchMatch />} />
           <Route path="/chess" element={<ChessTypes />} />
           <Route path="/chess/offline" element={<Chess />} />
-          <Route path="/chess/rooms" element={<ChessRooms auth={auth} firestore={firestore} />} />
-          <Route path="/chess/rooms/:id" element={<ChessOnline auth={auth} firestore={firestore} />} />
+          <Route
+            path="/chess/rooms"
+            element={<ChessRooms auth={auth} firestore={firestore} />}
+          />
+          <Route
+            path="/chess/rooms/:id"
+            element={<ChessOnline auth={auth} firestore={firestore} />}
+          />
           <Route path="/tictac" element={<TicTacToe />} />
           <Route path="/snake" element={<Snake auth={auth} />} />
           <Route
