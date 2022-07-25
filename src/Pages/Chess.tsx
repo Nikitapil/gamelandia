@@ -3,11 +3,18 @@ import { ChessBoardComponent } from "../components/Chess/ChessBoardComponent";
 import { ChessTimer } from "../components/Chess/ChessTimer";
 import { LostFigures } from "../components/Chess/LostFigures";
 import { WinnerModal } from "../components/Chess/WinnerModal";
+import { breadcrumbs } from "../constants/breadcrumbs";
+import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 import { Board } from "../models/chess/Board";
 import { Colors } from "../models/chess/Colors";
 import { Player } from "../models/chess/Player";
 import "../styles/chess.scss";
 export const Chess = () => {
+  useBreadcrumbs([
+    breadcrumbs.main,
+    breadcrumbs.chessTypes,
+    breadcrumbs.chessOffline,
+  ]);
   const [board, setBoard] = useState(new Board());
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [whitePlayer, setWhitePlayer] = useState(new Player(Colors.WHITE));
@@ -55,7 +62,11 @@ export const Chess = () => {
           setIsModalOpen={setIsTimerModalOpen}
           setWinner={setWinner}
         />
-        <button className="chess__give-up" data-testid='give-up-btn' onClick={() => endGame()}>
+        <button
+          className="chess__give-up"
+          data-testid="give-up-btn"
+          onClick={() => endGame()}
+        >
           Give Up
         </button>
       </div>

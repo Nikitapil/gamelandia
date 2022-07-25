@@ -1,0 +1,14 @@
+@import "./vars.scss";
+.breadcrumbs {
+  padding: 5px 20px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.link {
+  color: $titleColor;
+  text-decoration: none;
+}
+.text {
+  color: $mainColor;
+}

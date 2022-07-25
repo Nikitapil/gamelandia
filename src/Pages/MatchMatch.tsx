@@ -3,8 +3,11 @@ import { MatchCard } from "../components/match/MatchCard";
 import { card } from "../domain/matchMatch";
 import { matchMatchPics } from "../utils/gamePicsBuilder";
 import { getuniqArrayObjects, shuffleArray } from "../utils/helpers";
-import matchStyles from '../styles/match.module.scss'
+import matchStyles from "../styles/match.module.scss";
+import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
+import { breadcrumbs } from "../constants/breadcrumbs";
 export const MatchMatch = () => {
+  useBreadcrumbs([breadcrumbs.main, breadcrumbs.matchGame]);
   const [cards, setCards] = useState<card[]>([]);
   const [currentOpened, setCurrentOpened] = useState<card | null>(null);
   const [isWin, setIsWin] = useState(false);
@@ -97,12 +100,13 @@ export const MatchMatch = () => {
       </p>
       <p className={matchStyles.match__description}>
         {" "}
-        Attempts: <span className={matchStyles.attempts_counter}>{attempts}/25</span>
+        Attempts:{" "}
+        <span className={matchStyles.attempts_counter}>{attempts}/25</span>
       </p>
       {isWin && (
         <p className={matchStyles.match__win}>
           You Win!!!{" "}
-          <button className={matchStyles['match__new-game']} onClick={newGame}>
+          <button className={matchStyles["match__new-game"]} onClick={newGame}>
             New Game
           </button>
         </p>
@@ -110,7 +114,7 @@ export const MatchMatch = () => {
       {isLoose && (
         <p className={matchStyles.match__loose}>
           You Loose{" "}
-          <button className={matchStyles['match__new-game']} onClick={newGame}>
+          <button className={matchStyles["match__new-game"]} onClick={newGame}>
             New Game
           </button>
         </p>

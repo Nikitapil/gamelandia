@@ -5,6 +5,8 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { TimerModal } from "../components/Chess/TimerModal";
 import { RoomsCommon } from "../components/common/RoomsCommon";
 import { ModalContainer } from "../components/UI/ModalContainer";
+import { breadcrumbs } from "../constants/breadcrumbs";
+import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 import "../styles/chess.scss";
 interface ChessRoomsProps {
   firestore: Firestore;
@@ -12,6 +14,11 @@ interface ChessRoomsProps {
 }
 
 export const ChessRooms: FC<ChessRoomsProps> = ({ firestore, auth }) => {
+  useBreadcrumbs([
+    breadcrumbs.main,
+    breadcrumbs.chessTypes,
+    breadcrumbs.chessRooms,
+  ]);
   const [rooms] = useCollectionData(collection(firestore, "chess"));
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -24,10 +31,10 @@ export const ChessRooms: FC<ChessRoomsProps> = ({ firestore, auth }) => {
       currentPlayer: null,
       time: {
         black: timer,
-        white: timer
+        white: timer,
       },
       board: null,
-      winner: '',
+      winner: "",
       isGameStarted: false,
       id: `room_${(rooms?.length || 0) + 1}`,
       name: `Room ${(rooms?.length || 0) + 1}`,

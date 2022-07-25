@@ -11,7 +11,7 @@ const initialState: AppInitialState = {
     message: "",
     type: "error",
   },
-  breadcrumbs: [breadcrumbs.main]
+  breadcrumbs: [breadcrumbs.main],
 };
 
 export const appReducer = (state = initialState, action: AppActions) => {
@@ -19,7 +19,7 @@ export const appReducer = (state = initialState, action: AppActions) => {
     case EAppActionstypes.SET_NOTIFICATION:
       return { ...state, notification: action.payload };
     case EAppActionstypes.SET_BREADCRAMBS:
-      return {...state, breadcrumbs: action.payload}
+      return { ...state, breadcrumbs: action.payload };
     default:
       return state;
   }
