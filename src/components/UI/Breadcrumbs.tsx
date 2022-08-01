@@ -12,12 +12,12 @@ export const Breadcrumbs = () => {
         breadcrumbs?.map((breadcrumb, idx) => {
           if (idx < breadcrumbs.length - 1) {
             return (
-              <Link className={breadcrumbsStyles.link} to={breadcrumb.path}>
+              <Link className={breadcrumbsStyles.link} key={breadcrumb.path} to={breadcrumb.path}>
                 {breadcrumb.name} /
               </Link>
             );
           }
-          return <p className={breadcrumbsStyles.text}>{breadcrumb.name}</p>;
+          return <p key={breadcrumb.path} className={breadcrumbsStyles.text}>{breadcrumb.name}</p>;
         })}
     </div>
   );
