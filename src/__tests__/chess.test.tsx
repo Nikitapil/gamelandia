@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import {Chess} from "../Pages/Chess";
-import { renderWithRouter } from "../utils/test/utils";
+import { renderWithRedux, renderWithRouter } from "../utils/test/utils";
 import { Board } from "../models/chess/Board";
 import { Cell } from "../models/chess/Cell";
 import { King } from "../models/chess/figures/King";
@@ -13,13 +13,23 @@ import { Player } from "../models/chess/Player";
 import { Colors } from "../models/chess/Colors";
 import { ChessTimer } from "../components/Chess/ChessTimer";
 import { ChessCellComponents } from "../components/Chess/ChessCellComponents";
+import { createStore } from "redux";
+import { rootReducer } from "../redux/rootReducer";
+import { ChessTypes } from "../Pages/ChessTypes";
+import { setBreadCrumbs } from "../redux/appStore/appActions";
+import { breadcrumbs } from "../constants/breadcrumbs";
+import App from "../App";
 
 jest.spyOn(global, 'setInterval')
 jest.spyOn(global, 'clearInterval')
 
 describe('chess tests', () => {
+    let store: any
+    beforeEach(() => {
+        store = createStore(rootReducer);
+    })
     test('timer should be in the document', () => {
-        render(renderWithRouter(<Chess />));
+        render(renderWithRedux(<Chess />, '/', store));
         expect(screen.getByTestId('timer-modal')).toBeInTheDocument()
     })
     test('winner modal should call new game', () => {
@@ -112,13 +122,17 @@ describe('chess tests', () => {
         expect(screen.getByTestId('figure-logo')).toBeInTheDocument()
     })
     test('should set winner', () => {
-        render(renderWithRouter(<Chess />));
+        render(renderWithRedux(<Chess />, '/', store));
         userEvent.click(screen.getByTestId('chess-start-button'))
         expect(screen.queryByTestId('timer-modal')).not.toBeInTheDocument()
         userEvent.click(screen.getByTestId('give-up-btn'))
         expect(screen.getByTestId('newGame-btn')).toBeInTheDocument()
         userEvent.click(screen.getByTestId('newGame-btn'))
         expect(screen.getByTestId('timer-modal')).toBeInTheDocument()
+    })
+    test('should render types with rigth breadcrumbs', () => {
+        render(renderWithRedux(<App />, '/chess', store));
+        expect(screen.getByText('Chess')).toBeInTheDocument()
     })
 })
 
