@@ -12,12 +12,14 @@ import { authErrorMessages } from "../constants/appMessages";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 import { breadcrumbs } from "../constants/breadcrumbs";
+import { useTitle } from "../hooks/useTitle";
 
 interface SignUpProps {
   auth: Auth;
 }
 
 export const SignUp: FC<SignUpProps> = ({ auth }) => {
+  useTitle('Sign in')
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.registration]);
   const [createUserWithEmailAndPassword, , , error] =
     useCreateUserWithEmailAndPassword(auth);

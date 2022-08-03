@@ -3,8 +3,10 @@ import { MainPageCard } from "../components/main/MainPageCard";
 import { OutSidePageCard } from "../components/main/OutSideGameCard";
 import { games } from "../constants/games";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
+import { useTitle } from "../hooks/useTitle";
 import mainStyles from "../styles/mainpage.module.scss";
 export const MainPage = () => {
+  useTitle()
   useBreadcrumbs([]);
   return (
     <div

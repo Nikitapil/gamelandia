@@ -13,6 +13,7 @@ import { WinnerCommon } from "../components/common/WinnerCommon";
 import { breadcrumbs } from "../constants/breadcrumbs";
 import { IChessTime } from "../domain/chessTypes";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
+import { useTitle } from "../hooks/useTitle";
 import { Board } from "../models/chess/Board";
 import { Colors } from "../models/chess/Colors";
 import { Player } from "../models/chess/Player";
@@ -28,6 +29,7 @@ interface ChessOnlineProps {
 }
 
 export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
+  useTitle('Chess online')
   useBreadcrumbs([
     breadcrumbs.main,
     breadcrumbs.chessTypes,

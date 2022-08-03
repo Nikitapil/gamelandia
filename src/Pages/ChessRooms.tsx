@@ -7,6 +7,7 @@ import { RoomsCommon } from "../components/common/RoomsCommon";
 import { ModalContainer } from "../components/UI/ModalContainer";
 import { breadcrumbs } from "../constants/breadcrumbs";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
+import { useTitle } from "../hooks/useTitle";
 import "../styles/chess.scss";
 interface ChessRoomsProps {
   firestore: Firestore;
@@ -14,6 +15,7 @@ interface ChessRoomsProps {
 }
 
 export const ChessRooms: FC<ChessRoomsProps> = ({ firestore, auth }) => {
+  useTitle('Chess')
   useBreadcrumbs([
     breadcrumbs.main,
     breadcrumbs.chessTypes,

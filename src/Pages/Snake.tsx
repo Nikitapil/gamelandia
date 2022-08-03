@@ -18,11 +18,13 @@ import {
 import snakeStyles from "../styles/snake.module.scss";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 import { breadcrumbs } from "../constants/breadcrumbs";
+import { useTitle } from "../hooks/useTitle";
 interface SnakeProps {
   auth: Auth;
 }
 
 export const Snake: FC<SnakeProps> = ({ auth }) => {
+  useTitle('Snake')
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.snake]);
   const [board, setBoard] = useState<SnakeBoardModel | null>(null);
   const [gameOver, setGameOver] = useState("");

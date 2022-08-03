@@ -6,7 +6,9 @@ import { getuniqArrayObjects, shuffleArray } from "../utils/helpers";
 import matchStyles from "../styles/match.module.scss";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 import { breadcrumbs } from "../constants/breadcrumbs";
+import { useTitle } from "../hooks/useTitle";
 export const MatchMatch = () => {
+  useTitle('Match game')
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.matchGame]);
   const [cards, setCards] = useState<card[]>([]);
   const [currentOpened, setCurrentOpened] = useState<card | null>(null);

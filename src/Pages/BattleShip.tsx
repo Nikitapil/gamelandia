@@ -23,12 +23,14 @@ import { WinnerCommon } from "../components/common/WinnerCommon";
 import battlshipStyles from "../styles/battleship.module.scss";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 import { breadcrumbs } from "../constants/breadcrumbs";
+import { useTitle } from "../hooks/useTitle";
 interface BattleShipProps {
   firestore: Firestore;
   auth: Auth;
 }
 
 export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
+  useTitle('Battleship')
   useBreadcrumbs([
     breadcrumbs.main,
     breadcrumbs.battleshipRooms,

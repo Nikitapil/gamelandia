@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { TicTacBoard } from "../components/TicTacToe/TicTacBoard";
 import { breadcrumbs } from "../constants/breadcrumbs";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
+import { useTitle } from "../hooks/useTitle";
 import { TicBoard } from "../models/ticTacToe/TicBoard";
 import tictacStyles from "../styles/tictac.module.scss";
 export const TicTacToe = () => {
+  useTitle('Tic Tac Toe')
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.ticTac]);
   const [board, setBoard] = useState(new TicBoard());
   const [winner, setWinner] = useState("");

@@ -9,11 +9,13 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import authStyles from "../styles/auth.module.scss";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 import { breadcrumbs } from "../constants/breadcrumbs";
+import { useTitle } from "../hooks/useTitle";
 interface SignInProps {
   auth: Auth;
 }
 
 export const SignIn: FC<SignInProps> = ({ auth }) => {
+  useTitle('Sign in')
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.login]);
   const [signInWithEmailAndPassword, , , error] =
     useSignInWithEmailAndPassword(auth);

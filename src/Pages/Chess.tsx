@@ -5,11 +5,13 @@ import { LostFigures } from "../components/Chess/LostFigures";
 import { WinnerModal } from "../components/Chess/WinnerModal";
 import { breadcrumbs } from "../constants/breadcrumbs";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
+import { useTitle } from "../hooks/useTitle";
 import { Board } from "../models/chess/Board";
 import { Colors } from "../models/chess/Colors";
 import { Player } from "../models/chess/Player";
 import "../styles/chess.scss";
 export const Chess = () => {
+  useTitle('Chess')
   useBreadcrumbs([
     breadcrumbs.main,
     breadcrumbs.chessTypes,

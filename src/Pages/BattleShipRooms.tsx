@@ -6,6 +6,7 @@ import { Auth } from "firebase/auth";
 import { RoomsCommon } from "../components/common/RoomsCommon";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 import { breadcrumbs } from "../constants/breadcrumbs";
+import { useTitle } from "../hooks/useTitle";
 
 interface BattleShipRoomsProps {
   firestore: Firestore;
@@ -16,6 +17,7 @@ export const BattleShipRooms: FC<BattleShipRoomsProps> = ({
   firestore,
   auth,
 }) => {
+  useTitle('Battleship')
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.battleshipRooms]);
   const [rooms] = useCollectionData(collection(firestore, "battleship"));
   const createRoom = async () => {
