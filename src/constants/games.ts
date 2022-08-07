@@ -1,5 +1,14 @@
 export const games = [
   {
+    id: 5,
+    gameName: "Clone Invaders",
+    pictureName: "cloneInvaders",
+    description: "Clone of famous space invaders game",
+    path: "invaders",
+    isOutside: false,
+    labels: ['Single Player']
+  },
+  {
     id: 1,
     gameName: "Match-Match Game",
     pictureName: "default",
