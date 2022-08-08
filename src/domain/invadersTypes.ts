@@ -1,4 +1,4 @@
 export enum EInvadersDirections {
-    LEFT = 'LEFT',
-    RIGHT = 'RIGHT'
+  LEFT = "LEFT",
+  RIGHT = "RIGHT",
 }
