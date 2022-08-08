@@ -16,7 +16,7 @@ export class InvadersFieldModel {
         for (let i=0; i< 5; i++) {
             const row = []
             for (let j=0; j<10; j++) {
-                row.push(new InvadersCellModel(j*45, i*35, this))
+                row.push(new InvadersCellModel(j*45, i*35 + 20, this))
             }
             this.cells.push(row)
         }

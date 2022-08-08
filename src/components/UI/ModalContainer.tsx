@@ -3,7 +3,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import modalStyles from '../../styles/modal.module.scss'
 interface ModalContainerProps {
-  children: JSX.Element | string;
+  children: JSX.Element | string | React.ReactNode
   title?: string;
   closeModal?: () => void;
 }

@@ -1,6 +1,6 @@
 export const games = [
   {
-    id: 5,
+    id: 7,
     gameName: "Clone Invaders",
     pictureName: "cloneInvaders",
     description: "Clone of famous space invaders game",

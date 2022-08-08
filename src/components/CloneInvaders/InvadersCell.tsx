@@ -9,11 +9,12 @@ import { EInvadersDirections } from '../../domain/invadersTypes';
 interface InvadersCellProps {
     cell: InvadersCellModel,
     bullet: InvadersBulletModel|null,
-    destroyBullet: () => void
-    isBulletDestroyed: boolean
+    destroyBullet: () => void,
+    increaseScore: () => void,
+    gameOver: () => void
 }
 
-export const InvadersCell = ({cell, bullet, destroyBullet, isBulletDestroyed} : InvadersCellProps) => {
+export const InvadersCell = ({cell, bullet, destroyBullet, increaseScore, gameOver} : InvadersCellProps) => {
 
     const cellStyle = useMemo(() => {
         return {
@@ -27,16 +28,19 @@ export const InvadersCell = ({cell, bullet, destroyBullet, isBulletDestroyed} : 
             if ((cell.x >= 555 && cell.field.direction === EInvadersDirections.RIGHT) || (cell.x <= 0 && !cell.field.isFirstMove && cell.field.direction === EInvadersDirections.LEFT)) {
                 cell.changeDirection()
             }
+            if (cell.y >= 340) {
+                gameOver()
+            }
         }
     }, [cell.x, cell])
 
     useEffect(() => {
-        if (bullet && cell.isWithElem && !isBulletDestroyed) {
+        if (bullet && cell.isWithElem) {
             const inTheArea = bullet.x >= cell.x && bullet.x <= cell.cellEnd.xEnd && bullet.y <= 400 - cell.y && bullet.y >= 400 - cell.cellEnd.yEnd
             if (inTheArea) {
-                console.log('destroy')
                 cell.destroyElem()
                 destroyBullet()
+                increaseScore()
             }
         }
     }, [bullet])
