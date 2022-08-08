@@ -5,13 +5,13 @@ export class InvadersGunModel {
     }
     toLeft() {
         if (this.x > 0) {
-            this.x-=1
+            this.x-=8
         }
     }
 
     toRight() {
-        if(this.x < 540) {
-            this.x+=1
+        if(this.x < 562) {
+            this.x+=8
         }
     }
 }

@@ -18,4 +18,15 @@ export class InvadersCellModel {
         this.field.changeDirection()
         this.field.nextY = 10
     }
+
+    destroyElem() {
+        this.isWithElem = false
+    }
+
+    get cellEnd() {
+        return {
+            xEnd: this.x + 37.5,
+            yEnd: this.y + 30
+        }
+    }
 }

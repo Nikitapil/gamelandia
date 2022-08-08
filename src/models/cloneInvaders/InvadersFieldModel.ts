@@ -1,4 +1,5 @@
 import { EInvadersDirections } from "../../domain/invadersTypes";
+import { InvadersBulletModel } from "./InvadersBulletModel";
 import { InvadersCellModel } from "./InvadersCellModel";
 import { InvadersGunModel } from "./InvadersGunModel";
 
@@ -9,6 +10,8 @@ export class InvadersFieldModel {
     nextY = 0;
     isFirstMove = true
     gun = new InvadersGunModel(0)
+    bullet: InvadersBulletModel|null = null
+
     initCells(): void {
         for (let i=0; i< 5; i++) {
             const row = []
@@ -32,6 +35,7 @@ export class InvadersFieldModel {
         newBoard.nextY = this.nextY
         newBoard.isFirstMove = false
         newBoard.gun = this.gun
+        newBoard.bullet = this.bullet
         return newBoard
     }
 
@@ -39,21 +43,11 @@ export class InvadersFieldModel {
         this.direction = this.direction === EInvadersDirections.RIGHT ? EInvadersDirections.LEFT : EInvadersDirections.RIGHT
     }
 
-    // УДАЛИТЬ ЕСЛИ НЕ ПОНАДОБИТСЯ
-    // getlastXCell() {
-    //     let cell = this.cells[0][9];
-    //     let column = 9
-    //     let row = 0
-    //     while (!cell.isWithElem) {
-    //         cell = this.cells[row][column]
-    //         row++
-    //         if(row > 4) {
-    //             row = 0
-    //             column--
-    //         }
-    //     } 
-    //     return cell
-    // }
+   
+
+    createBullet() {
+        this.bullet = new InvadersBulletModel(30)
+    }
 
     move() {
         this.cells.forEach(row => {

@@ -28,6 +28,13 @@
 .gun {
     position: absolute;
     bottom: 0;
-    color: $mainColor;
+    color: #3bf851;
     font-size: 30px;
+}
+.bullet {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #3bf851;
+    position: absolute;
 }
