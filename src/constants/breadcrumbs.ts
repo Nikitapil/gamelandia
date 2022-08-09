@@ -47,4 +47,8 @@ export const breadcrumbs = {
     name: "Login",
     path: "/login",
   },
+  cloneInvaders: {
+    name: 'Clone Invaders',
+    path: '/invaders'
+  }
 };

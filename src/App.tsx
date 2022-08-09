@@ -22,6 +22,7 @@ import { ChessTypes } from "./Pages/ChessTypes";
 import { ChessRooms } from "./Pages/ChessRooms";
 import { ChessOnline } from "./Pages/ChessOnline";
 import { Breadcrumbs } from "./components/UI/Breadcrumbs";
+import { CloneInvaders } from "./Pages/CloneInvaders";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -54,6 +55,7 @@ function App() {
             path="/battleship"
             element={<BattleShipRooms firestore={firestore} auth={auth} />}
           />
+          <Route path="/invaders" element={<CloneInvaders auth={auth} />} />
           <Route
             path="/battleship/:id"
             element={<BattleShip auth={auth} firestore={firestore} />}

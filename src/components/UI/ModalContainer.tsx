@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import modalStyles from '../../styles/modal.module.scss'
+import modalStyles from "../../styles/modal.module.scss";
 interface ModalContainerProps {
-  children: JSX.Element | string;
+  children: JSX.Element | string | React.ReactNode;
   title?: string;
   closeModal?: () => void;
 }
@@ -15,8 +15,15 @@ export const ModalContainer: FC<ModalContainerProps> = ({
 }) => {
   return (
     <div className={modalStyles.modal} onClick={closeModal}>
-      <div className={modalStyles.modal__content} onClick={(e) => e.stopPropagation()} data-testid='modal-content'>
-        <button className={modalStyles['modal__close-btn']} onClick={closeModal}>
+      <div
+        className={modalStyles.modal__content}
+        onClick={(e) => e.stopPropagation()}
+        data-testid="modal-content"
+      >
+        <button
+          className={modalStyles["modal__close-btn"]}
+          onClick={closeModal}
+        >
           <FontAwesomeIcon icon={faXmark} />
         </button>
         <h2 className={modalStyles.modal__title}>{title}</h2>
