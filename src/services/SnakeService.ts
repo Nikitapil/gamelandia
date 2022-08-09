@@ -1,4 +1,4 @@
-import { child, get, getDatabase, push, ref, set } from "firebase/database";
+import { child, get, getDatabase, ref, set } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import { ISnakelevels, snakeLevels } from "../constants/snake";
 import { snakeBestScoreMapper } from "../utils/snake/snakeMappers";

@@ -1,6 +1,12 @@
+import { User } from "firebase/auth";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { InvadersBulletModel } from "../../models/cloneInvaders/InvadersBulletModel";
 import { InvadersFieldModel } from "../../models/cloneInvaders/InvadersFieldModel";
+import { fetchInvadersScores } from "../../redux/invaders/invadersActions";
+import { invadersSelector } from "../../redux/invaders/invadersSelector";
+import { InvadersService } from "../../services/InvadersService";
 import invadersStyles from "../../styles/invaders.module.scss";
 import { ModalContainer } from "../UI/ModalContainer";
 import { InvadersBullet } from "./InvadersBullet";
@@ -8,7 +14,11 @@ import { InvadersCell } from "./InvadersCell";
 import { InvadersGameOver } from "./InvadersGameOver";
 import { InvadersGun } from "./InvadersGun";
 
-export const InvadersField = () => {
+interface InvadersFieldProps {
+  user: User | null | undefined;
+}
+
+export const InvadersField = ({ user }: InvadersFieldProps) => {
   const [board, setBoard] = useState(new InvadersFieldModel());
   const [bullet, setBullet] = useState<InvadersBulletModel | null>(null);
   const [gameOver, setGameOver] = useState(false);
@@ -17,6 +27,8 @@ export const InvadersField = () => {
   const bulletInterval = useRef<null | ReturnType<typeof setInterval>>(null);
   const gameInterval = useRef<null | ReturnType<typeof setInterval>>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { scores } = useTypedSelector(invadersSelector);
+  const dispatch = useDispatch();
 
   const move = useCallback(() => {
     board.move();
@@ -96,12 +108,16 @@ export const InvadersField = () => {
 
   const increaseScore = () => setScore((prev) => prev + 20);
 
-  const onGameOver = () => {
+  const onGameOver = async () => {
     setGameOver(true);
     destroyBullet();
     setBoard(new InvadersFieldModel());
     clearInterval(gameInterval.current!);
     setTimer(350);
+    if (user) {
+      await InvadersService.setRecord(score, scores);
+      dispatch(fetchInvadersScores());
+    }
   };
 
   const closeModal = () => {

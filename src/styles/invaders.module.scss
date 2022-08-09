@@ -78,3 +78,43 @@
     color: $mainColor;
   }
 }
+
+.score-board {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 2px solid black;
+  align-self: flex-start;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.273);
+  margin-right: -200px;
+  min-height: 310px;
+}
+
+.boards {
+  display: flex;
+  gap: 20px;
+}
+
+.score-board__title {
+  color: #3bf851;
+  text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.score-board_value {
+  color: $titleColor;
+  display: flex;
+  justify-content: space-between;
+  gap: 80px;
+  &:not(:last-child) {
+    margin-bottom: 5px;
+    border-bottom: 1px solid $mainColor;
+    padding-bottom: 5px;
+  }
+}
+.my-score {
+  color: #3bf851;
+}
