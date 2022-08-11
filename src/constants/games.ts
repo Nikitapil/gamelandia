@@ -6,7 +6,8 @@ export const games = [
     description: "Clone of famous space invaders game",
     path: "invaders",
     isOutside: false,
-    labels: ['Single Player', 'Not suitable for mobile']
+    labels: ['Single Player', 'Not suitable for mobile'],
+    mobileSuitable: false
   },
   {
     id: 5,
@@ -15,7 +16,8 @@ export const games = [
     description: "Classic snake game",
     path: "snake",
     isOutside: false,
-    labels: ['Single player']
+    labels: ['Single player'],
+    mobileSuitable: true
   },
   {
     id: 6,
@@ -24,7 +26,8 @@ export const games = [
     description: "Classic battleship game",
     path: "battleship",
     isOutside: false,
-    labels: ['Online', '2players']
+    labels: ['Online', '2players'],
+    mobileSuitable: true
   },
   {
     id: 3,
@@ -33,7 +36,8 @@ export const games = [
     description: "Chess game for 2 players",
     path: "chess",
     isOutside: false,
-    labels: ['2 players', 'online', 'offline']
+    labels: ['2 players', 'online', 'offline'],
+    mobileSuitable: true
   },
   {
     id: 2,
@@ -43,7 +47,8 @@ export const games = [
       "App to build and play quizes. There you can try to play quizes with random questions, quizes from other people ore create your own quizes.",
     path: "https://nikitapil.github.io/quizzer/",
     isOutside: true,
-    labels: []
+    labels: [],
+    mobileSuitable: true
   },
   {
     id: 1,
@@ -53,7 +58,8 @@ export const games = [
       "Simple memory trainig game.Try to find all pairs of cards. You have only 25 attempts",
     path: "match-match",
     isOutside: false,
-    labels: ['Single player']
+    labels: ['Single player'],
+    mobileSuitable: true
   },
   {
     id: 4,
@@ -62,6 +68,7 @@ export const games = [
     description: "Standard tic toe game ",
     path: "tictac",
     isOutside: false,
-    labels: ['2 players']
+    labels: ['2 players'],
+    mobileSuitable: true
   }
 ];

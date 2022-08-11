@@ -5,3 +5,9 @@ export const shuffleArray = (arr: any[]) => {
 export const getuniqArrayObjects = (arr: any[]) => {
   return arr.map((item) => ({ ...item }));
 };
+
+export const isMobile = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
+    navigator.userAgent
+  );
+};

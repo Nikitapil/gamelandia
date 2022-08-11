@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { MainPageCard } from "../components/main/MainPageCard";
 import { OutSidePageCard } from "../components/main/OutSideGameCard";
 import { games } from "../constants/games";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 import { useTitle } from "../hooks/useTitle";
 import mainStyles from "../styles/mainpage.module.scss";
+import { isMobile } from "../utils/helpers";
 export const MainPage = () => {
   useTitle()
   useBreadcrumbs([]);
+
+  const filteredGames = useMemo(() => {
+    if (isMobile()) {
+      return games.filter(game => game.mobileSuitable)
+    } 
+    return games
+  }, [games])
+
   return (
     <div
       className={`container ${mainStyles["main-page__container"]}`}
@@ -17,7 +26,7 @@ export const MainPage = () => {
         Welcome to Gamelandia! Please choose your game...
       </h2>
       <div className={mainStyles.games}>
-        {games.map((game) =>
+        {filteredGames.map((game) =>
           game.isOutside ? (
             <OutSidePageCard
               key={game.id}
