@@ -36,8 +36,14 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "test:cover": "react-scripts test --coverage src",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "prepare": "husky install"
   },
+  "husky": {
+    "hooks": {
+        "pre-commit": "lint-staged"
+    }
+},
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -58,6 +64,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.182",
-    "gh-pages": "^4.0.0"
+    "gh-pages": "^4.0.0",
+    "husky": "^8.0.0"
   }
 }

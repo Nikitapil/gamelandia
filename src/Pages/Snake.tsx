@@ -206,7 +206,7 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
             >
               <FontAwesomeIcon icon={faCircleChevronLeft} />
             </button>
-            <button
+            <button 
               onClick={(e: any) => onKeyPress(e, "right")}
               className={snakeStyles["snake-controlls__btn"]}
             >
