@@ -1,5 +1,5 @@
 import { Auth } from "firebase/auth";
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useMemo, useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { ScoreBoard } from "../components/snake/ScoreBoard";
@@ -19,6 +19,7 @@ import snakeStyles from "../styles/snake.module.scss";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 import { breadcrumbs } from "../constants/breadcrumbs";
 import { useTitle } from "../hooks/useTitle";
+import { isMobile } from "../utils/helpers";
 interface SnakeProps {
   auth: Auth;
 }
@@ -128,6 +129,10 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
     }
   }, [board?.gameOver]);
 
+  const isShowMobileBtns = useMemo(() => {
+    return isMobile()
+  }, [])
+
   return (
     <div
       className={`${snakeStyles.snake__container} container`}
@@ -187,7 +192,7 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
       <p className={snakeStyles["snake__game-over"]}>{gameOver}</p>
       <div className={snakeStyles.snake__boards}>
         <SnakeBoard board={board} />
-        <div className={snakeStyles.snake__controlls}>
+        {isShowMobileBtns && <div className={snakeStyles.snake__controlls}>
           <button
             onClick={(e: any) => onKeyPress(e, "up")}
             className={snakeStyles["snake-controlls__btn"]}
@@ -214,7 +219,7 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
           >
             <FontAwesomeIcon icon={faCircleChevronDown} />
           </button>
-        </div>
+        </div>}
         {user && <ScoreBoard user={user} />}
       </div>
     </div>

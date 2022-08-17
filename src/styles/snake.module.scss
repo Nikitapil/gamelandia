@@ -144,18 +144,15 @@
 }
 
 .snake__controlls {
-  display: none;
-  @media (max-width: 520px) {
-    display: flex;
+  display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
-  }
 }
 .snake-controlls__btn {
   background: none;
   border: none;
-  font-size: 30px;
+  font-size: 34px;
   color: #3bf851;
 }
 

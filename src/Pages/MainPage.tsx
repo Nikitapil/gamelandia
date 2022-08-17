@@ -15,7 +15,7 @@ export const MainPage = () => {
       return games.filter(game => game.mobileSuitable)
     } 
     return games
-  }, [games])
+  }, [])
 
   return (
     <div
