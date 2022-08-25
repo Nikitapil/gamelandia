@@ -51,6 +51,16 @@ export const games = [
     mobileSuitable: true
   },
   {
+    id: 8,
+    gameName: 'Tetris',
+    pictureName: 'tetris',
+    description: 'Classic tetris game',
+    path: 'tetris',
+    isOutside: false,
+    labels: ['offline', 'Single player'],
+    mobileSuitable: true
+  },
+  {
     id: 1,
     gameName: "Match-Match Game",
     pictureName: "default",

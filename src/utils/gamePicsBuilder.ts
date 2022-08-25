@@ -14,6 +14,7 @@ import chess from "../assets/gamepictures/chess.jpeg";
 import ticTacToe from "../assets/gamepictures/ticTacToe.jpeg";
 import snake from "../assets/gamepictures/snake.jpeg";
 import battleship from "../assets/gamepictures/battleship.webp";
+import tetris from "../assets/gamepictures/tetris.png";
 import cloneInvaders from '../assets/cloneInvaders/cloneInvaders.webp'
 interface IGamePics {
   [key: string]: string;
@@ -26,7 +27,8 @@ export const gamePics: IGamePics = {
   ticTacToe: ticTacToe,
   snake: snake,
   battleship: battleship,
-  cloneInvaders: cloneInvaders
+  cloneInvaders: cloneInvaders,
+  tetris: tetris
 };
 
 export const matchMatchPics = [

@@ -1,0 +1,45 @@
+@import './vars.scss';
+
+
+.color-blue {
+    color:$tetrisBlue
+}
+
+.color-green {
+    color:$tetrisGreen
+}
+
+.color-yellow {
+    color:$tetrisYellow
+}
+
+.color-orange {
+    color:$tetrisOrange
+}
+
+.color-red {
+    color:$tetrisRed
+}
+
+.tetris-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 48px;
+}
+
+.board {
+    width: 200px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell {
+    width: 20px;
+    height: 20px;
+    border: 1px solid $titleColor;
+}
