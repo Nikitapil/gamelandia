@@ -3,7 +3,7 @@ import { TetrisBoardModel } from '../TetrisBoardModel';
 import { TetrisFigureModel } from './TetrisFigureModel';
 export class SquareFigureModel extends TetrisFigureModel {
     constructor(board: TetrisBoardModel) {
-        super(board);
+        super(board, []);
         this.color = ETetrisColors.RED
     }
 }

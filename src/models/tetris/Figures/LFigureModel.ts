@@ -4,7 +4,7 @@ import { TetrisFigureModel } from './TetrisFigureModel';
 
 export class LFigureModel extends TetrisFigureModel {
     constructor(board: TetrisBoardModel) {
-        super(board);
+        super(board, []);
         this.color = ETetrisColors.GREEN
     }
 }

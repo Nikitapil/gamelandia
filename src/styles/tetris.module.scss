@@ -21,6 +21,26 @@
     color:$tetrisRed
 }
 
+.bg-blue {
+    background-color:$tetrisBlue
+}
+
+.bg-green {
+    background-color:$tetrisGreen
+}
+
+.bg-yellow {
+    background-color:$tetrisYellow
+}
+
+.bg-orange {
+    background-color:$tetrisOrange
+}
+
+.bg-red {
+    background-color:$tetrisRed
+}
+
 .tetris-container {
     display: flex;
     flex-direction: column;
