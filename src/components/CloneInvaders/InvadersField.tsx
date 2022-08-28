@@ -1,12 +1,11 @@
 import { User } from "firebase/auth";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { EGamesWithScoreBoard } from "../../domain/scoreTypes";
 import { InvadersBulletModel } from "../../models/cloneInvaders/InvadersBulletModel";
 import { InvadersFieldModel } from "../../models/cloneInvaders/InvadersFieldModel";
-import { fetchInvadersScores } from "../../redux/invaders/invadersActions";
-import { invadersSelector } from "../../redux/invaders/invadersSelector";
-import { InvadersService } from "../../services/InvadersService";
+import { fetchBoardScores } from "../../redux/score/scoreActions";
+import { ScoreService } from "../../services/scoreService";
 import invadersStyles from "../../styles/invaders.module.scss";
 import { ModalContainer } from "../UI/ModalContainer";
 import { InvadersBullet } from "./InvadersBullet";
@@ -27,7 +26,6 @@ export const InvadersField = ({ user }: InvadersFieldProps) => {
   const bulletInterval = useRef<null | ReturnType<typeof setInterval>>(null);
   const gameInterval = useRef<null | ReturnType<typeof setInterval>>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scores } = useTypedSelector(invadersSelector);
   const dispatch = useDispatch();
 
   const move = useCallback(() => {
@@ -115,8 +113,8 @@ export const InvadersField = ({ user }: InvadersFieldProps) => {
     clearInterval(gameInterval.current!);
     setTimer(350);
     if (user) {
-      await InvadersService.setRecord(score, scores);
-      dispatch(fetchInvadersScores());
+      await ScoreService.setRecord(score, EGamesWithScoreBoard.INVADERS);
+      dispatch(fetchBoardScores(EGamesWithScoreBoard.INVADERS));
     }
   };
 

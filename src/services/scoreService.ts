@@ -1,23 +1,23 @@
 import { getAuth } from "firebase/auth";
 import { child, get, getDatabase, ref, set } from "firebase/database";
-import { IInvadersScore } from "../domain/invadersTypes";
-import { getNewInvadersScores } from "../utils/invaders/invadersHelpers";
+import { IBoardScore } from "../domain/scoreTypes";
+import { getNewBoardScores } from "../utils/score/scoreHelpers";
 
-export class InvadersService {
-  static async getBestScores() {
+export class ScoreService {
+  static async getBestScores(game: string) {
     const auth = getAuth();
     if (auth.currentUser) {
       const database = getDatabase();
       const path = ref(database);
-      const response: IInvadersScore[] = await (
-        await get(child(path, `/games/invaders/scores/`))
+      const response: IBoardScore[] = await (
+        await get(child(path, `/games/${game}/scores/`))
       ).val();
       return response.sort((a, b) => b.score - a.score);
     }
     return null;
   }
 
-  static async setRecord(score: number, allScores: IInvadersScore[]) {
+  static async setRecord(score: number, game: string) {
     const auth = getAuth();
     if (auth.currentUser) {
       const uid = auth.currentUser.uid;
@@ -26,9 +26,10 @@ export class InvadersService {
         name: auth.currentUser.displayName!,
         score,
       };
-      const data = getNewInvadersScores(allScores, newScore);
+      const allScores = await ScoreService.getBestScores(game);
+      const data = getNewBoardScores(allScores!, newScore);
       const database = getDatabase();
-      await set(ref(database, `games/invaders/scores/`), data);
+      await set(ref(database, `games/${game}/scores/`), data);
     }
   }
 }
