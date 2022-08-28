@@ -15,7 +15,7 @@ export class TetrisFigureModel {
 
   constructor(
     board: TetrisBoardModel,
-    possibleDirections: ETetrisDirections[],
+    possibleDirections: ETetrisDirections[]
   ) {
     this.id = Math.random();
     this.board = board;
@@ -67,11 +67,15 @@ export class TetrisFigureModel {
   }
 
   createElement() {
-    if (this.nextCells[this.currentDirection].some(cell => !!cell.elem && cell.elem.figure !== this)) {
-        return
+    if (
+      this.nextCells[this.currentDirection].some(
+        (cell) => !!cell.elem && cell.elem.figure !== this
+      )
+    ) {
+      return;
     }
     this.destroyNobaseElems();
-    this.updateElems(this.nextCells[this.currentDirection])
+    this.updateElems(this.nextCells[this.currentDirection]);
   }
 
   changeDirection(direction?: ETetrisDirections) {
@@ -90,7 +94,7 @@ export class TetrisFigureModel {
       this.createElement();
     } catch (error) {
       if (this.baseElem!.cell.y >= 17 || this.baseElem!.cell.y < 1) {
-        return
+        return;
       }
       if (this.baseElem!.cell.x < 5) {
         this.moveRight();
@@ -104,8 +108,10 @@ export class TetrisFigureModel {
   }
 
   updateElems(nextCells: TetrisCellModel[]) {
-    const newElems = nextCells.map(cell => new TetrisElem(this.color, cell, this))
-    this.elems = [this.baseElem!, ...newElems]
+    const newElems = nextCells.map(
+      (cell) => new TetrisElem(this.color, cell, this)
+    );
+    this.elems = [this.baseElem!, ...newElems];
   }
 
   destroyNobaseElems() {
@@ -123,10 +129,10 @@ export class TetrisFigureModel {
 
   get nextCells(): ITetrisNextCells {
     return {
-        right: [],
-        left: [],
-        up: [],
-        down: []
-    }
+      right: [],
+      left: [],
+      up: [],
+      down: [],
+    };
   }
 }

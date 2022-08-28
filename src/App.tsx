@@ -57,7 +57,7 @@ function App() {
             element={<BattleShipRooms firestore={firestore} auth={auth} />}
           />
           <Route path="/invaders" element={<CloneInvaders auth={auth} />} />
-          <Route path="/tetris" element={<Tetris />} />
+          <Route path="/tetris" element={<Tetris auth={auth} />} />
           <Route
             path="/battleship/:id"
             element={<BattleShip auth={auth} firestore={firestore} />}
