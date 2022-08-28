@@ -69,16 +69,19 @@ export const Tetris = () => {
       const newBoard = board.copyBoard()
       setBoard(newBoard)
       figureInterval.current = setInterval(() => {
+        if(board.currentFigure!.elems.length < 2) {
+          gameOver()
+        }
         const move = board.currentFigure?.moveDown()
         if (!move) {
-          if (board.currentFigure!.elems.some(elem => elem.cell.y <= 1)) {
+          if (board.currentFigure!.elems.some(elem => elem.cell.y <= 1) || !board.currentFigure) {
             gameOver()
           }
           const addScore = board.clearRows()
           const newBoard = board.copyBoard()
           setBoard(newBoard)
           setScore(prev => prev + addScore * 10)
-          const newTimer = addScore && timer > 450 ? timer - addScore : timer
+          const newTimer = addScore && timer > 400 ? timer - addScore*4 : timer
           startMoving(newTimer)
         }
         const newBoard = board.copyBoard()

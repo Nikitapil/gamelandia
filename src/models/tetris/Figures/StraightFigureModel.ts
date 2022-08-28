@@ -6,7 +6,7 @@ import { TetrisFigureModel } from './TetrisFigureModel';
 export class StraightFigureModel extends TetrisFigureModel {
     constructor(board: TetrisBoardModel) {
         super(board, STRAIGHT_FIGURE_POSSIBLE_DIRECTIONS);
-        this.color = ETetrisColors.GREEN
+        this.color = ETetrisColors.BLACK
         this.baseElem = new TetrisElem(this.color, board.getCell(1, 4), this)
         this.createElement()
     }
