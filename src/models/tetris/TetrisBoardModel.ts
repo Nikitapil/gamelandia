@@ -1,10 +1,12 @@
+import { tetrisFigures } from "../../constants/tetris";
 import { TetrisFigureModel } from "./Figures/TetrisFigureModel";
-import { TFigureModel } from "./Figures/TFigureModel";
 import { TetrisCellModel } from "./TetrisCellModel";
 
 export class TetrisBoardModel {
     cells:TetrisCellModel[][] = []
     currentFigure: TetrisFigureModel| null = null
+    
+
 
     initCells() {
         for (let i = 0; i< 20; i++) {
@@ -21,7 +23,9 @@ export class TetrisBoardModel {
     }
 
     startGame() {
-        this.currentFigure = new TFigureModel(this)
+        const keys = Object.keys(tetrisFigures)
+        const idx = Math.floor(Math.random() * (keys.length))
+        this.currentFigure = new tetrisFigures[keys[idx]](this, [])
     }
 
 
@@ -45,5 +49,6 @@ export class TetrisBoardModel {
                 }
             })
         }
+        return rowsToClear.length
     }
 }

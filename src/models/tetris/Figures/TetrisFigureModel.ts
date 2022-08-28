@@ -2,6 +2,7 @@ import { TetrisBoardModel } from "./../TetrisBoardModel";
 import { TetrisElem } from "./../TetrisElem";
 import { ETetrisColors, ETetrisDirections } from "../../../constants/tetris";
 import { TetrisCellModel } from "../TetrisCellModel";
+import { ITetrisNextCells } from "../../../domain/tetrisTypes";
 
 export class TetrisFigureModel {
   color: ETetrisColors = ETetrisColors.BLUE;
@@ -14,7 +15,7 @@ export class TetrisFigureModel {
 
   constructor(
     board: TetrisBoardModel,
-    possibleDirections: ETetrisDirections[]
+    possibleDirections: ETetrisDirections[],
   ) {
     this.id = Math.random();
     this.board = board;
@@ -66,22 +67,11 @@ export class TetrisFigureModel {
   }
 
   createElement() {
-    if (this.currentDirection === ETetrisDirections.UP) {
-      this.createUpElem();
-      return;
+    if (this.nextCells[this.currentDirection].some(cell => !!cell.elem && cell.elem.figure !== this)) {
+        return
     }
-    if (this.currentDirection === ETetrisDirections.DOWN) {
-      this.createDownElem();
-      return;
-    }
-    if (this.currentDirection === ETetrisDirections.RIGHT) {
-      this.createRightElement();
-      return;
-    }
-    if (this.currentDirection === ETetrisDirections.LEFT) {
-      this.createLeftElement();
-      return;
-    }
+    this.destroyNobaseElems();
+    this.updateElems(this.nextCells[this.currentDirection])
   }
 
   changeDirection(direction?: ETetrisDirections) {
@@ -99,11 +89,14 @@ export class TetrisFigureModel {
       }
       this.createElement();
     } catch (error) {
-      if (this.baseElem?.cell.x === 0) {
+      if (this.baseElem!.cell.y >= 17 || this.baseElem!.cell.y < 1) {
+        return
+      }
+      if (this.baseElem!.cell.x < 5) {
         this.moveRight();
         this.changeDirection(this.currentDirection);
       }
-      if (this.baseElem?.cell.x === 9) {
+      if (this.baseElem!.cell.x > 5) {
         this.moveLeft();
         this.changeDirection(this.currentDirection);
       }
@@ -127,4 +120,13 @@ export class TetrisFigureModel {
   createDownElem() {}
   createRightElement() {}
   createLeftElement() {}
+
+  get nextCells(): ITetrisNextCells {
+    return {
+        right: [],
+        left: [],
+        up: [],
+        down: []
+    }
+  }
 }

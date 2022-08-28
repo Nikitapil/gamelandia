@@ -4,13 +4,39 @@ import { TetrisBoardModel } from "../models/tetris/TetrisBoardModel";
 import tetrisStyle from '../styles/tetris.module.scss'
 export const Tetris = () => {
     const [board, setBoard] = useState(new TetrisBoardModel())
+    const [isShowStartBtn, setIsShowStartBtn] = useState(true)
+    const [isShowNewGameBtn, setIsShowNewGameBtn] = useState(false)
+    const [isGameOver, setIsGameOver] = useState(false)
+    const [score, setScore] = useState(0)
     const figureInterval = useRef<null | ReturnType<typeof setInterval>>(null)
+    const gameRef = useRef<HTMLDivElement>(null)
+    const initBoard = () => {
+      if (figureInterval.current) {
+        clearInterval(figureInterval.current)
+      }
+      setIsShowStartBtn(true)
+      setIsShowNewGameBtn(false)
+      setIsGameOver(false)
+      setScore(0)
+      const newBoard = new TetrisBoardModel()
+      newBoard.initCells()
+      setBoard(newBoard)
+    }
+
+    const gameOver = () => {
+      if (figureInterval.current) {
+        clearInterval(figureInterval.current)
+      }
+      setIsShowNewGameBtn(true)
+      setIsGameOver(true)
+    }
+
 
     useEffect(() => {
-        const newBoard = new TetrisBoardModel()
-        newBoard.initCells()
-        setBoard(newBoard)
+        initBoard()
     }, [])
+
+    
 
     const onKeyPress = (e:KeyboardEvent) => {
         if(e.code === "ArrowRight") {
@@ -35,7 +61,7 @@ export const Tetris = () => {
         }
     }
 
-    const startMoving = () => {
+    const startMoving = (timer = 1000) => {
       if (figureInterval.current) {
         clearInterval(figureInterval.current)
       }
@@ -45,27 +71,30 @@ export const Tetris = () => {
       figureInterval.current = setInterval(() => {
         const move = board.currentFigure?.moveDown()
         if (!move) {
-          board.clearRows()
+          if (board.currentFigure!.elems.some(elem => elem.cell.y <= 1)) {
+            gameOver()
+          }
+          const addScore = board.clearRows()
           const newBoard = board.copyBoard()
           setBoard(newBoard)
-          startMoving()
+          setScore(prev => prev + addScore * 10)
+          const newTimer = addScore && timer > 450 ? timer - addScore : timer
+          startMoving(newTimer)
         }
         const newBoard = board.copyBoard()
-      setBoard(newBoard)
-      }, 1000)
+        setBoard(newBoard)
+      }, timer)
     }
 
     const startGame = () => {
+      setIsShowStartBtn(false)
+      setIsShowNewGameBtn(true)
+      gameRef.current?.focus()
       startMoving()
     }
 
-    
-
-    
-
-
   return (
-    <div className={`container ${tetrisStyle['tetris-container']}`} onKeyDown={onKeyPress}>
+    <div className={`container ${tetrisStyle['tetris-container']}`} onKeyDown={onKeyPress} ref={gameRef} tabIndex={0}>
       <h2 className={`page-title ${tetrisStyle.title}`}>
         <span className={tetrisStyle['color-blue']}>T</span>
         <span className={tetrisStyle['color-green']}>e</span>
@@ -74,7 +103,12 @@ export const Tetris = () => {
         <span className={tetrisStyle['color-red']}>i</span>
         s
       </h2>
-      <button onClick={startGame}>Start Game</button>
+      {isGameOver && <p className={tetrisStyle['game-over']}>Game over</p>}
+      <div className={tetrisStyle.controlls}>
+        {isShowStartBtn && <button className={tetrisStyle['game-btn']} onClick={startGame}>Start Game</button>}
+        {isShowNewGameBtn && <button className={tetrisStyle['game-btn']} onClick={initBoard}>New Game</button>}
+        <p className={tetrisStyle.score}>Score: {score}</p>
+      </div>
       <div>
         <TetrisBoard board={board} /> 
       </div>

@@ -1,4 +1,4 @@
-import { ETetrisColors, ETetrisDirections, T_FIGURE_POSSIBLE_DIRECTIONS } from "../../../constants/tetris";
+import { ETetrisColors, T_FIGURE_POSSIBLE_DIRECTIONS } from "../../../constants/tetris";
 import { TetrisBoardModel } from "../TetrisBoardModel";
 import { TetrisElem } from "../TetrisElem";
 import { TetrisFigureModel } from "./TetrisFigureModel";
@@ -12,49 +12,15 @@ export class TFigureModel extends TetrisFigureModel {
     this.createElement()
   }
 
-  
 
-  createUpElem() {
+  get nextCells() {
     const y = this.baseElem!.cell.y;
     const x = this.baseElem!.cell.x;
-    const nextCells = [this.board.getCell(y - 1, x), this.board.getCell(y, x - 1), this.board.getCell(y, x + 1)] 
-    if (nextCells.some(cell => !!cell.elem && cell.elem.figure !== this)) {
-        return
+     return {
+        right: [this.board.getCell(y, x + 1), this.board.getCell(y - 1, x), this.board.getCell(y + 1, x)],
+        left: [this.board.getCell(y, x - 1), this.board.getCell(y - 1, x), this.board.getCell(y + 1, x)],
+        up: [this.board.getCell(y - 1, x), this.board.getCell(y, x - 1), this.board.getCell(y, x + 1)],
+        down: [this.board.getCell(y + 1, x), this.board.getCell(y, x - 1), this.board.getCell(y, x + 1)]
     }
-    this.destroyNobaseElems();
-    this.updateElems(nextCells)
-  }
-
-  createDownElem() {
-    const y = this.baseElem!.cell.y;
-    const x = this.baseElem!.cell.x;
-    const nextCells = [this.board.getCell(y + 1, x), this.board.getCell(y, x - 1), this.board.getCell(y, x + 1)]
-    if (nextCells.some(cell => !!cell.elem && cell.elem.figure !== this)) {
-        return
-    }
-    this.destroyNobaseElems();
-    this.updateElems(nextCells)
-  }
-
-  createRightElement() {
-    const y = this.baseElem!.cell.y;
-    const x = this.baseElem!.cell.x;
-    const nextCells = [this.board.getCell(y, x + 1), this.board.getCell(y - 1, x), this.board.getCell(y + 1, x)]
-    if (nextCells.some(cell => !!cell.elem && cell.elem.figure !== this)) {
-        return
-    }
-    this.destroyNobaseElems();
-    this.updateElems(nextCells)
-  }
-
-  createLeftElement() {
-    const y = this.baseElem!.cell.y;
-    const x = this.baseElem!.cell.x;
-    const nextCells = [this.board.getCell(y, x - 1), this.board.getCell(y - 1, x), this.board.getCell(y + 1, x)]
-    if (nextCells.some(cell => !!cell.elem && cell.elem.figure !== this)) {
-        return
-    }
-    this.destroyNobaseElems();
-    this.updateElems(nextCells)
   }
 }
