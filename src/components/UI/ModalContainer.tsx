@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import modalStyles from "../../styles/modal.module.scss";
 interface ModalContainerProps {
   children: JSX.Element | string | React.ReactNode;
   title?: string;
-  closeModal?: () => void;
+  closeModal: () => void;
 }
 
 export const ModalContainer: FC<ModalContainerProps> = ({
@@ -13,8 +13,21 @@ export const ModalContainer: FC<ModalContainerProps> = ({
   title = "",
   closeModal,
 }) => {
+  const modalref = useRef<HTMLDivElement>(null)
+  const onKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      closeModal()
+    }
+  }
+
+  useEffect(() => {
+    if (modalref.current) {
+      modalref.current.focus()
+    }
+  }, [])
+
   return (
-    <div className={modalStyles.modal} onClick={closeModal}>
+    <div className={modalStyles.modal} onClick={closeModal} onKeyDown={onKeyPress} tabIndex={0} ref={modalref}>
       <div
         className={modalStyles.modal__content}
         onClick={(e) => e.stopPropagation()}
