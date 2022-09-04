@@ -1,5 +1,6 @@
 import { User } from "firebase/auth";
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { EGamesWithScoreBoard } from "../../domain/scoreTypes";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
@@ -14,14 +15,14 @@ interface CommonScoreBoardProps {
 export const CommonScoreBoard = ({ user, game }: CommonScoreBoardProps) => {
   const dispatch = useDispatch();
   const { scores } = useTypedSelector(scoreSelector);
-
+  const {t} = useTranslation()
   useEffect(() => {
     dispatch(fetchBoardScores(game));
   }, [dispatch, game]);
 
   return (
     <div className={commonStyles["score-board"]}>
-      <h3 className={commonStyles["score-board__title"]}>Best Scores</h3>
+      <h3 className={commonStyles["score-board__title"]}>{t('scores')}</h3>
       {scores?.map((score) => {
         return (
           <p

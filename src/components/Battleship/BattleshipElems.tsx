@@ -17,6 +17,7 @@ import {
   mapShipsToFirebase,
 } from "../../utils/battleship/battleShipMappers";
 import battlShipStyles from '../../styles/battleship.module.scss'
+import { useTranslation } from "react-i18next";
 interface BattleshipElemsProps {
   roomData: any;
   firestore: Firestore;
@@ -32,6 +33,7 @@ export const BattleshipElems: FC<BattleshipElemsProps> = ({
   const { board } = useTypedSelector(battleShipSelector);
   const dispatch = useDispatch();
   const { id } = useParams();
+  const {t} = useTranslation()
 
   const resetShips = () => {
     const newBoard = new BattleshipBoardModel();
@@ -60,11 +62,11 @@ export const BattleshipElems: FC<BattleshipElemsProps> = ({
         freeShips.map((el) => <BattleShipElem key={el.id} elem={el} />)
       ) : (
         <button className={battlShipStyles['battleship-btn']} onClick={setIsReady}>
-          Ready
+          {t('ready')}
         </button>
       )}
       <button className={battlShipStyles['battleship-btn']} onClick={resetShips}>
-        Reset Ships
+        {t('reset_ships')}
       </button>
     </div>
   );

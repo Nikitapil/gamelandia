@@ -21,13 +21,13 @@ describe('mainpage tests', () => {
         expect(mainPage).toBeInTheDocument()
     })
     test('gameCard outside', () => {
-        render(renderWithRouter(<OutSidePageCard to='' gameName="" />));
+        render(renderWithRouter(<OutSidePageCard to='' gameName="" description="" />));
         const img = screen.getByTestId('game-pic')
         expect((img as HTMLImageElement).src).not.toBe(undefined)
     })
 
     test('gameCard inside', () => {
-        render(renderWithRouter(<MainPageCard to='' gameName="" labels={[]} />));
+        render(renderWithRouter(<MainPageCard to='' gameName="" description="" labels={[]} />));
         const img = screen.getByTestId('game-pic')
         expect((img as HTMLImageElement).src).not.toBe(undefined)
     })
@@ -35,7 +35,7 @@ describe('mainpage tests', () => {
     test('should navigate from sign in to sign up', () => {
         render(renderWithRedux(<SignIn auth={null as any}/>, '/', store));
         userEvent.click(screen.getByTestId('signup-link'))
-        expect(screen.getByText('Not registered yet? Just do it.')).toBeInTheDocument()
+        expect(screen.getByTestId('signup-link')).toBeInTheDocument()
     })
 
     test('should work authForm', () => {

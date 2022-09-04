@@ -4,12 +4,15 @@ import { Auth, signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { HorizotalLoader } from "../UI/Loaders/HorizotalLoader";
 import headerStyles from '../../styles/header.module.scss'
+import { useTranslation } from "react-i18next";
+import { LanguageDropdown } from "./LanguageDropdown";
 interface AppHeaderProps {
   auth: Auth;
 }
 
 export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
   const [user, loading] = useAuthState(auth);
+  const { t } = useTranslation()
 
   const onSignOut = async () => {
     await signOut(auth);
@@ -22,8 +25,11 @@ export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
         <nav className={headerStyles['header__nav-bar']}>
           <ul className={headerStyles['nav-bar__links']}>
             <li>
+              <LanguageDropdown/>
+            </li>
+            <li>
               <Link className={headerStyles['nav-bar__link']} to="/">
-                Main
+                {t("main")}
               </Link>
             </li>
             {loading ? (
@@ -34,13 +40,13 @@ export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
               <React.Fragment>
                 <li>
                   <Link className={headerStyles['nav-bar__link']} to="/login">
-                    Sign in
+                  {t("sign_in")}
                   </Link>
                 </li>
                 <li>
                   {" "}
                   <Link className={headerStyles['nav-bar__link']} to="/registration">
-                    Sign up
+                  {t("sign_up")}
                   </Link>
                 </li>
               </React.Fragment>
@@ -48,7 +54,7 @@ export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
               <li>
                 {" "}
                 <button className={headerStyles['logout-btn']} onClick={onSignOut}>
-                  Logout
+                  {t('logout')}
                 </button>
               </li>
             )}

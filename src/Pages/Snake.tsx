@@ -20,6 +20,7 @@ import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 import { breadcrumbs } from "../constants/breadcrumbs";
 import { useTitle } from "../hooks/useTitle";
 import { isMobile } from "../utils/helpers";
+import { useTranslation } from "react-i18next";
 interface SnakeProps {
   auth: Auth;
 }
@@ -34,6 +35,7 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
   const [isNewGameButtonDisabled, setIsNewGameButtonDisabled] = useState(false);
   const movingTimeOut = useRef<null | ReturnType<typeof setInterval>>(null);
   const [user] = useAuthState(auth);
+  const {t} = useTranslation()
   const dispatch = useDispatch();
   const onKeyPress = (e: React.KeyboardEvent, btn: null | string = null) => {
     if (board?.snake && isClickAvailable && !gameOver) {
@@ -143,7 +145,7 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
       <div className={snakeStyles.snake__btns}>
         {!isNewGameButtonDisabled && (
           <button className={snakeStyles.snake__btn} onClick={newGame}>
-            New Game
+            {t('new_game')}
           </button>
         )}
         {!gameOver && (
@@ -152,14 +154,14 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
             onClick={onStartGame}
             data-testid="start-game"
           >
-            Start game
+            {t('start_game')}
           </button>
         )}
-        <p>Score: {board?.score}</p>
+        <p>{t('score')}: {board?.score}</p>
       </div>
       {!isNewGameButtonDisabled && (
         <div className={snakeStyles.snake__difficulty}>
-          <p>Difficulty:</p>
+          <p>{t('difficulty')}:</p>
           <button
             className={`${
               timer === 150 ? snakeStyles["snake-current-level"] : ""
@@ -167,7 +169,7 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
             onClick={() => setTimer(150)}
             data-testid="easy-level"
           >
-            Easy
+            {t('easy')}
           </button>
           <button
             className={`${
@@ -176,7 +178,7 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
             onClick={() => setTimer(100)}
             data-testid="medium-level"
           >
-            Medium
+            {t('medium')}
           </button>
           <button
             className={`${
@@ -185,7 +187,7 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
             onClick={() => setTimer(50)}
             data-testid="hard-level"
           >
-            Hard
+            {t('hard')}
           </button>
         </div>
       )}

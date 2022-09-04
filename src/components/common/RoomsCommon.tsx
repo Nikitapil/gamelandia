@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { setAppNotification } from "../../redux/appStore/appActions";
 import { HorizotalLoader } from "../UI/Loaders/HorizotalLoader";
 import commonStyles from '../../styles/common.module.scss'
+import { useTranslation } from "react-i18next";
 
 
 interface RoomsCommonProps {
@@ -20,7 +21,7 @@ export const RoomsCommon: FC<RoomsCommonProps> = memo(({ auth, page, rooms, crea
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const {t} = useTranslation()
   if (loading) {
     return (
       <div className={commonStyles.rooms__loader}>
@@ -34,20 +35,20 @@ export const RoomsCommon: FC<RoomsCommonProps> = memo(({ auth, page, rooms, crea
     dispatch(
       setAppNotification({
         timeout: 3500,
-        message: "Need login first",
+        message: t('need_login_first'),
         type: "error",
       })
     );
   }
   return (
     <div className={`container ${commonStyles.rooms__container}`}>
-      <h2 className="page-title">Choose room to play or create new</h2>
+      <h2 className="page-title">{t('rooms_title')}</h2>
       <table className={commonStyles.rooms__table}>
         <thead>
           <tr>
             <td>
               <button className={commonStyles['create-room__btn']} onClick={createRoom}>
-                Create room
+                {t('create_room')}
               </button>
             </td>
           </tr>

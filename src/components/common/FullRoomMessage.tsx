@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import commonStyles from '../../styles/common.module.scss'
 interface FullRoomMessageProps {
@@ -6,11 +7,12 @@ interface FullRoomMessageProps {
 }
 
 export const FullRoomMessage:FC<FullRoomMessageProps> = ({page}) => {
+  const {t} = useTranslation()
   return (
     <h2 className={commonStyles['full-message']}>
-        The room is full please choose another one or create new.
+        {t('full_room_message')}
         <Link className={commonStyles['message-link']} to={page}>
-           Go to Rooms
+           {t('go_to_rooms')}
         </Link>
       </h2>
   )

@@ -1,5 +1,6 @@
 import { User } from "firebase/auth";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { EGamesWithScoreBoard } from "../../domain/scoreTypes";
 import { InvadersBulletModel } from "../../models/cloneInvaders/InvadersBulletModel";
@@ -27,7 +28,7 @@ export const InvadersField = ({ user }: InvadersFieldProps) => {
   const gameInterval = useRef<null | ReturnType<typeof setInterval>>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
-
+  const {t} = useTranslation()
   const move = useCallback(() => {
     board.move();
     const newBoard = board.copyBoard();
@@ -137,7 +138,7 @@ export const InvadersField = ({ user }: InvadersFieldProps) => {
       )}
       {board.isGameStarted && (
         <div className={invadersStyles["invaders__field-cells"]}>
-          <p className={invadersStyles.score}>Score: {score}</p>
+          <p className={invadersStyles.score}>{t('score')}: {score}</p>
           {board.cells.map((row) =>
             row.map((cell) => (
               <InvadersCell

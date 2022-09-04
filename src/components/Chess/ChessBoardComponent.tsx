@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FigureNames } from "../../constants/chess";
 import { Board } from "../../models/chess/Board";
 import { Cell } from "../../models/chess/Cell";
@@ -11,7 +12,7 @@ interface ChessBoardComponentProps {
   setBoard: (board: Board) => void;
   currentPlayer: Player | null;
   swapPlayer: () => void;
-  isClickAvailable?:boolean
+  isClickAvailable?: boolean;
 }
 
 export const ChessBoardComponent: FC<ChessBoardComponentProps> = ({
@@ -19,13 +20,14 @@ export const ChessBoardComponent: FC<ChessBoardComponentProps> = ({
   setBoard,
   currentPlayer,
   swapPlayer,
-  isClickAvailable = true
+  isClickAvailable = true,
 }) => {
   const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
   const [pawnCell, setPawnCell] = useState<Cell | null>(null);
+  const { t } = useTranslation();
   const click = (cell: Cell) => {
-    if(!isClickAvailable) {
-      return
+    if (!isClickAvailable) {
+      return;
     }
     if (
       selectedCell &&
@@ -67,14 +69,14 @@ export const ChessBoardComponent: FC<ChessBoardComponentProps> = ({
 
   useEffect(() => {
     highLightCells();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCell]);
 
   return (
     <div className="chess-board">
       <div className="game-information">
         <h3 className="current-player">
-          Current Player: {currentPlayer?.color}
+          {t("current_player")}: {t(currentPlayer?.color || "")}
         </h3>
         <p className="king__attacked">{board.underAttackMessage}</p>
       </div>

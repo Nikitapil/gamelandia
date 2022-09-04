@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { MainPageCard } from "../components/main/MainPageCard";
 import { OutSidePageCard } from "../components/main/OutSideGameCard";
 import { games } from "../constants/games";
@@ -9,6 +10,7 @@ import { isMobile } from "../utils/helpers";
 export const MainPage = () => {
   useTitle()
   useBreadcrumbs([]);
+  const {t} = useTranslation()
 
   const filteredGames = useMemo(() => {
     if (isMobile()) {
@@ -23,7 +25,7 @@ export const MainPage = () => {
       data-testid="main-page"
     >
       <h2 className={mainStyles["main-page__title"]}>
-        Welcome to Gamelandia! Please choose your game...
+        {t('main_title')}
       </h2>
       <div className={mainStyles.games}>
         {filteredGames.map((game) =>
