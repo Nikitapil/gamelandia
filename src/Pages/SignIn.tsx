@@ -16,14 +16,15 @@ interface SignInProps {
 }
 
 export const SignIn: FC<SignInProps> = ({ auth }) => {
-  useTitle('Sign in')
+  const {t} = useTranslation()
+  useTitle(t('sign_in'))
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.login]);
   const [signInWithEmailAndPassword, , , error] =
     useSignInWithEmailAndPassword(auth);
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {t} = useTranslation()
+  
   const submit = async (email: string, password: string) => {
     await signInWithEmailAndPassword(email, password);
     if (error) {

@@ -14,10 +14,14 @@ import React, {
   useState,
 } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { CommonScoreBoard } from "../components/common/CommonScoreBoard";
 import { TetrisBoard } from "../components/Tetris/TetrisBoard";
+import { breadcrumbs } from "../constants/breadcrumbs";
 import { EGamesWithScoreBoard } from "../domain/scoreTypes";
+import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
+import { useTitle } from "../hooks/useTitle";
 import { TetrisBoardModel } from "../models/tetris/TetrisBoardModel";
 import { fetchBoardScores } from "../redux/score/scoreActions";
 import { ScoreService } from "../services/scoreService";
@@ -29,6 +33,9 @@ interface TetrisProps {
 }
 
 export const Tetris = ({ auth }: TetrisProps) => {
+  const {t} = useTranslation()
+  useTitle('Tetris')
+  useBreadcrumbs([breadcrumbs.main, breadcrumbs.tetris]);
   const [board, setBoard] = useState(new TetrisBoardModel());
   const [isShowStartBtn, setIsShowStartBtn] = useState(true);
   const [isShowNewGameBtn, setIsShowNewGameBtn] = useState(false);
@@ -159,15 +166,15 @@ export const Tetris = ({ auth }: TetrisProps) => {
       <div className={tetrisStyle.controlls}>
         {isShowStartBtn && (
           <button className={tetrisStyle["game-btn"]} onClick={startGame}>
-            Start Game
+            {t('start_game')}
           </button>
         )}
         {isShowNewGameBtn && (
           <button className={tetrisStyle["game-btn"]} onClick={initBoard}>
-            New Game
+            {t('new_game')}
           </button>
         )}
-        <p className={tetrisStyle.score}>Score: {score}</p>
+        <p className={tetrisStyle.score}>{t('score')}: {score}</p>
       </div>
       <div className={tetrisStyle["tetris-boards"]}>
         <TetrisBoard board={board} />

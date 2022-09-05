@@ -15,6 +15,7 @@ import {
   faChessRook,
 } from "@fortawesome/free-solid-svg-icons";
 import { Board } from "../../models/chess/Board";
+import { useTranslation } from "react-i18next";
 interface FiguresModalProps {
   closeModal: () => void;
   swapPlayer: () => void;
@@ -30,6 +31,7 @@ export const FiguresModal: FC<FiguresModalProps> = ({
   closeModal,
   board,
 }) => {
+  const {t} = useTranslation()
   const chooseFigure = (figure: string) => {
     switch (figure) {
       case FigureNames.BISHOP:
@@ -51,35 +53,35 @@ export const FiguresModal: FC<FiguresModalProps> = ({
   };
 
   return (
-    <ModalContainer title="Choose new figure" closeModal={closeModal}>
+    <ModalContainer title={t('choose_new_figure')} closeModal={closeModal}>
       <div className="figures-container">
         <button
           className="figure-button"
           onClick={() => chooseFigure(FigureNames.BISHOP)}
           data-testid='bishop-btn'
         >
-          <FontAwesomeIcon icon={faChessBishop} /> Bishop
+          <FontAwesomeIcon icon={faChessBishop} /> {t('bishop')}
         </button>
         <button
           className="figure-button"
           onClick={() => chooseFigure(FigureNames.KNIGHT)}
           data-testid='knight-btn'
         >
-          <FontAwesomeIcon icon={faChessKnight} /> Knight
+          <FontAwesomeIcon icon={faChessKnight} /> {t('knight')}
         </button>
         <button
           className="figure-button"
           onClick={() => chooseFigure(FigureNames.QUEEN)}
           data-testid='queen-btn'
         >
-          <FontAwesomeIcon icon={faChessQueen} /> Queen
+          <FontAwesomeIcon icon={faChessQueen} /> {t('queen')}
         </button>
         <button
           className="figure-button"
           onClick={() => chooseFigure(FigureNames.ROOK)}
           data-testid='rook-btn'
         >
-          <FontAwesomeIcon icon={faChessRook} /> Rook
+          <FontAwesomeIcon icon={faChessRook} /> {t('rook')}
         </button>
       </div>
     </ModalContainer>

@@ -1,4 +1,5 @@
 import React, { FC, memo, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { IChessTime } from "../../../domain/chessTypes";
 import { Colors } from "../../../models/chess/Colors";
 import { Player } from "../../../models/chess/Player";
@@ -17,6 +18,7 @@ export const ChessOnlineTimer: FC<ChessOnlineTimerProps> = memo(({
   setTime
 }) => {
   const timer = useRef<null | ReturnType<typeof setInterval>>(null);
+  const {t} = useTranslation()
 
   const decrementBlackTimer = () => {
     if (time.black <= 0) {
@@ -56,10 +58,10 @@ export const ChessOnlineTimer: FC<ChessOnlineTimerProps> = memo(({
     <div>
       <div className="chess-timer__time">
         <div className="chess-timer__item">
-          Black - <div className="time">{(time.black / 60).toFixed(0)}m</div>
+          {t('black')} - <div className="time">{(time.black / 60).toFixed(0)}m</div>
         </div>
         <div className="chess-timer__item">
-          White - <div className="time">{(time.white / 60).toFixed(0)}m</div>
+          {t('white')} - <div className="time">{(time.white / 60).toFixed(0)}m</div>
         </div>
       </div>
     </div>

@@ -20,7 +20,8 @@ interface SignUpProps {
 }
 
 export const SignUp: FC<SignUpProps> = ({ auth }) => {
-  useTitle('Sign in')
+  const { t } = useTranslation()
+  useTitle(t('sign_up'))
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.registration]);
   const [createUserWithEmailAndPassword, , , error] =
     useCreateUserWithEmailAndPassword(auth);
@@ -29,7 +30,7 @@ export const SignUp: FC<SignUpProps> = ({ auth }) => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { t } = useTranslation()
+  
   const submit = async (email: string, password: string) => {
     await createUserWithEmailAndPassword(email, password);
     if (!error && displayName) {

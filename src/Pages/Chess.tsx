@@ -12,7 +12,8 @@ import { Colors } from "../models/chess/Colors";
 import { Player } from "../models/chess/Player";
 import "../styles/chess.scss";
 export const Chess = () => {
-  useTitle('Chess')
+  const {t} = useTranslation()
+  useTitle(t('chess'))
   useBreadcrumbs([
     breadcrumbs.main,
     breadcrumbs.chessTypes,
@@ -26,7 +27,6 @@ export const Chess = () => {
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
   const [isTimerModalOpen, setIsTimerModalOpen] = useState(true);
   const [winner, setWinner] = useState("");
-  const {t} = useTranslation()
   const restart = () => {
     setWinner("");
     const newBoard = new Board();

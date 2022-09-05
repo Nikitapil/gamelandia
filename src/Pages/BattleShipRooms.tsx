@@ -7,6 +7,7 @@ import { RoomsCommon } from "../components/common/RoomsCommon";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 import { breadcrumbs } from "../constants/breadcrumbs";
 import { useTitle } from "../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 
 interface BattleShipRoomsProps {
   firestore: Firestore;
@@ -17,7 +18,8 @@ export const BattleShipRooms: FC<BattleShipRoomsProps> = ({
   firestore,
   auth,
 }) => {
-  useTitle('Battleship')
+  const {t} = useTranslation()
+  useTitle(t('battleship'))
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.battleshipRooms]);
   const [rooms] = useCollectionData(collection(firestore, "battleship"));
   const createRoom = async () => {

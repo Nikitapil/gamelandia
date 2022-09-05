@@ -50,5 +50,9 @@ export const breadcrumbs = {
   cloneInvaders: {
     name: 'Clone Invaders',
     path: '/invaders'
+  },
+  tetris: {
+    name: 'Tetris',
+    path: '/tetris'
   }
 };

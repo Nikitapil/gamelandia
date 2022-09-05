@@ -31,7 +31,8 @@ interface BattleShipProps {
 }
 
 export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
-  useTitle('Battleship')
+  const {t} = useTranslation()
+  useTitle(t('battleship'))
   useBreadcrumbs([
     breadcrumbs.main,
     breadcrumbs.battleshipRooms,
@@ -51,7 +52,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
   const [isGameStarted, setIsGameStarted] = useState(false);
   const navigate = useNavigate();
   const [winner, setWinner] = useState("");
-  const {t} = useTranslation()
+  
 
   useEffect(() => {
     if (roomData?.player1 && roomData?.player2) {
