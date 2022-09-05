@@ -52,5 +52,21 @@
   "black": "Black",
   "white": "White",
   "give_up": "Give up",
-  "wins": " WINS"
+  "wins": " WINS",
+  "choose_new_figure": "Choose new figure",
+  "bishop": "Bishop",
+  "knight": "Knight",
+  "queen": "Queen",
+  "rook": "Rook",
+  "BISHOP": "BISHOP",
+  "KNIGHT": "KNIGHT",
+  "QUEEN": "QUEEN",
+  "ROOK": "ROOK",
+  "PAWN": "PAWN",
+  "match_page_description": "Just click on cards and find the same.",
+  "attempts": "Attempts",
+  "you_win": "You win",
+  "you_loose": "You Loose",
+  "XMARK": "XMARK",
+  "CIRCLE": "CIRCLE"
 }
