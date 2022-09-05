@@ -53,7 +53,7 @@ export const FiguresModal: FC<FiguresModalProps> = ({
   };
 
   return (
-    <ModalContainer title={t('choose_new_figure')} closeModal={closeModal}>
+    <ModalContainer title={t('choose_new_figure')} closeModal={closeModal} preventClosing={true}>
       <div className="figures-container">
         <button
           className="figure-button"
