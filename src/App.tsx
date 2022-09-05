@@ -24,6 +24,8 @@ import { ChessOnline } from "./Pages/ChessOnline";
 import { Breadcrumbs } from "./components/UI/Breadcrumbs";
 import { CloneInvaders } from "./Pages/CloneInvaders";
 import { Tetris } from "./Pages/Tetris";
+import { Suspense } from "react";
+import { RoundLoader } from "./components/UI/Loaders/RoundLoader";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -32,44 +34,44 @@ function App() {
   const [user] = useAuthState(auth);
   const { notification } = useTypedSelector(appSelector);
   return (
-    <div className="App">
-      <AppHeader auth={auth} />
-      <main className="main">
-        <Breadcrumbs />
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="*" element={<MainPage />} />
-          <Route path="/match-match" element={<MatchMatch />} />
-          <Route path="/chess" element={<ChessTypes />} />
-          <Route path="/chess/offline" element={<Chess />} />
-          <Route
-            path="/chess/rooms"
-            element={<ChessRooms auth={auth} firestore={firestore} />}
-          />
-          <Route
-            path="/chess/rooms/:id"
-            element={<ChessOnline auth={auth} firestore={firestore} />}
-          />
-          <Route path="/tictac" element={<TicTacToe />} />
-          <Route path="/snake" element={<Snake auth={auth} />} />
-          <Route
-            path="/battleship"
-            element={<BattleShipRooms firestore={firestore} auth={auth} />}
-          />
-          <Route path="/invaders" element={<CloneInvaders auth={auth} />} />
-          <Route path="/tetris" element={<Tetris auth={auth} />} />
-          <Route
-            path="/battleship/:id"
-            element={<BattleShip auth={auth} firestore={firestore} />}
-          />
-          {!user && (
-            <Route path="/registration" element={<SignUp auth={auth} />} />
-          )}
-          {!user && <Route path="/login" element={<SignIn auth={auth} />} />}
-        </Routes>
-        {notification.message && <Notification />}
-      </main>
-    </div>
+      <div className="App">
+        <AppHeader auth={auth} />
+        <main className="main">
+          <Breadcrumbs />
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="*" element={<MainPage />} />
+            <Route path="/match-match" element={<MatchMatch />} />
+            <Route path="/chess" element={<ChessTypes />} />
+            <Route path="/chess/offline" element={<Chess />} />
+            <Route
+              path="/chess/rooms"
+              element={<ChessRooms auth={auth} firestore={firestore} />}
+            />
+            <Route
+              path="/chess/rooms/:id"
+              element={<ChessOnline auth={auth} firestore={firestore} />}
+            />
+            <Route path="/tictac" element={<TicTacToe />} />
+            <Route path="/snake" element={<Snake auth={auth} />} />
+            <Route
+              path="/battleship"
+              element={<BattleShipRooms firestore={firestore} auth={auth} />}
+            />
+            <Route path="/invaders" element={<CloneInvaders auth={auth} />} />
+            <Route path="/tetris" element={<Tetris auth={auth} />} />
+            <Route
+              path="/battleship/:id"
+              element={<BattleShip auth={auth} firestore={firestore} />}
+            />
+            {!user && (
+              <Route path="/registration" element={<SignUp auth={auth} />} />
+            )}
+            {!user && <Route path="/login" element={<SignIn auth={auth} />} />}
+          </Routes>
+          {notification.message && <Notification />}
+        </main>
+      </div>
   );
 }
 

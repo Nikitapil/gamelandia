@@ -1,4 +1,5 @@
 import React, { FC, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { ModalContainer } from "../UI/ModalContainer";
 
 interface WinnerModalProps {
@@ -7,14 +8,16 @@ interface WinnerModalProps {
 }
 
 export const WinnerModal: FC<WinnerModalProps> = ({ color, newGame }) => {
+  const {t} = useTranslation()
+
   const winner = useMemo(() => {
-    return color.toUpperCase();
+    return t(color).toUpperCase();
   }, [color]);
 
   return (
-    <ModalContainer title={winner + " WINS"} closeModal={newGame}>
+    <ModalContainer title={winner + t('wins')} closeModal={newGame}>
       <button data-testid='newGame-btn' className="chess__new-game" onClick={newGame}>
-        New Game
+        {t('new_game')}
       </button>
     </ModalContainer>
   );

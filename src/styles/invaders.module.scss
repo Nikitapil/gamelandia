@@ -62,20 +62,20 @@
 .gameOver__text {
   font-weight: 700;
   font-size: 28px;
-  color: #3bf851;
+  color: #000000;
   margin-bottom: 30px;
 }
 
 .gameOver__btn {
   background: none;
-  color: black;
+  color: #000000;
   font-size: 30px;
   display: block;
   margin: 0 auto;
   border: none;
   transition: 0.4s;
   &:hover {
-    color: $mainColor;
+    color: #373737;
   }
 }
 

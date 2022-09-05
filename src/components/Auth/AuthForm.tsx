@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import authStyles from '../../styles/auth.module.scss'
 interface AuthFormProps {
   formTitle: string;
@@ -18,6 +19,7 @@ export const AuthForm: FC<AuthFormProps> = ({
   const onInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const {t} = useTranslation()
 
   const onChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (setDisplayName) {
@@ -44,7 +46,7 @@ export const AuthForm: FC<AuthFormProps> = ({
         className={authStyles['auth-form__input']}
         type="email"
         data-testid='email-input'
-        placeholder="Your email"
+        placeholder={t('your_email')}
         name="email"
         value={formData.email}
         onChange={onInput}
@@ -52,7 +54,7 @@ export const AuthForm: FC<AuthFormProps> = ({
       <input
         className={authStyles['auth-form__input']}
         type="password"
-        placeholder="Your password"
+        placeholder={t('your_password')}
         name="password"
         value={formData.password}
         onChange={onInput}
@@ -62,7 +64,7 @@ export const AuthForm: FC<AuthFormProps> = ({
           className={authStyles['auth-form__input']}
           type="text"
           data-testid='display-name'
-          placeholder="Your name"
+          placeholder={t('your_name')}
           required
           name="displayName"
           value={userName}

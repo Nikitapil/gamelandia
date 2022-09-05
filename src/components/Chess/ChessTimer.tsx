@@ -1,4 +1,5 @@
 import React, { FC, memo, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Colors } from "../../models/chess/Colors";
 import { Player } from "../../models/chess/Player";
 import { ModalContainer } from "../UI/ModalContainer";
@@ -23,7 +24,7 @@ export const ChessTimer: FC<ChessTimerProps> = memo(({
   const [blackTime, setBlackTime] = useState(300);
   const [whiteTime, setWhiteTime] = useState(300);
   const timer = useRef<null | ReturnType<typeof setInterval>>(null);
-
+  const {t} = useTranslation()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const startTimer = () => {
     if (timer.current) {
@@ -86,21 +87,21 @@ export const ChessTimer: FC<ChessTimerProps> = memo(({
   return (
     <div>
       <button onClick={() => setIsModalOpen(true)} className="chess__restart" data-testid='chess__restart'>
-        Restart game
+        {t('restart_game')}
       </button>
       <div className="chess-timer__time">
         <div className="chess-timer__item">
-          Black - <div className="time">{(blackTime / 60).toFixed(0)}m</div>
+          {t('black')} - <div className="time">{(blackTime / 60).toFixed(0)}m</div>
         </div>
         <div className="chess-timer__item">
           {" "}
-          White - <div className="time">{(whiteTime / 60).toFixed(0)}m</div>
+          {t('white')} - <div className="time">{(whiteTime / 60).toFixed(0)}m</div>
         </div>
       </div>
       {isModalOpen && (
         <ModalContainer
           closeModal={() => handleRestart(3600)}
-          title="Set time of the Game"
+          title={t('set_game_time')}
         >
           <TimerModal closeModal={closeModal} start={handleRestart} />
         </ModalContainer>

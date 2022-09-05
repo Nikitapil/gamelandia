@@ -13,13 +13,15 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 import { breadcrumbs } from "../constants/breadcrumbs";
 import { useTitle } from "../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 
 interface SignUpProps {
   auth: Auth;
 }
 
 export const SignUp: FC<SignUpProps> = ({ auth }) => {
-  useTitle('Sign in')
+  const { t } = useTranslation()
+  useTitle(t('sign_up'))
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.registration]);
   const [createUserWithEmailAndPassword, , , error] =
     useCreateUserWithEmailAndPassword(auth);
@@ -28,6 +30,7 @@ export const SignUp: FC<SignUpProps> = ({ auth }) => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  
   const submit = async (email: string, password: string) => {
     await createUserWithEmailAndPassword(email, password);
     if (!error && displayName) {
@@ -50,7 +53,7 @@ export const SignUp: FC<SignUpProps> = ({ auth }) => {
   return (
     <div className={authStyles["auth-container"]} data-testid="signup-page">
       <AuthForm
-        formTitle="Sign Up"
+        formTitle={t('sign_up')}
         submit={submit}
         isSignUp={true}
         setDisplayName={setDisplayName}

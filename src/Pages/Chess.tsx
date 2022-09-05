@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ChessBoardComponent } from "../components/Chess/ChessBoardComponent";
 import { ChessTimer } from "../components/Chess/ChessTimer";
 import { LostFigures } from "../components/Chess/LostFigures";
@@ -11,7 +12,8 @@ import { Colors } from "../models/chess/Colors";
 import { Player } from "../models/chess/Player";
 import "../styles/chess.scss";
 export const Chess = () => {
-  useTitle('Chess')
+  const {t} = useTranslation()
+  useTitle(t('chess'))
   useBreadcrumbs([
     breadcrumbs.main,
     breadcrumbs.chessTypes,
@@ -69,7 +71,7 @@ export const Chess = () => {
           data-testid="give-up-btn"
           onClick={() => endGame()}
         >
-          Give Up
+          {t('give_up')}
         </button>
       </div>
       <ChessBoardComponent
@@ -79,8 +81,8 @@ export const Chess = () => {
         swapPlayer={swapPlayer}
       />
       <div className="lost">
-        <LostFigures title="Black" figures={board.lostBlackFigures} />
-        <LostFigures title="White" figures={board.lostWhightFigures} />
+        <LostFigures title={t('black')} figures={board.lostBlackFigures} />
+        <LostFigures title={t('white')} figures={board.lostWhightFigures} />
       </div>
       {winner && <WinnerModal newGame={newGame} color={winner} />}
     </div>

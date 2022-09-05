@@ -2,6 +2,7 @@ import { Auth } from "firebase/auth";
 import { collection, doc, Firestore, setDoc } from "firebase/firestore";
 import React, { FC, useState } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import { useTranslation } from "react-i18next";
 import { TimerModal } from "../components/Chess/TimerModal";
 import { RoomsCommon } from "../components/common/RoomsCommon";
 import { ModalContainer } from "../components/UI/ModalContainer";
@@ -15,7 +16,8 @@ interface ChessRoomsProps {
 }
 
 export const ChessRooms: FC<ChessRoomsProps> = ({ firestore, auth }) => {
-  useTitle('Chess')
+  const {t} = useTranslation()
+  useTitle(t('chess'))
   useBreadcrumbs([
     breadcrumbs.main,
     breadcrumbs.chessTypes,

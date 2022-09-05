@@ -1,4 +1,5 @@
 import React, { FC, memo, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface TimerModalProps {
   start: (time: number) => void;
@@ -7,7 +8,7 @@ interface TimerModalProps {
 
 export const TimerModal: FC<TimerModalProps> = memo(({ start, closeModal }) => {
   const [time, setTime] = useState(60);
-
+  const {t} = useTranslation()
   const timeChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setTime(+value);
@@ -31,10 +32,10 @@ export const TimerModal: FC<TimerModalProps> = memo(({ start, closeModal }) => {
           onChange={timeChangeHandler}
           data-testid='time-input'
         />{" "}
-        min
+        {t('min')}
       </label>
       <button className="timer-button" onClick={onStart} data-testid='chess-start-button'>
-        Start
+        {t('start_game')}
       </button>
     </div>
   );

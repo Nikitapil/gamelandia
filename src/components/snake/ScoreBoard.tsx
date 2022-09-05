@@ -1,5 +1,6 @@
 import { User } from "firebase/auth";
 import React, { FC, memo, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { fetchSnakeBestScoore } from "../../redux/snake/snakeActions";
@@ -13,6 +14,7 @@ interface ScoreBoardProps {
 export const ScoreBoard: FC<ScoreBoardProps> = memo(({ user }) => {
   const { allBestScores, myBestScores } = useTypedSelector(snakeSelector);
   const dispatch = useDispatch();
+  const {t} = useTranslation()
 
   useEffect(() => {
     dispatch(fetchSnakeBestScoore());
@@ -21,7 +23,7 @@ export const ScoreBoard: FC<ScoreBoardProps> = memo(({ user }) => {
   return (
     <div className={snakeStyle["score-board"]}>
       <div className={snakeStyle["score-board__item"]}>
-        <h3 className={snakeStyle["score-board__title"]}>Your best scores</h3>
+        <h3 className={snakeStyle["score-board__title"]}>{t('your_best_scores')}</h3>
         <p className={snakeStyle["score-board_value"]}>
           <span>Easy</span> {myBestScores?.easy}
         </p>
@@ -33,7 +35,7 @@ export const ScoreBoard: FC<ScoreBoardProps> = memo(({ user }) => {
         </p>
       </div>
       <div className={snakeStyle["score-board__item"]}>
-        <h3 className={snakeStyle["score-board__title"]}>All best scores</h3>
+        <h3 className={snakeStyle["score-board__title"]}>{t('all_best_scores')}</h3>
         <p className={snakeStyle["score-board_value"]}>
           <span>Easy</span> {allBestScores?.easy}
         </p>

@@ -7,7 +7,9 @@ import matchStyles from "../styles/match.module.scss";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 import { breadcrumbs } from "../constants/breadcrumbs";
 import { useTitle } from "../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 export const MatchMatch = () => {
+  const {t} = useTranslation()
   useTitle('Match game')
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.matchGame]);
   const [cards, setCards] = useState<card[]>([]);
@@ -98,26 +100,25 @@ export const MatchMatch = () => {
     <div className={`${matchStyles.match} container`}>
       <h1 className={matchStyles.match__title}>Match-Match Game</h1>
       <p className={matchStyles.match__description}>
-        Just click on cards and find the same.
+        {t('match_page_description')}
       </p>
       <p className={matchStyles.match__description}>
-        {" "}
-        Attempts:{" "}
-        <span className={matchStyles.attempts_counter}>{attempts}/25</span>
+        {t('attempts')}: 
+        <span className={matchStyles.attempts_counter}> {attempts}/25</span>
       </p>
       {isWin && (
         <p className={matchStyles.match__win}>
-          You Win!!!{" "}
+          {t('you_win')}!!!
           <button className={matchStyles["match__new-game"]} onClick={newGame}>
-            New Game
+            {t('new_game')}
           </button>
         </p>
       )}
       {isLoose && (
         <p className={matchStyles.match__loose}>
-          You Loose{" "}
+          {t('you_loose')}
           <button className={matchStyles["match__new-game"]} onClick={newGame}>
-            New Game
+          {t('new_game')}
           </button>
         </p>
       )}

@@ -3,6 +3,7 @@ import { deleteDoc, doc, Firestore, setDoc } from "firebase/firestore";
 import React, { FC, useEffect, useMemo, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDocumentData } from "react-firebase-hooks/firestore";
+import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { ChessBoardComponent } from "../components/Chess/ChessBoardComponent";
 import { LostFigures } from "../components/Chess/LostFigures";
@@ -29,7 +30,8 @@ interface ChessOnlineProps {
 }
 
 export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
-  useTitle('Chess online')
+  const {t} = useTranslation()
+  useTitle(`${t('chess')} online`)
   useBreadcrumbs([
     breadcrumbs.main,
     breadcrumbs.chessTypes,
@@ -170,7 +172,7 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
           disabled={!isClickAvailable}
           onClick={() => endGame()}
         >
-          Give Up
+          {t('give_up')}
         </button>
       </div>
       <ChessBoardComponent
@@ -182,11 +184,11 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
       />
       <div className="lost">
         <LostFigures
-          title={"Black " + roomData?.player2.name}
+          title={t('black') + ' ' + roomData?.player2.name}
           figures={board.lostBlackFigures}
         />
         <LostFigures
-          title={"White " + roomData?.player1.name}
+          title={t('white') + ' ' + roomData?.player1.name}
           figures={board.lostWhightFigures}
         />
       </div>

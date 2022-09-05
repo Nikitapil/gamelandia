@@ -24,13 +24,15 @@ import battlshipStyles from "../styles/battleship.module.scss";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 import { breadcrumbs } from "../constants/breadcrumbs";
 import { useTitle } from "../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 interface BattleShipProps {
   firestore: Firestore;
   auth: Auth;
 }
 
 export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
-  useTitle('Battleship')
+  const {t} = useTranslation()
+  useTitle(t('battleship'))
   useBreadcrumbs([
     breadcrumbs.main,
     breadcrumbs.battleshipRooms,
@@ -50,6 +52,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
   const [isGameStarted, setIsGameStarted] = useState(false);
   const navigate = useNavigate();
   const [winner, setWinner] = useState("");
+  
 
   useEffect(() => {
     if (roomData?.player1 && roomData?.player2) {
@@ -161,11 +164,11 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
 
   return (
     <div className={`container ${battlshipStyles.battleship}`}>
-      <h2 className="page-title">Battleship</h2>
+      <h2 className="page-title">{t('battleship')}</h2>
       {loading && <HorizotalLoader color="blue" />}
       {roomData?.currentPlayer && (
         <h3 className={battlshipStyles["battleship__current-player"]}>
-          Current player: {roomData[roomData.currentPlayer].name}
+          {t('current_player')}: {roomData[roomData.currentPlayer].name}
         </h3>
       )}
       <div className={battlshipStyles.battleship__boards}>
@@ -199,7 +202,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
             />
           ) : (
             <div className={battlshipStyles["battle-ship__waiting"]}>
-              Waiting for second player...
+              {t('waiting_player')}
             </div>
           )}
         </div>

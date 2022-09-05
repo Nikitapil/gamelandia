@@ -10,19 +10,21 @@ import authStyles from "../styles/auth.module.scss";
 import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
 import { breadcrumbs } from "../constants/breadcrumbs";
 import { useTitle } from "../hooks/useTitle";
+import { useTranslation } from "react-i18next";
 interface SignInProps {
   auth: Auth;
 }
 
 export const SignIn: FC<SignInProps> = ({ auth }) => {
-  useTitle('Sign in')
+  const {t} = useTranslation()
+  useTitle(t('sign_in'))
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.login]);
   const [signInWithEmailAndPassword, , , error] =
     useSignInWithEmailAndPassword(auth);
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  
   const submit = async (email: string, password: string) => {
     await signInWithEmailAndPassword(email, password);
     if (error) {
@@ -48,13 +50,13 @@ export const SignIn: FC<SignInProps> = ({ auth }) => {
 
   return (
     <div className={authStyles["auth-container"]}>
-      <AuthForm formTitle="Sign In" submit={submit} />
+      <AuthForm formTitle={t('title_sign_in')} submit={submit} />
       <Link
         className={authStyles["auth-link"]}
         to={registeredLink}
         data-testid="signup-link"
       >
-        Not registered yet? Just do it.
+        {t('form_not_registered')}
       </Link>
     </div>
   );
