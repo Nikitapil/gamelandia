@@ -31,7 +31,7 @@ export const SignIn: FC<SignInProps> = ({ auth }) => {
       dispatch(
         setAppNotification({
           timeout: 5000,
-          message: authErrorMessages[error.code],
+          message: t(authErrorMessages[error.code]),
           type: "error",
         })
       );

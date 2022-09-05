@@ -40,7 +40,7 @@ export const SignUp: FC<SignUpProps> = ({ auth }) => {
       dispatch(
         setAppNotification({
           timeout: 5000,
-          message: authErrorMessages[error.code],
+          message: t(authErrorMessages[error.code]),
           type: "error",
         })
       );

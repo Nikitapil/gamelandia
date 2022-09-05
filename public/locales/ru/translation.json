@@ -68,5 +68,10 @@
   "you_win": "Вы выиграли",
   "you_loose": "Вы проиграли",
   "XMARK": "Крестики",
-  "CIRCLE": "Нолики"
+  "CIRCLE": "Нолики",
+  "user_not_found": "Не верные данные пользователя",
+  "wrong_password": "Не верный пароль",
+  "invalid_email": "Введите корректный email",
+  "email_already_in_use": "Данный email уже используется",
+  "weak_password": "Пароль недостаточно сложный"
 }
