@@ -38,6 +38,9 @@
   border: none;
   background: none;
   transition: 0.4s;
+  @media (max-width: 465px) {
+    font-size: 12px;
+  }
   &:hover {
     color: #00c4f0;
   }
