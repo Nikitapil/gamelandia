@@ -16,5 +16,3 @@ export const snakeLevels: ISnakelevels = {
   100: "medium",
   50: "hard",
 };
-
-export type snakeLevelsKeys = typeof snakeLevels;

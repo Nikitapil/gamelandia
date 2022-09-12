@@ -15,9 +15,6 @@ import { ChessTimer } from "../components/Chess/ChessTimer";
 import { ChessCellComponents } from "../components/Chess/ChessCellComponents";
 import { createStore } from "redux";
 import { rootReducer } from "../redux/rootReducer";
-import { ChessTypes } from "../Pages/ChessTypes";
-import { setBreadCrumbs } from "../redux/appStore/appActions";
-import { breadcrumbs } from "../constants/breadcrumbs";
 import App from "../App";
 
 jest.spyOn(global, 'setInterval')
@@ -177,14 +174,14 @@ describe('chess classes test', () => {
     test('White King under attack', () => {
         board.initCells()
         board.addFigures()
-        board.kings.white!.cell.isUnderAttack = jest.fn(() => true)
+        board.kings.white!.cell!.isUnderAttack = jest.fn(() => true)
         board.checkIfKingIsUnderAttack()
         expect(board.underAttackMessage).toBe("White king is under attack")
     })
     test('Black King under attack', () => {
         board.initCells()
         board.addFigures()
-        board.kings.black!.cell.isUnderAttack = jest.fn(() => true)
+        board.kings.black!.cell!.isUnderAttack = jest.fn(() => true)
         board.checkIfKingIsUnderAttack()
         expect(board.underAttackMessage).toBe("Black king is under attack")
     })

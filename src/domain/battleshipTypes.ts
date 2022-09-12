@@ -1,6 +1,6 @@
-import { EBattleShipElemDirection } from "./../constants/battleship";
-import { BattleshipBoardModel } from "./../models/battleship/BattleShipBoardModel";
-import { BattleShipElemModel } from "./../models/battleship/BattleShipElemModel";
+import { EBattleShipElemDirection } from "../constants/battleship";
+import { BattleshipBoardModel } from "../models/battleship/BattleShipBoardModel";
+import { BattleShipElemModel } from "../models/battleship/BattleShipElemModel";
 
 export enum BattleShipActionsTypes {
   SET_FREE_SHIPS = "SET_FREE_SHIPS",

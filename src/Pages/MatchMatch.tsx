@@ -23,11 +23,7 @@ export const MatchMatch = () => {
       cards.map((item, index) => {
         if (index === id || index === idSecond) {
           item.flipped = !item.flipped;
-          if (item.flipped) {
-            item.disabled = true;
-          } else {
-            item.disabled = false;
-          }
+          item.disabled = item.flipped;
         }
         return item;
       })

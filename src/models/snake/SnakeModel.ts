@@ -1,4 +1,4 @@
-import { ESnakeDirections } from './../../constants/snake';
+import { ESnakeDirections } from '../../constants/snake';
 import { SnakeBoardModel } from './SnakeBoardModel';
 import { SnakeCellModel } from './SnakeCellModel';
 import { SnakeElemModel } from "./SnakeElemModel";

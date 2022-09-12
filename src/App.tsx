@@ -24,8 +24,6 @@ import { ChessOnline } from "./Pages/ChessOnline";
 import { Breadcrumbs } from "./components/UI/Breadcrumbs";
 import { CloneInvaders } from "./Pages/CloneInvaders";
 import { Tetris } from "./Pages/Tetris";
-import { Suspense } from "react";
-import { RoundLoader } from "./components/UI/Loaders/RoundLoader";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();

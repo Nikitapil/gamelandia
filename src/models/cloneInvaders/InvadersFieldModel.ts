@@ -46,10 +46,6 @@ export class InvadersFieldModel {
         : EInvadersDirections.RIGHT;
   }
 
-  createBullet() {
-    this.bullet = new InvadersBulletModel(30);
-  }
-
   move() {
     this.cells.forEach((row) => {
       row.forEach((cell) => {

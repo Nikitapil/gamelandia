@@ -8,8 +8,8 @@ export const LanguageDropdown = () => {
   const [isOpen, setIsOpen] = useState(false)
 
 
-  const changeLanguage = (language: string) => {
-    i18n.changeLanguage(language);
+  const changeLanguage = async (language: string) => {
+    await i18n.changeLanguage(language);
     setIsOpen(false)
   };
 

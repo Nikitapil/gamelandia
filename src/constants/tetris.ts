@@ -1,4 +1,4 @@
-import { SquareFigureModel } from "./../models/tetris/Figures/SquareFigureModel";
+import { SquareFigureModel } from "../models/tetris/Figures/SquareFigureModel";
 import { ITetrisFiguresObject } from "../domain/tetrisTypes";
 import { LFigureLeftModel } from "../models/tetris/Figures/LFigureLeftModel";
 import { LFigureRightModel } from "../models/tetris/Figures/LFigureRightModel";

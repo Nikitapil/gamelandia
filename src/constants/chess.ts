@@ -1,4 +1,4 @@
-import { Colors } from "./../models/chess/Colors";
+import { Colors } from "../models/chess/Colors";
 import { Figure } from "../models/chess/figures/figure";
 
 export enum FigureNames {

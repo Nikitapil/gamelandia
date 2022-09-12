@@ -17,6 +17,7 @@
 .matchcard {
   border: none;
   background: none;
+  //noinspection CssInvalidPropertyValue
   perspective: 1200;
   -moz-transform: perspective(1200px);
   transform-style: preserve-3d;

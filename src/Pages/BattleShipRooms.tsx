@@ -30,7 +30,7 @@ export const BattleShipRooms: FC<BattleShipRoomsProps> = ({
       id: `room_${(rooms?.length || 0) + 1}`,
       name: `Room ${(rooms?.length || 0) + 1}`,
     };
-    setDoc(doc(firestore, "battleship", newRoom.id), newRoom);
+   await setDoc(doc(firestore, "battleship", newRoom.id), newRoom);
   };
 
   const filteredRooms = useMemo(() => {

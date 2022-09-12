@@ -1,4 +1,4 @@
-import { Colors } from "./../Colors";
+import { Colors } from "../Colors";
 import logo from "../../../assets/checkmates/black-king.png";
 import { FigureNames } from "../../../constants/chess";
 import { Cell } from "../Cell";
@@ -26,13 +26,9 @@ export class Figure {
     if (target.figure?.color === this.color) {
       return false;
     }
-    if (
-      this.name === FigureNames.KING &&
-      target.figure?.name === FigureNames.KING
-    ) {
-      return false;
-    }
-    return true;
+    return !(this.name === FigureNames.KING &&
+        target.figure?.name === FigureNames.KING);
+
   }
   moveFigure(target: Cell) {}
   checkIfEndOfBoard() {

@@ -1,5 +1,5 @@
-import { TetrisBoardModel } from "./../TetrisBoardModel";
-import { TetrisElem } from "./../TetrisElem";
+import { TetrisBoardModel } from "../TetrisBoardModel";
+import { TetrisElem } from "../TetrisElem";
 import { ETetrisColors, ETetrisDirections } from "../../../constants/tetris";
 import { TetrisCellModel } from "../TetrisCellModel";
 import { ITetrisNextCells } from "../../../domain/tetrisTypes";
@@ -121,11 +121,6 @@ export class TetrisFigureModel {
       }
     });
   }
-
-  createUpElem() {}
-  createDownElem() {}
-  createRightElement() {}
-  createLeftElement() {}
 
   get nextCells(): ITetrisNextCells {
     return {

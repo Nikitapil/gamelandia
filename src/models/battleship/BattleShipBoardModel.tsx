@@ -97,10 +97,8 @@ export class BattleshipBoardModel {
       cells.push(this.cells[c.y][c.x + 1], this.cells[c.y][c.x - 1]);
     });
     cells = cells.filter((item) => item);
-    if (cells.every((item) => item.isEmpty)) {
-      return true;
-    }
-    return false;
+    return cells.every((item) => item.isEmpty);
+
   }
 
   highlightCells(cell: BattleshipCellModel, currentElem: BattleShipElemModel) {
