@@ -1,7 +1,8 @@
-import React, { FC } from "react";
-import { gamePics } from "../../utils/gamePicsBuilder";
-import mainStyles from '../../styles/mainpage.module.scss'
-import { useTranslation } from "react-i18next";
+import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+import { gamePics } from '../../utils/gamePicsBuilder';
+import mainStyles from '../../styles/mainpage.module.scss';
+
 interface MainPageCardProps {
   gameName: string;
   description: string;
@@ -10,16 +11,25 @@ interface MainPageCardProps {
 }
 export const OutSidePageCard: FC<MainPageCardProps> = ({
   gameName,
-  pictureName = "default",
+  pictureName = 'default',
   description,
-  to,
+  to
 }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
   return (
-    <a href={to} className={mainStyles['game-card']} target="_blank" rel="noreferrer">
+    <a
+      href={to}
+      className={mainStyles['game-card']}
+      target="_blank"
+      rel="noreferrer"
+    >
       <div className={mainStyles['game-card__picture']}>
-        <img data-testid='game-pic' src={gamePics[pictureName]} alt="Game logo" />
+        <img
+          data-testid="game-pic"
+          src={gamePics[pictureName]}
+          alt="Game logo"
+        />
       </div>
       <div className={mainStyles['game-info']}>
         <h1 className={mainStyles['game-title']}>{t(gameName)}</h1>

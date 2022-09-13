@@ -1,23 +1,24 @@
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { ChessBoardComponent } from "../components/Chess/ChessBoardComponent";
-import { ChessTimer } from "../components/Chess/ChessTimer";
-import { LostFigures } from "../components/Chess/LostFigures";
-import { WinnerModal } from "../components/Chess/WinnerModal";
-import { breadcrumbs } from "../constants/breadcrumbs";
-import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
-import { useTitle } from "../hooks/useTitle";
-import { Board } from "../models/chess/Board";
-import { Colors } from "../models/chess/Colors";
-import { Player } from "../models/chess/Player";
-import "../styles/chess.scss";
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ChessBoardComponent } from '../components/Chess/ChessBoardComponent';
+import { ChessTimer } from '../components/Chess/ChessTimer';
+import { LostFigures } from '../components/Chess/LostFigures';
+import { WinnerModal } from '../components/Chess/WinnerModal';
+import { breadcrumbs } from '../constants/breadcrumbs';
+import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
+import { useTitle } from '../hooks/useTitle';
+import { Board } from '../models/chess/Board';
+import { Colors } from '../models/chess/Colors';
+import { Player } from '../models/chess/Player';
+import '../styles/chess.scss';
+
 export const Chess = () => {
-  const {t} = useTranslation()
-  useTitle(t('chess'))
+  const { t } = useTranslation();
+  useTitle(t('chess'));
   useBreadcrumbs([
     breadcrumbs.main,
     breadcrumbs.chessTypes,
-    breadcrumbs.chessOffline,
+    breadcrumbs.chessOffline
   ]);
   const [board, setBoard] = useState(new Board());
   const [whitePlayer] = useState(new Player(Colors.WHITE));
@@ -25,9 +26,9 @@ export const Chess = () => {
   const [blackPlayer] = useState(new Player(Colors.BLACK));
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
   const [isTimerModalOpen, setIsTimerModalOpen] = useState(true);
-  const [winner, setWinner] = useState("");
+  const [winner, setWinner] = useState('');
   const restart = () => {
-    setWinner("");
+    setWinner('');
     const newBoard = new Board();
     newBoard.initCells();
     newBoard.addFigures();
@@ -44,7 +45,7 @@ export const Chess = () => {
   };
 
   const newGame = () => {
-    setWinner("");
+    setWinner('');
     setIsTimerModalOpen(true);
   };
 
@@ -68,6 +69,7 @@ export const Chess = () => {
         <button
           className="chess__give-up"
           data-testid="give-up-btn"
+          type="button"
           onClick={() => endGame()}
         >
           {t('give_up')}

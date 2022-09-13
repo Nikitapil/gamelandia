@@ -1,12 +1,12 @@
-import { EBattleShipElemDirection } from "../constants/battleship";
-import { BattleshipBoardModel } from "../models/battleship/BattleShipBoardModel";
-import { BattleShipElemModel } from "../models/battleship/BattleShipElemModel";
+import { EBattleShipElemDirection } from '../constants/battleship';
+import { BattleshipBoardModel } from '../models/battleship/BattleShipBoardModel';
+import { BattleShipElemModel } from '../models/battleship/BattleShipElemModel';
 
 export enum BattleShipActionsTypes {
-  SET_FREE_SHIPS = "SET_FREE_SHIPS",
-  SET_BOARD = "SET_BATTLE_SHIP_BOARD",
-  SET_CURRENT_FREE_SHIP = "SET_CURRENT_FREE_SHIP",
-  SET_ENEMY_BOARD = "SET_BATTLE_SHIP_ENEMY_BOARD",
+  SET_FREE_SHIPS = 'SET_FREE_SHIPS',
+  SET_BOARD = 'SET_BATTLE_SHIP_BOARD',
+  SET_CURRENT_FREE_SHIP = 'SET_CURRENT_FREE_SHIP',
+  SET_ENEMY_BOARD = 'SET_BATTLE_SHIP_ENEMY_BOARD'
 }
 
 export interface IBattleShipState {

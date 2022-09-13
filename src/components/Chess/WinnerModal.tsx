@@ -1,6 +1,6 @@
-import React, { FC, useMemo } from "react";
-import { useTranslation } from "react-i18next";
-import { ModalContainer } from "../UI/ModalContainer";
+import React, { FC, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ModalContainer } from '../UI/ModalContainer';
 
 interface WinnerModalProps {
   color: string;
@@ -8,7 +8,7 @@ interface WinnerModalProps {
 }
 
 export const WinnerModal: FC<WinnerModalProps> = ({ color, newGame }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
   const winner = useMemo(() => {
     return t(color).toUpperCase();
@@ -16,7 +16,11 @@ export const WinnerModal: FC<WinnerModalProps> = ({ color, newGame }) => {
 
   return (
     <ModalContainer title={winner + t('wins')} closeModal={newGame}>
-      <button data-testid='newGame-btn' className="chess__new-game" onClick={newGame}>
+      <button
+        data-testid="newGame-btn"
+        className="chess__new-game"
+        onClick={newGame}
+      >
         {t('new_game')}
       </button>
     </ModalContainer>

@@ -1,20 +1,20 @@
 export enum EAppActionstypes {
-  SET_NOTIFICATION = "SET_NOTIFICATION",
-  SET_BREADCRAMBS = "SET_BREADCRUMBS"
+  SET_NOTIFICATION = 'SET_NOTIFICATION',
+  SET_BREADCRAMBS = 'SET_BREADCRUMBS'
 }
 
 export interface Inotification {
   timeout?: number;
   message: string;
-  type: "error" | "success";
+  type: 'error' | 'success';
 }
 export interface IBreabcrumb {
   name: string;
-  path: string
+  path: string;
 }
 export interface AppInitialState {
   notification: Inotification;
-  breadcrumbs: IBreabcrumb[]
+  breadcrumbs: IBreabcrumb[];
 }
 
 interface ISetNotification {
@@ -24,7 +24,7 @@ interface ISetNotification {
 
 interface ISetBreadcrumbs {
   type: EAppActionstypes.SET_BREADCRAMBS;
-  payload: IBreabcrumb[]
+  payload: IBreabcrumb[];
 }
 
 export type AppActions = ISetNotification | ISetBreadcrumbs;

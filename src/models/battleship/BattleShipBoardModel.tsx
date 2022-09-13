@@ -1,12 +1,16 @@
-import { EBattleShipElemDirection } from "../../constants/battleship";
-import { BattleshipCellModel } from "./BattleShipCellModel";
-import { BattleShipElemModel } from "./BattleShipElemModel";
+import { EBattleShipElemDirection } from '../../constants/battleship';
+import { BattleshipCellModel } from './BattleShipCellModel';
+import { BattleShipElemModel } from './BattleShipElemModel';
 
 export class BattleshipBoardModel {
   cells: BattleshipCellModel[][] = [];
+
   freeElems: BattleShipElemModel[] = [];
+
   isEnemyBoard = false;
+
   ships: BattleShipElemModel[] = [];
+
   constructor(isEnemyBoard = false, ships = []) {
     this.isEnemyBoard = isEnemyBoard;
     this.ships = ships;
@@ -29,6 +33,7 @@ export class BattleshipBoardModel {
   private createThreeBattleElems() {
     this.freeElems.push(new BattleShipElemModel(3), new BattleShipElemModel(3));
   }
+
   private createTwoBattleElems() {
     this.freeElems.push(
       new BattleShipElemModel(2),
@@ -36,6 +41,7 @@ export class BattleshipBoardModel {
       new BattleShipElemModel(2)
     );
   }
+
   private createOneBattleElems() {
     this.freeElems.push(
       new BattleShipElemModel(1),
@@ -98,7 +104,6 @@ export class BattleshipBoardModel {
     });
     cells = cells.filter((item) => item);
     return cells.every((item) => item.isEmpty);
-
   }
 
   highlightCells(cell: BattleshipCellModel, currentElem: BattleShipElemModel) {

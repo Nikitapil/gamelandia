@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { MatchCard } from "../components/match/MatchCard";
-import { card } from "../domain/matchMatch";
-import { matchMatchPics } from "../utils/gamePicsBuilder";
-import { getuniqArrayObjects, shuffleArray } from "../utils/helpers";
-import matchStyles from "../styles/match.module.scss";
-import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
-import { breadcrumbs } from "../constants/breadcrumbs";
-import { useTitle } from "../hooks/useTitle";
-import { useTranslation } from "react-i18next";
+/* eslint-disable react/no-array-index-key */
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { MatchCard } from '../components/match/MatchCard';
+import { ICard } from '../domain/matchMatch';
+import { matchMatchPics } from '../utils/gamePicsBuilder';
+import { getuniqArrayObjects, shuffleArray } from '../utils/helpers';
+import matchStyles from '../styles/match.module.scss';
+import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
+import { breadcrumbs } from '../constants/breadcrumbs';
+import { useTitle } from '../hooks/useTitle';
+
 export const MatchMatch = () => {
-  const {t} = useTranslation()
-  useTitle('Match game')
+  const { t } = useTranslation();
+  useTitle('Match game');
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.matchGame]);
-  const [cards, setCards] = useState<card[]>([]);
-  const [currentOpened, setCurrentOpened] = useState<card | null>(null);
+  const [cards, setCards] = useState<ICard[]>([]);
+  const [currentOpened, setCurrentOpened] = useState<ICard | null>(null);
   const [isWin, setIsWin] = useState(false);
   const [isLoose, setIsLoose] = useState(false);
   const [attempts, setAttempts] = useState(0);
@@ -99,13 +101,17 @@ export const MatchMatch = () => {
         {t('match_page_description')}
       </p>
       <p className={matchStyles.match__description}>
-        {t('attempts')}: 
+        {t('attempts')}:
         <span className={matchStyles.attempts_counter}> {attempts}/25</span>
       </p>
       {isWin && (
         <p className={matchStyles.match__win}>
           {t('you_win')}!!!
-          <button className={matchStyles["match__new-game"]} onClick={newGame}>
+          <button
+            className={matchStyles['match__new-game']}
+            onClick={newGame}
+            type="button"
+          >
             {t('new_game')}
           </button>
         </p>
@@ -113,8 +119,12 @@ export const MatchMatch = () => {
       {isLoose && (
         <p className={matchStyles.match__loose}>
           {t('you_loose')}
-          <button className={matchStyles["match__new-game"]} onClick={newGame}>
-          {t('new_game')}
+          <button
+            className={matchStyles['match__new-game']}
+            onClick={newGame}
+            type="button"
+          >
+            {t('new_game')}
           </button>
         </p>
       )}

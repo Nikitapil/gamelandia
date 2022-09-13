@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpaghettiMonsterFlying } from "@fortawesome/free-solid-svg-icons";
-import invadersStyles from "../../styles/invaders.module.scss";
-import { InvadersCellModel } from "../../models/cloneInvaders/InvadersCellModel";
-import { InvadersBulletModel } from "../../models/cloneInvaders/InvadersBulletModel";
-import { EInvadersDirections } from "../../domain/invadersTypes";
+import React, { useEffect, useMemo } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpaghettiMonsterFlying } from '@fortawesome/free-solid-svg-icons';
+import invadersStyles from '../../styles/invaders.module.scss';
+import { InvadersCellModel } from '../../models/cloneInvaders/InvadersCellModel';
+import { InvadersBulletModel } from '../../models/cloneInvaders/InvadersBulletModel';
+import { EInvadersDirections } from '../../domain/invadersTypes';
 
 interface InvadersCellProps {
   cell: InvadersCellModel;
@@ -19,12 +19,12 @@ export const InvadersCell = ({
   bullet,
   destroyBullet,
   increaseScore,
-  gameOver,
+  gameOver
 }: InvadersCellProps) => {
   const cellStyle = useMemo(() => {
     return {
-      top: cell.y + "px",
-      left: cell.x + "px",
+      top: `${cell.y}px`,
+      left: `${cell.x}px`
     };
   }, [cell.x, cell.y]);
 

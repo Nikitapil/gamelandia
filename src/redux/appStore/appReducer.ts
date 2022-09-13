@@ -1,17 +1,17 @@
-import { breadcrumbs } from "../../constants/breadcrumbs";
+import { breadcrumbs } from '../../constants/breadcrumbs';
 import {
   AppActions,
   AppInitialState,
-  EAppActionstypes,
-} from "../../domain/appTypes";
+  EAppActionstypes
+} from '../../domain/appTypes';
 
 const initialState: AppInitialState = {
   notification: {
     timeout: 5000,
-    message: "",
-    type: "error",
+    message: '',
+    type: 'error'
   },
-  breadcrumbs: [breadcrumbs.main],
+  breadcrumbs: [breadcrumbs.main]
 };
 
 export const appReducer = (state = initialState, action: AppActions) => {

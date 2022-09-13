@@ -1,6 +1,7 @@
-import React, { FC, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import authStyles from '../../styles/auth.module.scss'
+import React, { FC, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import authStyles from '../../styles/auth.module.scss';
+
 interface AuthFormProps {
   formTitle: string;
   submit: (email: string, password: string) => void;
@@ -12,14 +13,14 @@ export const AuthForm: FC<AuthFormProps> = ({
   formTitle,
   submit,
   isSignUp = false,
-  setDisplayName,
+  setDisplayName
 }) => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const [userName, setUserName] = useState("");
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [userName, setUserName] = useState('');
   const onInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
   const onChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (setDisplayName) {
@@ -31,7 +32,7 @@ export const AuthForm: FC<AuthFormProps> = ({
     if (setDisplayName) {
       setDisplayName({ displayName: userName });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userName]);
 
   const onSubmit = (e: React.FormEvent) => {
@@ -45,7 +46,7 @@ export const AuthForm: FC<AuthFormProps> = ({
       <input
         className={authStyles['auth-form__input']}
         type="email"
-        data-testid='email-input'
+        data-testid="email-input"
         placeholder={t('your_email')}
         name="email"
         value={formData.email}
@@ -63,7 +64,7 @@ export const AuthForm: FC<AuthFormProps> = ({
         <input
           className={authStyles['auth-form__input']}
           type="text"
-          data-testid='display-name'
+          data-testid="display-name"
           placeholder={t('your_name')}
           required
           name="displayName"
@@ -71,7 +72,11 @@ export const AuthForm: FC<AuthFormProps> = ({
           onChange={onChangeUserName}
         />
       )}
-      <button className={authStyles['auth-form__button']} type="submit" data-testid='submit'>
+      <button
+        className={authStyles['auth-form__button']}
+        type="submit"
+        data-testid="submit"
+      >
         {formTitle}
       </button>
     </form>

@@ -1,58 +1,57 @@
-import React, { FC, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { BattleshipBoard } from "../components/Battleship/BattleshipBoard";
-import { BattleshipElems } from "../components/Battleship/BattleshipElems";
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import { BattleshipBoardModel } from "../models/battleship/BattleShipBoardModel";
-import { useDocumentData } from "react-firebase-hooks/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { doc, setDoc, deleteDoc } from "firebase/firestore";
-import { Auth } from "firebase/auth";
-import { Firestore } from "firebase/firestore";
+import React, { FC, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDocumentData } from 'react-firebase-hooks/firestore';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { doc, setDoc, deleteDoc, Firestore } from 'firebase/firestore';
+import { Auth } from 'firebase/auth';
+import { useTranslation } from 'react-i18next';
+import { BattleshipBoard } from '../components/Battleship/BattleshipBoard';
+import { BattleshipElems } from '../components/Battleship/BattleshipElems';
+import { useTypedSelector } from '../hooks/useTypedSelector';
+import { BattleshipBoardModel } from '../models/battleship/BattleShipBoardModel';
 import {
   setBattleShipBoard,
   setBattleShipEnemyBoard,
-  setFreeShips,
-} from "../redux/battleships/battleshipActions";
-import { battleShipSelector } from "../redux/battleships/battleshipSelectors";
-import { HorizotalLoader } from "../components/UI/Loaders/HorizotalLoader";
-import { mapFromFireBaseToBattleShip } from "../utils/battleship/battleShipMappers";
-import { FullRoomMessage } from "../components/common/FullRoomMessage";
-import { WinnerCommon } from "../components/common/WinnerCommon";
-import battlshipStyles from "../styles/battleship.module.scss";
-import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
-import { breadcrumbs } from "../constants/breadcrumbs";
-import { useTitle } from "../hooks/useTitle";
-import { useTranslation } from "react-i18next";
+  setFreeShips
+} from '../redux/battleships/battleshipActions';
+import { battleShipSelector } from '../redux/battleships/battleshipSelectors';
+import { HorizotalLoader } from '../components/UI/Loaders/HorizotalLoader';
+import { mapFromFireBaseToBattleShip } from '../utils/battleship/battleShipMappers';
+import { FullRoomMessage } from '../components/common/FullRoomMessage';
+import { WinnerCommon } from '../components/common/WinnerCommon';
+import battlshipStyles from '../styles/battleship.module.scss';
+import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
+import { breadcrumbs } from '../constants/breadcrumbs';
+import { useTitle } from '../hooks/useTitle';
+
 interface BattleShipProps {
   firestore: Firestore;
   auth: Auth;
 }
 
 export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
-  const {t} = useTranslation()
-  useTitle(t('battleship'))
+  const { t } = useTranslation();
+  useTitle(t('battleship'));
   useBreadcrumbs([
     breadcrumbs.main,
     breadcrumbs.battleshipRooms,
-    breadcrumbs.battleship,
+    breadcrumbs.battleship
   ]);
   const dispatch = useDispatch();
   const { id } = useParams();
   const [user, isUserLoading] = useAuthState(auth);
   const [roomData, loading] = useDocumentData(
-    doc(firestore, "battleship", id!)
+    doc(firestore, 'battleship', id!)
   );
   const { board, enemyBoard } = useTypedSelector(battleShipSelector);
   const [isFull, setIsFull] = useState(false);
-  const [myPlayer, setMyPlayer] = useState("");
-  const [secondPlayer, setSecondPlayer] = useState("");
+  const [myPlayer, setMyPlayer] = useState('');
+  const [secondPlayer, setSecondPlayer] = useState('');
   const [isDataFromServer, setIsDataFromServer] = useState(false);
   const [isGameStarted, setIsGameStarted] = useState(false);
   const navigate = useNavigate();
-  const [winner, setWinner] = useState("");
-  
+  const [winner, setWinner] = useState('');
 
   useEffect(() => {
     if (roomData?.player1 && roomData?.player2) {
@@ -68,9 +67,9 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
       const player1 = {
         uid: user.uid,
         name: user.displayName,
-        cells: [],
+        cells: []
       };
-      setDoc(doc(firestore, "battleship", id!), { ...roomData, player1 });
+      setDoc(doc(firestore, 'battleship', id!), { ...roomData, player1 });
     } else if (
       !roomData?.player2 &&
       user &&
@@ -80,23 +79,23 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
       const player2 = {
         uid: user.uid,
         name: user.displayName,
-        cells: [],
+        cells: []
       };
-      setDoc(doc(firestore, "battleship", id!), { ...roomData, player2 });
+      setDoc(doc(firestore, 'battleship', id!), { ...roomData, player2 });
     }
 
     if (user && roomData && roomData.player1?.uid === user.uid) {
-      setMyPlayer("player1");
-      setSecondPlayer("player2");
+      setMyPlayer('player1');
+      setSecondPlayer('player2');
     } else if (user && roomData && roomData.player2?.uid === user.uid) {
-      setMyPlayer("player2");
-      setSecondPlayer("player1");
+      setMyPlayer('player2');
+      setSecondPlayer('player1');
     }
     if (roomData && roomData.player1?.isReady && roomData.player2?.isReady) {
       if (!roomData.currentPlayer) {
-        setDoc(doc(firestore, "battleship", id!), {
+        setDoc(doc(firestore, 'battleship', id!), {
           ...roomData,
-          currentPlayer: "player1",
+          currentPlayer: 'player1'
         });
       }
       setIsGameStarted(true);
@@ -130,7 +129,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
     }
     if (roomData?.winner) {
       setWinner(roomData?.winner);
-      deleteDoc(doc(firestore, "battleship", id!));
+      deleteDoc(doc(firestore, 'battleship', id!));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomData, user, myPlayer]);
@@ -147,11 +146,11 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
   }, [isFull, loading, isDataFromServer]);
 
   if (!roomData && !loading && !winner) {
-    navigate("/battleship");
+    navigate('/battleship');
   }
 
   if (!isUserLoading && !user) {
-    navigate("/login?page=battleship");
+    navigate('/login?page=battleship');
   }
 
   if (isFull) {
@@ -167,12 +166,12 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
       <h2 className="page-title">{t('battleship')}</h2>
       {loading && <HorizotalLoader color="blue" />}
       {roomData?.currentPlayer && (
-        <h3 className={battlshipStyles["battleship__current-player"]}>
+        <h3 className={battlshipStyles['battleship__current-player']}>
           {t('current_player')}: {roomData[roomData.currentPlayer].name}
         </h3>
       )}
       <div className={battlshipStyles.battleship__boards}>
-        <div className={battlshipStyles["battleship__my-board"]}>
+        <div className={battlshipStyles['battleship__my-board']}>
           {board && !loading && (
             <BattleshipBoard
               firestore={firestore}
@@ -192,16 +191,16 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
               />
             )}
         </div>
-        <div className={battlshipStyles["battleship__enemy-board"]}>
+        <div className={battlshipStyles['battleship__enemy-board']}>
           {isGameStarted && enemyBoard ? (
             <BattleshipBoard
               firestore={firestore}
               secondPlayer={secondPlayer}
               roomData={roomData}
-              isEnemy={true}
+              isEnemy
             />
           ) : (
-            <div className={battlshipStyles["battle-ship__waiting"]}>
+            <div className={battlshipStyles['battle-ship__waiting']}>
               {t('waiting_player')}
             </div>
           )}

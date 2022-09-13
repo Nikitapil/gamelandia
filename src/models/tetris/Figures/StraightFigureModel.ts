@@ -1,10 +1,10 @@
 import {
   ETetrisColors,
-  STRAIGHT_FIGURE_POSSIBLE_DIRECTIONS,
-} from "../../../constants/tetris";
-import { TetrisBoardModel } from "../TetrisBoardModel";
-import { TetrisElem } from "../TetrisElem";
-import { TetrisFigureModel } from "./TetrisFigureModel";
+  STRAIGHT_FIGURE_POSSIBLE_DIRECTIONS
+} from '../../../constants/tetris';
+import { TetrisBoardModel } from '../TetrisBoardModel';
+import { TetrisElem } from '../TetrisElem';
+import { TetrisFigureModel } from './TetrisFigureModel';
 
 export class StraightFigureModel extends TetrisFigureModel {
   constructor(board: TetrisBoardModel) {
@@ -15,21 +15,21 @@ export class StraightFigureModel extends TetrisFigureModel {
   }
 
   get nextCells() {
-    const y = this.baseElem!.cell.y;
-    const x = this.baseElem!.cell.x;
+    const { y } = this.baseElem!.cell;
+    const { x } = this.baseElem!.cell;
     return {
       right: [],
       left: [],
       up: [
         this.board.getCell(y - 1, x),
         this.board.getCell(y + 1, x),
-        this.board.getCell(y + 2, x),
+        this.board.getCell(y + 2, x)
       ],
       down: [
         this.board.getCell(y, x - 1),
         this.board.getCell(y, x + 1),
-        this.board.getCell(y, x + 2),
-      ],
+        this.board.getCell(y, x + 2)
+      ]
     };
   }
 }

@@ -1,9 +1,9 @@
-import { FigureNames } from "../../../constants/chess";
-import { Cell } from "../Cell";
-import { Colors } from "../Colors";
-import { Figure } from "./figure";
-import blackLogo from "../../../assets/checkmates/black-queen.png";
-import whiteLogo from "../../../assets/checkmates/white-queen.png";
+import { FigureNames } from '../../../constants/chess';
+import { Cell } from '../Cell';
+import { Colors } from '../Colors';
+import { Figure } from './figure';
+import blackLogo from '../../../assets/checkmates/black-queen.png';
+import whiteLogo from '../../../assets/checkmates/white-queen.png';
 
 export class Queen extends Figure {
   constructor(color: Colors, cell?: Cell) {
@@ -16,9 +16,10 @@ export class Queen extends Figure {
     if (!super.canMove(target)) {
       return false;
     }
-    return this.cell!.isEmptyVertical(target) ||
-        this.cell!.isEmptyHorizontal(target) ||
-        this.cell!.isEmptyDiagonal(target);
-
+    return (
+      this.cell!.isEmptyVertical(target) ||
+      this.cell!.isEmptyHorizontal(target) ||
+      this.cell!.isEmptyDiagonal(target)
+    );
   }
 }

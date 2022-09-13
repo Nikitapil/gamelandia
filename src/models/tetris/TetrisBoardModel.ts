@@ -1,9 +1,10 @@
-import { tetrisFigures } from "../../constants/tetris";
-import { TetrisFigureModel } from "./Figures/TetrisFigureModel";
-import { TetrisCellModel } from "./TetrisCellModel";
+import { tetrisFigures } from '../../constants/tetris';
+import { TetrisFigureModel } from './Figures/TetrisFigureModel';
+import { TetrisCellModel } from './TetrisCellModel';
 
 export class TetrisBoardModel {
   cells: TetrisCellModel[][] = [];
+
   currentFigure: TetrisFigureModel | null = null;
 
   initCells() {

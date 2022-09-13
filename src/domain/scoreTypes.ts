@@ -5,8 +5,8 @@ export interface IBoardScore {
 }
 
 export enum EScoreActionsTypes {
-  SET_BOARD_SCORES = "SET_BOARD_SCORES",
-  FETCH_BOARD_SCORES = "FETCH_BOARD_SCORES",
+  SET_BOARD_SCORES = 'SET_BOARD_SCORES',
+  FETCH_BOARD_SCORES = 'FETCH_BOARD_SCORES'
 }
 
 export interface IScoreBoardInitialState {
@@ -21,6 +21,6 @@ export interface IScoreSetScoresAction {
 export type TScoreActions = IScoreSetScoresAction;
 
 export enum EGamesWithScoreBoard {
-  INVADERS = "invaders",
-  TETRIS = "tetris",
+  INVADERS = 'invaders',
+  TETRIS = 'tetris'
 }

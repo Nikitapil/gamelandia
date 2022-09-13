@@ -1,11 +1,14 @@
-import { ETetrisColors } from "../../constants/tetris";
-import { TetrisFigureModel } from "./Figures/TetrisFigureModel";
-import { TetrisCellModel } from "./TetrisCellModel";
+import { ETetrisColors } from '../../constants/tetris';
+import { TetrisFigureModel } from './Figures/TetrisFigureModel';
+import { TetrisCellModel } from './TetrisCellModel';
 
 export class TetrisElem {
   color: ETetrisColors;
+
   cell: TetrisCellModel;
+
   figure: TetrisFigureModel;
+
   constructor(
     color: ETetrisColors,
     cell: TetrisCellModel,

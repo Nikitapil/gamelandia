@@ -1,9 +1,9 @@
-import { rootReducer } from "./rootReducer";
-import { applyMiddleware, createStore } from "redux";
-import { all } from "redux-saga/effects";
-import { snakeSaga } from "./snake/snakeSagas";
-import createSagaMiddleware from "redux-saga";
-import { scoreSaga } from "./score/scoreSaga";
+import { applyMiddleware, createStore } from 'redux';
+import { all } from 'redux-saga/effects';
+import createSagaMiddleware from 'redux-saga';
+import { snakeSaga } from './snake/snakeSagas';
+import { rootReducer } from './rootReducer';
+import { scoreSaga } from './score/scoreSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 

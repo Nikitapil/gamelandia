@@ -1,4 +1,4 @@
 export enum EBattleShipElemDirection {
-    VERTICAL = 'VERTICAL',
-    HORIZONTAL = 'HORIZONTAL'
+  VERTICAL = 'VERTICAL',
+  HORIZONTAL = 'HORIZONTAL'
 }

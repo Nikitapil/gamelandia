@@ -1,8 +1,8 @@
 export enum ESnakeDirections {
-  RIGHT = "RIGHT",
-  LEFT = "LEFT",
-  TOP = "TOP",
-  BOTTOM = "BOTTOM",
+  RIGHT = 'RIGHT',
+  LEFT = 'LEFT',
+  TOP = 'TOP',
+  BOTTOM = 'BOTTOM'
 }
 
 export interface ISnakelevels {
@@ -12,7 +12,7 @@ export interface ISnakelevels {
 }
 
 export const snakeLevels: ISnakelevels = {
-  150: "easy",
-  100: "medium",
-  50: "hard",
+  150: 'easy',
+  100: 'medium',
+  50: 'hard'
 };

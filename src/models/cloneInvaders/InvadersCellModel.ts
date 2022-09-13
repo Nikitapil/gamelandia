@@ -1,10 +1,14 @@
-import { InvadersFieldModel } from "./InvadersFieldModel";
+import { InvadersFieldModel } from './InvadersFieldModel';
 
 export class InvadersCellModel {
   x: number;
+
   y: number;
+
   field: InvadersFieldModel;
+
   id: number;
+
   isWithElem = true;
 
   constructor(x: number, y: number, field: InvadersFieldModel) {
@@ -26,7 +30,7 @@ export class InvadersCellModel {
   get cellEnd() {
     return {
       xEnd: this.x + 37.5,
-      yEnd: this.y + 30,
+      yEnd: this.y + 30
     };
   }
 }

@@ -1,7 +1,7 @@
-import { getAuth } from "firebase/auth";
-import { child, get, getDatabase, ref, set } from "firebase/database";
-import { IBoardScore } from "../domain/scoreTypes";
-import { getNewBoardScores } from "../utils/score/scoreHelpers";
+import { getAuth } from 'firebase/auth';
+import { child, get, getDatabase, ref, set } from 'firebase/database';
+import { IBoardScore } from '../domain/scoreTypes';
+import { getNewBoardScores } from '../utils/score/scoreHelpers';
 
 export class ScoreService {
   static async getBestScores(game: string) {
@@ -20,11 +20,11 @@ export class ScoreService {
   static async setRecord(score: number, game: string) {
     const auth = getAuth();
     if (auth.currentUser) {
-      const uid = auth.currentUser.uid;
+      const { uid } = auth.currentUser;
       const newScore = {
         uid,
         name: auth.currentUser.displayName!,
-        score,
+        score
       };
       const allScores = await ScoreService.getBestScores(game);
       const data = getNewBoardScores(allScores!, newScore);

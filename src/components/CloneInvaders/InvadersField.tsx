@@ -1,18 +1,18 @@
-import { User } from "firebase/auth";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
-import { EGamesWithScoreBoard } from "../../domain/scoreTypes";
-import { InvadersBulletModel } from "../../models/cloneInvaders/InvadersBulletModel";
-import { InvadersFieldModel } from "../../models/cloneInvaders/InvadersFieldModel";
-import { fetchBoardScores } from "../../redux/score/scoreActions";
-import { ScoreService } from "../../services/scoreService";
-import invadersStyles from "../../styles/invaders.module.scss";
-import { ModalContainer } from "../UI/ModalContainer";
-import { InvadersBullet } from "./InvadersBullet";
-import { InvadersCell } from "./InvadersCell";
-import { InvadersGameOver } from "./InvadersGameOver";
-import { InvadersGun } from "./InvadersGun";
+import { User } from 'firebase/auth';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { EGamesWithScoreBoard } from '../../domain/scoreTypes';
+import { InvadersBulletModel } from '../../models/cloneInvaders/InvadersBulletModel';
+import { InvadersFieldModel } from '../../models/cloneInvaders/InvadersFieldModel';
+import { fetchBoardScores } from '../../redux/score/scoreActions';
+import { ScoreService } from '../../services/scoreService';
+import invadersStyles from '../../styles/invaders.module.scss';
+import { ModalContainer } from '../UI/ModalContainer';
+import { InvadersBullet } from './InvadersBullet';
+import { InvadersCell } from './InvadersCell';
+import { InvadersGameOver } from './InvadersGameOver';
+import { InvadersGun } from './InvadersGun';
 
 interface InvadersFieldProps {
   user: User | null | undefined;
@@ -28,7 +28,7 @@ export const InvadersField = ({ user }: InvadersFieldProps) => {
   const gameInterval = useRef<null | ReturnType<typeof setInterval>>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
-  const {t} = useTranslation()
+  const { t } = useTranslation();
   const move = useCallback(() => {
     board.move();
     const newBoard = board.copyBoard();
@@ -69,17 +69,17 @@ export const InvadersField = ({ user }: InvadersFieldProps) => {
   }, [bullet, destroyBullet]);
 
   const onGunMove = (e: React.KeyboardEvent) => {
-    if (e.code === "ArrowRight") {
+    if (e.code === 'ArrowRight') {
       board.gun.toRight();
       const newBoard = board.copyBoard();
       setBoard(newBoard);
     }
-    if (e.code === "ArrowLeft") {
+    if (e.code === 'ArrowLeft') {
       board.gun.toLeft();
       const newBoard = board.copyBoard();
       setBoard(newBoard);
     }
-    if (e.code === "Space") {
+    if (e.code === 'Space') {
       if (!bullet) {
         const bull = new InvadersBulletModel(board.gun.x + 12);
         setBullet(bull);
@@ -137,8 +137,10 @@ export const InvadersField = ({ user }: InvadersFieldProps) => {
         </button>
       )}
       {board.isGameStarted && (
-        <div className={invadersStyles["invaders__field-cells"]}>
-          <p className={invadersStyles.score}>{t('score')}: {score}</p>
+        <div className={invadersStyles['invaders__field-cells']}>
+          <p className={invadersStyles.score}>
+            {t('score')}: {score}
+          </p>
           {board.cells.map((row) =>
             row.map((cell) => (
               <InvadersCell

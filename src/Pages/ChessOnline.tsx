@@ -1,28 +1,28 @@
-import { Auth } from "firebase/auth";
-import { deleteDoc, doc, Firestore, setDoc } from "firebase/firestore";
-import React, { FC, useEffect, useMemo, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useDocumentData } from "react-firebase-hooks/firestore";
-import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
-import { ChessBoardComponent } from "../components/Chess/ChessBoardComponent";
-import { LostFigures } from "../components/Chess/LostFigures";
-import { ChessOnlineLoader } from "../components/Chess/online/ChessOnlineLoader";
-import { ChessOnlineTimer } from "../components/Chess/online/ChessOnlineTimer";
-import { FullRoomMessage } from "../components/common/FullRoomMessage";
-import { WinnerCommon } from "../components/common/WinnerCommon";
-import { breadcrumbs } from "../constants/breadcrumbs";
-import { IChessTime } from "../domain/chessTypes";
-import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
-import { useTitle } from "../hooks/useTitle";
-import { Board } from "../models/chess/Board";
-import { Colors } from "../models/chess/Colors";
-import { Player } from "../models/chess/Player";
-import "../styles/chess.scss";
+import { Auth } from 'firebase/auth';
+import { deleteDoc, doc, Firestore, setDoc } from 'firebase/firestore';
+import React, { FC, useEffect, useMemo, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useDocumentData } from 'react-firebase-hooks/firestore';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ChessBoardComponent } from '../components/Chess/ChessBoardComponent';
+import { LostFigures } from '../components/Chess/LostFigures';
+import { ChessOnlineLoader } from '../components/Chess/online/ChessOnlineLoader';
+import { ChessOnlineTimer } from '../components/Chess/online/ChessOnlineTimer';
+import { FullRoomMessage } from '../components/common/FullRoomMessage';
+import { WinnerCommon } from '../components/common/WinnerCommon';
+import { breadcrumbs } from '../constants/breadcrumbs';
+import { IChessTime } from '../domain/chessTypes';
+import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
+import { useTitle } from '../hooks/useTitle';
+import { Board } from '../models/chess/Board';
+import { Colors } from '../models/chess/Colors';
+import { Player } from '../models/chess/Player';
+import '../styles/chess.scss';
 import {
   chessBoardToFirebaseMapper,
-  mapBoardFromFireBase,
-} from "../utils/chess/chessMapper";
+  mapBoardFromFireBase
+} from '../utils/chess/chessMapper';
 
 interface ChessOnlineProps {
   firestore: Firestore;
@@ -30,28 +30,28 @@ interface ChessOnlineProps {
 }
 
 export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
-  const {t} = useTranslation()
-  useTitle(`${t('chess')} online`)
+  const { t } = useTranslation();
+  useTitle(`${t('chess')} online`);
   useBreadcrumbs([
     breadcrumbs.main,
     breadcrumbs.chessTypes,
     breadcrumbs.chessRooms,
-    breadcrumbs.chessOnline,
+    breadcrumbs.chessOnline
   ]);
   const { id } = useParams();
   const [user, isUserLoading] = useAuthState(auth);
-  const [roomData, loading] = useDocumentData(doc(firestore, "chess", id!));
+  const [roomData, loading] = useDocumentData(doc(firestore, 'chess', id!));
   const [board, setBoard] = useState<Board>(new Board());
   const [whitePlayer] = useState(new Player(Colors.WHITE));
   const [blackPlayer] = useState(new Player(Colors.BLACK));
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
-  const [winner, setWinner] = useState("");
+  const [winner, setWinner] = useState('');
   const [isFull, setIsFull] = useState(false);
   const [time, setTime] = useState<IChessTime | null>(null);
   const navigate = useNavigate();
   useEffect(() => {
     if (!isUserLoading && !user) {
-      navigate("/login?page=chess/rooms");
+      navigate('/login?page=chess/rooms');
     }
     if (user && roomData?.player1 && roomData?.player2) {
       if (
@@ -64,11 +64,11 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
       if (!roomData.isGameStarted) {
         board.initCells();
         board.addFigures();
-        setDoc(doc(firestore, "chess", id!), {
+        setDoc(doc(firestore, 'chess', id!), {
           ...roomData,
           isGameStarted: true,
           board: chessBoardToFirebaseMapper(board),
-          currentPlayer: roomData.player1,
+          currentPlayer: roomData.player1
         });
         setTime(roomData.time);
       }
@@ -84,9 +84,9 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
       const player1 = {
         uid: user.uid,
         name: user.displayName,
-        color: Colors.WHITE,
+        color: Colors.WHITE
       };
-      setDoc(doc(firestore, "chess", id!), { ...roomData, player1 });
+      setDoc(doc(firestore, 'chess', id!), { ...roomData, player1 });
     } else if (
       roomData &&
       user &&
@@ -96,13 +96,13 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
       const player2 = {
         uid: user.uid,
         name: user.displayName,
-        color: Colors.BLACK,
+        color: Colors.BLACK
       };
-      setDoc(doc(firestore, "chess", id!), { ...roomData, player2 });
+      setDoc(doc(firestore, 'chess', id!), { ...roomData, player2 });
     }
     if (roomData?.winner) {
       setWinner(roomData.winner.name);
-      deleteDoc(doc(firestore, "chess", id!));
+      deleteDoc(doc(firestore, 'chess', id!));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomData, user, isUserLoading]);
@@ -113,9 +113,13 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
 
   const endGame = (color?: string) => {
     if (!color) {
-      setDoc(doc(firestore, "chess", id!), {
+      const winnerPlayer =
+        currentPlayer?.color === Colors.WHITE
+          ? roomData?.player2
+          : roomData?.player1;
+      setDoc(doc(firestore, 'chess', id!), {
         ...roomData,
-        winner: roomData?.currentPlayer,
+        winner: winnerPlayer
       });
     }
   };
@@ -126,12 +130,12 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
         currentPlayer?.color === Colors.WHITE
           ? roomData.player2
           : roomData.player1;
-      setDoc(doc(firestore, "chess", id!), {
+      setDoc(doc(firestore, 'chess', id!), {
         ...roomData,
         isGameStarted: true,
         board: chessBoardToFirebaseMapper(board),
         currentPlayer: nextPlayer,
-        time: time,
+        time
       });
     }
     setCurrentPlayer(
@@ -140,7 +144,7 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
   };
 
   if (!roomData && !loading && !winner) {
-    navigate("/chess/rooms");
+    navigate('/chess/rooms');
   }
 
   if (isFull) {
@@ -171,6 +175,7 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
           data-testid="give-up-btn"
           disabled={!isClickAvailable}
           onClick={() => endGame()}
+          type="button"
         >
           {t('give_up')}
         </button>
@@ -184,11 +189,11 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
       />
       <div className="lost">
         <LostFigures
-          title={t('black') + ' ' + roomData?.player2.name}
+          title={`${t('black')} ${roomData?.player2.name}`}
           figures={board.lostBlackFigures}
         />
         <LostFigures
-          title={t('white') + ' ' + roomData?.player1.name}
+          title={`${t('white')} ${roomData?.player1.name}`}
           figures={board.lostWhightFigures}
         />
       </div>

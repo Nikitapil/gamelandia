@@ -1,13 +1,13 @@
-import { child, get, getDatabase, ref, set } from "firebase/database";
-import { getAuth } from "firebase/auth";
-import { ISnakelevels, snakeLevels } from "../constants/snake";
-import { snakeBestScoreMapper } from "../utils/snake/snakeMappers";
+import { child, get, getDatabase, ref, set } from 'firebase/database';
+import { getAuth } from 'firebase/auth';
+import { ISnakelevels, snakeLevels } from '../constants/snake';
+import { snakeBestScoreMapper } from '../utils/snake/snakeMappers';
 
 export class SnakeService {
   static async setRecord(score: number, level: number) {
     const auth = getAuth();
     if (auth.currentUser) {
-      const uid = auth.currentUser.uid;
+      const { uid } = auth.currentUser;
       const database = getDatabase();
       const scores = await SnakeService.getBestScores();
       const levelLiteral = snakeLevels[level as keyof ISnakelevels];
@@ -32,7 +32,7 @@ export class SnakeService {
   static async getBestScores() {
     const auth = getAuth();
     if (auth.currentUser) {
-      const uid = auth.currentUser.uid;
+      const { uid } = auth.currentUser;
       const database = getDatabase();
       const path = ref(database);
       const response = await (

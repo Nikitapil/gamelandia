@@ -1,15 +1,21 @@
-import { EInvadersDirections } from "../../domain/invadersTypes";
-import { InvadersBulletModel } from "./InvadersBulletModel";
-import { InvadersCellModel } from "./InvadersCellModel";
-import { InvadersGunModel } from "./InvadersGunModel";
+import { EInvadersDirections } from '../../domain/invadersTypes';
+import { InvadersBulletModel } from './InvadersBulletModel';
+import { InvadersCellModel } from './InvadersCellModel';
+import { InvadersGunModel } from './InvadersGunModel';
 
 export class InvadersFieldModel {
   cells: InvadersCellModel[][] = [];
+
   isGameStarted = false;
+
   direction: EInvadersDirections = EInvadersDirections.RIGHT;
+
   nextY = 0;
+
   isFirstMove = true;
+
   gun = new InvadersGunModel(0);
+
   bullet: InvadersBulletModel | null = null;
 
   initCells(): void {

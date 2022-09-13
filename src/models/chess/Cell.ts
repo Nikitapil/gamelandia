@@ -1,14 +1,20 @@
-import { Board } from "./Board";
-import { Colors } from "./Colors";
-import { Figure } from "./figures/figure";
+import { Board } from './Board';
+import { Colors } from './Colors';
+import { Figure } from './figures/figure';
 
 export class Cell {
   readonly x: number;
+
   readonly y: number;
+
   readonly color: Colors;
+
   figure: Figure | null;
+
   board: Board;
+
   available: boolean;
+
   id: number;
 
   constructor(
@@ -35,6 +41,7 @@ export class Cell {
   }
 
   addLostfigure(figure: Figure) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     figure.color === Colors.BLACK
       ? this.board.lostBlackFigures.push(figure)
       : this.board.lostWhightFigures.push(figure);
@@ -51,6 +58,7 @@ export class Cell {
       this.figure = null;
       if (this.board.kings[target.figure?.color!]?.cell!.isUnderAttack()) {
         if (targetFigure) {
+          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
           targetFigure.color === Colors.BLACK
             ? this.board.lostBlackFigures.pop()
             : this.board.lostWhightFigures.pop();

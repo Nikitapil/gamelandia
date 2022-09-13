@@ -1,9 +1,9 @@
-import { FigureNames } from "../../../constants/chess";
-import { Cell } from "../Cell";
-import { Colors } from "../Colors";
-import { Figure } from "./figure";
-import blackLogo from "../../../assets/checkmates/black-rook.png";
-import whiteLogo from "../../../assets/checkmates/white-rook.png";
+import { FigureNames } from '../../../constants/chess';
+import { Cell } from '../Cell';
+import { Colors } from '../Colors';
+import { Figure } from './figure';
+import blackLogo from '../../../assets/checkmates/black-rook.png';
+import whiteLogo from '../../../assets/checkmates/white-rook.png';
 
 export class Rook extends Figure {
   constructor(color: Colors, cell?: Cell) {
@@ -16,8 +16,8 @@ export class Rook extends Figure {
     if (!super.canMove(target)) {
       return false;
     }
-    return this.cell!.isEmptyHorizontal(target) ||
-        this.cell!.isEmptyVertical(target);
-
+    return (
+      this.cell!.isEmptyHorizontal(target) || this.cell!.isEmptyVertical(target)
+    );
   }
 }

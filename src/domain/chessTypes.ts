@@ -1,5 +1,5 @@
-import { FigureNames } from "../constants/chess";
-import { Colors } from "../models/chess/Colors";
+import { FigureNames } from '../constants/chess';
+import { Colors } from '../models/chess/Colors';
 
 export interface IFireBaseChessFigure {
   color: Colors;
@@ -22,5 +22,5 @@ export interface IFirebaseChessBoard {
 
 export interface IChessTime {
   black: number;
-  white: number
+  white: number;
 }

@@ -1,14 +1,21 @@
-import { BattleshipBoardModel } from "./BattleShipBoardModel";
-import { BattleShipElemModel } from "./BattleShipElemModel";
+import { BattleshipBoardModel } from './BattleShipBoardModel';
+import { BattleShipElemModel } from './BattleShipElemModel';
 
 export class BattleshipCellModel {
   x: number;
+
   y: number;
+
   board: BattleshipBoardModel;
+
   elem: BattleShipElemModel | null = null;
+
   isAttacked: boolean = false;
+
   id: number;
+
   isAddAvailable: boolean = false;
+
   constructor(
     y: number,
     x: number,
@@ -29,11 +36,11 @@ export class BattleshipCellModel {
   setIsAttacked() {
     this.isAttacked = true;
     if (this.elem?.isDestroyed) {
-      const cells = this.board.cells;
+      const { cells } = this.board;
       let tempCells: BattleshipCellModel[] = [];
       this.elem.cells.forEach((cell) => {
-        const y = cell.y;
-        const x = cell.x;
+        const { y } = cell;
+        const { x } = cell;
         if (cells[y + 1]) {
           tempCells.push(
             cells[y + 1][x],

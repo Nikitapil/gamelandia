@@ -1,11 +1,12 @@
 import {
   ESnakeActions,
   ISnakeInitialState,
-  SnakeActions,
-} from "./../../domain/snakeTypes";
+  SnakeActions
+} from '../../domain/snakeTypes';
+
 const initialState: ISnakeInitialState = {
   allBestScores: null,
-  myBestScores: null,
+  myBestScores: null
 };
 export const snakeReducer = (state = initialState, action: SnakeActions) => {
   switch (action.type) {

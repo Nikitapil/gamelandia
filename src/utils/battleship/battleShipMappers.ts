@@ -1,14 +1,14 @@
-import {BattleshipCellModel} from "../../models/battleship/BattleShipCellModel";
-import {BattleShipElemModel} from "../../models/battleship/BattleShipElemModel";
-import chunk from "lodash/chunk";
-import {IFireBaseCells, IFirebaseShip} from "../../domain/battleshipTypes";
-import {BattleshipBoardModel} from "../../models/battleship/BattleShipBoardModel";
+import chunk from 'lodash/chunk';
+import { BattleshipCellModel } from '../../models/battleship/BattleShipCellModel';
+import { BattleShipElemModel } from '../../models/battleship/BattleShipElemModel';
+import { IFireBaseCells, IFirebaseShip } from '../../domain/battleshipTypes';
+import { BattleshipBoardModel } from '../../models/battleship/BattleShipBoardModel';
 
 export const mapCellsToFirebase = (cells: BattleshipCellModel[][]) => {
   return cells.flat().map((cell) => ({
     x: cell.x,
     y: cell.y,
-    isAttacked: cell.isAttacked,
+    isAttacked: cell.isAttacked
   }));
 };
 
@@ -20,7 +20,7 @@ export const mapShipsToFirebase = (ships: BattleShipElemModel[]) => {
   return ships.map((ship) => ({
     size: ship.size,
     cells: mapCellsToShipObject(ship.cells),
-    direction: ship.direction,
+    direction: ship.direction
   }));
 };
 
@@ -48,10 +48,10 @@ export const mapFromFireBaseToBattleShip = (
 ) => {
   const newBoard = new BattleshipBoardModel(isEnemyBoard);
   newBoard.cells = mapCellsFromFirebase(
-      cells.map(
-          (cell) =>
-              new BattleshipCellModel(cell.y, cell.x, newBoard, cell.isAttacked)
-      )
+    cells.map(
+      (cell) =>
+        new BattleshipCellModel(cell.y, cell.x, newBoard, cell.isAttacked)
+    )
   );
   newBoard.ships = mapShipsFromFireBase(ships, newBoard);
   return newBoard;

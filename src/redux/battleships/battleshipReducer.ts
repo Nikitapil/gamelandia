@@ -1,14 +1,14 @@
 import {
   BattleShipActions,
   BattleShipActionsTypes,
-  IBattleShipState,
-} from "../../domain/battleshipTypes";
+  IBattleShipState
+} from '../../domain/battleshipTypes';
 
 const initialState: IBattleShipState = {
   freeShips: [],
   board: null,
   enemyBoard: null,
-  currentFreeShip: null,
+  currentFreeShip: null
 };
 
 export const battleshipReducer = (

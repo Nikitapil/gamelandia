@@ -41,7 +41,8 @@
     "eject": "react-scripts eject",
     "test:cover": "react-scripts test --coverage src",
     "deploy": "gh-pages -d build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}"
   },
   "husky": {
     "hooks": {
@@ -68,7 +69,17 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.182",
+    "eslint": "8.22.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.8",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "gh-pages": "^4.0.0",
-    "husky": "^8.0.0"
+    "husky": "^8.0.0",
+    "prettier": "^2.7.1"
   }
 }

@@ -1,16 +1,22 @@
-import { TetrisBoardModel } from "../TetrisBoardModel";
-import { TetrisElem } from "../TetrisElem";
-import { ETetrisColors, ETetrisDirections } from "../../../constants/tetris";
-import { TetrisCellModel } from "../TetrisCellModel";
-import { ITetrisNextCells } from "../../../domain/tetrisTypes";
+import { TetrisBoardModel } from '../TetrisBoardModel';
+import { TetrisElem } from '../TetrisElem';
+import { ETetrisColors, ETetrisDirections } from '../../../constants/tetris';
+import { TetrisCellModel } from '../TetrisCellModel';
+import { ITetrisNextCells } from '../../../domain/tetrisTypes';
 
 export class TetrisFigureModel {
   color: ETetrisColors = ETetrisColors.BLUE;
+
   elems: TetrisElem[] = [];
+
   board: TetrisBoardModel;
+
   id: number;
+
   baseElem: TetrisElem | null = null;
+
   possibleDirections: ETetrisDirections[] = [];
+
   currentDirection: ETetrisDirections = ETetrisDirections.UP;
 
   constructor(
@@ -122,12 +128,13 @@ export class TetrisFigureModel {
     });
   }
 
+  // eslint-disable-next-line class-methods-use-this
   get nextCells(): ITetrisNextCells {
     return {
       right: [],
       left: [],
       up: [],
-      down: [],
+      down: []
     };
   }
 }

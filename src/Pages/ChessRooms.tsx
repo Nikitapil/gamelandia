@@ -1,29 +1,30 @@
-import { Auth } from "firebase/auth";
-import { collection, doc, Firestore, setDoc } from "firebase/firestore";
-import React, { FC, useState } from "react";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import { useTranslation } from "react-i18next";
-import { TimerModal } from "../components/Chess/TimerModal";
-import { RoomsCommon } from "../components/common/RoomsCommon";
-import { ModalContainer } from "../components/UI/ModalContainer";
-import { breadcrumbs } from "../constants/breadcrumbs";
-import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
-import { useTitle } from "../hooks/useTitle";
-import "../styles/chess.scss";
+import { Auth } from 'firebase/auth';
+import { collection, doc, Firestore, setDoc } from 'firebase/firestore';
+import React, { FC, useState } from 'react';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useTranslation } from 'react-i18next';
+import { TimerModal } from '../components/Chess/TimerModal';
+import { RoomsCommon } from '../components/common/RoomsCommon';
+import { ModalContainer } from '../components/UI/ModalContainer';
+import { breadcrumbs } from '../constants/breadcrumbs';
+import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
+import { useTitle } from '../hooks/useTitle';
+import '../styles/chess.scss';
+
 interface ChessRoomsProps {
   firestore: Firestore;
   auth: Auth;
 }
 
 export const ChessRooms: FC<ChessRoomsProps> = ({ firestore, auth }) => {
-  const {t} = useTranslation()
-  useTitle(t('chess'))
+  const { t } = useTranslation();
+  useTitle(t('chess'));
   useBreadcrumbs([
     breadcrumbs.main,
     breadcrumbs.chessTypes,
-    breadcrumbs.chessRooms,
+    breadcrumbs.chessRooms
   ]);
-  const [rooms] = useCollectionData(collection(firestore, "chess"));
+  const [rooms] = useCollectionData(collection(firestore, 'chess'));
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
@@ -35,15 +36,15 @@ export const ChessRooms: FC<ChessRoomsProps> = ({ firestore, auth }) => {
       currentPlayer: null,
       time: {
         black: timer,
-        white: timer,
+        white: timer
       },
       board: null,
-      winner: "",
+      winner: '',
       isGameStarted: false,
       id: `room_${(rooms?.length || 0) + 1}`,
-      name: `Room ${(rooms?.length || 0) + 1}`,
+      name: `Room ${(rooms?.length || 0) + 1}`
     };
-    await setDoc(doc(firestore, "chess", newRoom.id), newRoom);
+    await setDoc(doc(firestore, 'chess', newRoom.id), newRoom);
   };
 
   return (

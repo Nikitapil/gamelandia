@@ -1,7 +1,10 @@
 export class InvadersBulletModel {
   y = 30;
+
   x: number;
+
   isDestroyed = false;
+
   constructor(x: number) {
     this.x = x;
   }

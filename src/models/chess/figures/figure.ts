@@ -1,12 +1,17 @@
-import { Colors } from "../Colors";
-import logo from "../../../assets/checkmates/black-king.png";
-import { FigureNames } from "../../../constants/chess";
-import { Cell } from "../Cell";
+import { Colors } from '../Colors';
+import logo from '../../../assets/checkmates/black-king.png';
+import { FigureNames } from '../../../constants/chess';
+import { Cell } from '../Cell';
+
 export class Figure {
   color: Colors;
+
   logo: typeof logo | null;
+
   cell: Cell | null;
+
   name: FigureNames;
+
   id: number;
 
   constructor(color: Colors, cell?: Cell) {
@@ -15,7 +20,7 @@ export class Figure {
       this.cell = cell;
       this.cell.figure = this;
     } else {
-      this.cell = null
+      this.cell = null;
     }
     this.logo = null;
     this.name = FigureNames.FIGURE;
@@ -26,12 +31,16 @@ export class Figure {
     if (target.figure?.color === this.color) {
       return false;
     }
-    return !(this.name === FigureNames.KING &&
-        target.figure?.name === FigureNames.KING);
-
+    return !(
+      this.name === FigureNames.KING && target.figure?.name === FigureNames.KING
+    );
   }
+
+  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
   moveFigure(target: Cell) {}
+
+  // eslint-disable-next-line class-methods-use-this
   checkIfEndOfBoard() {
-    return false
+    return false;
   }
 }

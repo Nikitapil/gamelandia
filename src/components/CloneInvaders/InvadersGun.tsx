@@ -1,9 +1,9 @@
-import React, { useMemo } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpaceAwesome } from "@fortawesome/free-brands-svg-icons";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import invadersStyles from "../../styles/invaders.module.scss";
-import { InvadersGunModel } from "../../models/cloneInvaders/InvadersGunModel";
+import React, { useMemo } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpaceAwesome } from '@fortawesome/free-brands-svg-icons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import invadersStyles from '../../styles/invaders.module.scss';
+import { InvadersGunModel } from '../../models/cloneInvaders/InvadersGunModel';
 
 interface InvadersGunProps {
   gun: InvadersGunModel;
@@ -12,7 +12,7 @@ interface InvadersGunProps {
 export const InvadersGun = ({ gun }: InvadersGunProps) => {
   const style = useMemo(() => {
     return {
-      left: gun.x,
+      left: gun.x
     };
   }, [gun.x]);
 

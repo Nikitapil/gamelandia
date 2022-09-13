@@ -2,39 +2,39 @@ import {
   faCircleChevronDown,
   faCircleChevronLeft,
   faCircleChevronRight,
-  faCircleChevronUp,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Auth } from "firebase/auth";
+  faCircleChevronUp
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Auth } from 'firebase/auth';
 import React, {
   KeyboardEvent,
   useEffect,
   useMemo,
   useRef,
-  useState,
-} from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
-import { CommonScoreBoard } from "../components/common/CommonScoreBoard";
-import { TetrisBoard } from "../components/Tetris/TetrisBoard";
-import { breadcrumbs } from "../constants/breadcrumbs";
-import { EGamesWithScoreBoard } from "../domain/scoreTypes";
-import { useBreadcrumbs } from "../hooks/useBreadcrumbs";
-import { useTitle } from "../hooks/useTitle";
-import { TetrisBoardModel } from "../models/tetris/TetrisBoardModel";
-import { fetchBoardScores } from "../redux/score/scoreActions";
-import { ScoreService } from "../services/scoreService";
-import tetrisStyle from "../styles/tetris.module.scss";
-import { isMobile } from "../utils/helpers";
+  useState
+} from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { CommonScoreBoard } from '../components/common/CommonScoreBoard';
+import { TetrisBoard } from '../components/Tetris/TetrisBoard';
+import { breadcrumbs } from '../constants/breadcrumbs';
+import { EGamesWithScoreBoard } from '../domain/scoreTypes';
+import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
+import { useTitle } from '../hooks/useTitle';
+import { TetrisBoardModel } from '../models/tetris/TetrisBoardModel';
+import { fetchBoardScores } from '../redux/score/scoreActions';
+import { ScoreService } from '../services/scoreService';
+import tetrisStyle from '../styles/tetris.module.scss';
+import { isMobile } from '../utils/helpers';
 
 interface TetrisProps {
   auth: Auth;
 }
 
 export const Tetris = ({ auth }: TetrisProps) => {
-  const {t} = useTranslation()
-  useTitle('Tetris')
+  const { t } = useTranslation();
+  useTitle('Tetris');
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.tetris]);
   const [board, setBoard] = useState(new TetrisBoardModel());
   const [isShowStartBtn, setIsShowStartBtn] = useState(true);
@@ -84,22 +84,22 @@ export const Tetris = ({ auth }: TetrisProps) => {
   }, [isGameOver, user]);
 
   const onKeyPress = (e: KeyboardEvent, btnName?: string) => {
-    if (e.code === "ArrowRight" || btnName === "right") {
+    if (e.code === 'ArrowRight' || btnName === 'right') {
       board.currentFigure?.moveRight();
       const newBoard = board.copyBoard();
       setBoard(newBoard);
     }
-    if (e.code === "ArrowLeft" || btnName === "left") {
+    if (e.code === 'ArrowLeft' || btnName === 'left') {
       board.currentFigure?.moveLeft();
       const newBoard = board.copyBoard();
       setBoard(newBoard);
     }
-    if (e.code === "ArrowDown" || btnName === "down") {
+    if (e.code === 'ArrowDown' || btnName === 'down') {
       board.currentFigure?.moveDown();
       const newBoard = board.copyBoard();
       setBoard(newBoard);
     }
-    if (e.code === "ArrowUp" || btnName === "up") {
+    if (e.code === 'ArrowUp' || btnName === 'up') {
       board.currentFigure?.changeDirection();
       const newBoard = board.copyBoard();
       setBoard(newBoard);
@@ -132,6 +132,7 @@ export const Tetris = ({ auth }: TetrisProps) => {
         const newTimer = addScore && timer > 400 ? timer - addScore * 4 : timer;
         startMoving(newTimer);
       }
+      // eslint-disable-next-line @typescript-eslint/no-shadow
       const newBoard = board.copyBoard();
       setBoard(newBoard);
     }, timer);
@@ -150,59 +151,73 @@ export const Tetris = ({ auth }: TetrisProps) => {
 
   return (
     <div
-      className={`container ${tetrisStyle["tetris-container"]}`}
+      className={`container ${tetrisStyle['tetris-container']}`}
       onKeyDown={onKeyPress}
       ref={gameRef}
       tabIndex={0}
     >
       <h2 className={`page-title ${tetrisStyle.title}`}>
-        <span className={tetrisStyle["color-blue"]}>T</span>
-        <span className={tetrisStyle["color-green"]}>e</span>
-        <span className={tetrisStyle["color-yellow"]}>t</span>
-        <span className={tetrisStyle["color-orange"]}>r</span>
-        <span className={tetrisStyle["color-red"]}>i</span>s
+        <span className={tetrisStyle['color-blue']}>T</span>
+        <span className={tetrisStyle['color-green']}>e</span>
+        <span className={tetrisStyle['color-yellow']}>t</span>
+        <span className={tetrisStyle['color-orange']}>r</span>
+        <span className={tetrisStyle['color-red']}>i</span>s
       </h2>
-      {isGameOver && <p className={tetrisStyle["game-over"]}>Game over</p>}
+      {isGameOver && <p className={tetrisStyle['game-over']}>Game over</p>}
       <div className={tetrisStyle.controlls}>
         {isShowStartBtn && (
-          <button className={tetrisStyle["game-btn"]} onClick={startGame}>
+          <button
+            className={tetrisStyle['game-btn']}
+            onClick={startGame}
+            type="button"
+          >
             {t('start_game')}
           </button>
         )}
         {isShowNewGameBtn && (
-          <button className={tetrisStyle["game-btn"]} onClick={initBoard}>
+          <button
+            className={tetrisStyle['game-btn']}
+            onClick={initBoard}
+            type="button"
+          >
             {t('new_game')}
           </button>
         )}
-        <p className={tetrisStyle.score}>{t('score')}: {score}</p>
+        <p className={tetrisStyle.score}>
+          {t('score')}: {score}
+        </p>
       </div>
-      <div className={tetrisStyle["tetris-boards"]}>
+      <div className={tetrisStyle['tetris-boards']}>
         <TetrisBoard board={board} />
         {isShowMobileBtns && (
           <div className={tetrisStyle.mobile__controlls}>
             <button
-              onClick={(e: any) => onKeyPress(e, "up")}
-              className={tetrisStyle["mobile-controlls__btn"]}
+              onClick={(e: any) => onKeyPress(e, 'up')}
+              className={tetrisStyle['mobile-controlls__btn']}
+              type="button"
             >
               <FontAwesomeIcon icon={faCircleChevronUp} />
             </button>
-            <div className={tetrisStyle["mobile-controlls__sides"]}>
+            <div className={tetrisStyle['mobile-controlls__sides']}>
               <button
-                onClick={(e: any) => onKeyPress(e, "left")}
-                className={tetrisStyle["mobile-controlls__btn"]}
+                onClick={(e: any) => onKeyPress(e, 'left')}
+                className={tetrisStyle['mobile-controlls__btn']}
+                type="button"
               >
                 <FontAwesomeIcon icon={faCircleChevronLeft} />
               </button>
               <button
-                onClick={(e: any) => onKeyPress(e, "right")}
-                className={tetrisStyle["mobile-controlls__btn"]}
+                onClick={(e: any) => onKeyPress(e, 'right')}
+                className={tetrisStyle['mobile-controlls__btn']}
+                type="button"
               >
                 <FontAwesomeIcon icon={faCircleChevronRight} />
               </button>
             </div>
             <button
-              onClick={(e: any) => onKeyPress(e, "down")}
-              className={tetrisStyle["mobile-controlls__btn"]}
+              onClick={(e: any) => onKeyPress(e, 'down')}
+              className={tetrisStyle['mobile-controlls__btn']}
+              type="button"
             >
               <FontAwesomeIcon icon={faCircleChevronDown} />
             </button>

@@ -1,5 +1,5 @@
-import { TetrisFigureModel } from "../models/tetris/Figures/TetrisFigureModel";
-import { TetrisCellModel } from "../models/tetris/TetrisCellModel";
+import { TetrisFigureModel } from '../models/tetris/Figures/TetrisFigureModel';
+import { TetrisCellModel } from '../models/tetris/TetrisCellModel';
 
 export interface ITetrisNextCells {
   right: TetrisCellModel[];

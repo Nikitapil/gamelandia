@@ -1,11 +1,15 @@
-import { EBattleShipElemDirection } from "../../constants/battleship";
-import { BattleshipCellModel } from "./BattleShipCellModel";
+import { EBattleShipElemDirection } from '../../constants/battleship';
+import { BattleshipCellModel } from './BattleShipCellModel';
 
 export class BattleShipElemModel {
   size: number;
+
   cells: BattleshipCellModel[] = [];
+
   id: number;
+
   direction: EBattleShipElemDirection = EBattleShipElemDirection.HORIZONTAL;
+
   constructor(size: number, direction = EBattleShipElemDirection.HORIZONTAL) {
     this.size = size;
     this.id = Math.random();

@@ -1,10 +1,10 @@
 import {
   ETetrisColors,
-  T_FIGURE_POSSIBLE_DIRECTIONS,
-} from "../../../constants/tetris";
-import { TetrisBoardModel } from "../TetrisBoardModel";
-import { TetrisElem } from "../TetrisElem";
-import { TetrisFigureModel } from "./TetrisFigureModel";
+  T_FIGURE_POSSIBLE_DIRECTIONS
+} from '../../../constants/tetris';
+import { TetrisBoardModel } from '../TetrisBoardModel';
+import { TetrisElem } from '../TetrisElem';
+import { TetrisFigureModel } from './TetrisFigureModel';
 
 export class TFigureModel extends TetrisFigureModel {
   constructor(board: TetrisBoardModel) {
@@ -15,29 +15,29 @@ export class TFigureModel extends TetrisFigureModel {
   }
 
   get nextCells() {
-    const y = this.baseElem!.cell.y;
-    const x = this.baseElem!.cell.x;
+    const { y } = this.baseElem!.cell;
+    const { x } = this.baseElem!.cell;
     return {
       right: [
         this.board.getCell(y, x + 1),
         this.board.getCell(y - 1, x),
-        this.board.getCell(y + 1, x),
+        this.board.getCell(y + 1, x)
       ],
       left: [
         this.board.getCell(y, x - 1),
         this.board.getCell(y - 1, x),
-        this.board.getCell(y + 1, x),
+        this.board.getCell(y + 1, x)
       ],
       up: [
         this.board.getCell(y - 1, x),
         this.board.getCell(y, x - 1),
-        this.board.getCell(y, x + 1),
+        this.board.getCell(y, x + 1)
       ],
       down: [
         this.board.getCell(y + 1, x),
         this.board.getCell(y, x - 1),
-        this.board.getCell(y, x + 1),
-      ],
+        this.board.getCell(y, x + 1)
+      ]
     };
   }
 }

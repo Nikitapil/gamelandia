@@ -1,5 +1,6 @@
-import React, { FC } from "react";
-import mainStyles from '../../styles/mainpage.module.scss'
+import React, { FC } from 'react';
+import mainStyles from '../../styles/mainpage.module.scss';
+
 interface GameLabelProps {
   text: string;
 }

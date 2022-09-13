@@ -1,11 +1,11 @@
 import {
   EScoreActionsTypes,
   IScoreBoardInitialState,
-  TScoreActions,
-} from "../../domain/scoreTypes";
+  TScoreActions
+} from '../../domain/scoreTypes';
 
 const initialState: IScoreBoardInitialState = {
-  scores: [],
+  scores: []
 };
 
 export const scoreReducer = (state = initialState, action: TScoreActions) => {
