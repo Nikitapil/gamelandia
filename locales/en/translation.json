@@ -68,5 +68,10 @@
   "you_win": "You win",
   "you_loose": "You Loose",
   "XMARK": "XMARK",
-  "CIRCLE": "CIRCLE"
+  "CIRCLE": "CIRCLE",
+  "user_not_found": "User not found",
+  "wrong_password": "Wrong password",
+  "invalid_email": "Enter correct email",
+  "email_already_in_use": "This email already in use",
+  "weak_password": "Password is not strong enough"
 }
