@@ -73,5 +73,11 @@
   "wrong_password": "Wrong password",
   "invalid_email": "Enter correct email",
   "email_already_in_use": "This email already in use",
-  "weak_password": "Password is not strong enough"
+  "weak_password": "Password is not strong enough",
+  "chess_offline": "Chess offline",
+  "chess_rooms": "Chess rooms",
+  "chess_online": "Chess online",
+  "battleship_rooms": "Battleship rooms",
+  "registration": "Registration",
+  "login": "Login"
 }
