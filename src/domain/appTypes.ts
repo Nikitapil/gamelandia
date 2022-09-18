@@ -9,6 +9,7 @@ export interface Inotification {
   type: 'error' | 'success';
 }
 export interface IBreabcrumb {
+  id: string;
   name: string;
   path: string;
 }

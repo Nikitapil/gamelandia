@@ -5,7 +5,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 import { HorizotalLoader } from '../UI/Loaders/HorizotalLoader';
 import headerStyles from '../../styles/header.module.scss';
-import { LanguageDropdown } from './LanguageDropdown';
 
 interface AppHeaderProps {
   auth: Auth;
@@ -25,9 +24,6 @@ export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
         <h1 className={headerStyles.header__title}>GameLandia</h1>
         <nav className={headerStyles['header__nav-bar']}>
           <ul className={headerStyles['nav-bar__links']}>
-            <li>
-              <LanguageDropdown />
-            </li>
             <li>
               <Link className={headerStyles['nav-bar__link']} to="/">
                 {t('main')}
