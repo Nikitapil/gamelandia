@@ -73,5 +73,11 @@
   "wrong_password": "Не верный пароль",
   "invalid_email": "Введите корректный email",
   "email_already_in_use": "Данный email уже используется",
-  "weak_password": "Пароль недостаточно сложный"
+  "weak_password": "Пароль недостаточно сложный",
+  "chess_offline": "Шахматы offline",
+  "chess_rooms": "Комнаты",
+  "chess_online": "Шахматы online",
+  "battleship_rooms": "Комнаты",
+  "registration": "Регистрация",
+  "login": "Логин"
 }

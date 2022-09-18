@@ -181,9 +181,9 @@ describe('chess tests', () => {
     userEvent.click(screen.getByTestId('newGame-btn'));
     expect(screen.getByTestId('timer-modal')).toBeInTheDocument();
   });
-  test('should render types with rigth breadcrumbs', () => {
+  test('should render types with right breadcrumbs', () => {
     render(renderWithRedux(<App />, '/chess', store));
-    expect(screen.getByText('Chess')).toBeInTheDocument();
+    expect(screen.getByText('chess')).toBeInTheDocument();
   });
 });
 
