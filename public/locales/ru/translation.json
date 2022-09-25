@@ -79,5 +79,7 @@
   "chess_online": "Шахматы online",
   "battleship_rooms": "Комнаты",
   "registration": "Регистрация",
-  "login": "Логин"
+  "login": "Логин",
+  "flappy_bird": "Flappy Bird",
+  "flappy_description": "Клон знаменитой игры flappy bird"
 }
