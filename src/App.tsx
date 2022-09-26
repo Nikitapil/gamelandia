@@ -41,7 +41,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="*" element={<MainPage />} />
           <Route path="/match-match" element={<MatchMatch />} />
-          <Route path="/flappy" element={<FlappyBird />} />
+          <Route path="/flappy" element={<FlappyBird auth={auth} />} />
           <Route path="/chess" element={<ChessTypes />} />
           <Route path="/chess/offline" element={<Chess />} />
           <Route

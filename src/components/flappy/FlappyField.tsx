@@ -5,7 +5,11 @@ import { FlappyPipe } from './FlappyPipe';
 import { FlappyGameModel } from '../../models/flappy/FlappyGameModel';
 import { FlappyHero } from './FlappyHero';
 
-export const FlappyField = () => {
+interface FlappyFieldProps {
+  onUpdateScore: (score: number) => Promise<void>;
+}
+
+export const FlappyField = ({ onUpdateScore }: FlappyFieldProps) => {
   const [game, setGame] = useState(new FlappyGameModel());
   const pipeInterval = useRef<null | ReturnType<typeof setInterval>>(null);
   const [isGameStarted, setIsGameStarted] = useState(false);
@@ -60,6 +64,7 @@ export const FlappyField = () => {
         clearInterval(pipeInterval.current);
         pipeInterval.current = null;
       }
+      onUpdateScore(game.score);
     }
   }, [game.isGameOver]);
 

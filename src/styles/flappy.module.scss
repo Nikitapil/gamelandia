@@ -8,7 +8,6 @@
 
 .field {
   width: 600px;
-  border: 1px solid $titleColor;
   height: 600px;
   background: #53bece;
   position: relative;
@@ -79,4 +78,10 @@
   font-size: 30px;
   font-weight: 700;
   color: #ffffff;
+}
+
+.flappy-boards {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }

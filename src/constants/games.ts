@@ -66,8 +66,8 @@ export const games = [
     description: 'flappy_description',
     path: 'flappy',
     isOutside: false,
-    labels: ['Single player'],
-    mobileSuitable: true
+    labels: ['Single player', 'Not suitable for mobile'],
+    mobileSuitable: false
   },
   {
     id: 1,
