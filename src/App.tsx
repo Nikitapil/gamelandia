@@ -24,6 +24,7 @@ import { ChessOnline } from './Pages/ChessOnline';
 import { Breadcrumbs } from './components/UI/Breadcrumbs';
 import { CloneInvaders } from './Pages/CloneInvaders';
 import { Tetris } from './Pages/Tetris';
+import { FlappyBird } from './Pages/FlappyBird';
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -40,6 +41,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="*" element={<MainPage />} />
           <Route path="/match-match" element={<MatchMatch />} />
+          <Route path="/flappy" element={<FlappyBird auth={auth} />} />
           <Route path="/chess" element={<ChessTypes />} />
           <Route path="/chess/offline" element={<Chess />} />
           <Route

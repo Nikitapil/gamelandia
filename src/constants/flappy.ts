@@ -1,0 +1,9 @@
+export const FLAPPY_FIELD_HEIGHT = 600;
+export const FLAPPY_FIELD_WIDTH = 600;
+export const FLAPPY_DIFFERENCE_HEIGHT = 210;
+export const PIPE_WIDTH = 110;
+export const FLAPPY_BIRD_HEIGHT = 64;
+export const FLAPPY_INTERSECTION_START = 432;
+export const FLAPPY_INTERSECTION_END = 590;
+export const FLAPPY_BIRD_TOP_FAULT = 28;
+export const FLAPPY_PIPES_BETWEEN_FACTOR = 2.8;

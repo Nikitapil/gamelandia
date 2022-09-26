@@ -60,6 +60,16 @@ export const games = [
     mobileSuitable: true
   },
   {
+    id: 9,
+    gameName: 'flappy_bird',
+    pictureName: 'flappy',
+    description: 'flappy_description',
+    path: 'flappy',
+    isOutside: false,
+    labels: ['Single player', 'Not suitable for mobile'],
+    mobileSuitable: false
+  },
+  {
     id: 1,
     gameName: 'match_match',
     pictureName: 'default',

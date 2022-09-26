@@ -79,5 +79,8 @@
   "chess_online": "Chess online",
   "battleship_rooms": "Battleship rooms",
   "registration": "Registration",
-  "login": "Login"
+  "login": "Login",
+  "flappy_bird": "Flappy Bird",
+  "flappy_description": "Clone of famous flappy bird game",
+  "flappy_start_text": "Press Space to start the game"
 }

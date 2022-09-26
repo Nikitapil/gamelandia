@@ -22,5 +22,6 @@ export type TScoreActions = IScoreSetScoresAction;
 
 export enum EGamesWithScoreBoard {
   INVADERS = 'invaders',
-  TETRIS = 'tetris'
+  TETRIS = 'tetris',
+  FLAPPY = 'flappy'
 }
