@@ -18,6 +18,6 @@ export class FlappyBirdModel {
   }
 
   moveTop() {
-    this.top -= 10;
+    this.top -= 35;
   }
 }

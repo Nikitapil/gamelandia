@@ -81,5 +81,6 @@
   "registration": "Registration",
   "login": "Login",
   "flappy_bird": "Flappy Bird",
-  "flappy_description": "Clone of famous flappy bird game"
+  "flappy_description": "Clone of famous flappy bird game",
+  "flappy_start_text": "Press Space to start the game"
 }

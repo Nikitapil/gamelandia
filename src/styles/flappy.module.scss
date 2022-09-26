@@ -44,17 +44,6 @@
   top: 0;
   width: 90px;
   position: absolute;
-
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 110px;
-    height: 50px;
-    background: linear-gradient(to right, #9de757 4%, #d5f97f 6%, #9de757 7%, #9de757 14%, #9de757 14%, #74bf2e 15%, #74bf2e 17%, #9de757 20%, #74bf2e 23%, #74bf2e 70%, #74bf2e 70%, #578220 71%, #578220 72%, #74bf2e 73%, #74bf2e 75%, #527e23 86%);
-  }
 }
 
 .pipe__bottom {
@@ -62,19 +51,32 @@
   bottom: 0;
   width: 90px;
   position: absolute;
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 110px;
-    height: 50px;
-    background: linear-gradient(to right, #9de757 4%, #d5f97f 6%, #9de757 7%, #9de757 14%, #9de757 14%, #74bf2e 15%, #74bf2e 17%, #9de757 20%, #74bf2e 23%, #74bf2e 70%, #74bf2e 70%, #578220 71%, #578220 72%, #74bf2e 73%, #74bf2e 75%, #527e23 86%);
-  }
 }
 
 .bird {
   position: absolute;
   left: 100px;
+}
+
+.start-message, .game-over-message {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.game-over-message {
+  top: 80px;
+}
+
+.score {
+  position: absolute;
+  top: 40px;
+  left: 10px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #ffffff;
 }

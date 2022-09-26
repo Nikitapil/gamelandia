@@ -68,5 +68,10 @@ export const breadcrumbs = {
     id: 'breadcrumb_tetris',
     name: 'tetris',
     path: '/tetris'
+  },
+  flappy: {
+    id: 'breadcrumb_flappy',
+    name: 'flappy_bird',
+    path: '/flappy'
   }
 };
