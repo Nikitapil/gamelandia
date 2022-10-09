@@ -7,6 +7,7 @@ import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { fetchBoardScores } from '../../redux/score/scoreActions';
 import { scoreSelector } from '../../redux/score/scoreSelector';
 import commonStyles from '../../styles/common.module.scss';
+import { ScoreTableLoader } from '../UI/ScoreTableLoader';
 
 interface CommonScoreBoardProps {
   user: User;
@@ -15,7 +16,7 @@ interface CommonScoreBoardProps {
 
 export const CommonScoreBoard = ({ user, game }: CommonScoreBoardProps) => {
   const dispatch = useDispatch();
-  const { scores } = useTypedSelector(scoreSelector);
+  const { scores, isLoading } = useTypedSelector(scoreSelector);
   const { t } = useTranslation();
   useEffect(() => {
     dispatch(fetchBoardScores(game));
@@ -24,19 +25,21 @@ export const CommonScoreBoard = ({ user, game }: CommonScoreBoardProps) => {
   return (
     <div className={commonStyles['score-board']}>
       <h3 className={commonStyles['score-board__title']}>{t('scores')}</h3>
-      {scores?.map((score) => {
-        return (
-          <p
-            className={`${commonStyles['score-board_value']} ${
-              user.uid === score.uid ? commonStyles['my-score'] : ''
-            }`}
-            key={Math.random()}
-          >
-            <span>{score.name}</span>
-            <span>{score.score}</span>
-          </p>
-        );
-      })}
+      {isLoading && <ScoreTableLoader />}
+      {!isLoading &&
+        scores?.map((score) => {
+          return (
+            <p
+              className={`${commonStyles['score-board_value']} ${
+                user.uid === score.uid ? commonStyles['my-score'] : ''
+              }`}
+              key={Math.random()}
+            >
+              <span>{score.name}</span>
+              <span>{score.score}</span>
+            </p>
+          );
+        })}
     </div>
   );
 };
