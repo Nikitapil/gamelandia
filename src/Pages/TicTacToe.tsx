@@ -13,11 +13,13 @@ export const TicTacToe = () => {
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.ticTac]);
   const [board, setBoard] = useState(new TicBoard());
   const [winner, setWinner] = useState('');
+  const [draw, setDraw] = useState(false);
   const restart = () => {
     const newBoard = new TicBoard();
     newBoard.initCells();
     setBoard(newBoard);
     setWinner('');
+    setDraw(false);
   };
 
   useEffect(() => {
@@ -38,6 +40,8 @@ export const TicTacToe = () => {
         setWinner={setWinner}
         setBoard={setBoard}
         board={board}
+        draw={draw}
+        setDraw={setDraw}
       />
     </div>
   );

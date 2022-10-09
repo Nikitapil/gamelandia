@@ -52,4 +52,13 @@ export class TicBoard {
       row.every((cell) => cell.icon === row[0].icon && cell.icon !== null)
     );
   }
+
+  checkIsWinnerOrDraw() {
+    const checkIsAllFull = [...this.cells].flat().every((cell) => !!cell.icon);
+    const isWinner = this.checkWinner();
+    return {
+      isWinner,
+      isDraw: checkIsAllFull && !isWinner
+    };
+  }
 }

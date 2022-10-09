@@ -10,22 +10,28 @@ interface TicTacBoardProps {
   setBoard: (board: TicBoard) => void;
   winner: string;
   setWinner: (winner: string) => void;
+  draw: boolean;
+  setDraw: (draw: boolean) => void;
 }
 
 export const TicTacBoard: FC<TicTacBoardProps> = ({
   board,
   setBoard,
   winner,
-  setWinner
+  setWinner,
+  draw,
+  setDraw
 }) => {
   const { t } = useTranslation();
   const clickOnCell = (cell: TicCell) => {
     if (!cell.icon && !winner) {
       const newBoard = cell.click();
       setBoard(newBoard);
-      const isWinner = board.checkWinner();
+      const { isWinner, isDraw } = board.checkIsWinnerOrDraw();
       if (isWinner) {
         setWinner(board.currentPlayer);
+      } else if (isDraw) {
+        setDraw(true);
       }
     }
   };
@@ -37,6 +43,7 @@ export const TicTacBoard: FC<TicTacBoardProps> = ({
           {t(winner)} {t('wins')}!!!
         </h2>
       )}
+      {draw && <h2 className={tictacStyles.tictac__winner}>{t('draw')}!!!</h2>}
       <div className={tictacStyles['tictac-board']}>
         {!!board.cells.length &&
           board.cells.map((row) =>
