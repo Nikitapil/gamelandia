@@ -17,6 +17,7 @@
   padding: 15px;
   border: 2px solid $titleColor;
   border-radius: 10px;
+  box-shadow: -3px 3px 8px #000000;
 }
 
 .auth-form__title {
@@ -47,6 +48,6 @@
 }
 .auth-link {
   color: $titleColor;
-  margin-top: 8px;
+  margin-top: 12px;
   align-self: flex-end;
 }
