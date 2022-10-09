@@ -1,0 +1,47 @@
+@import "vars";
+
+.app-input {
+  position: relative;
+  background: transparent;
+  label {
+    color: $mainColor;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: 16px;
+    padding-bottom: 8px;
+    padding-left: 2px;
+    transition: 0.3s;
+  }
+  input {
+    background: transparent;
+    border: none;
+    color: $mainColor;
+    font-weight: 400;
+    padding: 15px 5px 3px;
+    font-size: 18px;
+    border-bottom: 1.5px solid $mainColor;
+    width: 100%;
+    -webkit-appearance: none;
+    &:focus + label, &.with-content + label {
+      top: 0;
+      left: 0;
+      font-size: 12px;
+      &::after {
+        content: ':';
+      }
+    }
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  {
+    background: transparent;
+    -webkit-appearance: none;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 5000s ease-in-out 0s;
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(0,174,255,0.04) 50%,rgba(255,255,255,0) 51%,rgba(0,174,255,0.03) 100%);
+    color: #E4E4E4FF;
+    -webkit-text-fill-color: #E4E4E4FF;
+  }
+}

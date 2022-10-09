@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import authStyles from '../../styles/auth.module.scss';
+import { AppInput } from '../UI/AppInput';
 
 interface AuthFormProps {
   formTitle: string;
@@ -17,6 +18,7 @@ export const AuthForm: FC<AuthFormProps> = ({
 }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [userName, setUserName] = useState('');
+
   const onInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -43,33 +45,31 @@ export const AuthForm: FC<AuthFormProps> = ({
   return (
     <form className={authStyles['auth-form']} onSubmit={onSubmit}>
       <h2 className={authStyles['auth-form__title']}>{formTitle}</h2>
-      <input
-        className={authStyles['auth-form__input']}
+      <AppInput
         type="email"
-        data-testid="email-input"
-        placeholder={t('your_email')}
         name="email"
         value={formData.email}
         onChange={onInput}
+        testId="email-input"
+        label={t('your_email')}
       />
-      <input
-        className={authStyles['auth-form__input']}
+      <AppInput
         type="password"
-        placeholder={t('your_password')}
         name="password"
         value={formData.password}
         onChange={onInput}
+        label={t('your_password')}
       />
       {isSignUp && (
-        <input
-          className={authStyles['auth-form__input']}
+        <AppInput
           type="text"
           data-testid="display-name"
-          placeholder={t('your_name')}
-          required
           name="displayName"
+          testId="display-name"
           value={userName}
           onChange={onChangeUserName}
+          label={t('your_name')}
+          required
         />
       )}
       <button
