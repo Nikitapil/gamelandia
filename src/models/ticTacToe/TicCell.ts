@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { ETicTacIcons } from '../../constants/tictactoe';
 import { TicBoard } from './TicBoard';
 
@@ -16,7 +17,7 @@ export class TicCell {
     this.board = board;
     this.x = x;
     this.y = y;
-    this.id = Math.random();
+    this.id = uuidv4();
   }
 
   click() {

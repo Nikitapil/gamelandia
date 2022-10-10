@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { v4 as uuidv4 } from 'uuid';
 import { FigureNames } from '../../constants/chess';
 import { Board } from '../../models/chess/Board';
 import { Cell } from '../../models/chess/Cell';
@@ -82,7 +83,7 @@ export const ChessBoardComponent: FC<ChessBoardComponentProps> = ({
       </div>
       <div className="board">
         {board.cells.map((row) => (
-          <React.Fragment key={Math.random()}>
+          <React.Fragment key={uuidv4()}>
             {row.map((cell) => (
               <ChessCellComponents
                 click={click}

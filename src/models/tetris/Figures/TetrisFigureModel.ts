@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { TetrisBoardModel } from '../TetrisBoardModel';
 import { TetrisElem } from '../TetrisElem';
 import { ETetrisColors, ETetrisDirections } from '../../../constants/tetris';
@@ -23,7 +24,7 @@ export class TetrisFigureModel {
     board: TetrisBoardModel,
     possibleDirections: ETetrisDirections[]
   ) {
-    this.id = Math.random();
+    this.id = uuidv4();
     this.board = board;
     this.possibleDirections = possibleDirections;
     this.currentDirection = this.possibleDirections[0];

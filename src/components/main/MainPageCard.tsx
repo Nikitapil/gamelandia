@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { v4 as uuidv4 } from 'uuid';
 import { gamePics } from '../../utils/gamePicsBuilder';
 import { GameLabel } from '../UI/GameLabel';
 import mainStyles from '../../styles/mainpage.module.scss';
@@ -35,7 +36,7 @@ export const MainPageCard: FC<MainPageCardProps> = ({
         <p className={mainStyles['game-description']}>{t(description)}</p>
         <div className={mainStyles.labeles__container}>
           {labels.map((label) => (
-            <GameLabel key={Math.random()} text={label} />
+            <GameLabel key={uuidv4()} text={label} />
           ))}
         </div>
       </div>

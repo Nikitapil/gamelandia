@@ -2,6 +2,7 @@ import { User } from 'firebase/auth';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import { EGamesWithScoreBoard } from '../../domain/scoreTypes';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { fetchBoardScores } from '../../redux/score/scoreActions';
@@ -33,7 +34,7 @@ export const CommonScoreBoard = ({ user, game }: CommonScoreBoardProps) => {
               className={`${commonStyles['score-board_value']} ${
                 user.uid === score.uid ? commonStyles['my-score'] : ''
               }`}
-              key={Math.random()}
+              key={uuidv4()}
             >
               <span>{score.name}</span>
               <span>{score.score}</span>

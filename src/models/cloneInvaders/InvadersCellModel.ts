@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { InvadersFieldModel } from './InvadersFieldModel';
 
 export class InvadersCellModel {
@@ -15,7 +16,7 @@ export class InvadersCellModel {
     this.x = x;
     this.y = y;
     this.field = field;
-    this.id = Math.random();
+    this.id = uuidv4();
   }
 
   changeDirection() {

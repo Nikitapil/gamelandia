@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import defaultPic from '../assets/gamepictures/default.png';
 import birds from '../assets/matchMatch/birds.jpeg';
 import cat from '../assets/matchMatch/cat.jpeg';
@@ -40,68 +41,68 @@ export const matchMatchPics = [
     pic: birds,
     flipped: false,
     disabled: false,
-    id: Math.random()
+    id: uuidv4()
   },
   {
     name: 'dog',
     pic: dog,
     flipped: false,
     disabled: false,
-    id: Math.random()
+    id: uuidv4()
   },
   {
     name: 'cat',
     pic: cat,
     flipped: false,
     disabled: false,
-    id: Math.random()
+    id: uuidv4()
   },
   {
     name: 'donkey',
     pic: donkey,
     flipped: false,
     disabled: false,
-    id: Math.random()
+    id: uuidv4()
   },
   {
     name: 'fox',
     pic: fox,
     flipped: false,
     disabled: false,
-    id: Math.random()
+    id: uuidv4()
   },
   {
     name: 'ghost',
     pic: ghost,
     flipped: false,
     disabled: false,
-    id: Math.random()
+    id: uuidv4()
   },
   {
     name: 'giene',
     pic: giene,
     flipped: false,
     disabled: false,
-    id: Math.random()
+    id: uuidv4()
   },
   {
     name: 'littledog',
     pic: littledog,
     flipped: false,
     disabled: false,
-    id: Math.random()
+    id: uuidv4()
   },
   {
     name: 'racoon',
     pic: racoon,
     flipped: false,
-    id: Math.random()
+    id: uuidv4()
   },
   {
     name: 'wolf',
     pic: wolf,
     flipped: false,
     disabled: false,
-    id: Math.random()
+    id: uuidv4()
   }
 ];

@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { Colors } from '../Colors';
 import logo from '../../../assets/checkmates/black-king.png';
 import { FigureNames } from '../../../constants/chess';
@@ -24,7 +25,7 @@ export class Figure {
     }
     this.logo = null;
     this.name = FigureNames.FIGURE;
-    this.id = Math.random();
+    this.id = uuidv4();
   }
 
   canMove(target: Cell): boolean {

@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { BattleshipBoardModel } from './BattleShipBoardModel';
 import { BattleShipElemModel } from './BattleShipElemModel';
 
@@ -25,7 +26,7 @@ export class BattleshipCellModel {
     this.y = y;
     this.x = x;
     this.board = board;
-    this.id = Math.random();
+    this.id = uuidv4();
     this.isAttacked = isAttacked;
   }
 

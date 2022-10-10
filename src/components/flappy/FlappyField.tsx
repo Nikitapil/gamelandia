@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { v4 as uuidv4 } from 'uuid';
 import flappyStyles from '../../styles/flappy.module.scss';
 import { FlappyPipe } from './FlappyPipe';
 import { FlappyGameModel } from '../../models/flappy/FlappyGameModel';
@@ -93,7 +94,7 @@ export const FlappyField = ({ onUpdateScore }: FlappyFieldProps) => {
       )}
       <FlappyHero game={game} />
       {game.pipes.map((pipe) => (
-        <FlappyPipe key={Math.random()} pipe={pipe} />
+        <FlappyPipe key={uuidv4()} pipe={pipe} />
       ))}
       <div className={flappyStyles.bottom} />
     </div>

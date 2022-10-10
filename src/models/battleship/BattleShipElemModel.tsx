@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { EBattleShipElemDirection } from '../../constants/battleship';
 import { BattleshipCellModel } from './BattleShipCellModel';
 
@@ -12,7 +13,7 @@ export class BattleShipElemModel {
 
   constructor(size: number, direction = EBattleShipElemDirection.HORIZONTAL) {
     this.size = size;
-    this.id = Math.random();
+    this.id = uuidv4();
     this.direction = direction;
   }
 

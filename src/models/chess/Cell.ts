@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { Board } from './Board';
 import { Colors } from './Colors';
 import { Figure } from './figures/figure';
@@ -30,7 +31,7 @@ export class Cell {
     this.color = color;
     this.figure = figure;
     this.available = false;
-    this.id = Math.random();
+    this.id = uuidv4();
   }
 
   setFigure(figure: Figure | null) {

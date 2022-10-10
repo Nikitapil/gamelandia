@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { SnakeBoardModel } from './SnakeBoardModel';
 import { SnakeElemModel } from './SnakeElemModel';
 
@@ -16,7 +17,7 @@ export class SnakeCellModel {
 
   constructor(board: SnakeBoardModel, x: number, y: number) {
     this.board = board;
-    this.id = Math.random();
+    this.id = uuidv4();
     this.x = x;
     this.y = y;
   }
