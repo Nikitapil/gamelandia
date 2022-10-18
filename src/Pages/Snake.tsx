@@ -21,6 +21,7 @@ import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../constants/breadcrumbs';
 import { useTitle } from '../hooks/useTitle';
 import { isMobile } from '../utils/helpers';
+import { AppButton } from '../components/UI/AppButton';
 
 interface SnakeProps {
   auth: Auth;
@@ -146,23 +147,20 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
       <h2 className={snakeStyles.snake__title}>Snake Game</h2>
       <div className={snakeStyles.snake__btns}>
         {!isNewGameButtonDisabled && (
-          <button
-            className={snakeStyles.snake__btn}
-            onClick={newGame}
-            type="button"
-          >
+          <AppButton color="success" onClick={newGame} type="button" size="lg">
             {t('new_game')}
-          </button>
+          </AppButton>
         )}
         {!gameOver && (
-          <button
-            className={snakeStyles.snake__btn}
+          <AppButton
+            color="success"
+            size="lg"
             onClick={onStartGame}
-            data-testid="start-game"
+            testId="start-game"
             type="button"
           >
             {t('start_game')}
-          </button>
+          </AppButton>
         )}
         <p>
           {t('score')}: {board?.score}
@@ -171,36 +169,31 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
       {!isNewGameButtonDisabled && (
         <div className={snakeStyles.snake__difficulty}>
           <p>{t('difficulty')}:</p>
-          <button
-            className={`${
-              timer === 150 ? snakeStyles['snake-current-level'] : ''
-            }`}
+          <AppButton
+            size="sm"
+            color={timer === 150 ? 'success' : 'primary'}
             onClick={() => setTimer(150)}
-            data-testid="easy-level"
+            testId="easy-level"
             type="button"
           >
             {t('easy')}
-          </button>
-          <button
-            className={`${
-              timer === 100 ? snakeStyles['snake-current-level'] : ''
-            }`}
+          </AppButton>
+          <AppButton
+            color={timer === 100 ? 'success' : 'primary'}
             onClick={() => setTimer(100)}
-            data-testid="medium-level"
+            testId="medium-level"
             type="button"
           >
             {t('medium')}
-          </button>
-          <button
-            className={`${
-              timer === 50 ? snakeStyles['snake-current-level'] : ''
-            }`}
+          </AppButton>
+          <AppButton
+            color={timer === 50 ? 'success' : 'primary'}
             onClick={() => setTimer(50)}
-            data-testid="hard-level"
+            testId="hard-level"
             type="button"
           >
             {t('hard')}
-          </button>
+          </AppButton>
         </div>
       )}
       <p className={snakeStyles['snake__game-over']}>{gameOver}</p>

@@ -1,0 +1,59 @@
+@import "vars";
+
+.app-button {
+  border: none;
+  padding: 3px 5px;
+  transition: 0.4s;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.49);
+  display: block;
+  font-size: 16px;
+  &:hover {
+    opacity: 0.7;
+  }
+  &:active {
+    opacity: 1;
+  }
+  &.sm {
+    padding: 0 5px;
+  }
+  &.lg {
+    padding: 0 5px;
+    font-size: 22px;
+  }
+  &.primary {
+    background-color: $primary;
+  }
+  &.success {
+    background-color: $success;
+  }
+  &.danger {
+    background-color: $danger;
+  }
+  &.dark {
+    background-color: $dark;
+    color: $mainColor;
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+  &.transparent {
+    background: none;
+    color: $mainColor;
+    box-shadow: none;
+    &:hover {
+      color: #00c4f0;
+    }
+  }
+  &.full-width {
+    width: 100%;
+  }
+  &.rounded {
+    border-radius: 5px;
+  }
+  &:disabled {
+    background-color: gray;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

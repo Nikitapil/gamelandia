@@ -1,5 +1,6 @@
 import React, { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { AppButton } from '../UI/AppButton';
 
 interface TimerModalProps {
   start: (time: number) => void;
@@ -35,14 +36,14 @@ export const TimerModal = memo(({ start, closeModal }: TimerModalProps) => {
         />{' '}
         {t('min')}
       </label>
-      <button
-        className="timer-button"
+      <AppButton
+        color="dark"
         onClick={onStart}
-        data-testid="chess-start-button"
+        testId="chess-start-button"
         type="button"
       >
         {t('start_game')}
-      </button>
+      </AppButton>
     </div>
   );
 });

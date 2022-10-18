@@ -5,6 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 import { HorizotalLoader } from '../UI/Loaders/HorizotalLoader';
 import headerStyles from '../../styles/header.module.scss';
+import { AppButton } from '../UI/AppButton';
 
 interface AppHeaderProps {
   auth: Auth;
@@ -54,13 +55,14 @@ export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
             ) : (
               <li>
                 {' '}
-                <button
-                  className={headerStyles['logout-btn']}
+                <AppButton
+                  color="transparent"
+                  customClass={headerStyles['logout-btn']}
                   onClick={onSignOut}
                   type="button"
                 >
                   {t('logout')}
-                </button>
+                </AppButton>
               </li>
             )}
           </ul>

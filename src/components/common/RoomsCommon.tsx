@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { setAppNotification } from '../../redux/appStore/appActions';
 import { HorizotalLoader } from '../UI/Loaders/HorizotalLoader';
 import commonStyles from '../../styles/common.module.scss';
+import { AppButton } from '../UI/AppButton';
 
 interface RoomsCommonProps {
   auth: Auth;
@@ -47,13 +48,9 @@ export const RoomsCommon = memo(
           <thead>
             <tr>
               <td>
-                <button
-                  className={commonStyles['create-room__btn']}
-                  onClick={createRoom}
-                  type="button"
-                >
+                <AppButton color="success" onClick={createRoom} type="button">
                   {t('create_room')}
-                </button>
+                </AppButton>
               </td>
             </tr>
           </thead>

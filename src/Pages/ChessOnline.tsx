@@ -23,6 +23,7 @@ import {
   chessBoardToFirebaseMapper,
   mapBoardFromFireBase
 } from '../utils/chess/chessMapper';
+import { AppButton } from '../components/UI/AppButton';
 
 interface ChessOnlineProps {
   firestore: Firestore;
@@ -170,15 +171,15 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
             currentPlayer={currentPlayer}
           />
         )}
-        <button
-          className="chess__give-up"
-          data-testid="give-up-btn"
+        <AppButton
+          color="danger"
+          testId="give-up-btn"
           disabled={!isClickAvailable}
           onClick={() => endGame()}
           type="button"
         >
           {t('give_up')}
-        </button>
+        </AppButton>
       </div>
       <ChessBoardComponent
         board={board}

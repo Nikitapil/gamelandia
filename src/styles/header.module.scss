@@ -39,10 +39,8 @@
   background: none;
   transition: 0.4s;
   @media (max-width: 465px) {
-    font-size: 12px;
-  }
-  &:hover {
-    color: #00c4f0;
+    font-size: 12px !important;
+    padding-bottom: 0 !important;
   }
 }
 

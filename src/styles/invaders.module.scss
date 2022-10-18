@@ -44,15 +44,7 @@
 }
 
 .start {
-  background: none;
-  color: $mainColor;
   font-size: 30px;
-  transition: 0.4s;
-  border: none;
-  letter-spacing: 1px;
-  &:hover {
-    color: $titleColor;
-  }
 }
 
 .score {
@@ -67,16 +59,8 @@
 }
 
 .gameOver__btn {
-  background: none;
-  color: #000000;
   font-size: 30px;
-  display: block;
   margin: 0 auto;
-  border: none;
-  transition: 0.4s;
-  &:hover {
-    color: #373737;
-  }
 }
 
 .score-board {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import invadersStyles from '../../styles/invaders.module.scss';
+import { AppButton } from '../UI/AppButton';
 
 interface InvadersGameOverProps {
   score: number;
@@ -18,13 +19,13 @@ export const InvadersGameOver = ({
       <p className={invadersStyles.gameOver__text}>
         {t('your_score')}: {score}
       </p>
-      <button
+      <AppButton
         onClick={closeModal}
-        className={invadersStyles.gameOver__btn}
+        text="Okay"
+        color="dark"
+        customClass={invadersStyles.gameOver__btn}
         type="button"
-      >
-        Okay
-      </button>
+      />
     </div>
   );
 };

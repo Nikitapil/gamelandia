@@ -13,6 +13,7 @@ import { InvadersBullet } from './InvadersBullet';
 import { InvadersCell } from './InvadersCell';
 import { InvadersGameOver } from './InvadersGameOver';
 import { InvadersGun } from './InvadersGun';
+import { AppButton } from '../UI/AppButton';
 
 interface InvadersFieldProps {
   user: User | null | undefined;
@@ -132,9 +133,12 @@ export const InvadersField = ({ user }: InvadersFieldProps) => {
       ref={containerRef}
     >
       {!board.isGameStarted && (
-        <button onClick={onStartGame} className={invadersStyles.start}>
-          Start
-        </button>
+        <AppButton
+          onClick={onStartGame}
+          text="Start"
+          color="transparent"
+          customClass={invadersStyles.start}
+        />
       )}
       {board.isGameStarted && (
         <div className={invadersStyles['invaders__field-cells']}>

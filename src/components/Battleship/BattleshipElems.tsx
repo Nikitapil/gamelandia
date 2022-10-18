@@ -17,6 +17,7 @@ import {
   mapShipsToFirebase
 } from '../../utils/battleship/battleShipMappers';
 import battlShipStyles from '../../styles/battleship.module.scss';
+import { AppButton } from '../UI/AppButton';
 
 interface BattleshipElemsProps {
   roomData: any;
@@ -61,21 +62,13 @@ export const BattleshipElems: FC<BattleshipElemsProps> = ({
       {freeShips.length > 0 ? (
         freeShips.map((el) => <BattleShipElem key={el.id} elem={el} />)
       ) : (
-        <button
-          className={battlShipStyles['battleship-btn']}
-          onClick={setIsReady}
-          type="button"
-        >
+        <AppButton color="danger" onClick={setIsReady} type="button">
           {t('ready')}
-        </button>
+        </AppButton>
       )}
-      <button
-        className={battlShipStyles['battleship-btn']}
-        onClick={resetShips}
-        type="button"
-      >
+      <AppButton color="danger" onClick={resetShips} type="button">
         {t('reset_ships')}
-      </button>
+      </AppButton>
     </div>
   );
 };

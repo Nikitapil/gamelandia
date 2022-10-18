@@ -27,6 +27,7 @@ import { fetchBoardScores } from '../redux/score/scoreActions';
 import { ScoreService } from '../services/scoreService';
 import tetrisStyle from '../styles/tetris.module.scss';
 import { isMobile } from '../utils/helpers';
+import { AppButton } from '../components/UI/AppButton';
 
 interface TetrisProps {
   auth: Auth;
@@ -166,22 +167,26 @@ export const Tetris = ({ auth }: TetrisProps) => {
       {isGameOver && <p className={tetrisStyle['game-over']}>Game over</p>}
       <div className={tetrisStyle.controlls}>
         {isShowStartBtn && (
-          <button
-            className={tetrisStyle['game-btn']}
+          <AppButton
+            size="sm"
+            color="success"
             onClick={startGame}
             type="button"
+            customClass={tetrisStyle['game-btn']}
           >
             {t('start_game')}
-          </button>
+          </AppButton>
         )}
         {isShowNewGameBtn && (
-          <button
-            className={tetrisStyle['game-btn']}
+          <AppButton
+            size="sm"
+            color="success"
             onClick={initBoard}
             type="button"
+            customClass={tetrisStyle['game-btn']}
           >
             {t('new_game')}
-          </button>
+          </AppButton>
         )}
         <p className={tetrisStyle.score}>
           {t('score')}: {score}

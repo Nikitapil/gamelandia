@@ -42,11 +42,11 @@ describe('snake tests', () => {
     const mediumBtn = screen.getByTestId('medium-level');
     const hardBtn = screen.getByTestId('hard-level');
     userEvent.click(easyBtn);
-    expect(easyBtn).toHaveClass('snake-current-level');
+    expect(easyBtn).toHaveClass('success');
     userEvent.click(mediumBtn);
-    expect(mediumBtn).toHaveClass('snake-current-level');
+    expect(mediumBtn).toHaveClass('success');
     userEvent.click(hardBtn);
-    expect(hardBtn).toHaveClass('snake-current-level');
+    expect(hardBtn).toHaveClass('success');
   });
 
   test('should recall timer', () => {

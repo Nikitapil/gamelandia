@@ -9,6 +9,7 @@ import matchStyles from '../styles/match.module.scss';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../constants/breadcrumbs';
 import { useTitle } from '../hooks/useTitle';
+import { AppButton } from '../components/UI/AppButton';
 
 export const MatchMatch = () => {
   const { t } = useTranslation();
@@ -107,25 +108,17 @@ export const MatchMatch = () => {
       {isWin && (
         <p className={matchStyles.match__win}>
           {t('you_win')}!!!
-          <button
-            className={matchStyles['match__new-game']}
-            onClick={newGame}
-            type="button"
-          >
+          <AppButton onClick={newGame} type="button">
             {t('new_game')}
-          </button>
+          </AppButton>
         </p>
       )}
       {isLoose && (
         <p className={matchStyles.match__loose}>
           {t('you_loose')}
-          <button
-            className={matchStyles['match__new-game']}
-            onClick={newGame}
-            type="button"
-          >
+          <AppButton onClick={newGame} type="button">
             {t('new_game')}
-          </button>
+          </AppButton>
         </p>
       )}
       <div className={matchStyles.match__cards}>

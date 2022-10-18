@@ -4,6 +4,7 @@ import { Colors } from '../../models/chess/Colors';
 import { Player } from '../../models/chess/Player';
 import { ModalContainer } from '../UI/ModalContainer';
 import { TimerModal } from './TimerModal';
+import { AppButton } from '../UI/AppButton';
 
 interface ChessTimerProps {
   currentPlayer: Player | null;
@@ -87,14 +88,15 @@ export const ChessTimer = memo(
 
     return (
       <div>
-        <button
+        <AppButton
           onClick={() => setIsModalOpen(true)}
-          className="chess__restart"
-          data-testid="chess__restart"
+          customClass="chess__restart"
+          testId="chess__restart"
           type="button"
+          fullWidth
         >
           {t('restart_game')}
-        </button>
+        </AppButton>
         <div className="chess-timer__time">
           <div className="chess-timer__item">
             {t('black')} -{' '}

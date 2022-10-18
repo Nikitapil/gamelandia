@@ -1,6 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ModalContainer } from '../UI/ModalContainer';
+import { AppButton } from '../UI/AppButton';
 
 interface WinnerModalProps {
   color: string;
@@ -16,13 +17,15 @@ export const WinnerModal: FC<WinnerModalProps> = ({ color, newGame }) => {
 
   return (
     <ModalContainer title={winner + t('wins')} closeModal={newGame}>
-      <button
-        data-testid="newGame-btn"
-        className="chess__new-game"
+      <AppButton
+        color="dark"
+        testId="newGame-btn"
         onClick={newGame}
+        customClass="chess__new-game"
+        fullWidth
       >
         {t('new_game')}
-      </button>
+      </AppButton>
     </ModalContainer>
   );
 };

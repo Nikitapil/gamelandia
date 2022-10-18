@@ -11,3 +11,5 @@ export const isMobile = () => {
     navigator.userAgent
   );
 };
+
+export const noop = () => {};

@@ -11,6 +11,7 @@ import { Board } from '../models/chess/Board';
 import { Colors } from '../models/chess/Colors';
 import { Player } from '../models/chess/Player';
 import '../styles/chess.scss';
+import { AppButton } from '../components/UI/AppButton';
 
 export const Chess = () => {
   const { t } = useTranslation();
@@ -66,14 +67,16 @@ export const Chess = () => {
           setIsModalOpen={setIsTimerModalOpen}
           setWinner={setWinner}
         />
-        <button
-          className="chess__give-up"
-          data-testid="give-up-btn"
+        <AppButton
+          color="danger"
+          fullWidth
+          size="lg"
+          testId="give-up-btn"
           type="button"
           onClick={() => endGame()}
         >
           {t('give_up')}
-        </button>
+        </AppButton>
       </div>
       <ChessBoardComponent
         board={board}

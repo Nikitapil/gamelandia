@@ -13,7 +13,7 @@
     height: calc(64px * 8);
     display: flex;
     flex-wrap: wrap;
-    box-shadow: 0 0 12px 12px #0e0d0d;
+    box-shadow: 4px 0 12px 12px #0e0d0d;
     @media (max-width: 735px) {
       width: calc(45px * 8);
     height: calc(45px * 8);
@@ -114,22 +114,11 @@
       align-items: center;
     }
   }
+
   .chess__restart {
-    border: none;
-    padding: 0 5px;
-    background-color: $titleColor;
-    border-radius: 6px;
-    transition: 0.4s;
     margin-bottom: 10px;
-    font-size: 20px;
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.49);
-    &:hover {
-      background-color: #5ce1ff;
-    }
-    @media (max-width: 480px) {
-      font-size: 16px;
-    }
   }
+
   .chess-timer__time {
     color: $mainColor;
   }
@@ -188,17 +177,7 @@
     }
   }
   .chess__new-game {
-    border: none;
-    padding: 0 5px;
-    background-color: rgb(59, 248, 81);
-    border-radius: 6px;
-    transition: 0.4s;
-    margin-top: 10px;
-    height: 25px;
-    font-size: 22px;
-    &:hover {
-      background-color: #48b73c;
-    }
+    margin-top: 20px;
   }
   .chess__give-up {
     border: none;

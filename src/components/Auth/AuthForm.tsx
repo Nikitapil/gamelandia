@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import authStyles from '../../styles/auth.module.scss';
 import { AppInput } from '../UI/AppInput';
+import { AppButton } from '../UI/AppButton';
 
 interface AuthFormProps {
   formTitle: string;
@@ -72,13 +73,9 @@ export const AuthForm: FC<AuthFormProps> = ({
           required
         />
       )}
-      <button
-        className={authStyles['auth-form__button']}
-        type="submit"
-        data-testid="submit"
-      >
+      <AppButton fullWidth type="submit" testId="submit">
         {formTitle}
-      </button>
+      </AppButton>
     </form>
   );
 };
