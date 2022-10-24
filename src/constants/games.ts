@@ -70,6 +70,16 @@ export const games = [
     mobileSuitable: false
   },
   {
+    id: 10,
+    gameName: 'aim_game',
+    pictureName: 'aim',
+    description: 'aim_game_description',
+    path: 'aim-game',
+    isOutside: false,
+    labels: ['Single player', 'Not suitable for mobile'],
+    mobileSuitable: false
+  },
+  {
     id: 1,
     gameName: 'match_match',
     pictureName: 'default',

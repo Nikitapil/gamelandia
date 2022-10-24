@@ -83,5 +83,8 @@
   "flappy_bird": "Flappy Bird",
   "flappy_description": "Клон знаменитой игры flappy bird",
   "flappy_start_text": "Нажмите пробел чтобы начать игру",
-  "draw": "НИЧЬЯ"
+  "draw": "НИЧЬЯ",
+  "aim_game": "Aim Game",
+  "aim_game_description": "В игре необходимо попасть в меняющую размеры и положение цель максимальное количество раз за ограниченное время",
+  "remaining_time": "Оставшееся время"
 }

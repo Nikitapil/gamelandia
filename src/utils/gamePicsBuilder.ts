@@ -18,6 +18,7 @@ import battleship from '../assets/gamepictures/battleship.webp';
 import tetris from '../assets/gamepictures/tetris.png';
 import cloneInvaders from '../assets/cloneInvaders/cloneInvaders.webp';
 import flappy from '../assets/gamepictures/flappy.png';
+import aim from '../assets/gamepictures/aim.png';
 
 interface IGamePics {
   [key: string]: string;
@@ -32,7 +33,8 @@ export const gamePics: IGamePics = {
   battleship,
   cloneInvaders,
   tetris,
-  flappy
+  flappy,
+  aim
 };
 
 export const matchMatchPics = [

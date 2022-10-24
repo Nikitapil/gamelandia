@@ -30,5 +30,6 @@ export type TScoreActions = IScoreSetScoresAction | IScoreSetLoadingAction;
 export enum EGamesWithScoreBoard {
   INVADERS = 'invaders',
   TETRIS = 'tetris',
-  FLAPPY = 'flappy'
+  FLAPPY = 'flappy',
+  AIM = 'aim'
 }
