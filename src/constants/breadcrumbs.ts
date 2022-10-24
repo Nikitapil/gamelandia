@@ -73,5 +73,10 @@ export const breadcrumbs = {
     id: 'breadcrumb_flappy',
     name: 'flappy_bird',
     path: '/flappy'
+  },
+  aim: {
+    id: 'breadcrumb_aim',
+    name: 'aim_game',
+    path: '/aim-game'
   }
 };

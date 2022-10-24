@@ -83,5 +83,8 @@
   "flappy_bird": "Flappy Bird",
   "flappy_description": "Clone of famous flappy bird game",
   "flappy_start_text": "Press Space to start the game",
-  "draw": "DRAW"
+  "draw": "DRAW",
+  "aim_game": "Aim Game",
+  "aim_game_description": "I this game you need to click the changing aim as much as possible times in limited time",
+  "remaining_time": "Remaining time"
 }
