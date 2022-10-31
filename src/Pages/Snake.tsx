@@ -30,6 +30,7 @@ interface SnakeProps {
 export const Snake: FC<SnakeProps> = ({ auth }) => {
   useTitle('Snake');
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.snake]);
+  const snakeContainer = useRef<HTMLDivElement | null>(null);
   const [board, setBoard] = useState<SnakeBoardModel | null>(null);
   const [gameOver, setGameOver] = useState('');
   const [isClickAvailable, setIsClickAvailable] = useState(true);
@@ -115,6 +116,7 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
 
   const onStartGame = () => {
     if (!isNewGameButtonDisabled) {
+      snakeContainer.current?.focus();
       setIsNewGameButtonDisabled(true);
       startMoving();
     }
@@ -138,11 +140,17 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
     return isMobile();
   }, []);
 
+  useEffect(() => {
+    snakeContainer.current?.focus();
+  }, []);
+
   return (
     <div
       className={`${snakeStyles.snake__container} container`}
       onKeyDown={onKeyPress}
       data-testid="snake-page"
+      tabIndex={0}
+      ref={snakeContainer}
     >
       <h2 className={snakeStyles.snake__title}>Snake Game</h2>
       <div className={snakeStyles.snake__btns}>
@@ -151,7 +159,7 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
             {t('new_game')}
           </AppButton>
         )}
-        {!gameOver && (
+        {!gameOver && !isNewGameButtonDisabled && (
           <AppButton
             color="success"
             size="lg"
