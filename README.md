@@ -6,4 +6,4 @@ Game application. There you can find and play some different games such as Match
 
 ## Technologies used
 
-React, React-router-dom, React Hooks, Typescript, Html, Scss.
+React, React-router-dom, React Hooks, Redux, Redux-Saga, Typescript, i18n, OOP, Fontawesome, react testing library, firebase,  Html, Scss, eslint, husky.
