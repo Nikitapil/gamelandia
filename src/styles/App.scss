@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-  max-width: 1240px;
+  max-width: $containerWidth + px;
   margin: 0 auto;
   padding: 5px 20px;
 }
