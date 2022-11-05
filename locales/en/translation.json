@@ -86,5 +86,8 @@
   "draw": "DRAW",
   "aim_game": "Aim Game",
   "aim_game_description": "I this game you need to click the changing aim as much as possible times in limited time",
-  "remaining_time": "Remaining time"
+  "remaining_time": "Remaining time",
+  "sorry": "SORRY !",
+  "page_not_found": "The Page You're Looking For Was Not Found",
+  "go_to_main": "Go to Main"
 }
