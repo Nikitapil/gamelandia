@@ -23,6 +23,14 @@
 }
 
 @font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('./fonts/Ubuntu-Light.ttf') format('truetype');
+}
+
+@font-face {
   font-family: 'Orbitron';
   font-style: normal;
   font-weight: 400;

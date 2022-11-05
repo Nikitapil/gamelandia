@@ -47,6 +47,7 @@
         "react/no-unused-prop-types": "off",
         "jsx-a11y/mouse-events-have-key-events": "off",
         "react/jsx-props-no-spreading": "off",
-        "prefer-destructuring": "off"
+        "prefer-destructuring": "off",
+        "react/no-unescaped-entities": "off"
     }
 }
