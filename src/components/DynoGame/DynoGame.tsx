@@ -5,12 +5,21 @@ import React, {
   useRef,
   useState
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from '../../styles/dyno.module.scss';
 import dynoImg from '../../assets/dyno/dyno.png';
 import { DynoCactus } from './DynoCactus';
 import { DynoGameModel } from '../../models/DynoGame/DynoGameModel';
+import {
+  DYNO_ANIMATION_SPEED,
+  DYNO_CACTUS_SPEED,
+  DYNO_HEIGHT,
+  DYNO_ITEMS_WIDTH,
+  DYNO_LEFT_WIDTH
+} from '../../constants/dyno';
 
 export const DynoGame = () => {
+  const { t } = useTranslation();
   const [game, setGame] = useState<DynoGameModel | null>(null);
   const [isGameStarted, setIsGameStarted] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
@@ -45,9 +54,9 @@ export const DynoGame = () => {
         window.getComputedStyle(dyno.current!).bottom
       );
       if (
-        newGame.cactuses[0]?.right > fieldWidth - 90 &&
-        newGame.cactuses[0]?.right < fieldWidth - 20 &&
-        dynoBottom < 50
+        newGame.cactuses[0]?.right > fieldWidth - DYNO_ITEMS_WIDTH &&
+        newGame.cactuses[0]?.right < fieldWidth - DYNO_LEFT_WIDTH &&
+        dynoBottom < DYNO_HEIGHT
       ) {
         gameOver();
       }
@@ -59,7 +68,7 @@ export const DynoGame = () => {
     setTimeout(() => {
       setDynoClasses([styles.dyno]);
       setIsJumpInProgress(false);
-    }, 1400);
+    }, DYNO_ANIMATION_SPEED);
   };
 
   const startGame = () => {
@@ -77,7 +86,7 @@ export const DynoGame = () => {
       if (gameInterval.current) {
         clearInterval(gameInterval.current);
       }
-      gameInterval.current = setInterval(() => move(), 3);
+      gameInterval.current = setInterval(() => move(), DYNO_CACTUS_SPEED);
     }
   }, [game, move, isGameStarted]);
 
@@ -112,7 +121,9 @@ export const DynoGame = () => {
         onClick={action}
         tabIndex={0}
       >
-        {!isGameStarted && <p className={styles.text}>Press Space To Start</p>}
+        {!isGameStarted && (
+          <p className={styles.text}>{t('flappy_start_text')}</p>
+        )}
         {isGameOver && <p className={styles.text}>Game Over!!!</p>}
         <div className={dynoClasses.join(' ')} ref={dyno}>
           <img src={dynoImg} alt="dyno-icon" />

@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styles from '../styles/notfound.module.scss';
 import { useTitle } from '../hooks/useTitle';
 import { DynoGame } from '../components/DynoGame/DynoGame';
+import { isMobile } from '../utils/helpers';
 
 export const NotFound = () => {
   useTitle('404');
   const { t } = useTranslation();
+
+  const isMobileDevice = useMemo(() => {
+    return isMobile();
+  }, []);
 
   return (
     <div className="container">
@@ -21,7 +26,7 @@ export const NotFound = () => {
           </Link>
         </div>
       </div>
-      <DynoGame />
+      {!isMobileDevice && <DynoGame />}
     </div>
   );
 };
