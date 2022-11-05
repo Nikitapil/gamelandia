@@ -12,4 +12,12 @@ export const isMobile = () => {
   );
 };
 
+export const getRandomBoolean = (): boolean => {
+  return Math.random() > 0.5;
+};
+
+export const getRandomFromArray = <T>(array: T[]): T => {
+  return array[Math.floor(Math.random() * array.length)];
+};
+
 export const noop = () => {};
