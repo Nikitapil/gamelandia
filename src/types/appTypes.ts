@@ -29,3 +29,7 @@ interface ISetBreadcrumbs {
 }
 
 export type AppActions = ISetNotification | ISetBreadcrumbs;
+
+export type TStringKeyObject = {
+  [key: string]: string;
+};

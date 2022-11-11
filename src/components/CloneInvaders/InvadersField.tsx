@@ -2,7 +2,7 @@ import { User } from 'firebase/auth';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { EGamesWithScoreBoard } from '../../domain/scoreTypes';
+import { EGamesWithScoreBoard } from '../../types/scoreTypes';
 import { InvadersBulletModel } from '../../models/cloneInvaders/InvadersBulletModel';
 import { InvadersFieldModel } from '../../models/cloneInvaders/InvadersFieldModel';
 import { fetchBoardScores } from '../../redux/score/scoreActions';

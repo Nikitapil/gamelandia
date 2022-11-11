@@ -3,7 +3,7 @@ import { FigureNames } from '../../constants/chess';
 import {
   IFirebaseChessBoard,
   IFireBaseChessFigure
-} from '../../domain/chessTypes';
+} from '../../types/chessTypes';
 import { Board } from '../../models/chess/Board';
 import { Cell } from '../../models/chess/Cell';
 import { Bishop } from '../../models/chess/figures/Bishop';

@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { EScoreActionsTypes, IBoardScore } from '../../domain/scoreTypes';
+import { EScoreActionsTypes, IBoardScore } from '../../types/scoreTypes';
 import { ScoreService } from '../../services/scoreService';
 import { setBoardLoading, setBoardScores } from './scoreActions';
 

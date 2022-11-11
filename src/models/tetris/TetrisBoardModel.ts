@@ -1,6 +1,7 @@
 import { tetrisFigures } from '../../constants/tetris';
 import { TetrisFigureModel } from './Figures/TetrisFigureModel';
 import { TetrisCellModel } from './TetrisCellModel';
+import { getRandomFromArray } from '../../utils/helpers';
 
 export class TetrisBoardModel {
   cells: TetrisCellModel[][] = [];
@@ -22,9 +23,9 @@ export class TetrisBoardModel {
   }
 
   startGame() {
-    const keys = Object.keys(tetrisFigures);
-    const idx = Math.floor(Math.random() * keys.length);
-    this.currentFigure = new tetrisFigures[keys[idx]](this, []);
+    const models = Object.values(tetrisFigures);
+    const NextModel = getRandomFromArray(models);
+    this.currentFigure = new NextModel(this, []);
   }
 
   copyBoard() {

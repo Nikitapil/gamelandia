@@ -2,7 +2,7 @@ import {
   EScoreActionsTypes,
   IScoreBoardInitialState,
   TScoreActions
-} from '../../domain/scoreTypes';
+} from '../../types/scoreTypes';
 
 const initialState: IScoreBoardInitialState = {
   scores: [],

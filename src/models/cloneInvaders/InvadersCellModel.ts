@@ -1,5 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 import { InvadersFieldModel } from './InvadersFieldModel';
+import {
+  INVADER_CELL_HEIGHT,
+  INVADER_CELL_WIDTH,
+  INVADERS_HEIGHT_STEP
+} from '../../constants/invaders';
 
 export class InvadersCellModel {
   x: number;
@@ -21,7 +26,7 @@ export class InvadersCellModel {
 
   changeDirection() {
     this.field.changeDirection();
-    this.field.nextY = 10;
+    this.field.nextY = INVADERS_HEIGHT_STEP;
   }
 
   destroyElem() {
@@ -30,8 +35,8 @@ export class InvadersCellModel {
 
   get cellEnd() {
     return {
-      xEnd: this.x + 37.5,
-      yEnd: this.y + 30
+      xEnd: this.x + INVADER_CELL_WIDTH,
+      yEnd: this.y + INVADER_CELL_HEIGHT
     };
   }
 }

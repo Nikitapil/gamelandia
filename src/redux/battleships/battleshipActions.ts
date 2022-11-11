@@ -1,5 +1,5 @@
 import { BattleshipBoardModel } from '../../models/battleship/BattleShipBoardModel';
-import { BattleShipActionsTypes } from '../../domain/battleshipTypes';
+import { BattleShipActionsTypes } from '../../types/battleshipTypes';
 import { BattleShipElemModel } from '../../models/battleship/BattleShipElemModel';
 
 export const setFreeShips = (payload: BattleShipElemModel[]) => {

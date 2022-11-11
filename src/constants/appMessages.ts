@@ -1,4 +1,6 @@
-export const authErrorMessages: any = {
+import { TStringKeyObject } from '../types/appTypes';
+
+export const authErrorMessages: TStringKeyObject = {
   'auth/user-not-found': 'user_not_found',
   'auth/wrong-password': 'wrong_password',
   'auth/invalid-email': 'invalid_email',

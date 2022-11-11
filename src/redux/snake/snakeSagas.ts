@@ -1,7 +1,7 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { SnakeService } from '../../services/SnakeService';
 import { SetAllSnakeBestScores, SetSnakeMyBestScores } from './snakeActions';
-import { ESnakeActions, ISnakeInitialState } from '../../domain/snakeTypes';
+import { ESnakeActions, ISnakeInitialState } from '../../types/snakeTypes';
 
 function* getSnakeBestScores() {
   try {

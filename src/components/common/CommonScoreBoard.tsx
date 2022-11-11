@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { EGamesWithScoreBoard } from '../../domain/scoreTypes';
+import { EGamesWithScoreBoard } from '../../types/scoreTypes';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { fetchBoardScores } from '../../redux/score/scoreActions';
 import { scoreSelector } from '../../redux/score/scoreSelector';
