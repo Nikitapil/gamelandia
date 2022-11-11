@@ -13,7 +13,7 @@ export const LanguageDropdown = () => {
     setIsOpen(false);
   };
 
-  const closeOutside = (e: any) => {
+  const closeOutside = (e: MouseEvent) => {
     if (!(e.target as Element).closest('.language-dropdown')) {
       setIsOpen(false);
     }
@@ -29,6 +29,7 @@ export const LanguageDropdown = () => {
   return (
     <div className={`${headerStyles['language-dropdown']} language-dropdown`}>
       <button
+        type="button"
         className={headerStyles['language-dropdown__open']}
         onClick={changeState}
       >
@@ -38,12 +39,14 @@ export const LanguageDropdown = () => {
       {isOpen && (
         <div className={headerStyles['language-dropdown__body']}>
           <button
+            type="button"
             className={i18n.language === 'ru' ? headerStyles.active : ''}
             onClick={() => changeLanguage('ru')}
           >
             RU
           </button>
           <button
+            type="button"
             className={i18n.language === 'en' ? headerStyles.active : ''}
             onClick={() => changeLanguage('en')}
           >

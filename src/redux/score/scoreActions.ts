@@ -2,7 +2,7 @@ import {
   EGamesWithScoreBoard,
   EScoreActionsTypes,
   IBoardScore
-} from '../../domain/scoreTypes';
+} from '../../types/scoreTypes';
 
 export const setBoardScores = (payload: IBoardScore[]) => {
   return {

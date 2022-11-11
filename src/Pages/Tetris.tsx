@@ -19,7 +19,7 @@ import { useDispatch } from 'react-redux';
 import { CommonScoreBoard } from '../components/common/CommonScoreBoard';
 import { TetrisBoard } from '../components/Tetris/TetrisBoard';
 import { breadcrumbs } from '../constants/breadcrumbs';
-import { EGamesWithScoreBoard } from '../domain/scoreTypes';
+import { EGamesWithScoreBoard } from '../types/scoreTypes';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { useTitle } from '../hooks/useTitle';
 import { TetrisBoardModel } from '../models/tetris/TetrisBoardModel';

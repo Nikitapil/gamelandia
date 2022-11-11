@@ -126,7 +126,7 @@ export const DynoGame = () => {
         )}
         {isGameOver && <p className={styles.text}>Game Over!!!</p>}
         <div className={dynoClasses.join(' ')} ref={dyno}>
-          <img src={dynoImg} alt="dyno-icon" />
+          <img src={dynoImg} alt="dyno icon" />
         </div>
         {game &&
           game.cactuses.map((cactus) => {

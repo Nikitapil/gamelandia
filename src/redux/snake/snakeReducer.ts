@@ -2,7 +2,7 @@ import {
   ESnakeActions,
   ISnakeInitialState,
   SnakeActions
-} from '../../domain/snakeTypes';
+} from '../../types/snakeTypes';
 
 const initialState: ISnakeInitialState = {
   allBestScores: null,

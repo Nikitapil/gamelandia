@@ -8,7 +8,7 @@ import { useTitle } from '../hooks/useTitle';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../constants/breadcrumbs';
 import { CommonScoreBoard } from '../components/common/CommonScoreBoard';
-import { EGamesWithScoreBoard } from '../domain/scoreTypes';
+import { EGamesWithScoreBoard } from '../types/scoreTypes';
 import { ScoreService } from '../services/scoreService';
 import { fetchBoardScores } from '../redux/score/scoreActions';
 

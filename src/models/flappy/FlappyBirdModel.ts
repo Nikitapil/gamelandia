@@ -1,8 +1,13 @@
-import { FLAPPY_FIELD_HEIGHT } from '../../constants/flappy';
+import {
+  FLAPPY_FIELD_HEIGHT,
+  FLAPPY_FIELD_PADDING,
+  FLAPPY_START_POSITION,
+  FLAPPY_STEP
+} from '../../constants/flappy';
 import { FlappyGameModel } from './FlappyGameModel';
 
 export class FlappyBirdModel {
-  top: number = 400;
+  top: number = FLAPPY_START_POSITION;
 
   game: FlappyGameModel;
 
@@ -12,12 +17,12 @@ export class FlappyBirdModel {
 
   moveDown() {
     this.top++;
-    if (this.top > FLAPPY_FIELD_HEIGHT - 10) {
+    if (this.top > FLAPPY_FIELD_HEIGHT - FLAPPY_FIELD_PADDING) {
       this.game.gameOver();
     }
   }
 
   moveTop() {
-    this.top -= 35;
+    this.top -= FLAPPY_STEP;
   }
 }

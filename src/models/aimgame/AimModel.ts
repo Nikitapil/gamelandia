@@ -1,3 +1,9 @@
+import {
+  AIM_FIELD_HEIGHT,
+  AIM_FIELD_WIDTH,
+  MAX_AIM_SIZE
+} from '../../constants/aimGame';
+
 export class AimModel {
   size: number;
 
@@ -6,8 +12,8 @@ export class AimModel {
   left: number;
 
   constructor() {
-    this.size = Math.floor(Math.random() * 11 + 10);
-    this.top = Math.floor(Math.random() * (350 - this.size));
-    this.left = Math.floor(Math.random() * (300 - this.size));
+    this.size = Math.floor(Math.random() * MAX_AIM_SIZE + (MAX_AIM_SIZE - 1));
+    this.top = Math.floor(Math.random() * (AIM_FIELD_HEIGHT - this.size));
+    this.left = Math.floor(Math.random() * (AIM_FIELD_WIDTH - this.size));
   }
 }

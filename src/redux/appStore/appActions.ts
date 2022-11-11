@@ -2,7 +2,7 @@ import {
   EAppActionstypes,
   IBreabcrumb,
   Inotification
-} from '../../domain/appTypes';
+} from '../../types/appTypes';
 
 export const setAppNotification = (payload: Inotification) => {
   return {

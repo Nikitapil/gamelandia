@@ -17,7 +17,7 @@ import { Aim } from '../components/AimGame/Aim';
 import { AimModel } from '../models/aimgame/AimModel';
 import { AppButton } from '../components/UI/AppButton';
 import { CommonScoreBoard } from '../components/common/CommonScoreBoard';
-import { EGamesWithScoreBoard } from '../domain/scoreTypes';
+import { EGamesWithScoreBoard } from '../types/scoreTypes';
 import { ScoreService } from '../services/scoreService';
 import { fetchBoardScores } from '../redux/score/scoreActions';
 

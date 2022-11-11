@@ -1,3 +1,8 @@
+import {
+  INVADERS_FIELD_WIDTH,
+  INVADERS_GUN_STEP
+} from '../../constants/invaders';
+
 export class InvadersGunModel {
   x: number;
 
@@ -7,13 +12,13 @@ export class InvadersGunModel {
 
   toLeft() {
     if (this.x > 0) {
-      this.x -= 8;
+      this.x -= INVADERS_GUN_STEP;
     }
   }
 
   toRight() {
-    if (this.x < 562) {
-      this.x += 8;
+    if (this.x < INVADERS_FIELD_WIDTH) {
+      this.x += INVADERS_GUN_STEP;
     }
   }
 }

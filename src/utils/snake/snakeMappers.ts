@@ -1,4 +1,4 @@
-import { ISnakeBestScore, ISnakeBestScores } from '../../domain/snakeTypes';
+import { ISnakeBestScore, ISnakeBestScores } from '../../types/snakeTypes';
 
 export const snakeBestScoreMapper = (
   bestScores: ISnakeBestScores,

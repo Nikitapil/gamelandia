@@ -1,7 +1,7 @@
 import chunk from 'lodash/chunk';
 import { BattleshipCellModel } from '../../models/battleship/BattleShipCellModel';
 import { BattleShipElemModel } from '../../models/battleship/BattleShipElemModel';
-import { IFireBaseCells, IFirebaseShip } from '../../domain/battleshipTypes';
+import { IFireBaseCells, IFirebaseShip } from '../../types/battleshipTypes';
 import { BattleshipBoardModel } from '../../models/battleship/BattleShipBoardModel';
 
 export const mapCellsToFirebase = (cells: BattleshipCellModel[][]) => {

@@ -1,5 +1,10 @@
+import {
+  BULLET_MOVE_STEP,
+  BULLET_START_POSITION
+} from '../../constants/invaders';
+
 export class InvadersBulletModel {
-  y = 30;
+  y = BULLET_START_POSITION;
 
   x: number;
 
@@ -10,7 +15,7 @@ export class InvadersBulletModel {
   }
 
   move() {
-    this.y += 5;
+    this.y += BULLET_MOVE_STEP;
   }
 
   copyBullet() {

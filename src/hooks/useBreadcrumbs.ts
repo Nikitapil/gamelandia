@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { IBreabcrumb } from '../domain/appTypes';
+import { IBreabcrumb } from '../types/appTypes';
 import { setBreadCrumbs } from '../redux/appStore/appActions';
 
 export const useBreadcrumbs = (breadcrubsArray: IBreabcrumb[]) => {
