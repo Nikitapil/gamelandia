@@ -18,6 +18,7 @@ export interface ISnakeBestScores {
     hard: number;
   };
 }
+
 export interface ISnakeInitialState {
   allBestScores: ISnakeBestScore | null;
   myBestScores: ISnakeBestScore | null;

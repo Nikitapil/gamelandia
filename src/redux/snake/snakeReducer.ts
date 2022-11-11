@@ -8,7 +8,10 @@ const initialState: ISnakeInitialState = {
   allBestScores: null,
   myBestScores: null
 };
-export const snakeReducer = (state = initialState, action: SnakeActions) => {
+export const snakeReducer = (
+  state = initialState,
+  action: SnakeActions
+): ISnakeInitialState => {
   switch (action.type) {
     case ESnakeActions.SET_SNAKE_ALL_BEST_SCORES:
       return { ...state, allBestScores: action.payload };

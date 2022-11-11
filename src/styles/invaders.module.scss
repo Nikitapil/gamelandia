@@ -35,6 +35,7 @@
   color: #3bf851;
   font-size: 30px;
 }
+
 .bullet {
   width: 5px;
   height: 5px;
@@ -93,12 +94,14 @@
   display: flex;
   justify-content: space-between;
   gap: 80px;
+
   &:not(:last-child) {
     margin-bottom: 5px;
     border-bottom: 1px solid $mainColor;
     padding-bottom: 5px;
   }
 }
+
 .my-score {
   color: #3bf851;
 }

@@ -14,7 +14,7 @@ const initialState: IBattleShipState = {
 export const battleshipReducer = (
   state = initialState,
   action: BattleShipActions
-) => {
+): IBattleShipState => {
   switch (action.type) {
     case BattleShipActionsTypes.SET_FREE_SHIPS:
       return { ...state, freeShips: action.payload };

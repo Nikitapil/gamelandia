@@ -3,6 +3,7 @@
 .app-input {
   position: relative;
   background: transparent;
+
   label {
     color: $mainColor;
     position: absolute;
@@ -14,6 +15,7 @@
     transition: 0.3s;
     height: fit-content;
   }
+
   input {
     background: transparent;
     border: none;
@@ -24,15 +26,18 @@
     border-bottom: 1.5px solid $mainColor;
     width: 100%;
     -webkit-appearance: none;
+
     &:focus + label, &.with-content + label {
       top: 0;
       left: 0;
       font-size: 12px;
+
       &::after {
         content: ':';
       }
     }
   }
+
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,

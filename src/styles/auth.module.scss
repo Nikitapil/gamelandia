@@ -39,13 +39,16 @@
   border-radius: 5px;
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.49);
   transition: 0.4s;
+
   &:hover {
     background-color: #0094f0;
   }
+
   &:active {
     background-color: $titleColor;
   }
 }
+
 .auth-link {
   color: $titleColor;
   margin-top: 12px;

@@ -4,16 +4,19 @@
   flex-direction: column;
   align-items: center;
 }
+
 .match__title {
   font-size: 32px;
   color: $titleColor;
   font-family: "Permanent Marker", cursive;
   margin-bottom: 10px;
 }
+
 .match__description {
   color: $mainColor;
   margin-bottom: 8px;
 }
+
 .matchcard {
   border: none;
   background: none;
@@ -21,19 +24,23 @@
   perspective: 1200;
   -moz-transform: perspective(1200px);
   transform-style: preserve-3d;
+
   &.flipped .flipper {
     transform: rotateY(180deg);
   }
 }
+
 .flipper {
   position: relative;
   transform-style: preserve-3d;
   transition: 0.5s linear;
   width: 100px;
   height: 100px;
+
   img {
     max-width: 100%;
   }
+
   @media (max-width: 560px) {
     width:60px;
     height: 60px;
@@ -47,10 +54,12 @@
   left: 0;
   backface-visibility: hidden;
 }
+
 .front {
   z-index: 2;
   transform: rotateY(0deg);
 }
+
 .back {
   transform: rotateY(-180deg);
   background: #dcb8b2;
@@ -61,6 +70,7 @@
   display: grid;
   grid-template-columns: repeat(5, 105px);
   gap: 5px;
+
   @media (max-width: 560px) {
     grid-template-columns: repeat(5, 65px);
   }
@@ -78,6 +88,7 @@
 .match__loose {
   color: #ff0000;
 }
+
 .match__new-game {
   font-size: 18px;
   border: none;
@@ -85,10 +96,12 @@
   padding: 0 5px;
   border-radius: 10px;
   transition: 0.4s;
+
   &:hover {
     background-color: aqua;
   }
 }
+
 .attempts_counter {
   color: $titleColor;
 }

@@ -4,17 +4,20 @@
   align-items: center;
   background-color: #1c1c1c;
 }
+
 .header__container {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .header__title {
   color: #00c4f0;
   font-family: "Permanent Marker", cursive;
   font-size: 32px;
 }
+
 .nav-bar__links {
   display: flex;
   align-items: center;
@@ -26,18 +29,22 @@
   text-decoration: none;
   transition: 0.4s;
   cursor: pointer;
+
   @media (max-width: 465px) {
     font-size: 12px;
   }
+
   &:hover {
     color: #00c4f0;
   }
 }
+
 .logout-btn {
   color: #e4e4e4;
   border: none;
   background: none;
   transition: 0.4s;
+
   @media (max-width: 465px) {
     font-size: 12px !important;
     padding-bottom: 0 !important;
@@ -50,6 +57,7 @@
   color: #e4e4e4;
   font-size: 18px;
   transition: 0.4s;
+
   &:hover {
     color: #00c4f0;
   }
@@ -70,18 +78,22 @@
   transition: 0.4s;
   border: 1px solid #00c4f0;
   left: -100%;
+
   button {
     background: none;
     border: none;
     color: #e4e4e4;
+
     &:not(:last-child) {
       border-bottom: 1px solid #000000;
     }
+
     &:hover {
       background: #3e3d3d !important;
     }
   }
 }
+
 .active {
   background: #797878 !important;
 }

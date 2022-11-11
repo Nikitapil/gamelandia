@@ -9,7 +9,10 @@ const initialState: IScoreBoardInitialState = {
   isLoading: false
 };
 
-export const scoreReducer = (state = initialState, action: TScoreActions) => {
+export const scoreReducer = (
+  state = initialState,
+  action: TScoreActions
+): IScoreBoardInitialState => {
   switch (action.type) {
     case EScoreActionsTypes.SET_BOARD_SCORES:
       return { ...state, scores: action.payload };

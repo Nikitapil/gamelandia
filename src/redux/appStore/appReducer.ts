@@ -14,7 +14,10 @@ const initialState: AppInitialState = {
   breadcrumbs: [breadcrumbs.main]
 };
 
-export const appReducer = (state = initialState, action: AppActions) => {
+export const appReducer = (
+  state = initialState,
+  action: AppActions
+): AppInitialState => {
   switch (action.type) {
     case EAppActionstypes.SET_NOTIFICATION:
       return { ...state, notification: action.payload };
