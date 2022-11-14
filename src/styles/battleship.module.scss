@@ -203,8 +203,11 @@
 .battle-ship__waiting {
   width: 300px;
   height: 300px;
-  padding: 20px;
+  padding: 5px;
   color: $mainColor;
   font-size: 18px;
   border: 1px solid $titleColor;
+  .waiting-text {
+    margin-bottom: 25px;
+  }
 }

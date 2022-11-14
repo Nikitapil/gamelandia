@@ -24,6 +24,7 @@ import battlshipStyles from '../styles/battleship.module.scss';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../constants/breadcrumbs';
 import { useTitle } from '../hooks/useTitle';
+import { DynoGame } from '../components/DynoGame/DynoGame';
 
 interface BattleShipProps {
   firestore: Firestore;
@@ -201,7 +202,10 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
             />
           ) : (
             <div className={battlshipStyles['battle-ship__waiting']}>
-              {t('waiting_player')}
+              <p className={battlshipStyles['waiting-text']}>
+                {t('waiting_player')}
+              </p>
+              {roomData && roomData[myPlayer]?.isReady && <DynoGame />}
             </div>
           )}
         </div>

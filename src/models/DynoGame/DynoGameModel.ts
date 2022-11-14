@@ -1,16 +1,14 @@
 import { DynoCactusModel } from './DynoCactusModel';
 import { getRandomBoolean } from '../../utils/helpers';
+import { DYNO_FIELD_WIDTH } from '../../constants/dyno';
 
 export class DynoGameModel {
   cactuses: DynoCactusModel[] = [];
 
-  isMobile: boolean;
-
   fieldWidth: number;
 
-  constructor(fieldWidth: number, isMobile: boolean = true) {
-    this.fieldWidth = fieldWidth;
-    this.isMobile = isMobile;
+  constructor() {
+    this.fieldWidth = DYNO_FIELD_WIDTH;
   }
 
   moveCactuses() {
@@ -37,7 +35,7 @@ export class DynoGameModel {
   }
 
   getCopyGame() {
-    const newGame = new DynoGameModel(this.fieldWidth);
+    const newGame = new DynoGameModel();
     newGame.cactuses = [...this.cactuses];
     return newGame;
   }

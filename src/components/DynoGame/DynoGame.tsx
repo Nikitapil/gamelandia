@@ -13,10 +13,12 @@ import { DynoGameModel } from '../../models/DynoGame/DynoGameModel';
 import {
   DYNO_ANIMATION_SPEED,
   DYNO_CACTUS_SPEED,
+  DYNO_FIELD_WIDTH,
   DYNO_HEIGHT,
   DYNO_ITEMS_WIDTH,
   DYNO_LEFT_WIDTH
 } from '../../constants/dyno';
+import { isMobile } from '../../utils/helpers';
 
 export const DynoGame = () => {
   const { t } = useTranslation();
@@ -29,12 +31,9 @@ export const DynoGame = () => {
   const field = useRef<HTMLDivElement>(null);
   const dyno = useRef<HTMLDivElement>(null);
 
-  const fieldWidth = useMemo(() => {
-    if (!field.current) {
-      return 0;
-    }
-    return parseInt(window.getComputedStyle(field.current).width);
-  }, [field.current]);
+  const text = useMemo(() => {
+    return isMobile() ? t('dyno_mobile_start') : t('flappy_start_text');
+  }, [t]);
 
   const gameOver = () => {
     if (gameInterval.current) {
@@ -54,8 +53,8 @@ export const DynoGame = () => {
         window.getComputedStyle(dyno.current!).bottom
       );
       if (
-        newGame.cactuses[0]?.right > fieldWidth - DYNO_ITEMS_WIDTH &&
-        newGame.cactuses[0]?.right < fieldWidth - DYNO_LEFT_WIDTH &&
+        newGame.cactuses[0]?.right > DYNO_FIELD_WIDTH - DYNO_ITEMS_WIDTH &&
+        newGame.cactuses[0]?.right < DYNO_FIELD_WIDTH - DYNO_LEFT_WIDTH &&
         dynoBottom < DYNO_HEIGHT
       ) {
         gameOver();
@@ -72,13 +71,11 @@ export const DynoGame = () => {
   };
 
   const startGame = () => {
-    if (fieldWidth) {
-      const newGame = new DynoGameModel(fieldWidth);
-      newGame.startGame();
-      setGame(newGame);
-      setIsGameStarted(true);
-      setIsGameOver(false);
-    }
+    const newGame = new DynoGameModel();
+    newGame.startGame();
+    setGame(newGame);
+    setIsGameStarted(true);
+    setIsGameOver(false);
   };
 
   useEffect(() => {
@@ -121,22 +118,14 @@ export const DynoGame = () => {
         onClick={action}
         tabIndex={0}
       >
-        {!isGameStarted && (
-          <p className={styles.text}>{t('flappy_start_text')}</p>
-        )}
+        {!isGameStarted && <p className={styles.text}>{text}</p>}
         {isGameOver && <p className={styles.text}>Game Over!!!</p>}
         <div className={dynoClasses.join(' ')} ref={dyno}>
           <img src={dynoImg} alt="dyno icon" />
         </div>
         {game &&
           game.cactuses.map((cactus) => {
-            return (
-              <DynoCactus
-                key={cactus.id}
-                fieldWidth={fieldWidth}
-                cactusModel={cactus}
-              />
-            );
+            return <DynoCactus key={cactus.id} cactusModel={cactus} />;
           })}
       </div>
     </div>

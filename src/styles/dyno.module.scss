@@ -1,8 +1,11 @@
+@import "vars";
+
 .game {
   height: 150px;
   background: white;
   border-radius: 15px;
   padding: 10px;
+  overflow-x: hidden;
 }
 
 .field {
@@ -10,6 +13,7 @@
   border-bottom: 2px solid black;
   position: relative;
   overflow: hidden;
+  width: 1180px;
 }
 
 .dyno, .cactus {
@@ -30,9 +34,11 @@
 }
 
 .text {
-  font-size: 20px;
-  text-align: center;
+  font-size: 18px;
+  text-align: left;
   font-weight: 700;
+  color: $dark;
+  margin-bottom: 5px;
 }
 
 @keyframes jump {

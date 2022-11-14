@@ -5,7 +5,6 @@ import { DynoCactusModel } from '../../models/DynoGame/DynoCactusModel';
 
 interface DynoCactusProps {
   cactusModel: DynoCactusModel;
-  fieldWidth: number;
 }
 
 export const DynoCactus = ({ cactusModel }: DynoCactusProps) => {
