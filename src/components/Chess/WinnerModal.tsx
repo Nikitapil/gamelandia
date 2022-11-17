@@ -6,9 +6,14 @@ import { AppButton } from '../UI/AppButton';
 interface WinnerModalProps {
   color: string;
   newGame: () => void;
+  isOpened: boolean;
 }
 
-export const WinnerModal: FC<WinnerModalProps> = ({ color, newGame }) => {
+export const WinnerModal: FC<WinnerModalProps> = ({
+  color,
+  newGame,
+  isOpened
+}) => {
   const { t } = useTranslation();
 
   const winner = useMemo(() => {
@@ -16,7 +21,11 @@ export const WinnerModal: FC<WinnerModalProps> = ({ color, newGame }) => {
   }, [color]);
 
   return (
-    <ModalContainer title={winner + t('wins')} closeModal={newGame}>
+    <ModalContainer
+      title={winner + t('wins')}
+      closeModal={newGame}
+      isOpened={isOpened}
+    >
       <AppButton
         color="dark"
         testId="newGame-btn"
