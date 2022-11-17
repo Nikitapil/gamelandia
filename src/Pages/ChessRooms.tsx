@@ -55,11 +55,13 @@ export const ChessRooms: FC<ChessRoomsProps> = ({ firestore, auth }) => {
         page="chess/rooms"
         createRoom={toggleModal}
       />
-      {isModalOpen && (
-        <ModalContainer closeModal={toggleModal} title="Set time of the Game">
-          <TimerModal closeModal={toggleModal} start={createRoom} />
-        </ModalContainer>
-      )}
+      <ModalContainer
+        closeModal={toggleModal}
+        title="Set time of the Game"
+        isOpened={isModalOpen}
+      >
+        <TimerModal closeModal={toggleModal} start={createRoom} />
+      </ModalContainer>
     </div>
   );
 };

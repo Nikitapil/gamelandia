@@ -161,11 +161,9 @@ export const InvadersField = ({ user }: InvadersFieldProps) => {
           <InvadersGun gun={board.gun} />
         </div>
       )}
-      {gameOver && (
-        <ModalContainer closeModal={closeModal}>
-          <InvadersGameOver score={score} closeModal={closeModal} />
-        </ModalContainer>
-      )}
+      <ModalContainer closeModal={closeModal} isOpened={gameOver}>
+        <InvadersGameOver score={score} closeModal={closeModal} />
+      </ModalContainer>
     </div>
   );
 };

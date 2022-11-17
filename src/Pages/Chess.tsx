@@ -88,7 +88,7 @@ export const Chess = () => {
         <LostFigures title={t('black')} figures={board.lostBlackFigures} />
         <LostFigures title={t('white')} figures={board.lostWhightFigures} />
       </div>
-      {winner && <WinnerModal newGame={newGame} color={winner} />}
+      <WinnerModal isOpened={!!winner} newGame={newGame} color={winner} />
     </div>
   );
 };

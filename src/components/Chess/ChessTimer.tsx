@@ -108,14 +108,13 @@ export const ChessTimer = memo(
             <div className="time">{(whiteTime / 60).toFixed(0)}m</div>
           </div>
         </div>
-        {isModalOpen && (
-          <ModalContainer
-            closeModal={() => handleRestart(3600)}
-            title={t('set_game_time')}
-          >
-            <TimerModal closeModal={closeModal} start={handleRestart} />
-          </ModalContainer>
-        )}
+        <ModalContainer
+          isOpened={isModalOpen}
+          closeModal={() => handleRestart(3600)}
+          title={t('set_game_time')}
+        >
+          <TimerModal closeModal={closeModal} start={handleRestart} />
+        </ModalContainer>
       </div>
     );
   }

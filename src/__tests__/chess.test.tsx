@@ -31,7 +31,9 @@ describe('chess tests', () => {
   });
   test('winner modal should call new game', () => {
     const newGame = jest.fn();
-    render(renderWithRouter(<WinnerModal color="white" newGame={newGame} />));
+    render(
+      renderWithRouter(<WinnerModal color="white" isOpened newGame={newGame} />)
+    );
     userEvent.click(screen.getByTestId('newGame-btn'));
     expect(newGame).toBeCalled();
   });
@@ -71,6 +73,7 @@ describe('chess tests', () => {
           currentPlayer={player}
           board={board}
           cell={board.cells[2][0]}
+          isOpened
         />
       )
     );
@@ -128,7 +131,7 @@ describe('chess tests', () => {
     expect(setInterval).toBeCalled();
     setTimeout(() => {
       expect(clearInterval).toBeCalled();
-    }, 1500);
+    }, 1700);
   });
   test('chess cell should have different classes', () => {
     const board = new Board();
@@ -172,9 +175,13 @@ describe('chess tests', () => {
     );
     expect(screen.getByTestId('figure-logo')).toBeInTheDocument();
   });
-  test('should set winner', () => {
+  test('should set winner', async () => {
     render(renderWithRedux(<Chess />, '/', store));
     userEvent.click(screen.getByTestId('chess-start-button'));
+    const promise = new Promise((res) => {
+      setTimeout(() => res(''), 250);
+    });
+    await promise;
     expect(screen.queryByTestId('timer-modal')).not.toBeInTheDocument();
     userEvent.click(screen.getByTestId('give-up-btn'));
     expect(screen.getByTestId('newGame-btn')).toBeInTheDocument();

@@ -21,8 +21,9 @@ interface FiguresModalProps {
   closeModal: () => void;
   swapPlayer: () => void;
   currentPlayer: Player | null;
-  cell: Cell;
+  cell: Cell | null;
   board: Board;
+  isOpened: boolean;
 }
 
 export const FiguresModal: FC<FiguresModalProps> = ({
@@ -30,23 +31,28 @@ export const FiguresModal: FC<FiguresModalProps> = ({
   cell,
   swapPlayer,
   closeModal,
-  board
+  board,
+  isOpened
 }) => {
   const { t } = useTranslation();
+
+  if (!Cell) {
+    return null;
+  }
   const chooseFigure = (figure: string) => {
     // eslint-disable-next-line default-case
     switch (figure) {
       case FigureNames.BISHOP:
-        new Bishop(currentPlayer?.color!, cell);
+        new Bishop(currentPlayer?.color!, cell!);
         break;
       case FigureNames.KNIGHT:
-        new Knight(currentPlayer?.color!, cell);
+        new Knight(currentPlayer?.color!, cell!);
         break;
       case FigureNames.QUEEN:
-        new Queen(currentPlayer?.color!, cell);
+        new Queen(currentPlayer?.color!, cell!);
         break;
       case FigureNames.ROOK:
-        new Rook(currentPlayer?.color!, cell);
+        new Rook(currentPlayer?.color!, cell!);
         break;
     }
     board.checkIfKingIsUnderAttack();
@@ -57,6 +63,7 @@ export const FiguresModal: FC<FiguresModalProps> = ({
   return (
     <ModalContainer
       title={t('choose_new_figure')}
+      isOpened={isOpened}
       closeModal={closeModal}
       preventClosing
     >

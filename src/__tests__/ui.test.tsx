@@ -8,7 +8,9 @@ describe('ui tests', () => {
     const closeModal = jest.fn();
     render(
       renderWithRouter(
-        <ModalContainer closeModal={closeModal}>123</ModalContainer>
+        <ModalContainer isOpened closeModal={closeModal}>
+          123
+        </ModalContainer>
       )
     );
     userEvent.click(screen.getByTestId('modal-content'));

@@ -97,15 +97,14 @@ export const ChessBoardComponent: FC<ChessBoardComponentProps> = ({
           </React.Fragment>
         ))}
       </div>
-      {pawnCell && (
-        <FiguresModal
-          board={board}
-          closeModal={closeFiguresModal}
-          currentPlayer={currentPlayer}
-          swapPlayer={swapPlayer}
-          cell={pawnCell}
-        />
-      )}
+      <FiguresModal
+        board={board}
+        closeModal={closeFiguresModal}
+        currentPlayer={currentPlayer}
+        swapPlayer={swapPlayer}
+        cell={pawnCell}
+        isOpened={!!pawnCell}
+      />
     </div>
   );
 };
