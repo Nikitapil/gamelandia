@@ -86,8 +86,8 @@ export const games = [
     description: 'aim_game_description',
     path: 'aim-game',
     isOutside: false,
-    labels: ['Single player', 'Not suitable for mobile'],
-    mobileSuitable: false
+    labels: ['Single player'],
+    mobileSuitable: true
   },
   {
     id: 1,

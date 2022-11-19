@@ -63,15 +63,29 @@
   align-items: center;
   justify-content: center;
   animation: elemEnter .3s linear;
+
   h2 {
     font-size: 32px;
     font-weight: 700;
     color: $mainColor;
   }
+
   p {
     font-size: 28px;
     font-weight: 700;
     color: $titleColor;
+  }
+}
+
+.numbers-boards {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+
+  @media (max-width: 735px) {
+    flex-direction: column;
+    align-items: center;
   }
 }
 

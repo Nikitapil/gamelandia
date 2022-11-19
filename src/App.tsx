@@ -48,7 +48,7 @@ function App() {
           <Route path="/chess" element={<ChessTypes />} />
           <Route path="/chess/offline" element={<Chess />} />
           <Route path="/aim-game" element={<AimGame auth={auth} />} />
-          <Route path="/2048" element={<NumbersGame />} />
+          <Route path="/2048" element={<NumbersGame auth={auth} />} />
           <Route
             path="/chess/rooms"
             element={<ChessRooms auth={auth} firestore={firestore} />}

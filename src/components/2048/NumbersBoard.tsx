@@ -1,15 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 import styles from '../../styles/numbersGame.module.scss';
 import { NumbersBoardModel } from '../../models/2048/NumbersBoardModel';
 import { NumbersElem } from './NumbersElem';
 import { ENumbersDirections } from '../../constants/2048';
 import { AppButton } from '../UI/AppButton';
+import { EGamesWithScoreBoard } from '../../types/scoreTypes';
+import { ScoreService } from '../../services/scoreService';
+import { fetchBoardScores } from '../../redux/score/scoreActions';
 
 export const NumbersBoard = () => {
   const [board, setBoard] = useState(new NumbersBoardModel());
   const boardRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
+  const game = EGamesWithScoreBoard.NUMBERS;
+  const dispatch = useDispatch();
 
   const newGame = () => {
     boardRef.current?.focus();
@@ -23,6 +29,17 @@ export const NumbersBoard = () => {
   useEffect(() => {
     newGame();
   }, []);
+
+  const updateScore = async () => {
+    await ScoreService.setRecord(board.lastScore, game);
+    dispatch(fetchBoardScores(EGamesWithScoreBoard.NUMBERS));
+  };
+
+  useEffect(() => {
+    if (board.isGameOver) {
+      updateScore();
+    }
+  }, [board.isGameOver]);
 
   const move = (direction: ENumbersDirections) => {
     board.move(direction);
