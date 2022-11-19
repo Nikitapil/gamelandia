@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
+import { useSwipeable } from 'react-swipeable';
 import styles from '../../styles/numbersGame.module.scss';
 import { NumbersBoardModel } from '../../models/2048/NumbersBoardModel';
 import { NumbersElem } from './NumbersElem';
@@ -9,6 +10,7 @@ import { AppButton } from '../UI/AppButton';
 import { EGamesWithScoreBoard } from '../../types/scoreTypes';
 import { ScoreService } from '../../services/scoreService';
 import { fetchBoardScores } from '../../redux/score/scoreActions';
+import { isMobile } from '../../utils/helpers';
 
 export const NumbersBoard = () => {
   const [board, setBoard] = useState(new NumbersBoardModel());
@@ -16,6 +18,10 @@ export const NumbersBoard = () => {
   const { t } = useTranslation();
   const game = EGamesWithScoreBoard.NUMBERS;
   const dispatch = useDispatch();
+
+  const isMobileLayout = useMemo(() => {
+    return isMobile();
+  }, []);
 
   const newGame = () => {
     boardRef.current?.focus();
@@ -64,6 +70,17 @@ export const NumbersBoard = () => {
       move(ENumbersDirections.RIGHT);
     }
   };
+  const swipeHandlers = isMobileLayout
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useSwipeable({
+        onSwipedUp: () => move(ENumbersDirections.TOP),
+        onSwipedDown: () => move(ENumbersDirections.BOTTOM),
+        onSwipedLeft: () => move(ENumbersDirections.LEFT),
+        onSwipedRight: () => move(ENumbersDirections.RIGHT),
+        preventScrollOnSwipe: true,
+        delta: 5
+      })
+    : {};
 
   return (
     <div className={styles['board-container']}>
@@ -73,6 +90,7 @@ export const NumbersBoard = () => {
         tabIndex={0}
         ref={boardRef}
         onKeyDown={keyPressHandler}
+        {...swipeHandlers}
       >
         {board.isGameOver && (
           <div className={styles['game-over']}>
