@@ -1,5 +1,15 @@
 export const games = [
   {
+    id: 11,
+    gameName: '2048',
+    pictureName: 'numbers',
+    description: 'numbers_description',
+    path: '2048',
+    isOutside: false,
+    labels: ['Single Player', 'Not suitable for mobile'],
+    mobileSuitable: false
+  },
+  {
     id: 7,
     gameName: 'clone_invaders',
     pictureName: 'cloneInvaders',
@@ -76,8 +86,8 @@ export const games = [
     description: 'aim_game_description',
     path: 'aim-game',
     isOutside: false,
-    labels: ['Single player', 'Not suitable for mobile'],
-    mobileSuitable: false
+    labels: ['Single player'],
+    mobileSuitable: true
   },
   {
     id: 1,

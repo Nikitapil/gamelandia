@@ -78,5 +78,10 @@ export const breadcrumbs = {
     id: 'breadcrumb_aim',
     name: 'aim_game',
     path: '/aim-game'
+  },
+  2048: {
+    id: 'breadcrumb+2048',
+    name: '2048',
+    path: '/2048'
   }
 };

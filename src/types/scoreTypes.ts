@@ -31,5 +31,6 @@ export enum EGamesWithScoreBoard {
   INVADERS = 'invaders',
   TETRIS = 'tetris',
   FLAPPY = 'flappy',
-  AIM = 'aim'
+  AIM = 'aim',
+  NUMBERS = 'numbers'
 }
