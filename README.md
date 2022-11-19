@@ -6,7 +6,7 @@ Game application. There you can find and play some different games. Also I will 
 
 ## Technologies used
 
-React, React-router-dom, React Hooks, Redux, Redux-Saga, Typescript, i18n, OOP, Fontawesome, react testing library, ract transition group firebase,  Html, Scss, eslint, husky.
+React, React-router-dom, React Hooks, Redux, Redux-Saga, Typescript, i18n, OOP, Fontawesome, react testing library, ract transition group, firebase,  Html, Scss, eslint, husky.
 
 ## Game List
 * Clone invaders
@@ -18,4 +18,4 @@ React, React-router-dom, React Hooks, Redux, Redux-Saga, Typescript, i18n, OOP, 
 * Aim Game
 * Match-Match Game
 * Tic Tac Toe
-* Dyno game (on 404 page)
+* Dyno game (on 404 page and waiting pages for online games)
