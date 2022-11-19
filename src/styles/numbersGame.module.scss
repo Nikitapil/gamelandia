@@ -1,0 +1,87 @@
+@import "vars";
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.board {
+  width: 330px;
+  height: 330px;
+  background: #948b89;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  position: relative;
+}
+
+.cell {
+  width: 70px;
+  height: 70px;
+  background: #d7c7c7;
+  border-radius: 5px;
+}
+
+.elem {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  width: 70px;
+  height: 70px;
+  border-radius: 5px;
+  animation: elemEnter .2s linear;
+  transition: 0.2s;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.game-over {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background: rgba(34, 34, 34, 0.75);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  animation: elemEnter .2s linear;
+  h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: $mainColor;
+  }
+  p {
+    font-size: 28px;
+    font-weight: 700;
+    color: $titleColor;
+  }
+}
+
+@keyframes elemEnter {
+  0% {
+    opacity: 0;
+    scale: 0;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}

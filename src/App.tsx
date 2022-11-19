@@ -27,6 +27,7 @@ import { Tetris } from './Pages/Tetris';
 import { FlappyBird } from './Pages/FlappyBird';
 import { AimGame } from './Pages/AimGame';
 import { NotFound } from './Pages/NotFound';
+import { NumbersGame } from './Pages/NumbersGame';
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -47,6 +48,7 @@ function App() {
           <Route path="/chess" element={<ChessTypes />} />
           <Route path="/chess/offline" element={<Chess />} />
           <Route path="/aim-game" element={<AimGame auth={auth} />} />
+          <Route path="/2048" element={<NumbersGame />} />
           <Route
             path="/chess/rooms"
             element={<ChessRooms auth={auth} firestore={firestore} />}
