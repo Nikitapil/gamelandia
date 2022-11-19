@@ -19,6 +19,7 @@ import tetris from '../assets/gamepictures/tetris.png';
 import cloneInvaders from '../assets/cloneInvaders/cloneInvaders.webp';
 import flappy from '../assets/gamepictures/flappy.png';
 import aim from '../assets/gamepictures/aim.png';
+import numbers from '../assets/gamepictures/2048.png';
 
 interface IGamePics {
   [key: string]: string;
@@ -34,7 +35,8 @@ export const gamePics: IGamePics = {
   cloneInvaders,
   tetris,
   flappy,
-  aim
+  aim,
+  numbers
 };
 
 export const matchMatchPics = [
