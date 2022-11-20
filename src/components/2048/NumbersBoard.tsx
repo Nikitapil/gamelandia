@@ -94,7 +94,7 @@ export const NumbersBoard = () => {
       >
         {board.isGameOver && (
           <div className={styles['game-over']}>
-            <h2>Game Over !!!</h2>
+            <h2>Game Over!!!</h2>
             <p>Score: {board.lastScore}</p>
             <AppButton text={t('new_game')} color="success" onClick={newGame} />
           </div>
