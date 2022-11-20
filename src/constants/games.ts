@@ -6,8 +6,8 @@ export const games = [
     description: 'numbers_description',
     path: '2048',
     isOutside: false,
-    labels: ['Single Player', 'Not suitable for mobile'],
-    mobileSuitable: false
+    labels: ['Single Player'],
+    mobileSuitable: true
   },
   {
     id: 7,
