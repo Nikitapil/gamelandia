@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 import { initializeApp } from 'firebase/app';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { AppHeader } from './components/AppHeader/AppHeader';
@@ -33,7 +32,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const firestore = getFirestore(app);
 function App() {
-  const [user] = useAuthState(auth);
   const { notification } = useTypedSelector(appSelector);
   return (
     <div className="App">
@@ -69,10 +67,9 @@ function App() {
             path="/battleship/:id"
             element={<BattleShip auth={auth} firestore={firestore} />}
           />
-          {!user && (
-            <Route path="/registration" element={<SignUp auth={auth} />} />
-          )}
-          {!user && <Route path="/login" element={<SignIn auth={auth} />} />}
+
+          <Route path="/registration" element={<SignUp auth={auth} />} />
+          <Route path="/login" element={<SignIn auth={auth} />} />
         </Routes>
         {notification.message && <Notification />}
       </main>

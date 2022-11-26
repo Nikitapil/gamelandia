@@ -38,12 +38,6 @@ describe('mainpage tests', () => {
     expect((img as HTMLImageElement).src).not.toBe(undefined);
   });
 
-  test('should navigate from sign in to sign up', () => {
-    render(renderWithRedux(<SignIn auth={null as any} />, '/', store));
-    userEvent.click(screen.getByTestId('signup-link'));
-    expect(screen.getByTestId('signup-link')).toBeInTheDocument();
-  });
-
   test('should work authForm', () => {
     const submit = jest.fn();
     const setDisplayName = jest.fn();
