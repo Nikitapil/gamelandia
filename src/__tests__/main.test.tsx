@@ -5,7 +5,6 @@ import App from '../App';
 import { AuthForm } from '../components/Auth/AuthForm';
 import { MainPageCard } from '../components/main/MainPageCard';
 import { OutSidePageCard } from '../components/main/OutSideGameCard';
-import { SignIn } from '../Pages/SignIn';
 import { rootReducer } from '../redux/rootReducer';
 import { renderWithRedux, renderWithRouter } from '../utils/test/utils';
 
