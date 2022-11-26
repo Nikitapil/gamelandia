@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import { createStore } from 'redux';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import userEvent from '@testing-library/user-event';
-import { clearInterval } from 'timers';
 import { renderWithRedux } from '../utils/test/utils';
 import { rootReducer } from '../redux/rootReducer';
 import { AimGame } from '../Pages/AimGame';
@@ -10,8 +9,7 @@ import { AimGame } from '../Pages/AimGame';
 jest.mock('react-firebase-hooks/auth');
 jest.spyOn(global, 'setInterval');
 jest.spyOn(global, 'clearInterval');
-jest.useRealTimers();
-jest.setTimeout(35 * 10000);
+
 describe('aim game tests', () => {
   let store: any;
   beforeEach(() => {
