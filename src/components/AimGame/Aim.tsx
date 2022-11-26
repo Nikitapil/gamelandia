@@ -17,5 +17,12 @@ export const Aim = ({ aimDot, updateDot }: AimProps) => {
     };
   }, [aimDot]);
 
-  return <div className={styles.aim} style={dotStyles} onClick={updateDot} />;
+  return (
+    <div
+      className={styles.aim}
+      style={dotStyles}
+      onClick={updateDot}
+      data-testid="aim-dot"
+    />
+  );
 };

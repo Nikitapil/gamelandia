@@ -83,10 +83,10 @@ export const AimGame = ({ auth }: AimGameProps) => {
   }, [remainingTime]);
 
   return (
-    <div className={`container ${styles['aim-game']}`}>
+    <div className={`container ${styles['aim-game']}`} data-testid="aim-page">
       <h2 className="page-title">Aim Game</h2>
       <div className={styles['game-controlls']}>
-        <div className={finishClass}>
+        <div className={finishClass} data-testId="aim-score">
           {t('score')}: {score}
         </div>
         <div className={finishClass}>
@@ -98,6 +98,7 @@ export const AimGame = ({ auth }: AimGameProps) => {
             color="success"
             onClick={newGame}
             size="sm"
+            testId="new-aim"
           />
         )}
       </div>
