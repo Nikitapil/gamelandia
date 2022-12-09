@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { setAppNotification } from '../redux/appStore/appActions';
-import { authErrorMessages } from '../constants/appMessages';
+import { setAppNotification } from '../redux/appStore/app-actions';
+import { authErrorMessages } from '../constants/app-messages';
 
 export const useAuthRedirect = (auth: Auth, error: any) => {
   const { t } = useTranslation();

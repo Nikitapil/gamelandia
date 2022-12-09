@@ -14,7 +14,7 @@ import { Player } from '../models/chess/Player';
 import { Colors } from '../models/chess/Colors';
 import { ChessTimer } from '../components/Chess/ChessTimer';
 import { ChessCellComponents } from '../components/Chess/ChessCellComponents';
-import { rootReducer } from '../redux/rootReducer';
+import { rootReducer } from '../redux/root-reducer';
 import App from '../App';
 
 jest.spyOn(global, 'setInterval');

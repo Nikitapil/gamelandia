@@ -10,8 +10,8 @@ import {
   setBattleShipBoard,
   setCurrentFreeShip,
   setFreeShips
-} from '../../redux/battleships/battleshipActions';
-import { battleShipSelector } from '../../redux/battleships/battleshipSelectors';
+} from '../../redux/battleships/battleship-actions';
+import { battleShipSelector } from '../../redux/battleships/battleship-selectors';
 import {
   mapCellsToFirebase,
   mapShipsToFirebase

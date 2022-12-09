@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MatchCard } from '../components/match/MatchCard';
-import { ICard } from '../types/matchMatch';
+import { ICard } from '../types/match-match';
 import { matchMatchPics } from '../utils/gamePicsBuilder';
 import { getuniqArrayObjects, shuffleArray } from '../utils/helpers';
 import matchStyles from '../styles/match.module.scss';

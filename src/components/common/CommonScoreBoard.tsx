@@ -3,10 +3,10 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { EGamesWithScoreBoard } from '../../types/scoreTypes';
+import { EGamesWithScoreBoard } from '../../types/score-types';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { fetchBoardScores } from '../../redux/score/scoreActions';
-import { scoreSelector } from '../../redux/score/scoreSelector';
+import { fetchBoardScores } from '../../redux/score/score-actions';
+import { scoreSelector } from '../../redux/score/score-selector';
 import commonStyles from '../../styles/common.module.scss';
 import { ScoreTableLoader } from '../UI/ScoreTableLoader';
 

@@ -1,5 +1,5 @@
 import { SquareFigureModel } from '../models/tetris/Figures/SquareFigureModel';
-import { ITetrisFiguresObject } from '../types/tetrisTypes';
+import { ITetrisFiguresObject } from '../types/tetris-types';
 import { LFigureLeftModel } from '../models/tetris/Figures/LFigureLeftModel';
 import { LFigureRightModel } from '../models/tetris/Figures/LFigureRightModel';
 import { TFigureModel } from '../models/tetris/Figures/TFigureModel';

@@ -5,13 +5,13 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BattleShipElem } from './BattleShipElem';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { battleShipSelector } from '../../redux/battleships/battleshipSelectors';
+import { battleShipSelector } from '../../redux/battleships/battleship-selectors';
 import { BattleshipBoardModel } from '../../models/battleship/BattleShipBoardModel';
 import {
   setBattleShipBoard,
   setFreeShips,
   setCurrentFreeShip
-} from '../../redux/battleships/battleshipActions';
+} from '../../redux/battleships/battleship-actions';
 import {
   mapCellsToFirebase,
   mapShipsToFirebase

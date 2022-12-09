@@ -8,9 +8,9 @@ import { useTitle } from '../hooks/useTitle';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../constants/breadcrumbs';
 import { CommonScoreBoard } from '../components/common/CommonScoreBoard';
-import { EGamesWithScoreBoard } from '../types/scoreTypes';
-import { ScoreService } from '../services/scoreService';
-import { fetchBoardScores } from '../redux/score/scoreActions';
+import { EGamesWithScoreBoard } from '../types/score-types';
+import { ScoreService } from '../services/ScoreService';
+import { fetchBoardScores } from '../redux/score/score-actions';
 
 interface FlappyBirdProps {
   auth: Auth;

@@ -4,7 +4,7 @@ import { faSpaghettiMonsterFlying } from '@fortawesome/free-solid-svg-icons';
 import invadersStyles from '../../styles/invaders.module.scss';
 import { InvadersCellModel } from '../../models/cloneInvaders/InvadersCellModel';
 import { InvadersBulletModel } from '../../models/cloneInvaders/InvadersBulletModel';
-import { EInvadersDirections } from '../../types/invadersTypes';
+import { EInvadersDirections } from '../../types/invaders-types';
 
 interface InvadersCellProps {
   cell: InvadersCellModel;

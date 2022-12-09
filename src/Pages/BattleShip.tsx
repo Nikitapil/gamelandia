@@ -14,8 +14,8 @@ import {
   setBattleShipBoard,
   setBattleShipEnemyBoard,
   setFreeShips
-} from '../redux/battleships/battleshipActions';
-import { battleShipSelector } from '../redux/battleships/battleshipSelectors';
+} from '../redux/battleships/battleship-actions';
+import { battleShipSelector } from '../redux/battleships/battleship-selectors';
 import { HorizotalLoader } from '../components/UI/Loaders/HorizotalLoader';
 import { mapFromFireBaseToBattleShip } from '../utils/battleship/battleShipMappers';
 import { FullRoomMessage } from '../components/common/FullRoomMessage';

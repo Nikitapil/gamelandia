@@ -15,7 +15,7 @@ import { SignUp } from './Pages/SignUp';
 import { SignIn } from './Pages/SignIn';
 import { Notification } from './components/UI/Notification';
 import { useTypedSelector } from './hooks/useTypedSelector';
-import { appSelector } from './redux/appStore/appSelectors';
+import { appSelector } from './redux/appStore/app-selectors';
 import { BattleShipRooms } from './Pages/BattleShipRooms';
 import { ChessTypes } from './Pages/ChessTypes';
 import { ChessRooms } from './Pages/ChessRooms';

@@ -5,7 +5,7 @@ import App from '../App';
 import { AuthForm } from '../components/Auth/AuthForm';
 import { MainPageCard } from '../components/main/MainPageCard';
 import { OutSidePageCard } from '../components/main/OutSideGameCard';
-import { rootReducer } from '../redux/rootReducer';
+import { rootReducer } from '../redux/root-reducer';
 import { renderWithRedux, renderWithRouter } from '../utils/test/utils';
 
 describe('mainpage tests', () => {

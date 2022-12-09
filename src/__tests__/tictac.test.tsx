@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { createStore } from 'redux';
 import { TicTacToe } from '../Pages/TicTacToe';
-import { rootReducer } from '../redux/rootReducer';
+import { rootReducer } from '../redux/root-reducer';
 import { renderWithRedux } from '../utils/test/utils';
 
 describe('tic tac toe tests', () => {

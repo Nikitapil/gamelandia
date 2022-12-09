@@ -1,6 +1,6 @@
 import { getAuth } from 'firebase/auth';
 import { child, get, getDatabase, ref, set } from 'firebase/database';
-import { IBoardScore } from '../types/scoreTypes';
+import { IBoardScore } from '../types/score-types';
 import { getNewBoardScores } from '../utils/score/scoreHelpers';
 
 export class ScoreService {

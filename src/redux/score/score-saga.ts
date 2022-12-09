@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { EScoreActionsTypes, IBoardScore } from '../../types/scoreTypes';
-import { ScoreService } from '../../services/scoreService';
-import { setBoardLoading, setBoardScores } from './scoreActions';
+import { EScoreActionsTypes, IBoardScore } from '../../types/score-types';
+import { ScoreService } from '../../services/ScoreService';
+import { setBoardLoading, setBoardScores } from './score-actions';
 
 function* getBoardScores({ payload }: any) {
   try {

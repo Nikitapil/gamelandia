@@ -1,4 +1,4 @@
-import { EInvadersDirections } from '../../types/invadersTypes';
+import { EInvadersDirections } from '../../types/invaders-types';
 import { InvadersBulletModel } from './InvadersBulletModel';
 import { InvadersCellModel } from './InvadersCellModel';
 import { InvadersGunModel } from './InvadersGunModel';

@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { SnakeBoard } from '../components/snake/SnakeBoard';
 import { SnakeBoardModel } from '../models/snake/SnakeBoardModel';
 import { Snake } from '../Pages/Snake';
-import { rootReducer } from '../redux/rootReducer';
+import { rootReducer } from '../redux/root-reducer';
 import { renderWithRedux, renderWithRouter } from '../utils/test/utils';
 
 jest.mock('react-firebase-hooks/auth');

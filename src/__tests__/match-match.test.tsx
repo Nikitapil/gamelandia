@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { createStore } from 'redux';
 import App from '../App';
 import { MatchCard } from '../components/match/MatchCard';
-import { rootReducer } from '../redux/rootReducer';
+import { rootReducer } from '../redux/root-reducer';
 import { renderWithRedux, renderWithRouter } from '../utils/test/utils';
 
 describe('match-match game', () => {

@@ -4,7 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { InvadersField } from '../components/CloneInvaders/InvadersField';
 import { CommonScoreBoard } from '../components/common/CommonScoreBoard';
 import { breadcrumbs } from '../constants/breadcrumbs';
-import { EGamesWithScoreBoard } from '../types/scoreTypes';
+import { EGamesWithScoreBoard } from '../types/score-types';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { useTitle } from '../hooks/useTitle';
 import invadersStyles from '../styles/invaders.module.scss';

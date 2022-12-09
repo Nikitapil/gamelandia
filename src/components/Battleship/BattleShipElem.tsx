@@ -7,8 +7,8 @@ import { BattleShipElemModel } from '../../models/battleship/BattleShipElemModel
 import {
   setCurrentFreeShip,
   setFreeShips
-} from '../../redux/battleships/battleshipActions';
-import { battleShipSelector } from '../../redux/battleships/battleshipSelectors';
+} from '../../redux/battleships/battleship-actions';
+import { battleShipSelector } from '../../redux/battleships/battleship-selectors';
 import battlShipStyles from '../../styles/battleship.module.scss';
 
 interface BattleShipElemProps {

@@ -5,7 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { setAppNotification } from '../../redux/appStore/appActions';
+import { setAppNotification } from '../../redux/appStore/app-actions';
 import { HorizotalLoader } from '../UI/Loaders/HorizotalLoader';
 import commonStyles from '../../styles/common.module.scss';
 import { AppButton } from '../UI/AppButton';

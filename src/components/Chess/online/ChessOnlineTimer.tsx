@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IChessTime } from '../../../types/chessTypes';
+import { IChessTime } from '../../../types/chess-types';
 import { Colors } from '../../../models/chess/Colors';
 import { Player } from '../../../models/chess/Player';
 

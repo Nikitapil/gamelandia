@@ -14,7 +14,7 @@ import { ScoreBoard } from '../components/snake/ScoreBoard';
 import { SnakeBoard } from '../components/snake/SnakeBoard';
 import { ESnakeDirections } from '../constants/snake';
 import { SnakeBoardModel } from '../models/snake/SnakeBoardModel';
-import { fetchSnakeBestScoore } from '../redux/snake/snakeActions';
+import { fetchSnakeBestScoore } from '../redux/snake/snake-actions';
 import { SnakeService } from '../services/SnakeService';
 import snakeStyles from '../styles/snake.module.scss';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';

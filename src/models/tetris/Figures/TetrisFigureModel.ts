@@ -3,7 +3,7 @@ import { TetrisBoardModel } from '../TetrisBoardModel';
 import { TetrisElem } from '../TetrisElem';
 import { ETetrisColors, ETetrisDirections } from '../../../constants/tetris';
 import { TetrisCellModel } from '../TetrisCellModel';
-import { ITetrisNextCells } from '../../../types/tetrisTypes';
+import { ITetrisNextCells } from '../../../types/tetris-types';
 
 export class TetrisFigureModel {
   color: ETetrisColors = ETetrisColors.BLUE;

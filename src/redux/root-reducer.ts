@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { appReducer } from './appStore/appReducer';
-import { battleshipReducer } from './battleships/battleshipReducer';
-import { snakeReducer } from './snake/snakeReducer';
-import { scoreReducer } from './score/scoreReducer';
+import { appReducer } from './appStore/app-reducer';
+import { battleshipReducer } from './battleships/battleship-reducer';
+import { snakeReducer } from './snake/snake-reducer';
+import { scoreReducer } from './score/score-reducer';
 
 export const rootReducer = combineReducers({
   battlship: battleshipReducer,

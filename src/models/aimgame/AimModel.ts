@@ -2,7 +2,7 @@ import {
   AIM_FIELD_HEIGHT,
   AIM_FIELD_WIDTH,
   MAX_AIM_SIZE
-} from '../../constants/aimGame';
+} from '../../constants/aim-game';
 
 export class AimModel {
   size: number;

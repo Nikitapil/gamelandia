@@ -1,4 +1,4 @@
-import { IBoardScore } from '../../types/scoreTypes';
+import { IBoardScore } from '../../types/score-types';
 
 export const getNewBoardScores = (
   oldScores: IBoardScore[],

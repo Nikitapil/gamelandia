@@ -3,8 +3,8 @@ import React, { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { fetchSnakeBestScoore } from '../../redux/snake/snakeActions';
-import { snakeSelector } from '../../redux/snake/snakeSelector';
+import { fetchSnakeBestScoore } from '../../redux/snake/snake-actions';
+import { snakeSelector } from '../../redux/snake/snake-selector';
 import snakeStyle from '../../styles/snake.module.scss';
 
 interface ScoreBoardProps {

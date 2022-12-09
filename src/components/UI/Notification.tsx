@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { setAppNotification } from '../../redux/appStore/appActions';
-import { appSelector } from '../../redux/appStore/appSelectors';
+import { setAppNotification } from '../../redux/appStore/app-actions';
+import { appSelector } from '../../redux/appStore/app-selectors';
 import notificationStyles from '../../styles/notification.module.scss';
 
 export const Notification = () => {

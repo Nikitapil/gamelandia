@@ -2,7 +2,7 @@ import {
   BattleShipActions,
   BattleShipActionsTypes,
   IBattleShipState
-} from '../../types/battleshipTypes';
+} from '../../types/battleship-types';
 
 const initialState: IBattleShipState = {
   freeShips: [],

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { appSelector } from '../../redux/appStore/appSelectors';
+import { appSelector } from '../../redux/appStore/app-selectors';
 import breadcrumbsStyles from '../../styles/breadcrumbs.module.scss';
 import { LanguageDropdown } from '../AppHeader/LanguageDropdown';
 

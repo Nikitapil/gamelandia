@@ -1,4 +1,4 @@
-import { ESnakeActions, ISnakeBestScore } from '../../types/snakeTypes';
+import { ESnakeActions, ISnakeBestScore } from '../../types/snake-types';
 
 export const SetAllSnakeBestScores = (payload: ISnakeBestScore) => {
   return {

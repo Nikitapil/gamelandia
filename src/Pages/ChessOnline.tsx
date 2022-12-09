@@ -12,7 +12,7 @@ import { ChessOnlineTimer } from '../components/Chess/online/ChessOnlineTimer';
 import { FullRoomMessage } from '../components/common/FullRoomMessage';
 import { WinnerCommon } from '../components/common/WinnerCommon';
 import { breadcrumbs } from '../constants/breadcrumbs';
-import { IChessTime } from '../types/chessTypes';
+import { IChessTime } from '../types/chess-types';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { useTitle } from '../hooks/useTitle';
 import { Board } from '../models/chess/Board';

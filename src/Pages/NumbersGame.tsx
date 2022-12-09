@@ -6,7 +6,7 @@ import styles from '../styles/numbersGame.module.scss';
 import { useTitle } from '../hooks/useTitle';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../constants/breadcrumbs';
-import { EGamesWithScoreBoard } from '../types/scoreTypes';
+import { EGamesWithScoreBoard } from '../types/score-types';
 import { CommonScoreBoard } from '../components/common/CommonScoreBoard';
 
 interface NumbersGameProps {

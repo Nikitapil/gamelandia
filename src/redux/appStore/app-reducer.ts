@@ -3,7 +3,7 @@ import {
   AppActions,
   AppInitialState,
   EAppActionstypes
-} from '../../types/appTypes';
+} from '../../types/app-types';
 
 const initialState: AppInitialState = {
   notification: {

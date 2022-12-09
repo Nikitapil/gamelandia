@@ -7,9 +7,9 @@ import { NumbersBoardModel } from '../../models/2048/NumbersBoardModel';
 import { NumbersElem } from './NumbersElem';
 import { ENumbersDirections } from '../../constants/2048';
 import { AppButton } from '../UI/AppButton';
-import { EGamesWithScoreBoard } from '../../types/scoreTypes';
-import { ScoreService } from '../../services/scoreService';
-import { fetchBoardScores } from '../../redux/score/scoreActions';
+import { EGamesWithScoreBoard } from '../../types/score-types';
+import { ScoreService } from '../../services/ScoreService';
+import { fetchBoardScores } from '../../redux/score/score-actions';
 import { isMobile } from '../../utils/helpers';
 
 export const NumbersBoard = () => {

@@ -1,4 +1,4 @@
-import { TStringKeyObject } from '../types/appTypes';
+import { TStringKeyObject } from '../types/app-types';
 
 export const authErrorMessages: TStringKeyObject = {
   'auth/user-not-found': 'user_not_found',
