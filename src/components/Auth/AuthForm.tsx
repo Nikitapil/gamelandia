@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 import authStyles from '../../styles/auth.module.scss';
 import { AppInput } from '../UI/AppInput';
 import { AppButton } from '../UI/AppButton';
@@ -19,6 +21,9 @@ export const AuthForm: FC<AuthFormProps> = ({
 }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [userName, setUserName] = useState('');
+  const [passwordType, setPasswordType] = useState<
+    'email' | 'password' | 'text'
+  >('password');
 
   const onInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,6 +34,14 @@ export const AuthForm: FC<AuthFormProps> = ({
     if (setDisplayName) {
       setUserName(e.target.value);
     }
+  };
+
+  const onChangePasswordType = () => {
+    if (passwordType === 'text') {
+      setPasswordType('password');
+      return;
+    }
+    setPasswordType('text');
   };
 
   useEffect(() => {
@@ -54,13 +67,24 @@ export const AuthForm: FC<AuthFormProps> = ({
         testId="email-input"
         label={t('your_email')}
       />
-      <AppInput
-        type="password"
-        name="password"
-        value={formData.password}
-        onChange={onInput}
-        label={t('your_password')}
-      />
+      <div className={authStyles['auth-form__password']}>
+        <AppInput
+          type={passwordType}
+          name="password"
+          className={authStyles['auth-form__password-field']}
+          value={formData.password}
+          onChange={onInput}
+          label={t('your_password')}
+        />
+        <button
+          type="button"
+          title="Show password"
+          className={passwordType === 'text' ? authStyles.active : ''}
+          onClick={onChangePasswordType}
+        >
+          <FontAwesomeIcon icon={faEye} />
+        </button>
+      </div>
       {isSignUp && (
         <AppInput
           type="text"

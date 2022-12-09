@@ -54,3 +54,30 @@
   margin-top: 12px;
   align-self: flex-end;
 }
+
+.auth-form__password {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+
+  button {
+    background: none;
+    border: none;
+    color: $mainColor;
+    width: 20px;
+    height: 20px;
+    align-self: flex-end;
+
+    &:hover {
+      color: $titleColor;
+    }
+
+    &.active {
+      color: $success;
+    }
+  }
+}
+
+.auth-form__password-field {
+  flex: 1 1 auto;
+}
