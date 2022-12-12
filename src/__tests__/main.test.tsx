@@ -51,10 +51,12 @@ describe('mainpage tests', () => {
       )
     );
     const email = screen.getByTestId('email-input');
-    userEvent.type(email, '12345');
-    expect(email).toContainHTML('12345');
+    userEvent.type(email, '12345@12345.test');
+    expect(email).toContainHTML('12345@12345.test');
     const displayName = screen.getByTestId('display-name');
     userEvent.type(displayName, '12345');
+    const password = screen.getByTestId('password-input');
+    userEvent.type(password, '12345678');
     expect(displayName).toContainHTML('12345');
     expect(setDisplayName).toBeCalled();
     userEvent.click(screen.getByTestId('submit'));
