@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useTranslation } from 'react-i18next';
 import appInputStyles from '../../styles/appInput.module.scss';
 import { useInputValidation } from '../../hooks/useInputValidation';
 import { TValidationRules } from '../../utils/validators';
@@ -31,7 +32,7 @@ export const AppInput = ({
   onError = noop
 }: IAppInputProps) => {
   const { error, onBlur } = useInputValidation(value, rules);
-
+  const { t } = useTranslation();
   const id = useMemo(() => {
     return uuidv4();
   }, []);
@@ -62,7 +63,7 @@ export const AppInput = ({
         onBlur={onBlur}
       />
       {label && <label htmlFor={id}>{label}</label>}
-      {error && <p>{error}</p>}
+      {error && <p>{t(error)}</p>}
     </div>
   );
 };

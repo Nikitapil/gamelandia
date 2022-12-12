@@ -91,5 +91,8 @@
   "page_not_found": "The Page You're Looking For Was Not Found",
   "go_to_main": "Go to Main",
   "dyno_mobile_start": "Tap on the field to play dyno",
-  "numbers_description": "Clone of famous 2048 game"
+  "numbers_description": "Clone of famous 2048 game",
+  "field_required": "Field is required",
+  "incorrect_email": "Email is incorrect",
+  "password_error": "Invalid password: minimum length: 8"
 }
