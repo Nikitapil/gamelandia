@@ -1,10 +1,12 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import authStyles from '../../styles/auth.module.scss';
 import { AppInput } from '../UI/AppInput';
 import { AppButton } from '../UI/AppButton';
+import { TValidationRules } from '../../utils/validators';
+import { useInputTouch } from '../../hooks/useInputTouch';
 
 interface AuthFormProps {
   formTitle: string;
@@ -21,9 +23,16 @@ export const AuthForm: FC<AuthFormProps> = ({
 }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [userName, setUserName] = useState('');
+  const [formErrors, setFormErrors] = useState({
+    email: '',
+    password: '',
+    displayName: ''
+  });
   const [passwordType, setPasswordType] = useState<
     'email' | 'password' | 'text'
   >('password');
+  const form = useRef<HTMLFormElement | null>(null);
+  const { touch } = useInputTouch(form.current);
 
   const onInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -51,30 +60,52 @@ export const AuthForm: FC<AuthFormProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userName]);
 
+  const isFormValid = useMemo(() => {
+    return !(formErrors.email || formErrors.password || formErrors.displayName);
+  }, [formErrors.email, formErrors.password, formErrors.displayName]);
+
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    submit(formData.email, formData.password);
+    touch();
+    if (isFormValid) {
+      submit(formData.email, formData.password);
+    }
+  };
+
+  const passwordRules = useMemo((): TValidationRules[] => {
+    return isSignUp ? ['required', 'password'] : ['required'];
+  }, [isSignUp]);
+
+  const onError = (name: string, err: string) => {
+    setFormErrors({ ...formErrors, [name]: err });
   };
 
   return (
-    <form className={authStyles['auth-form']} onSubmit={onSubmit}>
+    <form className={authStyles['auth-form']} onSubmit={onSubmit} ref={form}>
       <h2 className={authStyles['auth-form__title']}>{formTitle}</h2>
       <AppInput
         type="email"
         name="email"
         value={formData.email}
         onChange={onInput}
+        onError={onError}
         testId="email-input"
         label={t('your_email')}
+        required
+        rules={['required', 'email']}
       />
       <div className={authStyles['auth-form__password']}>
         <AppInput
           type={passwordType}
           name="password"
           className={authStyles['auth-form__password-field']}
+          testId="password-input"
           value={formData.password}
           onChange={onInput}
+          onError={onError}
           label={t('your_password')}
+          required
+          rules={passwordRules}
         />
         <button
           type="button"
@@ -93,11 +124,19 @@ export const AuthForm: FC<AuthFormProps> = ({
           testId="display-name"
           value={userName}
           onChange={onChangeUserName}
+          onError={onError}
           label={t('your_name')}
           required
+          rules={['required']}
         />
       )}
-      <AppButton fullWidth type="submit" testId="submit">
+      <AppButton
+        customClass="mt-m"
+        fullWidth
+        type="submit"
+        testId="submit"
+        disabled={!isFormValid}
+      >
         {formTitle}
       </AppButton>
     </form>

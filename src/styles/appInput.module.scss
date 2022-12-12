@@ -3,7 +3,7 @@
 .app-input {
   position: relative;
   background: transparent;
-
+  margin-bottom: 1.3rem;
   label {
     color: $mainColor;
     position: absolute;
@@ -38,6 +38,16 @@
     }
   }
 
+  &.error {
+
+    p {
+      position: absolute;
+      bottom: 0;
+      color: $danger;
+      transform: translateY(108%);
+    }
+  }
+
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
@@ -50,4 +60,5 @@
     color: #E4E4E4FF;
     -webkit-text-fill-color: #E4E4E4FF;
   }
+
 }
