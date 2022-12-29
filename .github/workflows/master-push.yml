@@ -50,4 +50,7 @@ jobs:
       - name: Build projects
         run: CI=false npm run build
       - name: Deploy to gh-pages
-        run: npm run deploy
+        run: |
+          git config user.email "test@test.test"
+          git config user.name "Nikitapil"
+          npm run deploy
