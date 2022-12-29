@@ -22,7 +22,7 @@ export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
   return (
     <header className={headerStyles.header}>
       <div className={`container ${headerStyles.header__container}`}>
-        <h1 className={headerStyles.header__title}>GameLandia</h1>
+        <h1 className={headerStyles.header__title}>GameLandia demo</h1>
         <nav className={headerStyles['header__nav-bar']}>
           <ul className={headerStyles['nav-bar__links']}>
             <li>
