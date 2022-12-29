@@ -39,7 +39,7 @@ jobs:
         run: npm ci
       - name: Lint application
         run: npm run lint
-  build-deploy:
+  build:
     needs: [test, lint]
     runs-on: ubuntu-latest
     steps:
@@ -49,8 +49,3 @@ jobs:
         run: npm ci
       - name: Build projects
         run: CI=false npm run build
-      - name: Deploy to gh-pages
-        run: |
-          git config user.email "test@test.test"
-          git config user.name "Nikitapil"
-          npm run deploy
