@@ -65,6 +65,7 @@ describe('tic tac toe components', () => {
     board.initCells();
     const setBoard = jest.fn();
     const setWinner = jest.fn();
+    const setDraw = jest.fn();
     render(
       renderWithRouter(
         <TicTacBoard
@@ -72,6 +73,8 @@ describe('tic tac toe components', () => {
           setBoard={setBoard}
           winner=""
           setWinner={setWinner}
+          draw={false}
+          setDraw={setDraw}
         />
       )
     );
@@ -84,6 +87,7 @@ describe('tic tac toe components', () => {
     let winner = '';
     const setBoard = jest.fn();
     const setWinner = jest.fn(() => (winner = '123'));
+    const setDraw = jest.fn();
     board.checkWinner = jest.fn(() => true);
     render(
       renderWithRouter(
@@ -92,6 +96,8 @@ describe('tic tac toe components', () => {
           setBoard={setBoard}
           winner={winner}
           setWinner={setWinner}
+          draw={false}
+          setDraw={setDraw}
         />
       )
     );
@@ -103,6 +109,7 @@ describe('tic tac toe components', () => {
     board.initCells();
     const setBoard = jest.fn();
     const setWinner = jest.fn();
+    const setDraw = jest.fn();
     board.cells[0][0].icon = ETicTacIcons.XMARK;
     render(
       renderWithRouter(
@@ -111,6 +118,8 @@ describe('tic tac toe components', () => {
           setBoard={setBoard}
           winner=""
           setWinner={setWinner}
+          setDraw={setDraw}
+          draw={false}
         />
       )
     );
@@ -122,6 +131,7 @@ describe('tic tac toe components', () => {
     board.initCells();
     const setBoard = jest.fn();
     const setWinner = jest.fn();
+    const setDraw = jest.fn();
     render(
       renderWithRouter(
         <TicTacBoard
@@ -129,6 +139,8 @@ describe('tic tac toe components', () => {
           setBoard={setBoard}
           winner="123"
           setWinner={setWinner}
+          setDraw={setDraw}
+          draw={false}
         />
       )
     );
