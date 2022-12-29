@@ -18,7 +18,6 @@ jobs:
       - name: Testing (unit tests)
         run: npm run test
   lint:
-    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Get repository code
@@ -33,7 +32,7 @@ jobs:
       - name: Lint application
         run: npm run lint
   build:
-    needs: test
+    needs: [test, lint]
     runs-on: ubuntu-latest
     steps:
       - name: Get code
