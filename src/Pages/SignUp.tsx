@@ -1,10 +1,11 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import { Auth } from 'firebase/auth';
 import {
   useCreateUserWithEmailAndPassword,
   useUpdateProfile
 } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
+import { Link, useSearchParams } from 'react-router-dom';
 import { AuthForm } from '../components/Auth/AuthForm';
 import authStyles from '../styles/auth.module.scss';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
@@ -18,6 +19,7 @@ interface SignUpProps {
 
 export const SignUp: FC<SignUpProps> = ({ auth }) => {
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
   useTitle(t('sign_up'));
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.registration]);
   const [createUserWithEmailAndPassword, , , error] =
@@ -33,6 +35,13 @@ export const SignUp: FC<SignUpProps> = ({ auth }) => {
     }
   };
 
+  const loginLink = useMemo(() => {
+    if (searchParams.get('page')) {
+      return `/login?page=${searchParams.get('page')}`;
+    }
+    return '/login';
+  }, [searchParams]);
+
   return (
     <div className={authStyles['auth-container']} data-testid="signup-page">
       <AuthForm
@@ -41,6 +50,13 @@ export const SignUp: FC<SignUpProps> = ({ auth }) => {
         isSignUp
         setDisplayName={setDisplayName}
       />
+      <Link
+        className={authStyles['auth-link']}
+        to={loginLink}
+        data-testid="signup-link"
+      >
+        {t('already_registered')}
+      </Link>
     </div>
   );
 };
