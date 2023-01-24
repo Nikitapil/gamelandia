@@ -1,10 +1,12 @@
+import { ERoutes } from './routes';
+
 export const games = [
   {
     id: 11,
     gameName: '2048',
     pictureName: 'numbers',
     description: 'numbers_description',
-    path: '2048',
+    path: ERoutes.NUMBERS,
     isOutside: false,
     labels: ['Single Player'],
     mobileSuitable: true
@@ -14,7 +16,7 @@ export const games = [
     gameName: 'clone_invaders',
     pictureName: 'cloneInvaders',
     description: 'invaders_description',
-    path: 'invaders',
+    path: ERoutes.INVADERS,
     isOutside: false,
     labels: ['Single Player', 'Not suitable for mobile'],
     mobileSuitable: false
@@ -24,7 +26,7 @@ export const games = [
     gameName: 'snake',
     pictureName: 'snake',
     description: 'snake_description',
-    path: 'snake',
+    path: ERoutes.SNAKE,
     isOutside: false,
     labels: ['Single player'],
     mobileSuitable: true
@@ -34,7 +36,7 @@ export const games = [
     gameName: 'battleship',
     pictureName: 'battleship',
     description: 'battleship_description',
-    path: 'battleship',
+    path: ERoutes.BATTLESHIP,
     isOutside: false,
     labels: ['Online', '2players'],
     mobileSuitable: true
@@ -44,7 +46,7 @@ export const games = [
     gameName: 'chess',
     pictureName: 'chess',
     description: 'chess_description',
-    path: 'chess',
+    path: ERoutes.CHESS,
     isOutside: false,
     labels: ['2 players', 'online', 'offline'],
     mobileSuitable: true
@@ -64,7 +66,7 @@ export const games = [
     gameName: 'tetris',
     pictureName: 'tetris',
     description: 'tetris_description',
-    path: 'tetris',
+    path: ERoutes.TETRIS,
     isOutside: false,
     labels: ['offline', 'Single player'],
     mobileSuitable: true
@@ -74,7 +76,7 @@ export const games = [
     gameName: 'flappy_bird',
     pictureName: 'flappy',
     description: 'flappy_description',
-    path: 'flappy',
+    path: ERoutes.FLAPPY,
     isOutside: false,
     labels: ['Single player', 'Not suitable for mobile'],
     mobileSuitable: false
@@ -84,7 +86,7 @@ export const games = [
     gameName: 'aim_game',
     pictureName: 'aim',
     description: 'aim_game_description',
-    path: 'aim-game',
+    path: ERoutes.AIM_GAME,
     isOutside: false,
     labels: ['Single player'],
     mobileSuitable: true
@@ -94,7 +96,7 @@ export const games = [
     gameName: 'match_match',
     pictureName: 'default',
     description: 'match_match_description',
-    path: 'match-match',
+    path: ERoutes.MATCH_MATCH,
     isOutside: false,
     labels: ['Single player'],
     mobileSuitable: true
@@ -104,7 +106,7 @@ export const games = [
     gameName: 'tic_tac',
     pictureName: 'ticTacToe',
     description: 'tic_tac_description',
-    path: 'tictac',
+    path: ERoutes.TIC_TAC,
     isOutside: false,
     labels: ['2 players'],
     mobileSuitable: true

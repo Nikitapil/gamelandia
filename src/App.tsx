@@ -27,6 +27,7 @@ import { FlappyBird } from './Pages/FlappyBird';
 import { AimGame } from './Pages/AimGame';
 import { NotFound } from './Pages/NotFound';
 import { NumbersGame } from './Pages/NumbersGame';
+import { ERoutes } from './constants/routes';
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -39,37 +40,40 @@ function App() {
       <main className="main">
         <Breadcrumbs />
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="/match-match" element={<MatchMatch />} />
-          <Route path="/flappy" element={<FlappyBird auth={auth} />} />
-          <Route path="/chess" element={<ChessTypes />} />
-          <Route path="/chess/offline" element={<Chess />} />
-          <Route path="/aim-game" element={<AimGame auth={auth} />} />
-          <Route path="/2048" element={<NumbersGame auth={auth} />} />
+          <Route path={ERoutes.MAIN} element={<MainPage />} />
+          <Route path={ERoutes.UNKNOWN} element={<NotFound />} />
+          <Route path={ERoutes.MATCH_MATCH} element={<MatchMatch />} />
+          <Route path={ERoutes.FLAPPY} element={<FlappyBird auth={auth} />} />
+          <Route path={ERoutes.CHESS} element={<ChessTypes />} />
+          <Route path={ERoutes.CHESS_OFFLINE} element={<Chess />} />
+          <Route path={ERoutes.AIM_GAME} element={<AimGame auth={auth} />} />
+          <Route path={ERoutes.NUMBERS} element={<NumbersGame auth={auth} />} />
           <Route
-            path="/chess/rooms"
+            path={ERoutes.CHESS_ROOMS}
             element={<ChessRooms auth={auth} firestore={firestore} />}
           />
           <Route
-            path="/chess/rooms/:id"
+            path={ERoutes.CHESS_ROOMS_ID}
             element={<ChessOnline auth={auth} firestore={firestore} />}
           />
-          <Route path="/tictac" element={<TicTacToe />} />
-          <Route path="/snake" element={<Snake auth={auth} />} />
+          <Route path={ERoutes.TIC_TAC} element={<TicTacToe />} />
+          <Route path={ERoutes.SNAKE} element={<Snake auth={auth} />} />
           <Route
-            path="/battleship"
+            path={ERoutes.BATTLESHIP}
             element={<BattleShipRooms firestore={firestore} auth={auth} />}
           />
-          <Route path="/invaders" element={<CloneInvaders auth={auth} />} />
-          <Route path="/tetris" element={<Tetris auth={auth} />} />
           <Route
-            path="/battleship/:id"
+            path={ERoutes.INVADERS}
+            element={<CloneInvaders auth={auth} />}
+          />
+          <Route path={ERoutes.TETRIS} element={<Tetris auth={auth} />} />
+          <Route
+            path={ERoutes.BATTLESHIP_ID}
             element={<BattleShip auth={auth} firestore={firestore} />}
           />
 
-          <Route path="/registration" element={<SignUp auth={auth} />} />
-          <Route path="/login" element={<SignIn auth={auth} />} />
+          <Route path={ERoutes.REGISTRATION} element={<SignUp auth={auth} />} />
+          <Route path={ERoutes.LOGIN} element={<SignIn auth={auth} />} />
         </Routes>
         {notification.message && <Notification />}
       </main>
