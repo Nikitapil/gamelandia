@@ -9,6 +9,7 @@ import { setAppNotification } from '../../redux/appStore/app-actions';
 import { HorizotalLoader } from '../UI/Loaders/HorizotalLoader';
 import commonStyles from '../../styles/common.module.scss';
 import { AppButton } from '../UI/AppButton';
+import { ERoutes } from '../../constants/routes';
 
 interface RoomsCommonProps {
   auth: Auth;
@@ -32,7 +33,7 @@ export const RoomsCommon = memo(
     }
 
     if (!loading && !user) {
-      navigate(`/login?page=${page}`);
+      navigate(`${ERoutes.LOGIN}?page=${page}`);
       dispatch(
         setAppNotification({
           timeout: 3500,

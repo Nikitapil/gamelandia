@@ -5,6 +5,7 @@ import { breadcrumbs } from '../constants/breadcrumbs';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { useTitle } from '../hooks/useTitle';
 import '../styles/chess.scss';
+import { ERoutes } from '../constants/routes';
 
 export const ChessTypes = () => {
   const { t } = useTranslation();
@@ -12,10 +13,10 @@ export const ChessTypes = () => {
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.chessTypes]);
   return (
     <div className="chess-types">
-      <Link to="/chess/rooms" className="chessTypes__item">
+      <Link to={`${ERoutes.CHESS_ROOMS}`} className="chessTypes__item">
         Online
       </Link>
-      <Link to="/chess/offline" className="chessTypes__item">
+      <Link to={`${ERoutes.CHESS_OFFLINE}`} className="chessTypes__item">
         Offline
       </Link>
     </div>

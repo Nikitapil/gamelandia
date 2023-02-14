@@ -9,6 +9,7 @@ import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../constants/breadcrumbs';
 import { useTitle } from '../hooks/useTitle';
 import { useAuthRedirect } from '../hooks/useAuthRedirect';
+import { ERoutes } from '../constants/routes';
 
 interface SignInProps {
   auth: Auth;
@@ -29,9 +30,9 @@ export const SignIn: FC<SignInProps> = ({ auth }) => {
 
   const registeredLink = useMemo(() => {
     if (searchParams.get('page')) {
-      return `/registration?page=${searchParams.get('page')}`;
+      return `${ERoutes.REGISTRATION}?page=${searchParams.get('page')}`;
     }
-    return '/registration';
+    return `${ERoutes.REGISTRATION}`;
   }, [searchParams]);
 
   return (

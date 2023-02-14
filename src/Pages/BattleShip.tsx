@@ -25,6 +25,7 @@ import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../constants/breadcrumbs';
 import { useTitle } from '../hooks/useTitle';
 import { DynoGame } from '../components/DynoGame/DynoGame';
+import { ERoutes } from '../constants/routes';
 
 interface BattleShipProps {
   firestore: Firestore;
@@ -147,19 +148,19 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
   }, [isFull, loading, isDataFromServer]);
 
   if (!roomData && !loading && !winner) {
-    navigate('/battleship');
+    navigate(ERoutes.BATTLESHIP);
   }
 
   if (!isUserLoading && !user) {
-    navigate('/login?page=battleship');
+    navigate(`${ERoutes.LOGIN}?page=battleship`);
   }
 
   if (isFull) {
-    return <FullRoomMessage page="/battleship" />;
+    return <FullRoomMessage page={`${ERoutes.BATTLESHIP}`} />;
   }
 
   if (winner) {
-    return <WinnerCommon page="/battleship" winner={winner} />;
+    return <WinnerCommon page={`${ERoutes.BATTLESHIP}`} winner={winner} />;
   }
 
   return (

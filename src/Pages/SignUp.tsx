@@ -12,6 +12,7 @@ import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../constants/breadcrumbs';
 import { useTitle } from '../hooks/useTitle';
 import { useAuthRedirect } from '../hooks/useAuthRedirect';
+import { ERoutes } from '../constants/routes';
 
 interface SignUpProps {
   auth: Auth;
@@ -37,9 +38,9 @@ export const SignUp: FC<SignUpProps> = ({ auth }) => {
 
   const loginLink = useMemo(() => {
     if (searchParams.get('page')) {
-      return `/login?page=${searchParams.get('page')}`;
+      return `${ERoutes.LOGIN}?page=${searchParams.get('page')}`;
     }
-    return '/login';
+    return `${ERoutes.LOGIN}`;
   }, [searchParams]);
 
   return (

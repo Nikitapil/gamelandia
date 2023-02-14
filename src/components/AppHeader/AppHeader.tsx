@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { HorizotalLoader } from '../UI/Loaders/HorizotalLoader';
 import headerStyles from '../../styles/header.module.scss';
 import { AppButton } from '../UI/AppButton';
+import { ERoutes } from '../../constants/routes';
 
 interface AppHeaderProps {
   auth: Auth;
@@ -26,7 +27,10 @@ export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
         <nav className={headerStyles['header__nav-bar']}>
           <ul className={headerStyles['nav-bar__links']}>
             <li>
-              <Link className={headerStyles['nav-bar__link']} to="/">
+              <Link
+                className={headerStyles['nav-bar__link']}
+                to={`${ERoutes.MAIN}`}
+              >
                 {t('main')}
               </Link>
             </li>
@@ -38,7 +42,10 @@ export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
             ) : !user ? (
               <>
                 <li>
-                  <Link className={headerStyles['nav-bar__link']} to="/login">
+                  <Link
+                    className={headerStyles['nav-bar__link']}
+                    to={`${ERoutes.LOGIN}`}
+                  >
                     {t('sign_in')}
                   </Link>
                 </li>
@@ -46,7 +53,7 @@ export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
                   {' '}
                   <Link
                     className={headerStyles['nav-bar__link']}
-                    to="/registration"
+                    to={`${ERoutes.REGISTRATION}`}
                   >
                     {t('sign_up')}
                   </Link>

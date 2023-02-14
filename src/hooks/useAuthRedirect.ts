@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { setAppNotification } from '../redux/appStore/app-actions';
 import { authErrorMessages } from '../constants/app-messages';
+import { ERoutes } from '../constants/routes';
 
 export const useAuthRedirect = (auth: Auth, error: any) => {
   const { t } = useTranslation();
@@ -19,7 +20,7 @@ export const useAuthRedirect = (auth: Auth, error: any) => {
         navigate(`/${searchParams.get('page')}`);
         return;
       }
-      navigate('/');
+      navigate(ERoutes.MAIN);
     }
   }, [navigate, searchParams, user]);
 

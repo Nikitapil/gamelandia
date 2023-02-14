@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import styles from '../styles/notfound.module.scss';
 import { useTitle } from '../hooks/useTitle';
 import { DynoGame } from '../components/DynoGame/DynoGame';
+import { ERoutes } from '../constants/routes';
 
 export const NotFound = () => {
   useTitle('404');
@@ -16,7 +17,7 @@ export const NotFound = () => {
         <div className={styles.info}>
           <h2 className={styles.title}>{t('sorry')}</h2>
           <p className={styles.text}>{t('page_not_found')}</p>
-          <Link className={styles.link} to="/">
+          <Link className={styles.link} to={`${ERoutes.MAIN}`}>
             {t('go_to_main')}
           </Link>
         </div>
