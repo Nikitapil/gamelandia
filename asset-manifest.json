@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/gamelandia/static/css/main.4a4d9838.css",
-    "main.js": "/gamelandia/static/js/main.fdd51602.js",
+    "main.css": "/gamelandia/static/css/main.22855a03.css",
+    "main.js": "/gamelandia/static/js/main.3eb48cb3.js",
     "static/media/Ubuntu-Light.ttf": "/gamelandia/static/media/Ubuntu-Light.0dd2d5986e2731a16ee7.ttf",
     "static/media/Ubuntu-Regular.ttf": "/gamelandia/static/media/Ubuntu-Regular.1cbb1b79a23478cc89ad.ttf",
     "static/media/Ubuntu-Bold.ttf": "/gamelandia/static/media/Ubuntu-Bold.fec2d0f1431a6114a6ce.ttf",
@@ -9,6 +9,7 @@
     "static/media/default.png": "/gamelandia/static/media/default.c60ff5da05ad9faa90eb.png",
     "static/media/aim.png": "/gamelandia/static/media/aim.254cee2112d448f4cb59.png",
     "static/media/2048.png": "/gamelandia/static/media/2048.7b51ea8fb26ef4be255b.png",
+    "static/media/solitaire.jpeg": "/gamelandia/static/media/solitaire.3cc0155c1d2a8c127bc4.jpeg",
     "static/media/PermanentMarker-Regular.ttf": "/gamelandia/static/media/PermanentMarker-Regular.109a10dca0508e41aa12.ttf",
     "static/media/chess.jpeg": "/gamelandia/static/media/chess.c9cbc73dcadb350c371e.jpeg",
     "static/media/battleship.webp": "/gamelandia/static/media/battleship.3244eaf5b631b4944422.webp",
@@ -18,15 +19,16 @@
     "static/media/Orbitron-Regular.ttf": "/gamelandia/static/media/Orbitron-Regular.23a1d6c3def1d738a011.ttf",
     "static/media/Orbitron-Bold.ttf": "/gamelandia/static/media/Orbitron-Bold.386734f5392fcb3f726c.ttf",
     "static/media/cloneInvaders.webp": "/gamelandia/static/media/cloneInvaders.14762e75ff0a560a76c7.webp",
+    "static/media/card-background.jpeg": "/gamelandia/static/media/card-background.50495ea0dedff4f592f7.jpeg",
     "static/media/flappy.png": "/gamelandia/static/media/flappy.5c25d768449d9daa8692.png",
     "static/media/wolf.png": "/gamelandia/static/media/wolf.b9be2f0007bb9ca44052.png",
     "index.html": "/gamelandia/index.html",
     "static/media/getFetch.cjs": "/gamelandia/static/media/getFetch.c780682470504fffbd04.cjs",
-    "main.4a4d9838.css.map": "/gamelandia/static/css/main.4a4d9838.css.map",
-    "main.fdd51602.js.map": "/gamelandia/static/js/main.fdd51602.js.map"
+    "main.22855a03.css.map": "/gamelandia/static/css/main.22855a03.css.map",
+    "main.3eb48cb3.js.map": "/gamelandia/static/js/main.3eb48cb3.js.map"
   },
   "entrypoints": [
-    "static/css/main.4a4d9838.css",
-    "static/js/main.fdd51602.js"
+    "static/css/main.22855a03.css",
+    "static/js/main.3eb48cb3.js"
   ]
 }

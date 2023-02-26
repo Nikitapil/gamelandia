@@ -94,5 +94,8 @@
   "numbers_description": "Клон знаменитой игры 2048",
   "field_required": "Обязательно для заполнения",
   "incorrect_email": "Email не корректный",
-  "password_error": "Длина пароля должна быть больше 8"
+  "password_error": "Длина пароля должна быть больше 8",
+  "already_registered": "Уже зарегистрированы? Войти.",
+  "solitaire": "Пасьянс солитер",
+  "solitaire_description": "Классический пасьянс солитер"
 }
