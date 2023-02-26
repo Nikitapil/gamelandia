@@ -12,16 +12,6 @@ export const games = [
     mobileSuitable: true
   },
   {
-    id: 7,
-    gameName: 'clone_invaders',
-    pictureName: 'cloneInvaders',
-    description: 'invaders_description',
-    path: ERoutes.INVADERS,
-    isOutside: false,
-    labels: ['Single Player', 'Not suitable for mobile'],
-    mobileSuitable: false
-  },
-  {
     id: 5,
     gameName: 'snake',
     pictureName: 'snake',
@@ -70,6 +60,26 @@ export const games = [
     isOutside: false,
     labels: ['offline', 'Single player'],
     mobileSuitable: true
+  },
+  {
+    id: 14,
+    gameName: 'solitaire',
+    pictureName: 'solitaire',
+    description: 'solitaire_description',
+    path: ERoutes.SOLITAIRE,
+    isOutside: false,
+    labels: ['offline', 'Single player'],
+    mobileSuitable: false
+  },
+  {
+    id: 7,
+    gameName: 'clone_invaders',
+    pictureName: 'cloneInvaders',
+    description: 'invaders_description',
+    path: ERoutes.INVADERS,
+    isOutside: false,
+    labels: ['Single Player', 'Not suitable for mobile'],
+    mobileSuitable: false
   },
   {
     id: 9,

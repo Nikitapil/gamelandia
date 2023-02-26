@@ -16,5 +16,6 @@ export enum ERoutes {
   INVADERS = '/invaders',
   TETRIS = '/tetris',
   REGISTRATION = '/registration',
-  LOGIN = '/login'
+  LOGIN = '/login',
+  SOLITAIRE = '/solitaire'
 }

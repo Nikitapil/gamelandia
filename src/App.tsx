@@ -28,6 +28,7 @@ import { AimGame } from './Pages/AimGame';
 import { NotFound } from './Pages/NotFound';
 import { NumbersGame } from './Pages/NumbersGame';
 import { ERoutes } from './constants/routes';
+import { Solitaire } from './Pages/Solitaire';
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -48,6 +49,7 @@ function App() {
           <Route path={ERoutes.CHESS_OFFLINE} element={<Chess />} />
           <Route path={ERoutes.AIM_GAME} element={<AimGame auth={auth} />} />
           <Route path={ERoutes.NUMBERS} element={<NumbersGame auth={auth} />} />
+          <Route path={ERoutes.SOLITAIRE} element={<Solitaire />} />
           <Route
             path={ERoutes.CHESS_ROOMS}
             element={<ChessRooms auth={auth} firestore={firestore} />}

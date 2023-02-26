@@ -95,5 +95,7 @@
   "field_required": "Field is required",
   "incorrect_email": "Email is incorrect",
   "password_error": "Invalid password: minimum length: 8",
-  "already_registered": "Already registered? Sign in"
+  "already_registered": "Already registered? Sign in",
+  "solitaire": "Solitaire",
+  "solitaire_description": "Classic solitaire game"
 }
