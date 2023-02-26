@@ -83,5 +83,10 @@ export const breadcrumbs = {
     id: 'breadcrumb+2048',
     name: '2048',
     path: '/2048'
+  },
+  solitaire: {
+    id: 'breadcrumb+solitaire',
+    name: 'solitaire',
+    path: '/2048'
   }
 };
