@@ -80,6 +80,9 @@ export class SolitaireGame {
 
   addToResultBlock(card: SolitaireCard) {
     const prevBlock = card.block;
+    if (card.block.cards.indexOf(card) !== card.block.cards.length - 1) {
+      return;
+    }
     if (card.name === ESolitaireCardNames.ACE) {
       const freeBlock = this.resultBlocks.find((block) => !block.cards.length);
       if (freeBlock) {
