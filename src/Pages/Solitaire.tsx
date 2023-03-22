@@ -62,7 +62,12 @@ export const Solitaire = () => {
       <h1 className="page-title">Solitaire</h1>
       <div className={styles.win}>
         {isWin && <p className={styles.win__text}>{t('you_win')}!!!</p>}
-        <AppButton text={t('new_game')} color="success" onClick={startGame} />
+        <AppButton
+          text={t('new_game')}
+          color="success"
+          onClick={startGame}
+          customClass="mb-m"
+        />
       </div>
       <div className={styles.field}>
         <div className={styles.field__top}>

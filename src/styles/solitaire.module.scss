@@ -1,4 +1,64 @@
 @import "vars";
+
+:root {
+  --card-width: 120px;
+  --card-height: 170px;
+  --game-block-margin: -140px;
+  --result-block-margin: -170px;
+  --card-icon-size: 34px;
+  --card-font-size: 16px;
+  --card-padding: 10px;
+  --card-border-radius: 10px;
+
+  @media(max-width: 995px) {
+    --card-width: 90px;
+    --card-height: 130px;
+    --game-block-margin: -100px;
+    --result-block-margin: -130px;
+  }
+
+  @media(max-width: 780px) {
+    --card-width: 75px;
+    --card-height: 110px;
+    --game-block-margin: -80px;
+    --result-block-margin: -110px;
+    --card-icon-size: 30px;
+    --card-font-size: 14px;
+  }
+
+  @media(max-width: 675px) {
+    --card-width: 55px;
+    --card-height: 80px;
+    --game-block-margin: -55px;
+    --result-block-margin: -80px;
+    --card-icon-size: 20px;
+    --card-font-size: 12px;
+    --card-padding: 7px;
+  }
+
+  @media(max-width: 550px) {
+    --card-width: 40px;
+    --card-height: 58px;
+    --game-block-margin: -40px;
+    --result-block-margin: -58px;
+    --card-icon-size: 16px;
+    --card-font-size: 10px;
+    --card-padding: 5px;
+    --card-border-radius: 7px
+  }
+
+  @media(max-width: 425px) {
+    --card-width: 30px;
+    --card-height: 40px;
+    --game-block-margin: -27px;
+    --result-block-margin: -40px;
+    --card-icon-size: 12px;
+    --card-font-size: 8px;
+    --card-padding: 3px;
+    --card-border-radius: 5px
+  }
+}
+
 .solitaire {
   display: flex;
   flex-direction: column;
@@ -6,11 +66,11 @@
 }
 
 .card {
-  height: 170px;
-  width: 120px;
-  border-radius: 10px;
+  height: var(--card-height);
+  width: var(--card-width);
+  border-radius: var(--card-border-radius);
   background: white;
-  padding: 10px;
+  padding: var(--card-padding);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -27,18 +87,20 @@
 
   &__icon {
     align-self: center;
-    font-size: 34px;
+    font-size: var(--card-icon-size);
   }
 
   &__title {
     display: flex;
     gap: 5px;
+    font-size: var(--card-font-size);
   }
 
   &__bottom {
     display: flex;
     gap: 5px;
     align-self: flex-end;
+    font-size: var(--card-font-size);
   }
 
   &__empty {
@@ -84,13 +146,13 @@
 
   &__item {
     &:not(:first-child) {
-      margin-top: -140px;
+      margin-top: var(--game-block-margin);
     }
   }
 
   &__result-item {
     &:not(:first-child) {
-      margin-top: -170px;
+      margin-top: var(--result-block-margin);
     }
   }
 }
