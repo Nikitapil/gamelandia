@@ -9,6 +9,7 @@
   --card-font-size: 16px;
   --card-padding: 10px;
   --card-border-radius: 10px;
+  --card-block-gap: 20px;
 
   @media(max-width: 995px) {
     --card-width: 90px;
@@ -27,35 +28,38 @@
   }
 
   @media(max-width: 675px) {
-    --card-width: 55px;
-    --card-height: 80px;
-    --game-block-margin: -55px;
-    --result-block-margin: -80px;
+    --card-width: 60px;
+    --card-height: 85px;
+    --game-block-margin: -63px;
+    --result-block-margin: -85px;
     --card-icon-size: 20px;
     --card-font-size: 12px;
     --card-padding: 7px;
+    --card-block-gap: 15px;
   }
 
   @media(max-width: 550px) {
-    --card-width: 40px;
-    --card-height: 58px;
-    --game-block-margin: -40px;
-    --result-block-margin: -58px;
+    --card-width: 45px;
+    --card-height: 65px;
+    --game-block-margin: -45px;
+    --result-block-margin: -65px;
     --card-icon-size: 16px;
     --card-font-size: 10px;
     --card-padding: 5px;
-    --card-border-radius: 7px
+    --card-border-radius: 7px;
+    --card-block-gap: 10px;
   }
 
   @media(max-width: 425px) {
-    --card-width: 30px;
-    --card-height: 40px;
-    --game-block-margin: -27px;
-    --result-block-margin: -40px;
+    --card-width: 40px;
+    --card-height: 57px;
+    --game-block-margin: -35px;
+    --result-block-margin: -57px;
     --card-icon-size: 12px;
     --card-font-size: 8px;
     --card-padding: 3px;
-    --card-border-radius: 5px
+    --card-border-radius: 5px;
+    --card-block-gap: 8px;
   }
 }
 
@@ -116,7 +120,7 @@
 
 .deck {
   display: flex;
-  gap: 20px;
+  gap: var(--card-block-gap);
 }
 
 .top-field {
@@ -138,7 +142,7 @@
 
   &__main {
     display: flex;
-    gap: 20px;
+    gap: var(--card-block-gap);
   }
 }
 
