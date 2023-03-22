@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/gamelandia/static/css/main.054f9258.css",
-    "main.js": "/gamelandia/static/js/main.a12c73c1.js",
+    "main.js": "/gamelandia/static/js/main.949263bf.js",
     "static/media/Ubuntu-Light.ttf": "/gamelandia/static/media/Ubuntu-Light.0dd2d5986e2731a16ee7.ttf",
     "static/media/Ubuntu-Regular.ttf": "/gamelandia/static/media/Ubuntu-Regular.1cbb1b79a23478cc89ad.ttf",
     "static/media/Ubuntu-Bold.ttf": "/gamelandia/static/media/Ubuntu-Bold.fec2d0f1431a6114a6ce.ttf",
@@ -25,10 +25,10 @@
     "index.html": "/gamelandia/index.html",
     "static/media/getFetch.cjs": "/gamelandia/static/media/getFetch.c780682470504fffbd04.cjs",
     "main.054f9258.css.map": "/gamelandia/static/css/main.054f9258.css.map",
-    "main.a12c73c1.js.map": "/gamelandia/static/js/main.a12c73c1.js.map"
+    "main.949263bf.js.map": "/gamelandia/static/js/main.949263bf.js.map"
   },
   "entrypoints": [
     "static/css/main.054f9258.css",
-    "static/js/main.a12c73c1.js"
+    "static/js/main.949263bf.js"
   ]
 }
