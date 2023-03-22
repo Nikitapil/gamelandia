@@ -2,7 +2,7 @@
 
 :root {
   --card-width: 120px;
-  --card-height: 170px;
+  --card-height: 170px; //  === card-width / 0.7
   --game-block-margin: -140px;
   --result-block-margin: -170px;
   --card-icon-size: 34px;
@@ -21,7 +21,7 @@
   @media(max-width: 780px) {
     --card-width: 75px;
     --card-height: 110px;
-    --game-block-margin: -80px;
+    --game-block-margin: -85px;
     --result-block-margin: -110px;
     --card-icon-size: 30px;
     --card-font-size: 14px;
@@ -41,7 +41,7 @@
   @media(max-width: 550px) {
     --card-width: 45px;
     --card-height: 65px;
-    --game-block-margin: -45px;
+    --game-block-margin: -48px;
     --result-block-margin: -65px;
     --card-icon-size: 16px;
     --card-font-size: 10px;
@@ -53,12 +53,12 @@
   @media(max-width: 425px) {
     --card-width: 40px;
     --card-height: 57px;
-    --game-block-margin: -35px;
+    --game-block-margin: -42px;
     --result-block-margin: -57px;
     --card-icon-size: 12px;
     --card-font-size: 8px;
     --card-padding: 3px;
-    --card-border-radius: 5px;
+    --card-border-radius: 4px;
     --card-block-gap: 8px;
   }
 }
