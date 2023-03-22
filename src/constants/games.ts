@@ -69,7 +69,7 @@ export const games = [
     path: ERoutes.SOLITAIRE,
     isOutside: false,
     labels: ['offline', 'Single player'],
-    mobileSuitable: false
+    mobileSuitable: true
   },
   {
     id: 7,
