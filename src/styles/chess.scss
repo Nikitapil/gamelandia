@@ -42,18 +42,18 @@
     }
 
     &.selected {
-      background: #029c96;
+      background: $bg-primary;
     }
 
     .available {
-      background-color: #04d60b;
+      background: $bg-success;
       width: 10px;
       height: 10px;
       border-radius: 50%;
     }
 
     &.attack-available {
-      background-color: rgb(250, 39, 39);
+      background: $bg-danger;
       border: 1px solid #6d3c01;
     }
 
