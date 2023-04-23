@@ -21,31 +21,31 @@
 }
 
 .bg-blue {
-  background-color: $tetrisBlue;
+  background: $bg-purple;
 }
 
 .bg-green {
-  background-color: $tetrisGreen;
+  background: $bg-success;
 }
 
 .bg-yellow {
-  background-color: $tetrisYellow;
+  background: $bg-yellow;
 }
 
 .bg-orange {
-  background-color: $tetrisOrange;
+  background: $bg-orange;
 }
 
 .bg-red {
-  background-color: $tetrisRed;
+  background: $bg-danger;
 }
 
 .bg-white {
-  background-color: $tetrisWhite;
+  background: $bg-white;
 }
 
 .bg-black {
-  background-color: $tetrisBlack;
+  background: $bg-light-green;
 }
 
 .tetris-container {

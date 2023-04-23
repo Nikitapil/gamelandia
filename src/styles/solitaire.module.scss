@@ -73,7 +73,7 @@
   height: var(--card-height);
   width: var(--card-width);
   border-radius: var(--card-border-radius);
-  background: white;
+  background: $bg-white;
   padding: var(--card-padding);
   display: flex;
   flex-direction: column;
@@ -108,7 +108,7 @@
   }
 
   &__empty {
-    background: $titleColor;
+    background: $bg-primary;
     opacity: 0.5;
     display: flex;
     align-items: center;
