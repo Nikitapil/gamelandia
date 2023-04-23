@@ -14,7 +14,8 @@ export const NumbersElem = ({ elem }: NumbersElemProps) => {
     const colorStyles = numberColors[elem.value]
       ? numberColors[elem.value]
       : {
-          background: '#000000',
+          background:
+            'radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%)',
           color: '#fff'
         };
     return { top, left, ...colorStyles };

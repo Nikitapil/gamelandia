@@ -26,19 +26,19 @@
   }
 
   &.primary {
-    background-color: $primary;
+    background: $bg-primary;
   }
 
   &.success {
-    background-color: $success;
+    background: $bg-success;
   }
 
   &.danger {
-    background-color: $danger;
+    background: $bg-danger;
   }
 
   &.dark {
-    background-color: $dark;
+    background: $bg-dark;
     color: $mainColor;
 
     &:hover {
