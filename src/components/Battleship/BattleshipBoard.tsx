@@ -1,6 +1,6 @@
 import { Firestore } from 'firebase/firestore';
 import React, { memo, useMemo } from 'react';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useTypedSelector } from '../../hooks/store/useTypedSelector';
 import { battleShipSelector } from '../../redux/battleships/battleship-selectors';
 import { BattleshipCell } from './BattleshipCell';
 import battlShipStyles from '../../styles/battleship.module.scss';

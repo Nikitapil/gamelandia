@@ -1,17 +1,19 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import App from '../App';
 import { AuthForm } from '../components/Auth/AuthForm';
 import { MainPageCard } from '../components/main/MainPageCard';
 import { OutSidePageCard } from '../components/main/OutSideGameCard';
-import { rootReducer } from '../redux/root-reducer';
+import { rootReducer } from '../store/root-reducer';
 import { renderWithRedux, renderWithRouter } from '../utils/test/utils';
 
 describe('mainpage tests', () => {
   let store: any;
   beforeEach(() => {
-    store = createStore(rootReducer);
+    store = configureStore({
+      reducer: rootReducer
+    });
   });
 
   test('all render main page', () => {

@@ -2,7 +2,7 @@ import { User } from 'firebase/auth';
 import React, { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useTypedSelector } from '../../hooks/store/useTypedSelector';
 import { fetchSnakeBestScoore } from '../../redux/snake/snake-actions';
 import { snakeSelector } from '../../redux/snake/snake-selector';
 import snakeStyle from '../../styles/snake.module.scss';

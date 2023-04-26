@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { doc, setDoc, Firestore } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useTypedSelector } from '../../hooks/store/useTypedSelector';
 import { BattleshipCellModel } from '../../models/battleship/BattleShipCellModel';
 import {
   setBattleShipBoard,

@@ -8,7 +8,7 @@ import { Auth } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
 import { BattleshipBoard } from '../components/Battleship/BattleshipBoard';
 import { BattleshipElems } from '../components/Battleship/BattleshipElems';
-import { useTypedSelector } from '../hooks/useTypedSelector';
+import { useTypedSelector } from '../hooks/store/useTypedSelector';
 import { BattleshipBoardModel } from '../models/battleship/BattleShipBoardModel';
 import {
   setBattleShipBoard,

@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { IBreabcrumb } from '../types/app-types';
-import { setBreadCrumbs } from '../redux/appStore/app-actions';
+import { IBreabcrumb } from '../store/app/types';
+import { useAppActions } from './store/useAppActions';
 
-export const useBreadcrumbs = (breadcrubsArray: IBreabcrumb[]) => {
-  const dispatch = useDispatch();
+export const useBreadcrumbs = (breadcrumbsArray: IBreabcrumb[]) => {
+  const { setBreadcrumbs } = useAppActions();
   useEffect(() => {
-    dispatch(setBreadCrumbs(breadcrubsArray));
-  }, []);
+    setBreadcrumbs(breadcrumbsArray);
+  }, [breadcrumbsArray, setBreadcrumbs]);
 };

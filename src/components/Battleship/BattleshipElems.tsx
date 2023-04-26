@@ -4,7 +4,7 @@ import { Firestore, doc, setDoc } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BattleShipElem } from './BattleShipElem';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useTypedSelector } from '../../hooks/store/useTypedSelector';
 import { battleShipSelector } from '../../redux/battleships/battleship-selectors';
 import { BattleshipBoardModel } from '../../models/battleship/BattleShipBoardModel';
 import {

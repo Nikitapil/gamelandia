@@ -2,7 +2,7 @@ import { faRotate } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { FC, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useTypedSelector } from '../../hooks/store/useTypedSelector';
 import { BattleShipElemModel } from '../../models/battleship/BattleShipElemModel';
 import {
   setCurrentFreeShip,

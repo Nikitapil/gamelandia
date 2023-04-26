@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { appSelector } from '../../redux/appStore/app-selectors';
 import breadcrumbsStyles from '../../styles/breadcrumbs.module.scss';
 import { LanguageDropdown } from '../AppHeader/LanguageDropdown';
+import { useAppSelector } from '../../hooks/store/useAppSelector';
+import { appSelector } from '../../store/selectors';
 
 export const Breadcrumbs = () => {
-  const { breadcrumbs } = useTypedSelector(appSelector);
+  const { breadcrumbs } = useAppSelector(appSelector);
   const { t } = useTranslation();
   return (
     <div className={breadcrumbsStyles.container}>
