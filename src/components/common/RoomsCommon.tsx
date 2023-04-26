@@ -2,10 +2,9 @@ import { Auth } from 'firebase/auth';
 import { DocumentData } from 'firebase/firestore';
 import React, { memo } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { setAppNotification } from '../../redux/appStore/app-actions';
+import { toast } from 'react-toastify';
 import { HorizotalLoader } from '../UI/Loaders/HorizotalLoader';
 import commonStyles from '../../styles/common.module.scss';
 import { AppButton } from '../UI/AppButton';
@@ -22,7 +21,6 @@ export const RoomsCommon = memo(
   ({ auth, page, rooms, createRoom }: RoomsCommonProps) => {
     const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const { t } = useTranslation();
     if (loading) {
       return (
@@ -34,13 +32,7 @@ export const RoomsCommon = memo(
 
     if (!loading && !user) {
       navigate(`${ERoutes.LOGIN}?page=${page}`);
-      dispatch(
-        setAppNotification({
-          timeout: 3500,
-          message: t('need_login_first'),
-          type: 'error'
-        })
-      );
+      toast.info(t('need_login_first') as string);
     }
     return (
       <div className={`container ${commonStyles.rooms__container}`}>

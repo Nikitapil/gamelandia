@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { ToastContainer } from 'react-toastify';
 import { AppHeader } from './components/AppHeader/AppHeader';
 import { firebaseConfig } from './fbconfig';
 import { BattleShip } from './Pages/BattleShip';
@@ -13,9 +14,6 @@ import { TicTacToe } from './Pages/TicTacToe';
 import './styles/App.scss';
 import { SignUp } from './Pages/SignUp';
 import { SignIn } from './Pages/SignIn';
-import { Notification } from './components/UI/Notification';
-import { useTypedSelector } from './hooks/useTypedSelector';
-import { appSelector } from './redux/appStore/app-selectors';
 import { BattleShipRooms } from './Pages/BattleShipRooms';
 import { ChessTypes } from './Pages/ChessTypes';
 import { ChessRooms } from './Pages/ChessRooms';
@@ -29,12 +27,12 @@ import { NotFound } from './Pages/NotFound';
 import { NumbersGame } from './Pages/NumbersGame';
 import { ERoutes } from './constants/routes';
 import { Solitaire } from './Pages/Solitaire';
+import 'react-toastify/dist/ReactToastify.css';
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const firestore = getFirestore(app);
 function App() {
-  const { notification } = useTypedSelector(appSelector);
   return (
     <div className="App">
       <AppHeader auth={auth} />
@@ -77,7 +75,7 @@ function App() {
           <Route path={ERoutes.REGISTRATION} element={<SignUp auth={auth} />} />
           <Route path={ERoutes.LOGIN} element={<SignIn auth={auth} />} />
         </Routes>
-        {notification.message && <Notification />}
+        <ToastContainer position="top-right" autoClose={2000} />
       </main>
     </div>
   );

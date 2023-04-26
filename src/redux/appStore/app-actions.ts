@@ -1,15 +1,4 @@
-import {
-  EAppActionstypes,
-  IBreabcrumb,
-  Inotification
-} from '../../types/app-types';
-
-export const setAppNotification = (payload: Inotification) => {
-  return {
-    type: EAppActionstypes.SET_NOTIFICATION,
-    payload
-  };
-};
+import { EAppActionstypes, IBreabcrumb } from '../../types/app-types';
 
 export const setBreadCrumbs = (payload: IBreabcrumb[]) => {
   return {
