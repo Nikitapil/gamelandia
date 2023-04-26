@@ -1,6 +1,4 @@
-import React, { FC, useMemo } from 'react';
-import { Auth } from 'firebase/auth';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import React, { useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AuthForm } from '../components/Auth/AuthForm';
@@ -10,22 +8,21 @@ import { breadcrumbs } from '../constants/breadcrumbs';
 import { useTitle } from '../hooks/useTitle';
 import { useAuthRedirect } from '../hooks/useAuthRedirect';
 import { ERoutes } from '../constants/routes';
+import { useAppSelector } from '../hooks/store/useAppSelector';
+import { authSelector } from '../store/selectors';
+import { useAuthActions } from '../auth/hooks/useAuthActions';
 
-interface SignInProps {
-  auth: Auth;
-}
-
-export const SignIn: FC<SignInProps> = ({ auth }) => {
+export const SignIn = () => {
   const { t } = useTranslation();
   useTitle(t('sign_in'));
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.login]);
-  const [signInWithEmailAndPassword, , , error] =
-    useSignInWithEmailAndPassword(auth);
-  useAuthRedirect(auth, error);
+  const { user, authError } = useAppSelector(authSelector);
+  const { signin } = useAuthActions();
+  useAuthRedirect(user, authError);
   const [searchParams] = useSearchParams();
 
   const submit = async (email: string, password: string) => {
-    await signInWithEmailAndPassword(email, password);
+    await signin({ email, password });
   };
 
   const registeredLink = useMemo(() => {

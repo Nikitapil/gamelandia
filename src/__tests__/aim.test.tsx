@@ -4,7 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import userEvent from '@testing-library/user-event';
 import { renderWithRedux } from '../utils/test/utils';
 import { rootReducer } from '../redux/root-reducer';
-import { AimGame } from '../Pages/AimGame';
+import { AimGame } from '../pages/AimGame';
 
 jest.mock('react-firebase-hooks/auth');
 jest.spyOn(global, 'setInterval');

@@ -1,19 +1,14 @@
-import { Auth } from 'firebase/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import { authErrorMessages } from '../constants/app-messages';
 import { ERoutes } from '../constants/routes';
+import { IUser } from '../auth/types';
 
-export const useAuthRedirect = (auth: Auth, error: any) => {
+export const useAuthRedirect = (user: IUser | null, error: string) => {
   const { t } = useTranslation();
-  const [user] = useAuthState(auth);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const dispatch = useDispatch();
   useEffect(() => {
     if (user) {
       if (searchParams.get('page')) {
@@ -26,7 +21,7 @@ export const useAuthRedirect = (auth: Auth, error: any) => {
 
   useEffect(() => {
     if (error) {
-      toast.error(t(authErrorMessages[error.code]) as string);
+      toast.error(t(error) as string);
     }
-  }, [dispatch, error, t]);
+  }, [error, t]);
 };

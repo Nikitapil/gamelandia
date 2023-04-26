@@ -1,7 +1,5 @@
-import { Auth } from 'firebase/auth';
 import { DocumentData } from 'firebase/firestore';
 import React, { memo } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
@@ -9,20 +7,21 @@ import { HorizotalLoader } from '../UI/Loaders/HorizotalLoader';
 import commonStyles from '../../styles/common.module.scss';
 import { AppButton } from '../UI/AppButton';
 import { ERoutes } from '../../constants/routes';
+import { useAppSelector } from '../../hooks/store/useAppSelector';
+import { authSelector } from '../../store/selectors';
 
 interface RoomsCommonProps {
-  auth: Auth;
   createRoom: (() => Promise<void>) | (() => void);
   rooms: DocumentData[] | undefined;
   page: string;
 }
 
 export const RoomsCommon = memo(
-  ({ auth, page, rooms, createRoom }: RoomsCommonProps) => {
-    const [user, loading] = useAuthState(auth);
+  ({ page, rooms, createRoom }: RoomsCommonProps) => {
+    const { user, isAuthLoading } = useAppSelector(authSelector);
     const navigate = useNavigate();
     const { t } = useTranslation();
-    if (loading) {
+    if (isAuthLoading) {
       return (
         <div className={commonStyles.rooms__loader}>
           <HorizotalLoader />
@@ -30,7 +29,7 @@ export const RoomsCommon = memo(
       );
     }
 
-    if (!loading && !user) {
+    if (!isAuthLoading && !user) {
       navigate(`${ERoutes.LOGIN}?page=${page}`);
       toast.info(t('need_login_first') as string);
     }

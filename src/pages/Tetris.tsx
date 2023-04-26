@@ -5,7 +5,6 @@ import {
   faCircleChevronUp
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Auth } from 'firebase/auth';
 import React, {
   KeyboardEvent,
   useEffect,
@@ -13,27 +12,17 @@ import React, {
   useRef,
   useState
 } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import { CommonScoreBoard } from '../components/common/CommonScoreBoard';
 import { TetrisBoard } from '../components/Tetris/TetrisBoard';
 import { breadcrumbs } from '../constants/breadcrumbs';
-import { EGamesWithScoreBoard } from '../types/score-types';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { useTitle } from '../hooks/useTitle';
 import { TetrisBoardModel } from '../models/tetris/TetrisBoardModel';
-import { fetchBoardScores } from '../redux/score/score-actions';
-import { ScoreService } from '../services/ScoreService';
 import tetrisStyle from '../styles/tetris.module.scss';
 import { isMobile } from '../utils/helpers';
 import { AppButton } from '../components/UI/AppButton';
 
-interface TetrisProps {
-  auth: Auth;
-}
-
-export const Tetris = ({ auth }: TetrisProps) => {
+export const Tetris = () => {
   const { t } = useTranslation();
   useTitle('Tetris');
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.tetris]);
@@ -44,9 +33,6 @@ export const Tetris = ({ auth }: TetrisProps) => {
   const [score, setScore] = useState(0);
   const figureInterval = useRef<null | ReturnType<typeof setInterval>>(null);
   const gameRef = useRef<HTMLDivElement>(null);
-  const [user] = useAuthState(auth);
-  const game = EGamesWithScoreBoard.TETRIS;
-  const dispatch = useDispatch();
 
   const initBoard = () => {
     if (figureInterval.current) {
@@ -69,20 +55,22 @@ export const Tetris = ({ auth }: TetrisProps) => {
     setIsGameOver(true);
   };
 
-  const updateScore = async () => {
-    await ScoreService.setRecord(score, game);
-    dispatch(fetchBoardScores(EGamesWithScoreBoard.TETRIS));
-  };
+  // TODO fix score
+  // const updateScore = async () => {
+  //   await ScoreService.setRecord(score, game);
+  //   dispatch(fetchBoardScores(EGamesWithScoreBoard.TETRIS));
+  // };
 
   useEffect(() => {
     initBoard();
   }, []);
 
-  useEffect(() => {
-    if (isGameOver && user) {
-      updateScore();
-    }
-  }, [isGameOver, user]);
+  // TODO fix score
+  // useEffect(() => {
+  //   if (isGameOver && user) {
+  //     updateScore();
+  //   }
+  // }, [isGameOver, user]);
 
   const onKeyPress = (e: KeyboardEvent, btnName?: string) => {
     if (e.code === 'ArrowRight' || btnName === 'right') {
@@ -228,7 +216,8 @@ export const Tetris = ({ auth }: TetrisProps) => {
             </button>
           </div>
         )}
-        {user && <CommonScoreBoard user={user} game={game} />}
+        {/* TODO fix score with new backend */}
+        {/* {user && <CommonScoreBoard user={user} game={game} />} */}
       </div>
     </div>
   );

@@ -1,23 +1,21 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Auth, signOut } from 'firebase/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 import { HorizotalLoader } from '../UI/Loaders/HorizotalLoader';
 import headerStyles from '../../styles/header.module.scss';
 import { AppButton } from '../UI/AppButton';
 import { ERoutes } from '../../constants/routes';
+import { useAppSelector } from '../../hooks/store/useAppSelector';
+import { authSelector } from '../../store/selectors';
+import { useAuthActions } from '../../auth/hooks/useAuthActions';
 
-interface AppHeaderProps {
-  auth: Auth;
-}
-
-export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
-  const [user, loading] = useAuthState(auth);
+export const AppHeader = () => {
+  const { user, isAuthLoading } = useAppSelector(authSelector);
+  const { logout } = useAuthActions();
   const { t } = useTranslation();
 
   const onSignOut = async () => {
-    await signOut(auth);
+    await logout();
   };
 
   return (
@@ -35,7 +33,7 @@ export const AppHeader: FC<AppHeaderProps> = ({ auth }) => {
               </Link>
             </li>
             {/* eslint-disable-next-line no-nested-ternary */}
-            {loading ? (
+            {isAuthLoading ? (
               <li>
                 <HorizotalLoader />
               </li>

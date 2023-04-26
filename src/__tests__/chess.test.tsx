@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createStore } from 'redux';
-import { Chess } from '../Pages/Chess';
+import { Chess } from '../pages/Chess';
 import { renderWithRedux, renderWithRouter } from '../utils/test/utils';
 import { Board } from '../models/chess/Board';
 import { Cell } from '../models/chess/Cell';

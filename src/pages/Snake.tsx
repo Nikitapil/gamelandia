@@ -1,6 +1,4 @@
-import { Auth } from 'firebase/auth';
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -10,7 +8,6 @@ import {
   faCircleChevronDown
 } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
-import { ScoreBoard } from '../components/snake/ScoreBoard';
 import { SnakeBoard } from '../components/snake/SnakeBoard';
 import { ESnakeDirections } from '../constants/snake';
 import { SnakeBoardModel } from '../models/snake/SnakeBoardModel';
@@ -23,11 +20,7 @@ import { useTitle } from '../hooks/useTitle';
 import { isMobile } from '../utils/helpers';
 import { AppButton } from '../components/UI/AppButton';
 
-interface SnakeProps {
-  auth: Auth;
-}
-
-export const Snake: FC<SnakeProps> = ({ auth }) => {
+export const Snake = () => {
   useTitle('Snake');
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.snake]);
   const snakeContainer = useRef<HTMLDivElement | null>(null);
@@ -37,7 +30,6 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
   const [timer, setTimer] = useState(100);
   const [isNewGameButtonDisabled, setIsNewGameButtonDisabled] = useState(false);
   const movingTimeOut = useRef<null | ReturnType<typeof setInterval>>(null);
-  const [user] = useAuthState(auth);
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -241,7 +233,8 @@ export const Snake: FC<SnakeProps> = ({ auth }) => {
             </button>
           </div>
         )}
-        {user && <ScoreBoard user={user} />}
+        {/* TODO fix score with new backend */}
+        {/* {user && <ScoreBoard user={user} />} */}
       </div>
     </div>
   );

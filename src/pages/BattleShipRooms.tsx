@@ -1,7 +1,6 @@
 import React, { FC, useMemo } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { doc, collection, setDoc, Firestore } from 'firebase/firestore';
-import { Auth } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
 import { RoomsCommon } from '../components/common/RoomsCommon';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
@@ -10,13 +9,9 @@ import { useTitle } from '../hooks/useTitle';
 
 interface BattleShipRoomsProps {
   firestore: Firestore;
-  auth: Auth;
 }
 
-export const BattleShipRooms: FC<BattleShipRoomsProps> = ({
-  firestore,
-  auth
-}) => {
+export const BattleShipRooms: FC<BattleShipRoomsProps> = ({ firestore }) => {
   const { t } = useTranslation();
   useTitle(t('battleship'));
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.battleshipRooms]);
@@ -43,7 +38,6 @@ export const BattleShipRooms: FC<BattleShipRoomsProps> = ({
   return (
     <RoomsCommon
       rooms={filteredRooms}
-      auth={auth}
       createRoom={createRoom}
       page="battleship"
     />

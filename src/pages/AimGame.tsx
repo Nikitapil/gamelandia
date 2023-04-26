@@ -6,8 +6,6 @@ import React, {
   useState
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Auth } from 'firebase/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { useDispatch } from 'react-redux';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../constants/breadcrumbs';
@@ -16,18 +14,12 @@ import styles from '../styles/aimgame.module.scss';
 import { Aim } from '../components/AimGame/Aim';
 import { AimModel } from '../models/aimgame/AimModel';
 import { AppButton } from '../components/UI/AppButton';
-import { CommonScoreBoard } from '../components/common/CommonScoreBoard';
 import { EGamesWithScoreBoard } from '../types/score-types';
 import { ScoreService } from '../services/ScoreService';
 import { fetchBoardScores } from '../redux/score/score-actions';
 
-interface AimGameProps {
-  auth: Auth;
-}
-
-export const AimGame = ({ auth }: AimGameProps) => {
+export const AimGame = () => {
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.aim]);
-  const [user] = useAuthState(auth);
   useTitle('Aim Game');
   const { t } = useTranslation();
   const game = EGamesWithScoreBoard.AIM;
@@ -106,7 +98,8 @@ export const AimGame = ({ auth }: AimGameProps) => {
         <div className={styles.field}>
           <Aim aimDot={aimDot} updateDot={updateDot} />
         </div>
-        {user && <CommonScoreBoard user={user} game={game} />}
+        {/* TODO fix score with new backend */}
+        {/* {user && <CommonScoreBoard user={user} game={game} />} */}
       </div>
     </div>
   );

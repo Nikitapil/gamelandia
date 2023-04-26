@@ -1,4 +1,3 @@
-import { User } from 'firebase/auth';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -15,11 +14,7 @@ import { InvadersGameOver } from './InvadersGameOver';
 import { InvadersGun } from './InvadersGun';
 import { AppButton } from '../UI/AppButton';
 
-interface InvadersFieldProps {
-  user: User | null | undefined;
-}
-
-export const InvadersField = ({ user }: InvadersFieldProps) => {
+export const InvadersField = () => {
   const [board, setBoard] = useState(new InvadersFieldModel());
   const [bullet, setBullet] = useState<InvadersBulletModel | null>(null);
   const [gameOver, setGameOver] = useState(false);
@@ -114,10 +109,8 @@ export const InvadersField = ({ user }: InvadersFieldProps) => {
     setBoard(new InvadersFieldModel());
     clearInterval(gameInterval.current!);
     setTimer(350);
-    if (user) {
-      await ScoreService.setRecord(score, EGamesWithScoreBoard.INVADERS);
-      dispatch(fetchBoardScores(EGamesWithScoreBoard.INVADERS));
-    }
+    await ScoreService.setRecord(score, EGamesWithScoreBoard.INVADERS);
+    dispatch(fetchBoardScores(EGamesWithScoreBoard.INVADERS));
   };
 
   const closeModal = () => {

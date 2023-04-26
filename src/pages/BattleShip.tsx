@@ -2,9 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { doc, setDoc, deleteDoc, Firestore } from 'firebase/firestore';
-import { Auth } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
 import { BattleshipBoard } from '../components/Battleship/BattleshipBoard';
 import { BattleshipElems } from '../components/Battleship/BattleshipElems';
@@ -26,13 +24,14 @@ import { breadcrumbs } from '../constants/breadcrumbs';
 import { useTitle } from '../hooks/useTitle';
 import { DynoGame } from '../components/DynoGame/DynoGame';
 import { ERoutes } from '../constants/routes';
+import { useAppSelector } from '../hooks/store/useAppSelector';
+import { authSelector } from '../store/selectors';
 
 interface BattleShipProps {
   firestore: Firestore;
-  auth: Auth;
 }
 
-export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
+export const BattleShip: FC<BattleShipProps> = ({ firestore }) => {
   const { t } = useTranslation();
   useTitle(t('battleship'));
   useBreadcrumbs([
@@ -42,7 +41,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
   ]);
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [user, isUserLoading] = useAuthState(auth);
+  const { user, isAuthLoading } = useAppSelector(authSelector);
   const [roomData, loading] = useDocumentData(
     doc(firestore, 'battleship', id!)
   );
@@ -58,8 +57,8 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
   useEffect(() => {
     if (roomData?.player1 && roomData?.player2) {
       if (
-        roomData?.player1.uid !== user?.uid &&
-        roomData?.player2.uid !== user?.uid
+        roomData?.player1.uid !== user?.id &&
+        roomData?.player2.uid !== user?.id
       ) {
         setIsFull(true);
         return;
@@ -67,8 +66,8 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
     }
     if (!roomData?.player1 && user && roomData) {
       const player1 = {
-        uid: user.uid,
-        name: user.displayName,
+        uid: user.id,
+        name: user.username,
         cells: []
       };
       setDoc(doc(firestore, 'battleship', id!), { ...roomData, player1 });
@@ -76,20 +75,20 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
       !roomData?.player2 &&
       user &&
       roomData &&
-      roomData?.player1.uid !== user.uid
+      roomData?.player1.uid !== user.id
     ) {
       const player2 = {
-        uid: user.uid,
-        name: user.displayName,
+        uid: user.id,
+        name: user.username,
         cells: []
       };
       setDoc(doc(firestore, 'battleship', id!), { ...roomData, player2 });
     }
 
-    if (user && roomData && roomData.player1?.uid === user.uid) {
+    if (user && roomData && roomData.player1?.uid === user.id) {
       setMyPlayer('player1');
       setSecondPlayer('player2');
-    } else if (user && roomData && roomData.player2?.uid === user.uid) {
+    } else if (user && roomData && roomData.player2?.uid === user.id) {
       setMyPlayer('player2');
       setSecondPlayer('player1');
     }
@@ -151,7 +150,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore, auth }) => {
     navigate(ERoutes.BATTLESHIP);
   }
 
-  if (!isUserLoading && !user) {
+  if (!isAuthLoading && !user) {
     navigate(`${ERoutes.LOGIN}?page=battleship`);
   }
 

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
+import React, { FC, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +10,7 @@ import { useInputTouch } from '../../hooks/useInputTouch';
 
 interface AuthFormProps {
   formTitle: string;
-  submit: (email: string, password: string) => void;
+  submit: (email: string, password: string, username: string) => void;
   isSignUp?: boolean;
   setDisplayName?: (params: { displayName: string }) => void;
 }
@@ -18,15 +18,17 @@ interface AuthFormProps {
 export const AuthForm: FC<AuthFormProps> = ({
   formTitle,
   submit,
-  isSignUp = false,
-  setDisplayName
+  isSignUp = false
 }) => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
-  const [userName, setUserName] = useState('');
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    username: ''
+  });
   const [formErrors, setFormErrors] = useState({
     email: '',
     password: '',
-    displayName: ''
+    username: ''
   });
   const [passwordType, setPasswordType] = useState<
     'email' | 'password' | 'text'
@@ -39,12 +41,6 @@ export const AuthForm: FC<AuthFormProps> = ({
   };
   const { t } = useTranslation();
 
-  const onChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (setDisplayName) {
-      setUserName(e.target.value);
-    }
-  };
-
   const onChangePasswordType = () => {
     if (passwordType === 'text') {
       setPasswordType('password');
@@ -53,22 +49,15 @@ export const AuthForm: FC<AuthFormProps> = ({
     setPasswordType('text');
   };
 
-  useEffect(() => {
-    if (setDisplayName) {
-      setDisplayName({ displayName: userName });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userName]);
-
   const isFormValid = useMemo(() => {
-    return !(formErrors.email || formErrors.password || formErrors.displayName);
-  }, [formErrors.email, formErrors.password, formErrors.displayName]);
+    return !(formErrors.email || formErrors.password || formErrors.username);
+  }, [formErrors.email, formErrors.password, formErrors.username]);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     touch();
     if (isFormValid) {
-      submit(formData.email, formData.password);
+      submit(formData.email, formData.password, formData.username);
     }
   };
 
@@ -120,10 +109,10 @@ export const AuthForm: FC<AuthFormProps> = ({
         <AppInput
           type="text"
           data-testid="display-name"
-          name="displayName"
+          name="username"
           testId="display-name"
-          value={userName}
-          onChange={onChangeUserName}
+          value={formData.username}
+          onChange={onInput}
           onError={onError}
           label={t('your_name')}
           required

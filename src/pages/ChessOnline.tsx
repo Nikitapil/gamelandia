@@ -1,7 +1,5 @@
-import { Auth } from 'firebase/auth';
 import { deleteDoc, doc, Firestore, setDoc } from 'firebase/firestore';
 import React, { FC, useEffect, useMemo, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -24,13 +22,14 @@ import {
   mapBoardFromFireBase
 } from '../utils/chess/chessMapper';
 import { AppButton } from '../components/UI/AppButton';
+import { useAppSelector } from '../hooks/store/useAppSelector';
+import { authSelector } from '../store/selectors';
 
 interface ChessOnlineProps {
   firestore: Firestore;
-  auth: Auth;
 }
 
-export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
+export const ChessOnline: FC<ChessOnlineProps> = ({ firestore }) => {
   const { t } = useTranslation();
   useTitle(`${t('chess')} online`);
   useBreadcrumbs([
@@ -40,7 +39,7 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
     breadcrumbs.chessOnline
   ]);
   const { id } = useParams();
-  const [user, isUserLoading] = useAuthState(auth);
+  const { user, isAuthLoading } = useAppSelector(authSelector);
   const [roomData, loading] = useDocumentData(doc(firestore, 'chess', id!));
   const [board, setBoard] = useState<Board>(new Board());
   const [whitePlayer] = useState(new Player(Colors.WHITE));
@@ -51,13 +50,13 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
   const [time, setTime] = useState<IChessTime | null>(null);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!isUserLoading && !user) {
+    if (!isAuthLoading && !user) {
       navigate('/login?page=chess/rooms');
     }
     if (user && roomData?.player1 && roomData?.player2) {
       if (
-        roomData?.player1.uid !== user?.uid &&
-        roomData?.player2.uid !== user?.uid
+        roomData?.player1.uid !== user?.id &&
+        roomData?.player2.uid !== user?.id
       ) {
         setIsFull(true);
         return;
@@ -83,8 +82,8 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
     }
     if (roomData && user && !roomData.player1) {
       const player1 = {
-        uid: user.uid,
-        name: user.displayName,
+        uid: user.id,
+        name: user.username,
         color: Colors.WHITE
       };
       setDoc(doc(firestore, 'chess', id!), { ...roomData, player1 });
@@ -92,11 +91,11 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
       roomData &&
       user &&
       !roomData.player2 &&
-      roomData.player1.uid !== user.uid
+      roomData.player1.uid !== user.id
     ) {
       const player2 = {
-        uid: user.uid,
-        name: user.displayName,
+        uid: user.id,
+        name: user.username,
         color: Colors.BLACK
       };
       setDoc(doc(firestore, 'chess', id!), { ...roomData, player2 });
@@ -106,11 +105,11 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ auth, firestore }) => {
       deleteDoc(doc(firestore, 'chess', id!));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [roomData, user, isUserLoading]);
+  }, [roomData, user, isAuthLoading]);
 
   const isClickAvailable = useMemo(() => {
-    return roomData && roomData?.currentPlayer?.uid === user?.uid;
-  }, [roomData, user?.uid]);
+    return roomData && roomData?.currentPlayer?.uid === user?.id;
+  }, [roomData, user?.id]);
 
   const endGame = (color?: string) => {
     if (!color) {
