@@ -1,9 +1,9 @@
 import { Firestore } from 'firebase/firestore';
 import React, { memo, useMemo } from 'react';
-import { useTypedSelector } from '../../hooks/store/useTypedSelector';
-import { battleShipSelector } from '../../redux/battleships/battleship-selectors';
 import { BattleshipCell } from './BattleshipCell';
 import battlShipStyles from '../../styles/battleship.module.scss';
+import { useAppSelector } from '../../hooks/store/useAppSelector';
+import { battleshipSelector } from '../../store/selectors';
 
 interface BattleshipBoardProps {
   isEnemy: boolean;
@@ -14,7 +14,7 @@ interface BattleshipBoardProps {
 
 export const BattleshipBoard = memo(
   ({ isEnemy, roomData, secondPlayer, firestore }: BattleshipBoardProps) => {
-    const { board, enemyBoard } = useTypedSelector(battleShipSelector);
+    const { board, enemyBoard } = useAppSelector(battleshipSelector);
 
     const thisBoard = useMemo(() => {
       return isEnemy ? enemyBoard : board;

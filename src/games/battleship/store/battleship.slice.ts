@@ -17,13 +17,21 @@ export const battleshipSlice = createSlice({
   initialState,
   reducers: {
     setFreeShips(state, action: TReduxAction<BattleShipElemModel[]>) {
-      state.freeShips = action.payload;
+      state.freeShips = [...action.payload];
     },
     setBoard(state, action: TReduxAction<BattleshipBoardModel | null>) {
-      state.board = action.payload;
+      let board = null;
+      if (action.payload) {
+        board = action.payload.copyBoard();
+      }
+      state.board = board;
     },
     setEnemyBoard(state, action: TReduxAction<BattleshipBoardModel | null>) {
-      state.enemyBoard = action.payload;
+      let board = null;
+      if (action.payload) {
+        board = action.payload.copyBoard();
+      }
+      state.enemyBoard = board;
     },
     setCurrentFreeShip(
       state,

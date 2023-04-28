@@ -1,19 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import { doc, setDoc, deleteDoc, Firestore } from 'firebase/firestore';
 import { useTranslation } from 'react-i18next';
 import { BattleshipBoard } from '../components/Battleship/BattleshipBoard';
 import { BattleshipElems } from '../components/Battleship/BattleshipElems';
-import { useTypedSelector } from '../hooks/store/useTypedSelector';
 import { BattleshipBoardModel } from '../models/battleship/BattleShipBoardModel';
-import {
-  setBattleShipBoard,
-  setBattleShipEnemyBoard,
-  setFreeShips
-} from '../redux/battleships/battleship-actions';
-import { battleShipSelector } from '../redux/battleships/battleship-selectors';
 import { HorizotalLoader } from '../components/UI/Loaders/HorizotalLoader';
 import { mapFromFireBaseToBattleShip } from '../utils/battleship/battleShipMappers';
 import { FullRoomMessage } from '../components/common/FullRoomMessage';
@@ -25,7 +17,8 @@ import { useTitle } from '../hooks/useTitle';
 import { DynoGame } from '../components/DynoGame/DynoGame';
 import { ERoutes } from '../constants/routes';
 import { useAppSelector } from '../hooks/store/useAppSelector';
-import { authSelector } from '../store/selectors';
+import { authSelector, battleshipSelector } from '../store/selectors';
+import { useBattleshipActions } from '../games/battleship/hooks/useBattleshipActions';
 
 interface BattleShipProps {
   firestore: Firestore;
@@ -39,13 +32,13 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore }) => {
     breadcrumbs.battleshipRooms,
     breadcrumbs.battleship
   ]);
-  const dispatch = useDispatch();
   const { id } = useParams();
   const { user, isAuthLoading } = useAppSelector(authSelector);
   const [roomData, loading] = useDocumentData(
     doc(firestore, 'battleship', id!)
   );
-  const { board, enemyBoard } = useTypedSelector(battleShipSelector);
+  const { board, enemyBoard } = useAppSelector(battleshipSelector);
+  const { setBoard, setEnemyBoard, setFreeShips } = useBattleshipActions();
   const [isFull, setIsFull] = useState(false);
   const [myPlayer, setMyPlayer] = useState('');
   const [secondPlayer, setSecondPlayer] = useState('');
@@ -113,7 +106,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore }) => {
         roomData[myPlayer].ships,
         false
       );
-      dispatch(setBattleShipBoard(newMyBoard));
+      setBoard(newMyBoard);
     }
     if (
       user &&
@@ -126,7 +119,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore }) => {
         roomData[secondPlayer].ships,
         true
       );
-      dispatch(setBattleShipEnemyBoard(newEnemyBoard));
+      setEnemyBoard(newEnemyBoard);
     }
     if (roomData?.winner) {
       setWinner(roomData?.winner);
@@ -140,8 +133,8 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore }) => {
       const newBoard = new BattleshipBoardModel();
       newBoard.initCells();
       newBoard.createAllFreeElems();
-      dispatch(setFreeShips(newBoard.freeElems));
-      dispatch(setBattleShipBoard(newBoard));
+      setFreeShips(newBoard.freeElems);
+      setBoard(newBoard);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFull, loading, isDataFromServer]);

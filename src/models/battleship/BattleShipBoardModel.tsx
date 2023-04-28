@@ -134,4 +134,13 @@ export class BattleshipBoardModel {
   checkWinner() {
     return this.ships.every((ship) => ship.isDestroyed);
   }
+
+  copyBoard() {
+    const newBoard = new BattleshipBoardModel();
+    newBoard.cells = this.cells;
+    newBoard.freeElems = this.freeElems;
+    newBoard.isEnemyBoard = this.isEnemyBoard;
+    newBoard.ships = this.ships;
+    return newBoard;
+  }
 }

@@ -1,22 +1,17 @@
 import React, { memo, useMemo } from 'react';
-import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { doc, setDoc, Firestore } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
-import { useTypedSelector } from '../../hooks/store/useTypedSelector';
 import { BattleshipCellModel } from '../../models/battleship/BattleShipCellModel';
-import {
-  setBattleShipBoard,
-  setCurrentFreeShip,
-  setFreeShips
-} from '../../redux/battleships/battleship-actions';
-import { battleShipSelector } from '../../redux/battleships/battleship-selectors';
 import {
   mapCellsToFirebase,
   mapShipsToFirebase
 } from '../../utils/battleship/battleShipMappers';
 import battlShipStyles from '../../styles/battleship.module.scss';
+import { useAppSelector } from '../../hooks/store/useAppSelector';
+import { battleshipSelector } from '../../store/selectors';
+import { useBattleshipActions } from '../../games/battleship/hooks/useBattleshipActions';
 
 interface BattleshipCellProps {
   cell: BattleshipCellModel;
@@ -28,25 +23,27 @@ interface BattleshipCellProps {
 export const BattleshipCell = memo(
   ({ cell, roomData, secondPlayer, firestore }: BattleshipCellProps) => {
     const { currentFreeShip, board, enemyBoard } =
-      useTypedSelector(battleShipSelector);
-    const dispatch = useDispatch();
+      useAppSelector(battleshipSelector);
+    const { setBoard, setFreeShips, setCurrentFreeShip } =
+      useBattleshipActions();
     const { id } = useParams();
+
     const onMouseOver = () => {
       if (currentFreeShip && cell.isEmpty) {
         const isAddVailable = board?.checkIsAddAvailable(cell, currentFreeShip);
         if (isAddVailable) {
           board?.highlightCells(cell, currentFreeShip);
         }
-        dispatch(setBattleShipBoard(board));
+        setBoard(board);
       }
     };
 
     const onClick = () => {
       if (currentFreeShip && cell.isAddAvailable) {
         board?.addShipOnBoard(cell, currentFreeShip);
-        dispatch(setBattleShipBoard(board));
-        dispatch(setFreeShips(board?.freeElems!));
-        dispatch(setCurrentFreeShip(null));
+        setBoard(board);
+        setFreeShips(board?.freeElems!);
+        setCurrentFreeShip(null);
       }
       if (
         cell.board.isEnemyBoard &&

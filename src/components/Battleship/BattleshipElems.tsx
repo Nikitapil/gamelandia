@@ -1,23 +1,18 @@
 import React, { FC } from 'react';
-import { useDispatch } from 'react-redux';
 import { Firestore, doc, setDoc } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BattleShipElem } from './BattleShipElem';
-import { useTypedSelector } from '../../hooks/store/useTypedSelector';
-import { battleShipSelector } from '../../redux/battleships/battleship-selectors';
 import { BattleshipBoardModel } from '../../models/battleship/BattleShipBoardModel';
-import {
-  setBattleShipBoard,
-  setFreeShips,
-  setCurrentFreeShip
-} from '../../redux/battleships/battleship-actions';
 import {
   mapCellsToFirebase,
   mapShipsToFirebase
 } from '../../utils/battleship/battleShipMappers';
 import battlShipStyles from '../../styles/battleship.module.scss';
 import { AppButton } from '../UI/AppButton';
+import { useAppSelector } from '../../hooks/store/useAppSelector';
+import { battleshipSelector } from '../../store/selectors';
+import { useBattleshipActions } from '../../games/battleship/hooks/useBattleshipActions';
 
 interface BattleshipElemsProps {
   roomData: any;
@@ -30,9 +25,8 @@ export const BattleshipElems: FC<BattleshipElemsProps> = ({
   roomData,
   myPlayer
 }) => {
-  const { freeShips } = useTypedSelector(battleShipSelector);
-  const { board } = useTypedSelector(battleShipSelector);
-  const dispatch = useDispatch();
+  const { freeShips, board } = useAppSelector(battleshipSelector);
+  const { setFreeShips, setBoard, setCurrentFreeShip } = useBattleshipActions();
   const { id } = useParams();
   const { t } = useTranslation();
 
@@ -40,9 +34,9 @@ export const BattleshipElems: FC<BattleshipElemsProps> = ({
     const newBoard = new BattleshipBoardModel();
     newBoard.initCells();
     newBoard.createAllFreeElems();
-    dispatch(setFreeShips(newBoard.freeElems));
-    dispatch(setBattleShipBoard(newBoard));
-    dispatch(setCurrentFreeShip(null));
+    setFreeShips(newBoard.freeElems);
+    setBoard(newBoard);
+    setCurrentFreeShip(null);
   };
 
   const setIsReady = () => {
@@ -57,6 +51,7 @@ export const BattleshipElems: FC<BattleshipElemsProps> = ({
     };
     setDoc(doc(firestore, 'battleship', id!), newData);
   };
+
   return (
     <div className={battlShipStyles['battleship-elems']}>
       {freeShips.length > 0 ? (
