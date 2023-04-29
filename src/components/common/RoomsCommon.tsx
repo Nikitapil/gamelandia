@@ -31,7 +31,11 @@ export const RoomsCommon = memo(
 
     if (!isAuthLoading && !user) {
       navigate(`${ERoutes.LOGIN}?page=${page}`);
-      toast.info(t('need_login_first') as string);
+      if (!toast.isActive('need_login_first')) {
+        toast.info(t('need_login_first') as string, {
+          toastId: 'need_login_first'
+        });
+      }
     }
     return (
       <div className={`container ${commonStyles.rooms__container}`}>
