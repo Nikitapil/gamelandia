@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import { Chess } from '../pages/Chess';
 import { renderWithRedux, renderWithRouter } from '../utils/test/utils';
 import { Board } from '../models/chess/Board';
@@ -14,8 +14,7 @@ import { Player } from '../models/chess/Player';
 import { Colors } from '../models/chess/Colors';
 import { ChessTimer } from '../components/Chess/ChessTimer';
 import { ChessCellComponents } from '../components/Chess/ChessCellComponents';
-import { rootReducer } from '../redux/root-reducer';
-import App from '../App';
+import { rootReducer } from '../store/root-reducer';
 
 jest.spyOn(global, 'setInterval');
 jest.spyOn(global, 'clearInterval');
@@ -23,7 +22,9 @@ jest.spyOn(global, 'clearInterval');
 describe('chess tests', () => {
   let store: any;
   beforeEach(() => {
-    store = createStore(rootReducer);
+    store = configureStore({
+      reducer: rootReducer
+    });
   });
   test('timer should be in the document', () => {
     render(renderWithRedux(<Chess />, '/', store));

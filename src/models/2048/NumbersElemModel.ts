@@ -26,7 +26,6 @@ export class NumbersElemModel {
   }
 
   move(cell: NumbersCellModel) {
-    // TODO проверить что правильно удаляется и сетится элемент
     this.cell.elem = null;
     this.cell = cell;
     this.y = cell.y;

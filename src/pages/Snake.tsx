@@ -1,24 +1,26 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faCircleChevronUp,
+  faCircleChevronDown,
   faCircleChevronLeft,
   faCircleChevronRight,
-  faCircleChevronDown
+  faCircleChevronUp
 } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 import { SnakeBoard } from '../components/snake/SnakeBoard';
 import { ESnakeDirections } from '../constants/snake';
 import { SnakeBoardModel } from '../models/snake/SnakeBoardModel';
-import { fetchSnakeBestScoore } from '../redux/snake/snake-actions';
-import { SnakeService } from '../services/SnakeService';
 import snakeStyles from '../styles/snake.module.scss';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../constants/breadcrumbs';
 import { useTitle } from '../hooks/useTitle';
 import { isMobile } from '../utils/helpers';
 import { AppButton } from '../components/UI/AppButton';
+import { useAppSelector } from '../hooks/store/useAppSelector';
+import { authSelector } from '../store/selectors';
+import { CommonScoreBoard } from '../score/components/CommonScoreBoard';
+import { EGamesLevels, EGamesNames } from '../constants/games';
+import { useCreateScore } from '../hooks/useCreateScore';
 
 export const Snake = () => {
   useTitle('Snake');
@@ -30,13 +32,28 @@ export const Snake = () => {
   const [timer, setTimer] = useState(100);
   const [isNewGameButtonDisabled, setIsNewGameButtonDisabled] = useState(false);
   const movingTimeOut = useRef<null | ReturnType<typeof setInterval>>(null);
+  const { user } = useAppSelector(authSelector);
+  const createScore = useCreateScore();
   const { t } = useTranslation();
-  const dispatch = useDispatch();
 
   const onMove = () => {
     board?.snake?.move();
     setBoard(board?.updateBoard()!);
   };
+
+  // TODO refactor
+  const level = useMemo(() => {
+    switch (timer) {
+      case 50:
+        return EGamesLevels.HARD;
+      case 100:
+        return EGamesLevels.MEDIUM;
+      case 150:
+        return EGamesLevels.EASY;
+      default:
+        return EGamesLevels.EASY;
+    }
+  }, [timer]);
 
   const startMoving = () => {
     if (movingTimeOut.current) {
@@ -121,12 +138,15 @@ export const Snake = () => {
       if (movingTimeOut.current) {
         clearInterval(movingTimeOut.current);
       }
-      SnakeService.setRecord(board.score, timer);
-      setTimeout(() => {
-        dispatch(fetchSnakeBestScoore());
-      }, 1500);
+      if (user) {
+        createScore({
+          level,
+          value: board.score,
+          gameName: EGamesNames.SNAKE
+        });
+      }
     }
-  }, [board?.gameOver]);
+  }, [board?.gameOver, board?.score, createScore, level]);
 
   const isShowMobileBtns = useMemo(() => {
     return isMobile();
@@ -233,8 +253,7 @@ export const Snake = () => {
             </button>
           </div>
         )}
-        {/* TODO fix score with new backend */}
-        {/* {user && <ScoreBoard user={user} />} */}
+        <CommonScoreBoard game={EGamesNames.SNAKE} user={user} />
       </div>
     </div>
   );

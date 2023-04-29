@@ -21,6 +21,11 @@ import { TetrisBoardModel } from '../models/tetris/TetrisBoardModel';
 import tetrisStyle from '../styles/tetris.module.scss';
 import { isMobile } from '../utils/helpers';
 import { AppButton } from '../components/UI/AppButton';
+import { CommonScoreBoard } from '../score/components/CommonScoreBoard';
+import { EGamesNames } from '../constants/games';
+import { useCreateScore } from '../hooks/useCreateScore';
+import { useAppSelector } from '../hooks/store/useAppSelector';
+import { authSelector } from '../store/selectors';
 
 export const Tetris = () => {
   const { t } = useTranslation();
@@ -31,6 +36,8 @@ export const Tetris = () => {
   const [isShowNewGameBtn, setIsShowNewGameBtn] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
+  const { user } = useAppSelector(authSelector);
+  const createScore = useCreateScore();
   const figureInterval = useRef<null | ReturnType<typeof setInterval>>(null);
   const gameRef = useRef<HTMLDivElement>(null);
 
@@ -55,22 +62,18 @@ export const Tetris = () => {
     setIsGameOver(true);
   };
 
-  // TODO fix score
-  // const updateScore = async () => {
-  //   await ScoreService.setRecord(score, game);
-  //   dispatch(fetchBoardScores(EGamesWithScoreBoard.TETRIS));
-  // };
-
   useEffect(() => {
     initBoard();
   }, []);
 
-  // TODO fix score
-  // useEffect(() => {
-  //   if (isGameOver && user) {
-  //     updateScore();
-  //   }
-  // }, [isGameOver, user]);
+  useEffect(() => {
+    if (isGameOver) {
+      createScore({
+        value: score,
+        gameName: EGamesNames.TETRIS
+      });
+    }
+  }, [createScore, isGameOver, score]);
 
   const onKeyPress = (e: KeyboardEvent, btnName?: string) => {
     if (e.code === 'ArrowRight' || btnName === 'right') {
@@ -216,8 +219,7 @@ export const Tetris = () => {
             </button>
           </div>
         )}
-        {/* TODO fix score with new backend */}
-        {/* {user && <CommonScoreBoard user={user} game={game} />} */}
+        <CommonScoreBoard user={user} game={EGamesNames.TETRIS} />
       </div>
     </div>
   );

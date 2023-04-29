@@ -1,13 +1,15 @@
 import { render, screen } from '@testing-library/react';
-import { createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import { TicTacToe } from '../pages/TicTacToe';
-import { rootReducer } from '../redux/root-reducer';
 import { renderWithRedux } from '../utils/test/utils';
+import { rootReducer } from '../store/root-reducer';
 
 describe('tic tac toe tests', () => {
   let store: any;
   beforeEach(() => {
-    store = createStore(rootReducer);
+    store = configureStore({
+      reducer: rootReducer
+    });
   });
   test('should render tiс tac page', () => {
     render(renderWithRedux(<TicTacToe />, '/', store));

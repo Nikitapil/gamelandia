@@ -6,7 +6,6 @@ import React, {
   useState
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../constants/breadcrumbs';
 import { useTitle } from '../hooks/useTitle';
@@ -14,22 +13,24 @@ import styles from '../styles/aimgame.module.scss';
 import { Aim } from '../components/AimGame/Aim';
 import { AimModel } from '../models/aimgame/AimModel';
 import { AppButton } from '../components/UI/AppButton';
-import { EGamesWithScoreBoard } from '../types/score-types';
-import { ScoreService } from '../services/ScoreService';
-import { fetchBoardScores } from '../redux/score/score-actions';
+import { EGamesNames } from '../constants/games';
+import { CommonScoreBoard } from '../score/components/CommonScoreBoard';
+import { useAppSelector } from '../hooks/store/useAppSelector';
+import { authSelector } from '../store/selectors';
+import { useCreateScore } from '../hooks/useCreateScore';
 
 export const AimGame = () => {
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.aim]);
   useTitle('Aim Game');
   const { t } = useTranslation();
-  const game = EGamesWithScoreBoard.AIM;
   const [aimDot, setAimDot] = useState(new AimModel());
   const [score, setScore] = useState(0);
   const [remainingTime, setReamainingTime] = useState(30);
   const [isGameStarted, setIsGameStarted] = useState(false);
   const [isGameFinished, setIsGameFinished] = useState(false);
   const timer = useRef<null | ReturnType<typeof setInterval>>(null);
-  const dispatch = useDispatch();
+  const { user } = useAppSelector(authSelector);
+  const createScore = useCreateScore();
 
   const updateDot = useCallback(() => {
     if (isGameFinished) {
@@ -61,8 +62,10 @@ export const AimGame = () => {
   }, [isGameFinished]);
 
   const updateScore = async () => {
-    await ScoreService.setRecord(score, game);
-    dispatch(fetchBoardScores(EGamesWithScoreBoard.AIM));
+    await createScore({
+      value: score,
+      gameName: EGamesNames.AIM
+    });
   };
 
   useEffect(() => {
@@ -98,8 +101,7 @@ export const AimGame = () => {
         <div className={styles.field}>
           <Aim aimDot={aimDot} updateDot={updateDot} />
         </div>
-        {/* TODO fix score with new backend */}
-        {/* {user && <CommonScoreBoard user={user} game={game} />} */}
+        <CommonScoreBoard user={user} game={EGamesNames.AIM} />
       </div>
     </div>
   );

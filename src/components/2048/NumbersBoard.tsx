@@ -1,23 +1,23 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 import { useSwipeable } from 'react-swipeable';
 import styles from '../../styles/numbersGame.module.scss';
 import { NumbersBoardModel } from '../../models/2048/NumbersBoardModel';
 import { NumbersElem } from './NumbersElem';
 import { ENumbersDirections } from '../../constants/2048';
 import { AppButton } from '../UI/AppButton';
-import { EGamesWithScoreBoard } from '../../types/score-types';
-import { ScoreService } from '../../services/ScoreService';
-import { fetchBoardScores } from '../../redux/score/score-actions';
 import { isMobile } from '../../utils/helpers';
+import { useAppSelector } from '../../hooks/store/useAppSelector';
+import { authSelector } from '../../store/selectors';
+import { EGamesNames } from '../../constants/games';
+import { useCreateScore } from '../../hooks/useCreateScore';
 
 export const NumbersBoard = () => {
   const [board, setBoard] = useState(new NumbersBoardModel());
   const boardRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
-  const game = EGamesWithScoreBoard.NUMBERS;
-  const dispatch = useDispatch();
+  const { user } = useAppSelector(authSelector);
+  const createScore = useCreateScore();
 
   const isMobileLayout = useMemo(() => {
     return isMobile();
@@ -37,8 +37,12 @@ export const NumbersBoard = () => {
   }, []);
 
   const updateScore = async () => {
-    await ScoreService.setRecord(board.lastScore, game);
-    dispatch(fetchBoardScores(EGamesWithScoreBoard.NUMBERS));
+    if (user) {
+      await createScore({
+        value: board.lastScore,
+        gameName: EGamesNames.NUMBERS
+      });
+    }
   };
 
   useEffect(() => {

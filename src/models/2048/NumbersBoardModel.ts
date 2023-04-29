@@ -154,8 +154,6 @@ export class NumbersBoardModel {
     }
   }
 
-  // TODO Убрать сапресс
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   move(direction: ENumbersDirections) {
     switch (direction) {
       case ENumbersDirections.TOP:
