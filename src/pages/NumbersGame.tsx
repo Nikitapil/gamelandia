@@ -1,5 +1,5 @@
 import React from 'react';
-import { NumbersBoard } from '../components/2048/NumbersBoard';
+import { NumbersBoard } from '../games/2048/components/NumbersBoard';
 import styles from '../styles/numbersGame.module.scss';
 import { useTitle } from '../hooks/useTitle';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';

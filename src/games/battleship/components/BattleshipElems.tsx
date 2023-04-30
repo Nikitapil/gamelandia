@@ -3,16 +3,16 @@ import { Firestore, doc, setDoc } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BattleShipElem } from './BattleShipElem';
-import { BattleshipBoardModel } from '../../games/battleship/models/BattleShipBoardModel';
+import { BattleshipBoardModel } from '../models/BattleShipBoardModel';
 import {
   mapCellsToFirebase,
   mapShipsToFirebase
-} from '../../utils/battleship/battleShipMappers';
-import battlShipStyles from '../../styles/battleship.module.scss';
-import { AppButton } from '../UI/AppButton';
-import { useAppSelector } from '../../hooks/useAppSelector';
-import { battleshipSelector } from '../../store/selectors';
-import { useBattleshipActions } from '../../games/battleship/hooks/useBattleshipActions';
+} from '../helpers/battleShipMappers';
+import battlShipStyles from '../assets/styles/battleship.module.scss';
+import { AppButton } from '../../../components/UI/AppButton';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { battleshipSelector } from '../../../store/selectors';
+import { useBattleshipActions } from '../hooks/useBattleshipActions';
 
 interface BattleshipElemsProps {
   roomData: any;

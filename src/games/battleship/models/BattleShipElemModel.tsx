@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { EBattleShipElemDirection } from '../../../constants/battleship';
+import { EBattleShipElemDirection } from '../helpers/constants';
 import { BattleshipCellModel } from './BattleShipCellModel';
 
 export class BattleShipElemModel {

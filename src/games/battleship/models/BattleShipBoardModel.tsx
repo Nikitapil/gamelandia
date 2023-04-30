@@ -1,4 +1,4 @@
-import { EBattleShipElemDirection } from '../../../constants/battleship';
+import { EBattleShipElemDirection } from '../helpers/constants';
 import { BattleshipCellModel } from './BattleShipCellModel';
 import { BattleShipElemModel } from './BattleShipElemModel';
 

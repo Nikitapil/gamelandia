@@ -3,15 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { doc, setDoc, Firestore } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
-import { BattleshipCellModel } from '../../games/battleship/models/BattleShipCellModel';
+import { BattleshipCellModel } from '../models/BattleShipCellModel';
 import {
   mapCellsToFirebase,
   mapShipsToFirebase
-} from '../../utils/battleship/battleShipMappers';
-import battlShipStyles from '../../styles/battleship.module.scss';
-import { useAppSelector } from '../../hooks/useAppSelector';
-import { battleshipSelector } from '../../store/selectors';
-import { useBattleshipActions } from '../../games/battleship/hooks/useBattleshipActions';
+} from '../helpers/battleShipMappers';
+import battlShipStyles from '../assets/styles/battleship.module.scss';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { battleshipSelector } from '../../../store/selectors';
+import { useBattleshipActions } from '../hooks/useBattleshipActions';
 
 interface BattleshipCellProps {
   cell: BattleshipCellModel;

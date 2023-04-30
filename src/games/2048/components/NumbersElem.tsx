@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
-import styles from '../../styles/numbersGame.module.scss';
-import { NumbersElemModel } from '../../models/2048/NumbersElemModel';
-import { numberColors } from '../../constants/2048';
+import styles from '../../../styles/numbersGame.module.scss';
+import { NumbersElemModel } from '../../../models/2048/NumbersElemModel';
+import { numberColors } from '../constants';
 
 interface NumbersElemProps {
   elem: NumbersElemModel;

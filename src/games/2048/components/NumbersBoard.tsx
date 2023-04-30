@@ -1,16 +1,16 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSwipeable } from 'react-swipeable';
-import styles from '../../styles/numbersGame.module.scss';
-import { NumbersBoardModel } from '../../models/2048/NumbersBoardModel';
+import styles from '../../../styles/numbersGame.module.scss';
+import { NumbersBoardModel } from '../../../models/2048/NumbersBoardModel';
 import { NumbersElem } from './NumbersElem';
-import { ENumbersDirections } from '../../constants/2048';
-import { AppButton } from '../UI/AppButton';
-import { isMobile } from '../../utils/helpers';
-import { useAppSelector } from '../../hooks/useAppSelector';
-import { authSelector } from '../../store/selectors';
-import { EGamesNames } from '../../constants/games';
-import { useCreateScore } from '../../score/hooks/useCreateScore';
+import { ENumbersDirections } from '../constants';
+import { AppButton } from '../../../components/UI/AppButton';
+import { isMobile } from '../../../utils/helpers';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { authSelector } from '../../../store/selectors';
+import { EGamesNames } from '../../../constants/games';
+import { useCreateScore } from '../../../score/hooks/useCreateScore';
 
 export const NumbersBoard = () => {
   const [board, setBoard] = useState(new NumbersBoardModel());

@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { IBattleShipSliceState } from '../types';
+import { IBattleShipSliceState } from '../helpers/types';
 import { TReduxAction } from '../../../store/store-types';
 import { BattleShipElemModel } from '../models/BattleShipElemModel';
 import { BattleshipBoardModel } from '../models/BattleShipBoardModel';
