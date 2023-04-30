@@ -1,16 +1,16 @@
 import React, { useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { AuthForm } from '../components/Auth/AuthForm';
-import authStyles from '../styles/auth.module.scss';
-import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
-import { breadcrumbs } from '../constants/breadcrumbs';
-import { useTitle } from '../hooks/useTitle';
+import { AuthForm } from '../components/AuthForm/AuthForm';
+import authStyles from '../../styles/auth.module.scss';
+import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
+import { breadcrumbs } from '../../constants/breadcrumbs';
+import { useTitle } from '../../hooks/useTitle';
 import { useAuthRedirect } from '../hooks/useAuthRedirect';
-import { ERoutes } from '../constants/routes';
-import { useAppSelector } from '../hooks/store/useAppSelector';
-import { authSelector } from '../store/selectors';
-import { useAuthActions } from '../auth/hooks/useAuthActions';
+import { ERoutes } from '../../constants/routes';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { authSelector } from '../../store/selectors';
+import { useAuthActions } from '../hooks/useAuthActions';
 
 export const SignIn = () => {
   const { t } = useTranslation();

@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import breadcrumbsStyles from '../../styles/breadcrumbs.module.scss';
-import { LanguageDropdown } from '../AppHeader/LanguageDropdown';
-import { useAppSelector } from '../../hooks/store/useAppSelector';
+import { LanguageDropdown } from '../../app/components/AppHeader/LanguageDropdown';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { appSelector } from '../../store/selectors';
 
 export const Breadcrumbs = () => {

@@ -2,7 +2,7 @@ import { Firestore } from 'firebase/firestore';
 import React, { memo, useMemo } from 'react';
 import { BattleshipCell } from './BattleshipCell';
 import battlShipStyles from '../../styles/battleship.module.scss';
-import { useAppSelector } from '../../hooks/store/useAppSelector';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { battleshipSelector } from '../../store/selectors';
 
 interface BattleshipBoardProps {

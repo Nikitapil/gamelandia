@@ -1,5 +1,5 @@
-import { BattleShipElemModel } from '../../models/battleship/BattleShipElemModel';
-import { BattleshipBoardModel } from '../../models/battleship/BattleShipBoardModel';
+import { BattleShipElemModel } from './models/BattleShipElemModel';
+import { BattleshipBoardModel } from './models/BattleShipBoardModel';
 
 export interface IBattleShipSliceState {
   freeShips: BattleShipElemModel[];

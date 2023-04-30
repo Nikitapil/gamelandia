@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { HorizotalLoader } from '../UI/Loaders/HorizotalLoader';
-import headerStyles from '../../styles/header.module.scss';
-import { AppButton } from '../UI/AppButton';
-import { ERoutes } from '../../constants/routes';
-import { useAppSelector } from '../../hooks/store/useAppSelector';
-import { authSelector } from '../../store/selectors';
-import { useAuthActions } from '../../auth/hooks/useAuthActions';
+import { HorizotalLoader } from '../../../components/UI/Loaders/HorizotalLoader';
+import headerStyles from './header.module.scss';
+import { AppButton } from '../../../components/UI/AppButton';
+import { ERoutes } from '../../../constants/routes';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { authSelector } from '../../../store/selectors';
+import { useAuthActions } from '../../../auth/hooks/useAuthActions';
 
 export const AppHeader = () => {
   const { user, isAuthLoading } = useAppSelector(authSelector);

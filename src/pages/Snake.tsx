@@ -21,11 +21,11 @@ import { breadcrumbs } from '../constants/breadcrumbs';
 import { useTitle } from '../hooks/useTitle';
 import { isMobile } from '../utils/helpers';
 import { AppButton } from '../components/UI/AppButton';
-import { useAppSelector } from '../hooks/store/useAppSelector';
+import { useAppSelector } from '../hooks/useAppSelector';
 import { authSelector } from '../store/selectors';
 import { CommonScoreBoard } from '../score/components/CommonScoreBoard';
 import { EGamesNames } from '../constants/games';
-import { useCreateScore } from '../hooks/useCreateScore';
+import { useCreateScore } from '../score/hooks/useCreateScore';
 import { AppRadioButton } from '../components/UI/AppRadioButton/AppRadioButton';
 
 export const Snake = () => {

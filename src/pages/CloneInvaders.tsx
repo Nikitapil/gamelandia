@@ -5,7 +5,7 @@ import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { useTitle } from '../hooks/useTitle';
 import invadersStyles from '../styles/invaders.module.scss';
 import { CommonScoreBoard } from '../score/components/CommonScoreBoard';
-import { useAppSelector } from '../hooks/store/useAppSelector';
+import { useAppSelector } from '../hooks/useAppSelector';
 import { authSelector } from '../store/selectors';
 import { EGamesNames } from '../constants/games';
 

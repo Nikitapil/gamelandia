@@ -3,7 +3,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Transition } from 'react-transition-group';
 import modalStyles from '../../styles/modal.module.scss';
-import '../../styles/transitions.scss';
+import '../../assets/styles/transitions.scss';
 
 interface ModalContainerProps {
   children: JSX.Element | string | React.ReactNode;

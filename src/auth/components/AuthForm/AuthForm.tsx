@@ -2,11 +2,11 @@ import React, { FC, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
-import authStyles from '../../styles/auth.module.scss';
-import { AppInput } from '../UI/AppInput';
-import { AppButton } from '../UI/AppButton';
-import { TValidationRules } from '../../utils/validators';
-import { useInputTouch } from '../../hooks/useInputTouch';
+import authStyles from '../../../styles/auth.module.scss';
+import { AppInput } from '../../../components/UI/AppInput';
+import { AppButton } from '../../../components/UI/AppButton';
+import { TValidationRules } from '../../../utils/validators';
+import { useInputTouch } from '../../../hooks/useInputTouch';
 
 interface AuthFormProps {
   formTitle: string;

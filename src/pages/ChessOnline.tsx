@@ -22,7 +22,7 @@ import {
   mapBoardFromFireBase
 } from '../utils/chess/chessMapper';
 import { AppButton } from '../components/UI/AppButton';
-import { useAppSelector } from '../hooks/store/useAppSelector';
+import { useAppSelector } from '../hooks/useAppSelector';
 import { authSelector } from '../store/selectors';
 
 interface ChessOnlineProps {

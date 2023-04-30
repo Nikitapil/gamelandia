@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
-import { useAppSelector } from './store/useAppSelector';
-import { authSelector } from '../store/selectors';
-import { useScoreActions } from '../score/hooks/useScoreActions';
-import { ICreateScoreRequest } from '../score/types';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { authSelector } from '../../store/selectors';
+import { useScoreActions } from './useScoreActions';
+import { ICreateScoreRequest } from '../types';
 
 export const useCreateScore = () => {
   const user = useAppSelector(authSelector);

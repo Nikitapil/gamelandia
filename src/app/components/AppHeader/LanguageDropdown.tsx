@@ -2,7 +2,7 @@ import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import headerStyles from '../../styles/header.module.scss';
+import headerStyles from './header.module.scss';
 
 export const LanguageDropdown = () => {
   const { i18n } = useTranslation();

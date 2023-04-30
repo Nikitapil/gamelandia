@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { MatchCard } from '../components/match/MatchCard';
 import { ICard } from '../types/match-match';
 import { matchMatchPics } from '../utils/gamePicsBuilder';
-import { getuniqArrayObjects, shuffleArray } from '../utils/helpers';
+import { getUniqArrayObjects, shuffleArray } from '../utils/helpers';
 import matchStyles from '../styles/match.module.scss';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../constants/breadcrumbs';
@@ -82,7 +82,7 @@ export const MatchMatch = () => {
 
   useEffect(() => {
     if (!isWin && !isLoose) {
-      const arr = getuniqArrayObjects(
+      const arr = getUniqArrayObjects(
         shuffleArray([...matchMatchPics, ...matchMatchPics])
       );
       setCards(arr);

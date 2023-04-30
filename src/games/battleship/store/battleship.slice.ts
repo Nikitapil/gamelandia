@@ -2,8 +2,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IBattleShipSliceState } from '../types';
 import { TReduxAction } from '../../../store/store-types';
-import { BattleShipElemModel } from '../../../models/battleship/BattleShipElemModel';
-import { BattleshipBoardModel } from '../../../models/battleship/BattleShipBoardModel';
+import { BattleShipElemModel } from '../models/BattleShipElemModel';
+import { BattleshipBoardModel } from '../models/BattleShipBoardModel';
 
 const initialState: IBattleShipSliceState = {
   freeShips: [],

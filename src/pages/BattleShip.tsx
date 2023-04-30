@@ -5,7 +5,7 @@ import { doc, setDoc, deleteDoc, Firestore } from 'firebase/firestore';
 import { useTranslation } from 'react-i18next';
 import { BattleshipBoard } from '../components/Battleship/BattleshipBoard';
 import { BattleshipElems } from '../components/Battleship/BattleshipElems';
-import { BattleshipBoardModel } from '../models/battleship/BattleShipBoardModel';
+import { BattleshipBoardModel } from '../games/battleship/models/BattleShipBoardModel';
 import { HorizotalLoader } from '../components/UI/Loaders/HorizotalLoader';
 import { mapFromFireBaseToBattleShip } from '../utils/battleship/battleShipMappers';
 import { FullRoomMessage } from '../components/common/FullRoomMessage';
@@ -16,7 +16,7 @@ import { breadcrumbs } from '../constants/breadcrumbs';
 import { useTitle } from '../hooks/useTitle';
 import { DynoGame } from '../components/DynoGame/DynoGame';
 import { ERoutes } from '../constants/routes';
-import { useAppSelector } from '../hooks/store/useAppSelector';
+import { useAppSelector } from '../hooks/useAppSelector';
 import { authSelector, battleshipSelector } from '../store/selectors';
 import { useBattleshipActions } from '../games/battleship/hooks/useBattleshipActions';
 

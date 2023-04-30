@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useMemo } from 'react';
 import { bindActionCreators } from 'redux';
-import { appActions } from '../../store/app/app.slice';
+import { appActions } from '../store/app.slice';
 
 export const useAppActions = () => {
   const dispatch = useDispatch();

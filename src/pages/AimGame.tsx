@@ -15,9 +15,9 @@ import { AimModel } from '../models/aimgame/AimModel';
 import { AppButton } from '../components/UI/AppButton';
 import { EGamesNames } from '../constants/games';
 import { CommonScoreBoard } from '../score/components/CommonScoreBoard';
-import { useAppSelector } from '../hooks/store/useAppSelector';
+import { useAppSelector } from '../hooks/useAppSelector';
 import { authSelector } from '../store/selectors';
-import { useCreateScore } from '../hooks/useCreateScore';
+import { useCreateScore } from '../score/hooks/useCreateScore';
 
 export const AimGame = () => {
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.aim]);

@@ -2,7 +2,7 @@ export const shuffleArray = (arr: any[]) => {
   return arr.sort(() => Math.random() - 0.5);
 };
 
-export const getuniqArrayObjects = (arr: any[]) => {
+export const getUniqArrayObjects = (arr: any[]) => {
   return arr.map((item) => ({ ...item }));
 };
 

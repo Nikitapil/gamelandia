@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import styles from '../styles/notfound.module.scss';
-import { useTitle } from '../hooks/useTitle';
-import { DynoGame } from '../components/DynoGame/DynoGame';
-import { ERoutes } from '../constants/routes';
+import styles from './notfound.module.scss';
+import { useTitle } from '../../../hooks/useTitle';
+import { DynoGame } from '../../../components/DynoGame/DynoGame';
+import { ERoutes } from '../../../constants/routes';
 
 export const NotFound = () => {
   useTitle('404');

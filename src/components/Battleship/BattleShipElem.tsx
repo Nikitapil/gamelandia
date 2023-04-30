@@ -1,9 +1,9 @@
 import { faRotate } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { FC, useMemo } from 'react';
-import { BattleShipElemModel } from '../../models/battleship/BattleShipElemModel';
+import { BattleShipElemModel } from '../../games/battleship/models/BattleShipElemModel';
 import battlShipStyles from '../../styles/battleship.module.scss';
-import { useAppSelector } from '../../hooks/store/useAppSelector';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { battleshipSelector } from '../../store/selectors';
 import { useBattleshipActions } from '../../games/battleship/hooks/useBattleshipActions';
 

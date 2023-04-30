@@ -7,10 +7,10 @@ import { NumbersElem } from './NumbersElem';
 import { ENumbersDirections } from '../../constants/2048';
 import { AppButton } from '../UI/AppButton';
 import { isMobile } from '../../utils/helpers';
-import { useAppSelector } from '../../hooks/store/useAppSelector';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { authSelector } from '../../store/selectors';
 import { EGamesNames } from '../../constants/games';
-import { useCreateScore } from '../../hooks/useCreateScore';
+import { useCreateScore } from '../../score/hooks/useCreateScore';
 
 export const NumbersBoard = () => {
   const [board, setBoard] = useState(new NumbersBoardModel());

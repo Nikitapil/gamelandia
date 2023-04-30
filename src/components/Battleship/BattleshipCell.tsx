@@ -3,13 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { doc, setDoc, Firestore } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
-import { BattleshipCellModel } from '../../models/battleship/BattleShipCellModel';
+import { BattleshipCellModel } from '../../games/battleship/models/BattleShipCellModel';
 import {
   mapCellsToFirebase,
   mapShipsToFirebase
 } from '../../utils/battleship/battleShipMappers';
 import battlShipStyles from '../../styles/battleship.module.scss';
-import { useAppSelector } from '../../hooks/store/useAppSelector';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { battleshipSelector } from '../../store/selectors';
 import { useBattleshipActions } from '../../games/battleship/hooks/useBattleshipActions';
 

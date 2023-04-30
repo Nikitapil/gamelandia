@@ -7,7 +7,7 @@ import { HorizotalLoader } from '../UI/Loaders/HorizotalLoader';
 import commonStyles from '../../styles/common.module.scss';
 import { AppButton } from '../UI/AppButton';
 import { ERoutes } from '../../constants/routes';
-import { useAppSelector } from '../../hooks/store/useAppSelector';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { authSelector } from '../../store/selectors';
 
 interface RoomsCommonProps {

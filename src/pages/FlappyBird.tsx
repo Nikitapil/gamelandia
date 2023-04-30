@@ -4,11 +4,11 @@ import { FlappyField } from '../components/flappy/FlappyField';
 import { useTitle } from '../hooks/useTitle';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../constants/breadcrumbs';
-import { useAppSelector } from '../hooks/store/useAppSelector';
+import { useAppSelector } from '../hooks/useAppSelector';
 import { authSelector } from '../store/selectors';
 import { EGamesNames } from '../constants/games';
 import { CommonScoreBoard } from '../score/components/CommonScoreBoard';
-import { useCreateScore } from '../hooks/useCreateScore';
+import { useCreateScore } from '../score/hooks/useCreateScore';
 
 export const FlappyBird = () => {
   useTitle('Flappy Bird');

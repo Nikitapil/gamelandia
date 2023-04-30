@@ -23,8 +23,8 @@ import { isMobile } from '../utils/helpers';
 import { AppButton } from '../components/UI/AppButton';
 import { CommonScoreBoard } from '../score/components/CommonScoreBoard';
 import { EGamesNames } from '../constants/games';
-import { useCreateScore } from '../hooks/useCreateScore';
-import { useAppSelector } from '../hooks/store/useAppSelector';
+import { useCreateScore } from '../score/hooks/useCreateScore';
+import { useAppSelector } from '../hooks/useAppSelector';
 import { authSelector } from '../store/selectors';
 
 export const Tetris = () => {

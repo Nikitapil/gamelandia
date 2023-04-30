@@ -4,7 +4,7 @@ import styles from '../styles/numbersGame.module.scss';
 import { useTitle } from '../hooks/useTitle';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../constants/breadcrumbs';
-import { useAppSelector } from '../hooks/store/useAppSelector';
+import { useAppSelector } from '../hooks/useAppSelector';
 import { authSelector } from '../store/selectors';
 import { CommonScoreBoard } from '../score/components/CommonScoreBoard';
 import { EGamesNames } from '../constants/games';

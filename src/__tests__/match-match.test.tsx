@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { configureStore } from '@reduxjs/toolkit';
-import App from '../App';
+import App from '../app/App';
 import { MatchCard } from '../components/match/MatchCard';
 import { rootReducer } from '../store/root-reducer';
 import { renderWithRedux, renderWithRouter } from '../utils/test/utils';

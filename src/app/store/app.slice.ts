@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { IAppInitialState, IBreabcrumb } from './types';
+import { IAppInitialState, IBreabcrumb } from '../types';
 import { breadcrumbs } from '../../constants/breadcrumbs';
-import { TReduxAction } from '../store-types';
+import { TReduxAction } from '../../store/store-types';
 
 const initialState: IAppInitialState = {
   breadcrumbs: [breadcrumbs.main]
