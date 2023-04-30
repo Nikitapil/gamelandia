@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSwipeable } from 'react-swipeable';
-import styles from '../../../styles/numbersGame.module.scss';
-import { NumbersBoardModel } from '../../../models/2048/NumbersBoardModel';
+import styles from '../assets/styles/numbersGame.module.scss';
+import { NumbersBoardModel } from '../models/NumbersBoardModel';
 import { NumbersElem } from './NumbersElem';
 import { ENumbersDirections } from '../constants';
 import { AppButton } from '../../../components/UI/AppButton';

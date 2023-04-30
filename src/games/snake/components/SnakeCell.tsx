@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { FC, useMemo } from 'react';
 import { faAppleWhole } from '@fortawesome/free-solid-svg-icons';
-import { SnakeCellModel } from '../../models/snake/SnakeCellModel';
-import snakeStyle from '../../styles/snake.module.scss';
+import { SnakeCellModel } from '../models/SnakeCellModel';
+import snakeStyle from '../assets/styles/snake.module.scss';
 
 interface SnakeCellProps {
   cell: SnakeCellModel;

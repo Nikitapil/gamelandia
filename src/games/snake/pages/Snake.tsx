@@ -7,26 +7,26 @@ import {
   faCircleChevronUp
 } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
-import { SnakeBoard } from '../components/snake/SnakeBoard';
+import { SnakeBoard } from '../components/SnakeBoard';
 import {
   ESnakeDirections,
   snakeLevels,
   snakeLevelsOptions,
   TSnakeLevels
-} from '../constants/snake';
-import { SnakeBoardModel } from '../models/snake/SnakeBoardModel';
-import snakeStyles from '../styles/snake.module.scss';
-import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
-import { breadcrumbs } from '../constants/breadcrumbs';
-import { useTitle } from '../hooks/useTitle';
-import { isMobile } from '../utils/helpers';
-import { AppButton } from '../components/UI/AppButton';
-import { useAppSelector } from '../hooks/useAppSelector';
-import { authSelector } from '../store/selectors';
-import { CommonScoreBoard } from '../score/components/CommonScoreBoard';
-import { EGamesNames } from '../constants/games';
-import { useCreateScore } from '../score/hooks/useCreateScore';
-import { AppRadioButton } from '../components/UI/AppRadioButton/AppRadioButton';
+} from '../constants';
+import { SnakeBoardModel } from '../models/SnakeBoardModel';
+import snakeStyles from '../assets/styles/snake.module.scss';
+import { useBreadcrumbs } from '../../../hooks/useBreadcrumbs';
+import { breadcrumbs } from '../../../constants/breadcrumbs';
+import { useTitle } from '../../../hooks/useTitle';
+import { isMobile } from '../../../utils/helpers';
+import { AppButton } from '../../../components/UI/AppButton';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { authSelector } from '../../../store/selectors';
+import { CommonScoreBoard } from '../../../score/components/CommonScoreBoard';
+import { EGamesNames } from '../../../constants/games';
+import { useCreateScore } from '../../../score/hooks/useCreateScore';
+import { AppRadioButton } from '../../../components/UI/AppRadioButton/AppRadioButton';
 
 export const Snake = () => {
   useTitle('Snake');
@@ -46,11 +46,6 @@ export const Snake = () => {
     board?.snake?.move();
     setBoard(board?.updateBoard()!);
   };
-
-  // TODO refactor
-  const level = useMemo(() => {
-    return snakeLevels[timer];
-  }, [timer]);
 
   const startMoving = () => {
     if (movingTimeOut.current) {
@@ -136,6 +131,7 @@ export const Snake = () => {
         clearInterval(movingTimeOut.current);
       }
       if (user) {
+        const level = snakeLevels[timer];
         createScore({
           level,
           value: board.score,
@@ -143,7 +139,7 @@ export const Snake = () => {
         });
       }
     }
-  }, [board?.gameOver, board?.score, createScore, level, user]);
+  }, [board?.gameOver, board?.score, createScore, timer, user]);
 
   const isShowMobileBtns = useMemo(() => {
     return isMobile();

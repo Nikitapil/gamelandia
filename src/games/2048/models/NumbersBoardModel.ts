@@ -1,6 +1,6 @@
 import { NumbersCellModel } from './NumbersCellModel';
 import { NumbersElemModel } from './NumbersElemModel';
-import { ENumbersDirections } from '../../games/2048/constants';
+import { ENumbersDirections } from '../constants';
 
 export class NumbersBoardModel {
   cells: NumbersCellModel[][] = [];

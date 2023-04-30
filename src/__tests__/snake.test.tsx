@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { configureStore } from '@reduxjs/toolkit';
-import { SnakeBoard } from '../components/snake/SnakeBoard';
-import { SnakeBoardModel } from '../models/snake/SnakeBoardModel';
-import { Snake } from '../pages/Snake';
+import { SnakeBoard } from '../games/snake/components/SnakeBoard';
+import { SnakeBoardModel } from '../games/snake/models/SnakeBoardModel';
+import { Snake } from '../games/snake/pages/Snake';
 import { renderWithRedux, renderWithRouter } from '../utils/test/utils';
 import { rootReducer } from '../store/root-reducer';
 

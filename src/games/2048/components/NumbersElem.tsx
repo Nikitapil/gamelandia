@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import styles from '../../../styles/numbersGame.module.scss';
-import { NumbersElemModel } from '../../../models/2048/NumbersElemModel';
+import styles from '../assets/styles/numbersGame.module.scss';
+import { NumbersElemModel } from '../models/NumbersElemModel';
 import { numberColors } from '../constants';
 
 interface NumbersElemProps {

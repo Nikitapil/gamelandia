@@ -1,5 +1,5 @@
-import { IAppRadioButtonOption } from '../components/UI/AppRadioButton/types';
-import { EGamesLevels } from './games';
+import { IAppRadioButtonOption } from '../../components/UI/AppRadioButton/types';
+import { EGamesLevels } from '../../constants/games';
 
 export enum ESnakeDirections {
   RIGHT = 'RIGHT',

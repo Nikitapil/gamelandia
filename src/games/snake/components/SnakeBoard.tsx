@@ -1,7 +1,7 @@
 import React, { FC, memo } from 'react';
-import { SnakeBoardModel } from '../../models/snake/SnakeBoardModel';
+import { SnakeBoardModel } from '../models/SnakeBoardModel';
 import { SnakeCell } from './SnakeCell';
-import snakeStyle from '../../styles/snake.module.scss';
+import snakeStyle from '../assets/styles/snake.module.scss';
 
 interface SnakeBoardProps {
   board: SnakeBoardModel | null;
