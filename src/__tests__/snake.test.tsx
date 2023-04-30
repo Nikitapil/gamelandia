@@ -1,5 +1,4 @@
-import { render, screen } from '@testing-library/react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { configureStore } from '@reduxjs/toolkit';
 import { SnakeBoard } from '../components/snake/SnakeBoard';
@@ -31,17 +30,16 @@ describe('snake tests', () => {
     expect(screen.getByTestId('snake-page')).toBeInTheDocument();
   });
 
-  test('should change levels', () => {
+  test('should change levels', async () => {
     render(renderWithRedux(<Snake />, '/', store));
-    const easyBtn = screen.getByTestId('easy-level');
-    const mediumBtn = screen.getByTestId('medium-level');
-    const hardBtn = screen.getByTestId('hard-level');
+    const easyBtn = screen.getByTestId('Easy-level');
+    const mediumBtn = screen.getByTestId('Medium-level');
     userEvent.click(easyBtn);
-    expect(easyBtn).toHaveClass('success');
+    expect(screen.getByTestId('Easy-level')).toHaveClass('success');
     userEvent.click(mediumBtn);
     expect(mediumBtn).toHaveClass('success');
-    userEvent.click(hardBtn);
-    expect(hardBtn).toHaveClass('success');
+    userEvent.click(screen.getByTestId('Hard-level'));
+    expect(screen.getByTestId('Hard-level')).toHaveClass('success');
   });
 
   test('should recall timer', () => {

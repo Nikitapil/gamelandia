@@ -1,3 +1,6 @@
+import { IAppRadioButtonOption } from '../components/UI/AppRadioButton/types';
+import { EGamesLevels } from './games';
+
 export enum ESnakeDirections {
   RIGHT = 'RIGHT',
   LEFT = 'LEFT',
@@ -5,14 +8,25 @@ export enum ESnakeDirections {
   BOTTOM = 'BOTTOM'
 }
 
-export interface ISnakelevels {
-  150: string;
-  100: string;
-  50: string;
-}
+export const snakeLevelsOptions: IAppRadioButtonOption<TSnakeLevels>[] = [
+  {
+    text: 'Easy',
+    value: 150
+  },
+  {
+    text: 'Medium',
+    value: 100
+  },
+  {
+    text: 'Hard',
+    value: 50
+  }
+];
 
-export const snakeLevels: ISnakelevels = {
-  150: 'easy',
-  100: 'medium',
-  50: 'hard'
+export const snakeLevels = {
+  150: EGamesLevels.EASY,
+  100: EGamesLevels.MEDIUM,
+  50: EGamesLevels.HARD
 };
+
+export type TSnakeLevels = 150 | 100 | 50;

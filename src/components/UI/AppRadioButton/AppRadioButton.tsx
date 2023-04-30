@@ -7,12 +7,14 @@ interface IAppRadioButtonProps<T> {
   options: IAppRadioButtonOption<T>[];
   value: T;
   setValue: (value: T) => void;
+  dataTestId?: string;
 }
 
 export const AppRadioButton = <T,>({
   options,
   value,
-  setValue
+  setValue,
+  dataTestId = ''
 }: IAppRadioButtonProps<T>) => {
   return (
     <div className="d-flex gap-10">
@@ -24,6 +26,7 @@ export const AppRadioButton = <T,>({
           onClick={() => setValue(option.value)}
           type="button"
           text={option.text}
+          testId={`${option.text}-${dataTestId}`}
         />
       ))}
     </div>

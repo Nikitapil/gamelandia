@@ -8,7 +8,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 import { SnakeBoard } from '../components/snake/SnakeBoard';
-import { ESnakeDirections } from '../constants/snake';
+import {
+  ESnakeDirections,
+  snakeLevels,
+  snakeLevelsOptions,
+  TSnakeLevels
+} from '../constants/snake';
 import { SnakeBoardModel } from '../models/snake/SnakeBoardModel';
 import snakeStyles from '../styles/snake.module.scss';
 import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
@@ -19,8 +24,9 @@ import { AppButton } from '../components/UI/AppButton';
 import { useAppSelector } from '../hooks/store/useAppSelector';
 import { authSelector } from '../store/selectors';
 import { CommonScoreBoard } from '../score/components/CommonScoreBoard';
-import { EGamesLevels, EGamesNames } from '../constants/games';
+import { EGamesNames } from '../constants/games';
 import { useCreateScore } from '../hooks/useCreateScore';
+import { AppRadioButton } from '../components/UI/AppRadioButton/AppRadioButton';
 
 export const Snake = () => {
   useTitle('Snake');
@@ -29,7 +35,7 @@ export const Snake = () => {
   const [board, setBoard] = useState<SnakeBoardModel | null>(null);
   const [gameOver, setGameOver] = useState('');
   const [isClickAvailable, setIsClickAvailable] = useState(true);
-  const [timer, setTimer] = useState(100);
+  const [timer, setTimer] = useState<TSnakeLevels>(100);
   const [isNewGameButtonDisabled, setIsNewGameButtonDisabled] = useState(false);
   const movingTimeOut = useRef<null | ReturnType<typeof setInterval>>(null);
   const { user } = useAppSelector(authSelector);
@@ -43,16 +49,7 @@ export const Snake = () => {
 
   // TODO refactor
   const level = useMemo(() => {
-    switch (timer) {
-      case 50:
-        return EGamesLevels.HARD;
-      case 100:
-        return EGamesLevels.MEDIUM;
-      case 150:
-        return EGamesLevels.EASY;
-      default:
-        return EGamesLevels.EASY;
-    }
+    return snakeLevels[timer];
   }, [timer]);
 
   const startMoving = () => {
@@ -146,7 +143,7 @@ export const Snake = () => {
         });
       }
     }
-  }, [board?.gameOver, board?.score, createScore, level]);
+  }, [board?.gameOver, board?.score, createScore, level, user]);
 
   const isShowMobileBtns = useMemo(() => {
     return isMobile();
@@ -189,31 +186,12 @@ export const Snake = () => {
       {!isNewGameButtonDisabled && (
         <div className={snakeStyles.snake__difficulty}>
           <p>{t('difficulty')}:</p>
-          <AppButton
-            size="sm"
-            color={timer === 150 ? 'success' : 'primary'}
-            onClick={() => setTimer(150)}
-            testId="easy-level"
-            type="button"
-          >
-            {t('easy')}
-          </AppButton>
-          <AppButton
-            color={timer === 100 ? 'success' : 'primary'}
-            onClick={() => setTimer(100)}
-            testId="medium-level"
-            type="button"
-          >
-            {t('medium')}
-          </AppButton>
-          <AppButton
-            color={timer === 50 ? 'success' : 'primary'}
-            onClick={() => setTimer(50)}
-            testId="hard-level"
-            type="button"
-          >
-            {t('hard')}
-          </AppButton>
+          <AppRadioButton
+            options={snakeLevelsOptions}
+            value={timer}
+            setValue={setTimer}
+            dataTestId="level"
+          />
         </div>
       )}
       <p className={snakeStyles['snake__game-over']}>{gameOver}</p>
