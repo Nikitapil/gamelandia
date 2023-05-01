@@ -3,10 +3,10 @@ import React, { FC, useState } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useTranslation } from 'react-i18next';
 import { TimerModal } from '../components/TimerModal';
-import { RoomsCommon } from '../../../components/common/RoomsCommon';
+import { RoomsCommon } from '../../components/RoomsCommon';
 import { ModalContainer } from '../../../components/UI/ModalContainer';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
-import { useBreadcrumbs } from '../../../hooks/useBreadcrumbs';
+import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
 import '../assets/styles/chess.scss';
 

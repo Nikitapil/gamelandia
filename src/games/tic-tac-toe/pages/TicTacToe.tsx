@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TicTacBoard } from '../components/TicTacBoard';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
-import { useBreadcrumbs } from '../../../hooks/useBreadcrumbs';
+import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
 import { TicBoard } from '../models/TicBoard';
 import tictacStyles from '../assets/styles/tictac.module.scss';

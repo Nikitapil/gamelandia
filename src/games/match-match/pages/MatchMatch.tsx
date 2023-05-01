@@ -5,7 +5,7 @@ import { MatchCard } from '../components/MatchCard';
 import { ICard } from '../types';
 import { getUniqArrayObjects, shuffleArray } from '../../../utils/helpers';
 import matchStyles from '../assets/styles/match.module.scss';
-import { useBreadcrumbs } from '../../../hooks/useBreadcrumbs';
+import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
 import { AppButton } from '../../../components/UI/AppButton';

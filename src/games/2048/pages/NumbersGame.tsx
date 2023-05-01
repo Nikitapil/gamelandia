@@ -2,7 +2,7 @@ import React from 'react';
 import { NumbersBoard } from '../components/NumbersBoard';
 import styles from '../assets/styles/numbersGame.module.scss';
 import { useTitle } from '../../../hooks/useTitle';
-import { useBreadcrumbs } from '../../../hooks/useBreadcrumbs';
+import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { InvadersField } from '../components/InvadersField';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
-import { useBreadcrumbs } from '../../../hooks/useBreadcrumbs';
+import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
 import invadersStyles from '../assets/styles/invaders.module.scss';
 import { CommonScoreBoard } from '../../../score/components/CommonScoreBoard';

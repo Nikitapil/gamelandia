@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { MainPageCard } from '../components/MainPageCard';
 import { OutSidePageCard } from '../components/OutSideGameCard';
 import { constants } from '../constants';
-import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
+import { useBreadcrumbs } from '../../app/hooks/useBreadcrumbs';
 import { useTitle } from '../../hooks/useTitle';
 import mainStyles from '../assets/styles/mainpage.module.scss';
 import { isMobile } from '../../utils/helpers';

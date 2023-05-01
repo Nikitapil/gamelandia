@@ -6,7 +6,7 @@ import React, {
   useState
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useBreadcrumbs } from '../../../hooks/useBreadcrumbs';
+import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
 import styles from '../assets/styles/aimgame.module.scss';

@@ -16,7 +16,7 @@ import {
 } from '../constants';
 import { SnakeBoardModel } from '../models/SnakeBoardModel';
 import snakeStyles from '../assets/styles/snake.module.scss';
-import { useBreadcrumbs } from '../../../hooks/useBreadcrumbs';
+import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
 import { isMobile } from '../../../utils/helpers';

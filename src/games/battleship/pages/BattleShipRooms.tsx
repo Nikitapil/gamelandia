@@ -2,8 +2,8 @@ import React, { FC, useMemo } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { doc, collection, setDoc, Firestore } from 'firebase/firestore';
 import { useTranslation } from 'react-i18next';
-import { RoomsCommon } from '../../../components/common/RoomsCommon';
-import { useBreadcrumbs } from '../../../hooks/useBreadcrumbs';
+import { RoomsCommon } from '../../components/RoomsCommon';
+import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
 

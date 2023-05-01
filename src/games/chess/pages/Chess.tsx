@@ -5,7 +5,7 @@ import { ChessTimer } from '../components/ChessTimer';
 import { LostFigures } from '../components/LostFigures';
 import { WinnerModal } from '../components/WinnerModal';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
-import { useBreadcrumbs } from '../../../hooks/useBreadcrumbs';
+import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
 import { Board } from '../models/Board';
 import { Colors } from '../models/Colors';

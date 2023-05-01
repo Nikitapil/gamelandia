@@ -17,7 +17,7 @@ import { BattleShipRooms } from '../games/battleship/pages/BattleShipRooms';
 import { ChessTypes } from '../games/chess/pages/ChessTypes';
 import { ChessRooms } from '../games/chess/pages/ChessRooms';
 import { ChessOnline } from '../games/chess/pages/ChessOnline';
-import { Breadcrumbs } from '../components/UI/Breadcrumbs';
+import { Breadcrumbs } from './components/Breadcrumbs/Breadcrumbs';
 import { CloneInvaders } from '../games/clone-invaders/pages/CloneInvaders';
 import { Tetris } from '../games/tetris/pages/Tetris';
 import { FlappyBird } from '../games/flappy/pages/FlappyBird';
@@ -28,6 +28,8 @@ import { ERoutes } from '../constants/routes';
 import { Solitaire } from '../games/solitaire/pages/Solitaire';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuthActions } from '../auth/hooks/useAuthActions';
+import { LanguageDropdown } from './components/AppHeader/LanguageDropdown';
+import styles from './assets/styles/app-styles.module.scss';
 
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
@@ -42,7 +44,10 @@ function App() {
     <div className="App">
       <AppHeader />
       <main className="main">
-        <Breadcrumbs />
+        <div className={styles.breadcrumbs}>
+          <Breadcrumbs />
+          <LanguageDropdown />
+        </div>
         <Routes>
           <Route path={ERoutes.MAIN} element={<MainPage />} />
           <Route path={ERoutes.UNKNOWN} element={<NotFound />} />

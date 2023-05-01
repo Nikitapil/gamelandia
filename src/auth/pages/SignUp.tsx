@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'react-router-dom';
 import { AuthForm } from '../components/AuthForm/AuthForm';
 import authStyles from '../../styles/auth.module.scss';
-import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
+import { useBreadcrumbs } from '../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../constants/breadcrumbs';
 import { useTitle } from '../../hooks/useTitle';
 import { useAuthRedirect } from '../hooks/useAuthRedirect';

@@ -15,7 +15,7 @@ import React, {
 import { useTranslation } from 'react-i18next';
 import { TetrisBoard } from '../components/TetrisBoard';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
-import { useBreadcrumbs } from '../../../hooks/useBreadcrumbs';
+import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
 import { TetrisBoardModel } from '../models/TetrisBoardModel';
 import tetrisStyle from '../assets/styles/tetris.module.scss';
