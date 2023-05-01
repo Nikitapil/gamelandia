@@ -3,7 +3,7 @@ import { ICreateScoreRequest } from '../types';
 import { AppDispatch } from '../../store';
 import { scoreSlice } from './score.slice';
 import { ScoreService } from '../ScoreService';
-import { EGamesNames } from '../../constants/games';
+import { EGamesNames } from '../../games/constants';
 
 export const createScore = (scoreData: ICreateScoreRequest) => {
   return async (dispatch: AppDispatch) => {

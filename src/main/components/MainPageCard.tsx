@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
-import { gamePics } from '../../utils/gamePicsBuilder';
-import { GameLabel } from '../UI/GameLabel';
-import mainStyles from '../../styles/mainpage.module.scss';
+import { GameLabel } from '../../components/UI/GameLabel';
+import mainStyles from '../assets/styles/mainpage.module.scss';
+import { gamePics } from '../constants';
 
 interface MainPageCardProps {
   gameName: string;

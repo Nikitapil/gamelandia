@@ -7,7 +7,7 @@ import invadersStyles from '../assets/styles/invaders.module.scss';
 import { CommonScoreBoard } from '../../../score/components/CommonScoreBoard';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
-import { EGamesNames } from '../../../constants/games';
+import { EGamesNames } from '../../constants';
 
 export const CloneInvaders = () => {
   useTitle('Clone Invaders');

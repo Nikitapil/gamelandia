@@ -1,6 +1,18 @@
-import { ERoutes } from './routes';
+import { ERoutes } from '../constants/routes';
+import defaultPic from './assets/game-pictures/default.png';
+import quizzer from './assets/game-pictures/quizzer.png';
+import chess from './assets/game-pictures/chess.jpeg';
+import ticTacToe from './assets/game-pictures/ticTacToe.jpeg';
+import snake from './assets/game-pictures/snake.jpeg';
+import battleship from './assets/game-pictures/battleship.webp';
+import cloneInvaders from './assets/game-pictures/cloneInvaders.webp';
+import tetris from './assets/game-pictures/tetris.png';
+import flappy from './assets/game-pictures/flappy.png';
+import aim from './assets/game-pictures/aim.png';
+import numbers from './assets/game-pictures/2048.png';
+import solitaire from './assets/game-pictures/solitaire.jpeg';
 
-export const games = [
+export const constants = [
   {
     id: 11,
     gameName: '2048',
@@ -122,23 +134,22 @@ export const games = [
     mobileSuitable: true
   }
 ];
-export enum EGamesNames {
-  NUMBERS = 'numbers',
-  SNAKE = 'snake',
-  BATTLESHIP = 'battleship',
-  CHESS = 'chess',
-  TETRIS = 'tetris',
-  SOLITAIRE = 'solitaire',
-  CLONE_INVADERS = 'clone_invaders',
-  FLAPPY = 'flappy',
-  AIM = 'aim',
-  MATCH = 'match',
-  TIC_TAC_TOE = 'tic_tac_toe',
-  DYNO = 'dyno'
+
+interface IGamePics {
+  [key: string]: string;
 }
 
-export enum EGamesLevels {
-  EASY = 'easy',
-  MEDIUM = 'medium',
-  HARD = 'hard'
-}
+export const gamePics: IGamePics = {
+  default: defaultPic,
+  quizzer,
+  chess,
+  ticTacToe,
+  snake,
+  battleship,
+  cloneInvaders,
+  tetris,
+  flappy,
+  aim,
+  numbers,
+  solitaire
+};

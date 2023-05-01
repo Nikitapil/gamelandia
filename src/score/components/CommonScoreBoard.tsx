@@ -4,12 +4,12 @@ import { v4 as uuidv4 } from 'uuid';
 import commonStyles from '../../styles/common.module.scss';
 import { ScoreTableLoader } from '../../components/UI/ScoreTableLoader';
 import { IUser } from '../../auth/types';
-import { EGamesLevels, EGamesNames } from '../../constants/games';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { scoreSelector } from '../../store/selectors';
 import { useScoreActions } from '../hooks/useScoreActions';
 import { AppRadioButton } from '../../components/UI/AppRadioButton/AppRadioButton';
 import { scoreLevelOptions } from '../constants';
+import { EGamesLevels, EGamesNames } from '../../games/constants';
 
 interface CommonScoreBoardProps {
   game: EGamesNames;

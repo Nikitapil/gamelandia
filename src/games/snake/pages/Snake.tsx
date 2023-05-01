@@ -24,9 +24,9 @@ import { AppButton } from '../../../components/UI/AppButton';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
 import { CommonScoreBoard } from '../../../score/components/CommonScoreBoard';
-import { EGamesNames } from '../../../constants/games';
 import { useCreateScore } from '../../../score/hooks/useCreateScore';
 import { AppRadioButton } from '../../../components/UI/AppRadioButton/AppRadioButton';
+import { EGamesNames } from '../../constants';
 
 export const Snake = () => {
   useTitle('Snake');

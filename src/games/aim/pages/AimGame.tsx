@@ -13,11 +13,11 @@ import styles from '../assets/styles/aimgame.module.scss';
 import { Aim } from '../components/Aim';
 import { AimModel } from '../models/AimModel';
 import { AppButton } from '../../../components/UI/AppButton';
-import { EGamesNames } from '../../../constants/games';
 import { CommonScoreBoard } from '../../../score/components/CommonScoreBoard';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
 import { useCreateScore } from '../../../score/hooks/useCreateScore';
+import { EGamesNames } from '../../constants';
 
 export const AimGame = () => {
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.aim]);

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { MainPageCard } from '../components/main/MainPageCard';
-import { OutSidePageCard } from '../components/main/OutSideGameCard';
+import { MainPageCard } from '../main/components/MainPageCard';
+import { OutSidePageCard } from '../main/components/OutSideGameCard';
 import { renderWithRouter } from '../utils/test/utils';
 
 describe('mainpage tests', () => {

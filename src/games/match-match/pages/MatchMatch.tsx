@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MatchCard } from '../components/MatchCard';
 import { ICard } from '../types';
-import { matchMatchPics } from '../../../utils/gamePicsBuilder';
 import { getUniqArrayObjects, shuffleArray } from '../../../utils/helpers';
 import matchStyles from '../assets/styles/match.module.scss';
 import { useBreadcrumbs } from '../../../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
 import { AppButton } from '../../../components/UI/AppButton';
+import { matchMatchPics } from '../constants';
 
 export const MatchMatch = () => {
   const { t } = useTranslation();

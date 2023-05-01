@@ -9,8 +9,8 @@ import { InvadersCell } from './InvadersCell';
 import { InvadersGameOver } from './InvadersGameOver';
 import { InvadersGun } from './InvadersGun';
 import { AppButton } from '../../../components/UI/AppButton';
-import { EGamesNames } from '../../../constants/games';
 import { useCreateScore } from '../../../score/hooks/useCreateScore';
+import { EGamesNames } from '../../constants';
 
 export const InvadersField = () => {
   const [board, setBoard] = useState(new InvadersFieldModel());

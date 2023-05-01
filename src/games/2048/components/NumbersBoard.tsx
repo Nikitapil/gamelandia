@@ -9,8 +9,8 @@ import { AppButton } from '../../../components/UI/AppButton';
 import { isMobile } from '../../../utils/helpers';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
-import { EGamesNames } from '../../../constants/games';
 import { useCreateScore } from '../../../score/hooks/useCreateScore';
+import { EGamesNames } from '../../constants';
 
 export const NumbersBoard = () => {
   const [board, setBoard] = useState(new NumbersBoardModel());

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { gamePics } from '../../utils/gamePicsBuilder';
-import mainStyles from '../../styles/mainpage.module.scss';
+import mainStyles from '../assets/styles/mainpage.module.scss';
+import { gamePics } from '../constants';
 
 interface MainPageCardProps {
   gameName: string;

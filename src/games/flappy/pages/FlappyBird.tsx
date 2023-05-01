@@ -6,9 +6,9 @@ import { useBreadcrumbs } from '../../../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
-import { EGamesNames } from '../../../constants/games';
 import { CommonScoreBoard } from '../../../score/components/CommonScoreBoard';
 import { useCreateScore } from '../../../score/hooks/useCreateScore';
+import { EGamesNames } from '../../constants';
 
 export const FlappyBird = () => {
   useTitle('Flappy Bird');

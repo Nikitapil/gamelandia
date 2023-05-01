@@ -7,7 +7,7 @@ import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
 import { CommonScoreBoard } from '../../../score/components/CommonScoreBoard';
-import { EGamesNames } from '../../../constants/games';
+import { EGamesNames } from '../../constants';
 
 export const NumbersGame = () => {
   useTitle('2048');

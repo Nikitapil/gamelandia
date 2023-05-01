@@ -1,4 +1,4 @@
-import { EGamesLevels, EGamesNames } from '../constants/games';
+import { EGamesLevels, EGamesNames } from '../games/constants';
 
 export interface ICreateScoreRequest {
   gameName: EGamesNames;

@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MainPageCard } from '../components/main/MainPageCard';
-import { OutSidePageCard } from '../components/main/OutSideGameCard';
-import { games } from '../constants/games';
-import { useBreadcrumbs } from '../hooks/useBreadcrumbs';
-import { useTitle } from '../hooks/useTitle';
-import mainStyles from '../styles/mainpage.module.scss';
-import { isMobile } from '../utils/helpers';
+import { MainPageCard } from '../components/MainPageCard';
+import { OutSidePageCard } from '../components/OutSideGameCard';
+import { constants } from '../constants';
+import { useBreadcrumbs } from '../../hooks/useBreadcrumbs';
+import { useTitle } from '../../hooks/useTitle';
+import mainStyles from '../assets/styles/mainpage.module.scss';
+import { isMobile } from '../../utils/helpers';
 
 export const MainPage = () => {
   useTitle();
@@ -15,9 +15,9 @@ export const MainPage = () => {
 
   const filteredGames = useMemo(() => {
     if (isMobile()) {
-      return games.filter((game) => game.mobileSuitable);
+      return constants.filter((game) => game.mobileSuitable);
     }
-    return games;
+    return constants;
   }, []);
 
   return (

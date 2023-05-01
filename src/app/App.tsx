@@ -7,7 +7,7 @@ import { AppHeader } from './components/AppHeader/AppHeader';
 import { firebaseConfig } from './fbconfig';
 import { BattleShip } from '../games/battleship/pages/BattleShip';
 import { Chess } from '../games/chess/pages/Chess';
-import { MainPage } from '../pages/MainPage';
+import { MainPage } from '../main/pages/MainPage';
 import { MatchMatch } from '../games/match-match/pages/MatchMatch';
 import { Snake } from '../games/snake/pages/Snake';
 import { TicTacToe } from '../games/tic-tac-toe/pages/TicTacToe';

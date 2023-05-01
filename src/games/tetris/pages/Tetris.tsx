@@ -22,10 +22,10 @@ import tetrisStyle from '../assets/styles/tetris.module.scss';
 import { isMobile } from '../../../utils/helpers';
 import { AppButton } from '../../../components/UI/AppButton';
 import { CommonScoreBoard } from '../../../score/components/CommonScoreBoard';
-import { EGamesNames } from '../../../constants/games';
 import { useCreateScore } from '../../../score/hooks/useCreateScore';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
+import { EGamesNames } from '../../constants';
 
 export const Tetris = () => {
   const { t } = useTranslation();

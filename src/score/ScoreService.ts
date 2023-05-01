@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { ICreateScoreRequest, IScoreResponse } from './types';
 import $api from '../api/api';
-import { EGamesNames } from '../constants/games';
+import { EGamesNames } from '../games/constants';
 
 export class ScoreService {
   static async createScore(
