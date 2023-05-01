@@ -3,7 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import userEvent from '@testing-library/user-event';
 import { configureStore } from '@reduxjs/toolkit';
 import { renderWithRedux } from '../utils/test/utils';
-import { AimGame } from '../pages/AimGame';
+import { AimGame } from '../games/aim/pages/AimGame';
 import { rootReducer } from '../store/root-reducer';
 
 jest.mock('react-firebase-hooks/auth');

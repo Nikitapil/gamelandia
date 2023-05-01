@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { TicTacBoard } from '../components/TicTacToe/TicTacBoard';
-import { TicTacCell } from '../components/TicTacToe/TicTacCell';
-import { ETicTacIcons } from '../constants/tictactoe';
-import { TicBoard } from '../models/ticTacToe/TicBoard';
-import { TicCell } from '../models/ticTacToe/TicCell';
+import { TicTacBoard } from '../games/tic-tac-toe/components/TicTacBoard';
+import { TicTacCell } from '../games/tic-tac-toe/components/TicTacCell';
+import { ETicTacIcons } from '../games/tic-tac-toe/constants';
+import { TicBoard } from '../games/tic-tac-toe/models/TicBoard';
+import { TicCell } from '../games/tic-tac-toe/models/TicCell';
 import { renderWithRouter } from '../utils/test/utils';
 
 describe('tic tac toe classes', () => {
