@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { RoundLoader } from '../../../../components/UI/Loaders/RoundLoader';
-import { DynoGame } from '../../../../components/DynoGame/DynoGame';
+import { DynoGame } from '../../../dyno/components/DynoGame';
 
 export const ChessOnlineLoader = () => {
   const { t } = useTranslation();

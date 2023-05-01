@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
-import styles from '../../styles/dyno.module.scss';
-import cactus from '../../assets/dyno/cactus.png';
-import { DynoCactusModel } from '../../models/DynoGame/DynoCactusModel';
+import styles from '../assets/styles/dyno.module.scss';
+import cactus from '../assets/images/cactus.png';
+import { DynoCactusModel } from '../models/DynoCactusModel';
 
 interface DynoCactusProps {
   cactusModel: DynoCactusModel;

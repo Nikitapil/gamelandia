@@ -1,6 +1,6 @@
 import { DynoCactusModel } from './DynoCactusModel';
-import { getRandomBoolean } from '../../utils/helpers';
-import { DYNO_FIELD_WIDTH } from '../../constants/dyno';
+import { getRandomBoolean } from '../../../utils/helpers';
+import { DYNO_FIELD_WIDTH } from '../constants';
 
 export class DynoGameModel {
   cactuses: DynoCactusModel[] = [];

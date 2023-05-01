@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styles from './notfound.module.scss';
 import { useTitle } from '../../../hooks/useTitle';
-import { DynoGame } from '../../../components/DynoGame/DynoGame';
+import { DynoGame } from '../../../games/dyno/components/DynoGame';
 import { ERoutes } from '../../../constants/routes';
 
 export const NotFound = () => {

@@ -6,10 +6,10 @@ import React, {
   useState
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import styles from '../../styles/dyno.module.scss';
-import dynoImg from '../../assets/dyno/dyno.png';
+import styles from '../assets/styles/dyno.module.scss';
+import dynoImg from '../assets/images/dyno.png';
 import { DynoCactus } from './DynoCactus';
-import { DynoGameModel } from '../../models/DynoGame/DynoGameModel';
+import { DynoGameModel } from '../models/DynoGameModel';
 import {
   DYNO_ANIMATION_SPEED,
   DYNO_CACTUS_SPEED,
@@ -17,8 +17,8 @@ import {
   DYNO_HEIGHT,
   DYNO_ITEMS_WIDTH,
   DYNO_LEFT_WIDTH
-} from '../../constants/dyno';
-import { isMobile } from '../../utils/helpers';
+} from '../constants';
+import { isMobile } from '../../../utils/helpers';
 
 export const DynoGame = () => {
   const { t } = useTranslation();

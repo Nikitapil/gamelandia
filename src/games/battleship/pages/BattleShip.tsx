@@ -14,7 +14,7 @@ import battlshipStyles from '../assets/styles/battleship.module.scss';
 import { useBreadcrumbs } from '../../../hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
-import { DynoGame } from '../../../components/DynoGame/DynoGame';
+import { DynoGame } from '../../dyno/components/DynoGame';
 import { ERoutes } from '../../../constants/routes';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector, battleshipSelector } from '../../../store/selectors';
