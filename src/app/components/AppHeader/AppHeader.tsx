@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { HorizotalLoader } from '../../../components/UI/Loaders/HorizotalLoader';
-import headerStyles from './header.module.scss';
-import { AppButton } from '../../../components/UI/AppButton';
+import styles from './header.module.scss';
 import { ERoutes } from '../../../constants/routes';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
 import { useAuthActions } from '../../../auth/hooks/useAuthActions';
+import { AuthButtons } from './AuthButtons';
 
 export const AppHeader = () => {
   const { user, isAuthLoading } = useAppSelector(authSelector);
@@ -19,57 +18,21 @@ export const AppHeader = () => {
   };
 
   return (
-    <header className={headerStyles.header}>
-      <div className={`container ${headerStyles.header__container}`}>
-        <h1 className={headerStyles.header__title}>GameLandia</h1>
-        <nav className={headerStyles['header__nav-bar']}>
-          <ul className={headerStyles['nav-bar__links']}>
+    <header className={styles.header}>
+      <div className={`container ${styles.header__container}`}>
+        <h1 className={styles.header__title}>GameLandia</h1>
+        <nav className={styles['header__nav-bar']}>
+          <ul className={styles['nav-bar__links']}>
             <li>
-              <Link
-                className={headerStyles['nav-bar__link']}
-                to={`${ERoutes.MAIN}`}
-              >
+              <Link className={styles['nav-bar__link']} to={`${ERoutes.MAIN}`}>
                 {t('main')}
               </Link>
             </li>
-            {/* eslint-disable-next-line no-nested-ternary */}
-            {isAuthLoading ? (
-              <li>
-                <HorizotalLoader />
-              </li>
-            ) : !user ? (
-              <>
-                <li>
-                  <Link
-                    className={headerStyles['nav-bar__link']}
-                    to={`${ERoutes.LOGIN}`}
-                  >
-                    {t('sign_in')}
-                  </Link>
-                </li>
-                <li>
-                  {' '}
-                  <Link
-                    className={headerStyles['nav-bar__link']}
-                    to={`${ERoutes.REGISTRATION}`}
-                  >
-                    {t('sign_up')}
-                  </Link>
-                </li>
-              </>
-            ) : (
-              <li>
-                {' '}
-                <AppButton
-                  color="transparent"
-                  customClass={headerStyles['logout-btn']}
-                  onClick={onSignOut}
-                  type="button"
-                >
-                  {t('logout')}
-                </AppButton>
-              </li>
-            )}
+            <AuthButtons
+              isAuthLoading={isAuthLoading}
+              user={user}
+              onSignOut={onSignOut}
+            />
           </ul>
         </nav>
       </div>
