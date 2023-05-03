@@ -28,7 +28,7 @@ import { ERoutes } from '../constants/routes';
 import { Solitaire } from '../games/solitaire/pages/Solitaire';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuthActions } from '../auth/hooks/useAuthActions';
-import { LanguageDropdown } from './components/AppHeader/LanguageDropdown';
+import { LanguageDropdown } from './components/LanguageDropdown/LanguageDropdown';
 import styles from './assets/styles/app-styles.module.scss';
 
 const app = initializeApp(firebaseConfig);
