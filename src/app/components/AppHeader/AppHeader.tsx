@@ -9,9 +9,9 @@ import { useAuthActions } from '../../../auth/hooks/useAuthActions';
 import { AuthButtons } from './AuthButtons';
 
 export const AppHeader = () => {
+  const { t } = useTranslation();
   const { user, isAuthLoading } = useAppSelector(authSelector);
   const { logout } = useAuthActions();
-  const { t } = useTranslation();
 
   const onSignOut = async () => {
     await logout();

@@ -1,33 +1,26 @@
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './language-dropdown.module.scss';
+import { useClickOutside } from '../../../hooks/useClickOutside';
 
 export const LanguageDropdown = () => {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useClickOutside(dropdownRef, () => setIsOpen(false));
 
   const changeLanguage = async (language: string) => {
     await i18n.changeLanguage(language);
     setIsOpen(false);
   };
 
-  const closeOutside = (e: MouseEvent) => {
-    if (!(e.target as Element).closest('.language-dropdown')) {
-      setIsOpen(false);
-    }
-  };
-
   const changeState = () => setIsOpen(!isOpen);
 
-  useEffect(() => {
-    document.addEventListener('click', closeOutside);
-    return () => document.removeEventListener('click', closeOutside);
-  }, []);
-
   return (
-    <div className={`${styles['language-dropdown']} language-dropdown`}>
+    <div className={`${styles['language-dropdown']}`} ref={dropdownRef}>
       <button
         type="button"
         className={styles['language-dropdown__open']}
