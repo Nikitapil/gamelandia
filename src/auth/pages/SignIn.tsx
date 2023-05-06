@@ -11,6 +11,7 @@ import { ERoutes } from '../../constants/routes';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { authSelector } from '../../store/selectors';
 import { useAuthActions } from '../hooks/useAuthActions';
+import { ISignUpAuthRequest } from '../types';
 
 export const SignIn = () => {
   const { t } = useTranslation();
@@ -21,7 +22,7 @@ export const SignIn = () => {
   useAuthRedirect(user, authError);
   const [searchParams] = useSearchParams();
 
-  const submit = async (email: string, password: string) => {
+  const submit = async ({ email, password }: ISignUpAuthRequest) => {
     await signin({ email, password });
   };
 

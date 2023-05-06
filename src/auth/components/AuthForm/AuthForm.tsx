@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useRef, useState } from 'react';
+import { ChangeEvent, FC, FormEvent, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
@@ -7,12 +7,12 @@ import { AppInput } from '../../../components/UI/AppInput';
 import { AppButton } from '../../../components/UI/AppButton';
 import { TValidationRules } from '../../../utils/validators';
 import { useInputTouch } from '../../../hooks/useInputTouch';
+import { ISignUpAuthRequest } from '../../types';
 
 interface AuthFormProps {
   formTitle: string;
-  submit: (email: string, password: string, username: string) => void;
+  submit: (authData: ISignUpAuthRequest) => void;
   isSignUp?: boolean;
-  setDisplayName?: (params: { displayName: string }) => void;
 }
 
 export const AuthForm: FC<AuthFormProps> = ({
@@ -20,6 +20,8 @@ export const AuthForm: FC<AuthFormProps> = ({
   submit,
   isSignUp = false
 }) => {
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -30,43 +32,40 @@ export const AuthForm: FC<AuthFormProps> = ({
     password: '',
     username: ''
   });
-  const [passwordType, setPasswordType] = useState<
-    'email' | 'password' | 'text'
-  >('password');
+  const [passwordType, setPasswordType] = useState<'password' | 'text'>(
+    'password'
+  );
+
   const form = useRef<HTMLFormElement | null>(null);
   const { touch } = useInputTouch(form.current);
-
-  const onInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  const { t } = useTranslation();
-
-  const onChangePasswordType = () => {
-    if (passwordType === 'text') {
-      setPasswordType('password');
-      return;
-    }
-    setPasswordType('text');
-  };
 
   const isFormValid = useMemo(() => {
     return !(formErrors.email || formErrors.password || formErrors.username);
   }, [formErrors.email, formErrors.password, formErrors.username]);
 
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    touch();
-    if (isFormValid) {
-      submit(formData.email, formData.password, formData.username);
-    }
-  };
-
   const passwordRules = useMemo((): TValidationRules[] => {
     return isSignUp ? ['required', 'password'] : ['required'];
   }, [isSignUp]);
 
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    touch();
+    if (isFormValid) {
+      submit(formData);
+    }
+  };
+
   const onError = (name: string, err: string) => {
     setFormErrors({ ...formErrors, [name]: err });
+  };
+
+  const onInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const onChangePasswordType = () => {
+    const newPasswordType = passwordType === 'text' ? 'password' : 'text';
+    setPasswordType(newPasswordType);
   };
 
   return (

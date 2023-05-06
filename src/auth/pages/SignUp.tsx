@@ -11,6 +11,7 @@ import { ERoutes } from '../../constants/routes';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { authSelector } from '../../store/selectors';
 import { useAuthActions } from '../hooks/useAuthActions';
+import { ISignUpAuthRequest } from '../types';
 
 export const SignUp = () => {
   const { t } = useTranslation();
@@ -21,8 +22,8 @@ export const SignUp = () => {
   const { signup } = useAuthActions();
   useAuthRedirect(user, authError);
 
-  const submit = async (email: string, password: string, username: string) => {
-    await signup({ email, password, username });
+  const submit = async (authData: ISignUpAuthRequest) => {
+    await signup(authData);
   };
 
   const loginLink = useMemo(() => {
