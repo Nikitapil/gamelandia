@@ -1,10 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
 import { ToastContainer } from 'react-toastify';
 import { useEffect } from 'react';
 import { AppHeader } from './components/AppHeader/AppHeader';
-import { firebaseConfig } from './fbconfig';
 import { BattleShip } from '../games/battleship/pages/BattleShip';
 import { Chess } from '../games/chess/pages/Chess';
 import { MainPage } from '../main/pages/MainPage';
@@ -31,8 +28,6 @@ import { useAuthActions } from '../auth/hooks/useAuthActions';
 import { LanguageDropdown } from './components/LanguageDropdown/LanguageDropdown';
 import styles from './assets/styles/app-styles.module.scss';
 
-const app = initializeApp(firebaseConfig);
-const firestore = getFirestore(app);
 function App() {
   const { refresh } = useAuthActions();
 
@@ -58,27 +53,14 @@ function App() {
           <Route path={ERoutes.AIM_GAME} element={<AimGame />} />
           <Route path={ERoutes.NUMBERS} element={<NumbersGame />} />
           <Route path={ERoutes.SOLITAIRE} element={<Solitaire />} />
-          <Route
-            path={ERoutes.CHESS_ROOMS}
-            element={<ChessRooms firestore={firestore} />}
-          />
-          <Route
-            path={ERoutes.CHESS_ROOMS_ID}
-            element={<ChessOnline firestore={firestore} />}
-          />
+          <Route path={ERoutes.CHESS_ROOMS} element={<ChessRooms />} />
+          <Route path={ERoutes.CHESS_ROOMS_ID} element={<ChessOnline />} />
           <Route path={ERoutes.TIC_TAC} element={<TicTacToe />} />
           <Route path={ERoutes.SNAKE} element={<Snake />} />
-          <Route
-            path={ERoutes.BATTLESHIP}
-            element={<BattleShipRooms firestore={firestore} />}
-          />
+          <Route path={ERoutes.BATTLESHIP} element={<BattleShipRooms />} />
           <Route path={ERoutes.INVADERS} element={<CloneInvaders />} />
           <Route path={ERoutes.TETRIS} element={<Tetris />} />
-          <Route
-            path={ERoutes.BATTLESHIP_ID}
-            element={<BattleShip firestore={firestore} />}
-          />
-
+          <Route path={ERoutes.BATTLESHIP_ID} element={<BattleShip />} />
           <Route path={ERoutes.REGISTRATION} element={<SignUp />} />
           <Route path={ERoutes.LOGIN} element={<SignIn />} />
         </Routes>

@@ -1,5 +1,5 @@
-import { collection, doc, Firestore, setDoc } from 'firebase/firestore';
-import React, { FC, useState } from 'react';
+import { collection, doc, setDoc } from 'firebase/firestore';
+import React, { useContext, useState } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useTranslation } from 'react-i18next';
 import { TimerModal } from '../components/TimerModal';
@@ -9,12 +9,9 @@ import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
 import '../assets/styles/chess.scss';
+import { FirebaseContext } from '../../../context/firebase-context/FirebaseContext';
 
-interface ChessRoomsProps {
-  firestore: Firestore;
-}
-
-export const ChessRooms: FC<ChessRoomsProps> = ({ firestore }) => {
+export const ChessRooms = () => {
   const { t } = useTranslation();
   useTitle(t('chess'));
   useBreadcrumbs([
@@ -22,6 +19,7 @@ export const ChessRooms: FC<ChessRoomsProps> = ({ firestore }) => {
     breadcrumbs.chessTypes,
     breadcrumbs.chessRooms
   ]);
+  const firestore = useContext(FirebaseContext);
   const [rooms] = useCollectionData(collection(firestore, 'chess'));
   const [isModalOpen, setIsModalOpen] = useState(false);
 

@@ -1,20 +1,18 @@
-import React, { FC, useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { doc, collection, setDoc, Firestore } from 'firebase/firestore';
+import { doc, collection, setDoc } from 'firebase/firestore';
 import { useTranslation } from 'react-i18next';
 import { RoomsCommon } from '../../components/RoomsCommon';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
+import { FirebaseContext } from '../../../context/firebase-context/FirebaseContext';
 
-interface BattleShipRoomsProps {
-  firestore: Firestore;
-}
-
-export const BattleShipRooms: FC<BattleShipRoomsProps> = ({ firestore }) => {
+export const BattleShipRooms = () => {
   const { t } = useTranslation();
   useTitle(t('battleship'));
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.battleshipRooms]);
+  const firestore = useContext(FirebaseContext);
   const [rooms] = useCollectionData(collection(firestore, 'battleship'));
   const createRoom = async () => {
     const newRoom = {

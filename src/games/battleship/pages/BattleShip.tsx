@@ -1,7 +1,7 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
-import { doc, setDoc, deleteDoc, Firestore } from 'firebase/firestore';
+import { doc, setDoc, deleteDoc } from 'firebase/firestore';
 import { useTranslation } from 'react-i18next';
 import { BattleshipBoard } from '../components/BattleshipBoard';
 import { BattleshipElems } from '../components/BattleshipElems';
@@ -19,12 +19,9 @@ import { ERoutes } from '../../../constants/routes';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector, battleshipSelector } from '../../../store/selectors';
 import { useBattleshipActions } from '../hooks/useBattleshipActions';
+import { FirebaseContext } from '../../../context/firebase-context/FirebaseContext';
 
-interface BattleShipProps {
-  firestore: Firestore;
-}
-
-export const BattleShip: FC<BattleShipProps> = ({ firestore }) => {
+export const BattleShip = () => {
   const { t } = useTranslation();
   useTitle(t('battleship'));
   useBreadcrumbs([
@@ -34,6 +31,7 @@ export const BattleShip: FC<BattleShipProps> = ({ firestore }) => {
   ]);
   const { id } = useParams();
   const { user, isAuthLoading } = useAppSelector(authSelector);
+  const firestore = useContext(FirebaseContext);
   const [roomData, loading] = useDocumentData(
     doc(firestore, 'battleship', id!)
   );

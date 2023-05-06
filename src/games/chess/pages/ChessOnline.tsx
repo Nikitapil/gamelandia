@@ -1,5 +1,5 @@
-import { deleteDoc, doc, Firestore, setDoc } from 'firebase/firestore';
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import { deleteDoc, doc, setDoc } from 'firebase/firestore';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -24,12 +24,9 @@ import {
 import { AppButton } from '../../../components/UI/AppButton';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
+import { FirebaseContext } from '../../../context/firebase-context/FirebaseContext';
 
-interface ChessOnlineProps {
-  firestore: Firestore;
-}
-
-export const ChessOnline: FC<ChessOnlineProps> = ({ firestore }) => {
+export const ChessOnline = () => {
   const { t } = useTranslation();
   useTitle(`${t('chess')} online`);
   useBreadcrumbs([
@@ -40,6 +37,7 @@ export const ChessOnline: FC<ChessOnlineProps> = ({ firestore }) => {
   ]);
   const { id } = useParams();
   const { user, isAuthLoading } = useAppSelector(authSelector);
+  const firestore = useContext(FirebaseContext);
   const [roomData, loading] = useDocumentData(doc(firestore, 'chess', id!));
   const [board, setBoard] = useState<Board>(new Board());
   const [whitePlayer] = useState(new Player(Colors.WHITE));
