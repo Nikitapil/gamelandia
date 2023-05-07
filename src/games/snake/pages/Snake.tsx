@@ -20,7 +20,7 @@ import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
 import { isMobile } from '../../../utils/helpers';
-import { AppButton } from '../../../components/UI/AppButton';
+import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
 import { CommonScoreBoard } from '../../../score/components/CommonScoreBoard';

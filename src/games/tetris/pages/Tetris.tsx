@@ -20,7 +20,7 @@ import { useTitle } from '../../../hooks/useTitle';
 import { TetrisBoardModel } from '../models/TetrisBoardModel';
 import tetrisStyle from '../assets/styles/tetris.module.scss';
 import { isMobile } from '../../../utils/helpers';
-import { AppButton } from '../../../components/UI/AppButton';
+import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { CommonScoreBoard } from '../../../score/components/CommonScoreBoard';
 import { useCreateScore } from '../../../score/hooks/useCreateScore';
 import { useAppSelector } from '../../../hooks/useAppSelector';

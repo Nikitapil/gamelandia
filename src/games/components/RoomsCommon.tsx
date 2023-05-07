@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { HorizotalLoader } from '../../components/UI/Loaders/HorizotalLoader';
 import commonStyles from '../../styles/common.module.scss';
-import { AppButton } from '../../components/UI/AppButton';
+import { AppButton } from '../../components/UI/AppButton/AppButton';
 import { ERoutes } from '../../constants/routes';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { authSelector } from '../../store/selectors';

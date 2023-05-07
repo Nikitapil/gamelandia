@@ -8,9 +8,9 @@ import {
   useState
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import styles from '../../../styles/auth.module.scss';
+import styles from '../../assets/styles/auth.module.scss';
 import { AppInput } from '../../../components/UI/AppInput/AppInput';
-import { AppButton } from '../../../components/UI/AppButton';
+import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { TValidationRules } from '../../../utils/validators';
 import { useInputTouch } from '../../../hooks/useInputTouch';
 import { ISignUpAuthRequest } from '../../types';

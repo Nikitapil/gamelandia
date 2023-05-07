@@ -5,7 +5,7 @@ import { IUser } from '../../../auth/types';
 import { HorizotalLoader } from '../../../components/UI/Loaders/HorizotalLoader';
 import styles from './header.module.scss';
 import { ERoutes } from '../../../constants/routes';
-import { AppButton } from '../../../components/UI/AppButton';
+import { AppButton } from '../../../components/UI/AppButton/AppButton';
 
 interface IAuthButtonsProps {
   isAuthLoading: boolean;

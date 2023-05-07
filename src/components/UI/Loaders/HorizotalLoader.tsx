@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import '../../../styles/loaders.scss';
+import './loaders.scss';
 
 interface HorizotalLoaderProps {
   color?: 'white' | 'blue';

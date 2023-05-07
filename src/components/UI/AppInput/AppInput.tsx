@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import { ChangeEvent, useEffect, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useTranslation } from 'react-i18next';
 import styles from './app-input.module.scss';
@@ -10,7 +10,7 @@ interface IAppInputProps {
   type: 'text' | 'email' | 'password';
   name: string;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   testId?: string;
   className?: string;
   label?: string;

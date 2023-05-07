@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import mainStyles from '../../main/assets/styles/mainpage.module.scss';
+import mainStyles from '../assets/styles/mainpage.module.scss';
 
 interface GameLabelProps {
   text: string;

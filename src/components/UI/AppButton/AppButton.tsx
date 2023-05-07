@@ -1,6 +1,6 @@
-import React, { ReactElement, ReactNode, useMemo } from 'react';
-import styles from '../../styles/appButton.module.scss';
-import { noop } from '../../utils/helpers';
+import { ReactElement, ReactNode, useMemo } from 'react';
+import styles from './app-button.module.scss';
+import { noop } from '../../../utils/helpers';
 
 interface AppButtonProps {
   children?: ReactNode | ReactElement;

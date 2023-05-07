@@ -9,7 +9,7 @@ import {
   mapShipsToFirebase
 } from '../helpers/battleShipMappers';
 import battlShipStyles from '../assets/styles/battleship.module.scss';
-import { AppButton } from '../../../components/UI/AppButton';
+import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { battleshipSelector } from '../../../store/selectors';
 import { useBattleshipActions } from '../hooks/useBattleshipActions';

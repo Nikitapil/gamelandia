@@ -6,7 +6,7 @@ import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
 import { TicBoard } from '../models/TicBoard';
 import tictacStyles from '../assets/styles/tictac.module.scss';
-import { AppButton } from '../../../components/UI/AppButton';
+import { AppButton } from '../../../components/UI/AppButton/AppButton';
 
 export const TicTacToe = () => {
   const { t } = useTranslation();

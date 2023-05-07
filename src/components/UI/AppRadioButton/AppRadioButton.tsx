@@ -1,7 +1,7 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { IAppRadioButtonOption } from './types';
-import { AppButton } from '../AppButton';
+import { AppButton } from '../AppButton/AppButton';
 
 interface IAppRadioButtonProps<T> {
   options: IAppRadioButtonOption<T>[];

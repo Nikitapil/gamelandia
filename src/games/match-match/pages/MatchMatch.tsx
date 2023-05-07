@@ -8,7 +8,7 @@ import matchStyles from '../assets/styles/match.module.scss';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
-import { AppButton } from '../../../components/UI/AppButton';
+import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { matchMatchPics } from '../constants';
 
 export const MatchMatch = () => {

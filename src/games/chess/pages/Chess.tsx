@@ -11,7 +11,7 @@ import { Board } from '../models/Board';
 import { Colors } from '../models/Colors';
 import { Player } from '../models/Player';
 import '../assets/styles/chess.scss';
-import { AppButton } from '../../../components/UI/AppButton';
+import { AppButton } from '../../../components/UI/AppButton/AppButton';
 
 export const Chess = () => {
   const { t } = useTranslation();

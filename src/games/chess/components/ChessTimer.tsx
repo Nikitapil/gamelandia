@@ -4,7 +4,7 @@ import { Colors } from '../models/Colors';
 import { Player } from '../models/Player';
 import { ModalContainer } from '../../../components/UI/ModalContainer';
 import { TimerModal } from './TimerModal';
-import { AppButton } from '../../../components/UI/AppButton';
+import { AppButton } from '../../../components/UI/AppButton/AppButton';
 
 interface ChessTimerProps {
   currentPlayer: Player | null;

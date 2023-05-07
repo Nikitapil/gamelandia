@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AuthForm } from '../components/AuthForm/AuthForm';
-import styles from '../../styles/auth.module.scss';
+import styles from '../assets/styles/auth.module.scss';
 import { useBreadcrumbs } from '../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../constants/breadcrumbs';
 import { useTitle } from '../../hooks/useTitle';

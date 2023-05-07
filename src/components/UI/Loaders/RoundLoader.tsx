@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../styles/loaders.scss';
+import './loaders.scss';
 
 export const RoundLoader = () => {
   return (

@@ -5,7 +5,7 @@ import styles from '../assets/styles/numbersGame.module.scss';
 import { NumbersBoardModel } from '../models/NumbersBoardModel';
 import { NumbersElem } from './NumbersElem';
 import { ENumbersDirections } from '../constants';
-import { AppButton } from '../../../components/UI/AppButton';
+import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { isMobile } from '../../../utils/helpers';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';

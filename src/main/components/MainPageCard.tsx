@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
-import { GameLabel } from '../../components/UI/GameLabel';
+import { GameLabel } from './GameLabel';
 import mainStyles from '../assets/styles/mainpage.module.scss';
 import { gamePics } from '../constants';
 

@@ -7,7 +7,7 @@ import { SolitaireCardsBlockComponent } from '../components/SolitaireCardsBlockC
 import { SolitaireCard } from '../models/SolitaireCard';
 import { SolitaireCardsBlock } from '../models/SolitaireCardsBlock';
 import { SolitaireResultBlock } from '../components/SolitaireResultBlock';
-import { AppButton } from '../../../components/UI/AppButton';
+import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { useTitle } from '../../../hooks/useTitle';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';

@@ -8,7 +8,7 @@ import { InvadersBullet } from './InvadersBullet';
 import { InvadersCell } from './InvadersCell';
 import { InvadersGameOver } from './InvadersGameOver';
 import { InvadersGun } from './InvadersGun';
-import { AppButton } from '../../../components/UI/AppButton';
+import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { useCreateScore } from '../../../score/hooks/useCreateScore';
 import { EGamesNames } from '../../constants';
 

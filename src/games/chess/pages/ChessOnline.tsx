@@ -21,7 +21,7 @@ import {
   chessBoardToFirebaseMapper,
   mapBoardFromFireBase
 } from '../helpers/chessMapper';
-import { AppButton } from '../../../components/UI/AppButton';
+import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
 import { FirebaseContext } from '../../../context/firebase-context/FirebaseContext';
