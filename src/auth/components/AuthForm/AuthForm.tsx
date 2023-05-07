@@ -1,4 +1,12 @@
-import { ChangeEvent, FC, FormEvent, useMemo, useRef, useState } from 'react';
+import {
+  ChangeEvent,
+  FC,
+  FormEvent,
+  useCallback,
+  useMemo,
+  useRef,
+  useState
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../../../styles/auth.module.scss';
 import { AppInput } from '../../../components/UI/AppInput/AppInput';
@@ -53,9 +61,9 @@ export const AuthForm: FC<AuthFormProps> = ({
     }
   };
 
-  const onError = (name: string, err: string) => {
-    setFormErrors({ ...formErrors, [name]: err });
-  };
+  const onError = useCallback((name: string, err: string) => {
+    setFormErrors((errors) => ({ ...errors, [name]: err }));
+  }, []);
 
   const onInput = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

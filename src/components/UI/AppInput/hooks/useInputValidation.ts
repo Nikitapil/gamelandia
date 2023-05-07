@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
-import { inputValidators, TValidationRules } from '../utils/validators';
+import {
+  inputValidators,
+  TValidationRules
+} from '../../../../utils/validators';
 
 export const useInputValidation = (
   value: string,

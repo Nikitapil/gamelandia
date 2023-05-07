@@ -1,18 +1,18 @@
 import React, { useEffect, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useTranslation } from 'react-i18next';
-import appInputStyles from './app-input.module.scss';
-import { useInputValidation } from '../../../hooks/useInputValidation';
+import styles from './app-input.module.scss';
+import { useInputValidation } from './hooks/useInputValidation';
 import { TValidationRules } from '../../../utils/validators';
 import { noop } from '../../../utils/helpers';
 
 interface IAppInputProps {
-  className?: string;
   type: 'text' | 'email' | 'password';
-  testId?: string;
   name: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  testId?: string;
+  className?: string;
   label?: string;
   required?: boolean;
   rules?: TValidationRules[];
@@ -33,26 +33,31 @@ export const AppInput = ({
   rules = [],
   onError = noop
 }: IAppInputProps) => {
-  const { error, onBlur } = useInputValidation(value, rules);
   const { t } = useTranslation();
+  const { error, onBlur } = useInputValidation(value, rules);
+
   const id = useMemo(() => {
     return uuidv4();
   }, []);
 
   const classNameValue = useMemo(() => {
-    return value ? appInputStyles['with-content'] : '';
+    return value ? styles['with-content'] : '';
   }, [value]);
+
+  const containerClassName = useMemo(() => {
+    const classes = [styles['app-input'], className];
+    if (error) {
+      classes.push(styles.error);
+    }
+    return classes.join(' ');
+  }, [className, error]);
 
   useEffect(() => {
     onError(name, error);
-  }, [error, name]);
+  }, [error, name, onError]);
 
   return (
-    <div
-      className={`${appInputStyles['app-input']} ${className || ''} ${
-        error ? appInputStyles.error : ''
-      }`}
-    >
+    <div className={containerClassName}>
       <input
         type={type}
         data-testid={testId}
