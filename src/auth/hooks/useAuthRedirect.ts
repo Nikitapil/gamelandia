@@ -9,13 +9,14 @@ export const useAuthRedirect = (user: IUser | null, error: string) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+
   useEffect(() => {
     if (user) {
-      if (searchParams.get('page')) {
-        navigate(`/${searchParams.get('page')}`);
-        return;
-      }
-      navigate(ERoutes.MAIN);
+      const pageFromParams = searchParams.get('page');
+      const pageToRedirect = pageFromParams
+        ? `/${pageFromParams}`
+        : ERoutes.MAIN;
+      navigate(pageToRedirect);
     }
   }, [navigate, searchParams, user]);
 

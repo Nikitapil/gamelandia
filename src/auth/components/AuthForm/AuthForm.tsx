@@ -2,7 +2,7 @@ import { ChangeEvent, FC, FormEvent, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
-import authStyles from '../../../styles/auth.module.scss';
+import styles from '../../../styles/auth.module.scss';
 import { AppInput } from '../../../components/UI/AppInput';
 import { AppButton } from '../../../components/UI/AppButton';
 import { TValidationRules } from '../../../utils/validators';
@@ -69,8 +69,8 @@ export const AuthForm: FC<AuthFormProps> = ({
   };
 
   return (
-    <form className={authStyles['auth-form']} onSubmit={onSubmit} ref={form}>
-      <h2 className={authStyles['auth-form__title']}>{formTitle}</h2>
+    <form className={styles['auth-form']} onSubmit={onSubmit} ref={form}>
+      <h2 className={styles['auth-form__title']}>{formTitle}</h2>
       <AppInput
         type="email"
         name="email"
@@ -82,11 +82,11 @@ export const AuthForm: FC<AuthFormProps> = ({
         required
         rules={['required', 'email']}
       />
-      <div className={authStyles['auth-form__password']}>
+      <div className={styles['auth-form__password']}>
         <AppInput
           type={passwordType}
           name="password"
-          className={authStyles['auth-form__password-field']}
+          className={styles['auth-form__password-field']}
           testId="password-input"
           value={formData.password}
           onChange={onInput}
@@ -98,7 +98,7 @@ export const AuthForm: FC<AuthFormProps> = ({
         <button
           type="button"
           title="Show password"
-          className={passwordType === 'text' ? authStyles.active : ''}
+          className={passwordType === 'text' ? styles.active : ''}
           onClick={onChangePasswordType}
         >
           <FontAwesomeIcon icon={faEye} />

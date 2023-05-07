@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AuthForm } from '../components/AuthForm/AuthForm';
 import authStyles from '../../styles/auth.module.scss';
 import { useBreadcrumbs } from '../../app/hooks/useBreadcrumbs';
@@ -12,12 +12,14 @@ import { useAppSelector } from '../../hooks/useAppSelector';
 import { authSelector } from '../../store/selectors';
 import { useAuthActions } from '../hooks/useAuthActions';
 import { ISignUpAuthRequest } from '../types';
+import { useAuthLink } from '../hooks/useAuthLink';
 
 export const SignUp = () => {
   const { t } = useTranslation();
-  const [searchParams] = useSearchParams();
   useTitle(t('sign_up'));
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.registration]);
+  const loginLink = useAuthLink(ERoutes.LOGIN);
+
   const { user, authError } = useAppSelector(authSelector);
   const { signup } = useAuthActions();
   useAuthRedirect(user, authError);
@@ -25,13 +27,6 @@ export const SignUp = () => {
   const submit = async (authData: ISignUpAuthRequest) => {
     await signup(authData);
   };
-
-  const loginLink = useMemo(() => {
-    if (searchParams.get('page')) {
-      return `${ERoutes.LOGIN}?page=${searchParams.get('page')}`;
-    }
-    return `${ERoutes.LOGIN}`;
-  }, [searchParams]);
 
   return (
     <div className={authStyles['auth-container']} data-testid="signup-page">
