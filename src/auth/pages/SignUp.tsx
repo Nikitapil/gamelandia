@@ -20,7 +20,7 @@ export const SignUp = () => {
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.registration]);
   const loginLink = useAuthLink(ERoutes.LOGIN);
 
-  const { user, authError } = useAppSelector(authSelector);
+  const { user, authError, isAuthLoading } = useAppSelector(authSelector);
   const { signup } = useAuthActions();
   useAuthRedirect(user, authError);
 
@@ -30,7 +30,12 @@ export const SignUp = () => {
 
   return (
     <div className={authStyles['auth-container']} data-testid="signup-page">
-      <AuthForm formTitle={t('sign_up')} submit={submit} isSignUp />
+      <AuthForm
+        formTitle={t('sign_up')}
+        isLoading={isAuthLoading}
+        isSignUp
+        submit={submit}
+      />
       <Link
         className={authStyles['auth-link']}
         to={loginLink}

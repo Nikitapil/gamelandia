@@ -12,11 +12,13 @@ interface AuthFormProps {
   formTitle: string;
   submit: (authData: ISignUpAuthRequest) => void;
   isSignUp?: boolean;
+  isLoading: boolean;
 }
 
 export const AuthForm: FC<AuthFormProps> = ({
   formTitle,
   submit,
+  isLoading,
   isSignUp = false
 }) => {
   const { t } = useTranslation();
@@ -66,20 +68,22 @@ export const AuthForm: FC<AuthFormProps> = ({
         type="email"
         name="email"
         value={formData.email}
-        onChange={onInput}
-        onError={onError}
         testId="email-input"
         label={t('your_email')}
-        required
         rules={['required', 'email']}
+        disabled={isLoading}
+        required
+        onError={onError}
+        onChange={onInput}
       />
       <AppPasswordInput
         value={formData.password}
-        onChange={onInput}
-        onError={onError}
         label={t('your_password')}
-        required
         rules={passwordRules}
+        disabled={isLoading}
+        required
+        onError={onError}
+        onChange={onInput}
       />
       {isSignUp && (
         <AppInput
@@ -88,11 +92,12 @@ export const AuthForm: FC<AuthFormProps> = ({
           name="username"
           testId="display-name"
           value={formData.username}
-          onChange={onInput}
-          onError={onError}
           label={t('your_name')}
-          required
           rules={['required']}
+          disabled={isLoading}
+          required
+          onError={onError}
+          onChange={onInput}
         />
       )}
       <AppButton
@@ -100,7 +105,7 @@ export const AuthForm: FC<AuthFormProps> = ({
         fullWidth
         type="submit"
         testId="submit"
-        disabled={!isFormValid}
+        disabled={!isFormValid || isLoading}
       >
         {formTitle}
       </AppButton>

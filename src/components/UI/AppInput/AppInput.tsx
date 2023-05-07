@@ -17,6 +17,7 @@ interface IAppInputProps {
   required?: boolean;
   rules?: TValidationRules[];
   onError?: (name: string, error: string) => void;
+  disabled?: boolean;
 }
 
 export const AppInput = ({
@@ -28,6 +29,7 @@ export const AppInput = ({
   label,
   className,
   required,
+  disabled = false,
   rules = [],
   onError = noop
 }: IAppInputProps) => {
@@ -61,6 +63,7 @@ export const AppInput = ({
         className={classNameValue}
         required={required || false}
         onBlur={onBlur}
+        disabled={disabled}
       />
       {label && <label htmlFor={id}>{label}</label>}
       {error && <p>{t(error)}</p>}

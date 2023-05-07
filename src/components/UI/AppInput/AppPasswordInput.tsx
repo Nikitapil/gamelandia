@@ -12,6 +12,7 @@ interface IAppPasswordInputProps {
   label?: string;
   required?: boolean;
   rules?: TValidationRules[];
+  disabled?: boolean;
 }
 
 export const AppPasswordInput = ({
@@ -20,7 +21,8 @@ export const AppPasswordInput = ({
   onError,
   label,
   required,
-  rules
+  rules,
+  disabled = false
 }: IAppPasswordInputProps) => {
   const [passwordType, setPasswordType] = useState<'password' | 'text'>(
     'password'
@@ -44,6 +46,7 @@ export const AppPasswordInput = ({
         label={label}
         required={required}
         rules={rules}
+        disabled={disabled}
       />
       <button
         type="button"

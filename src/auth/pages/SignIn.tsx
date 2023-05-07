@@ -19,7 +19,7 @@ export const SignIn = () => {
   useTitle(t('sign_in'));
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.login]);
 
-  const { user, authError } = useAppSelector(authSelector);
+  const { user, authError, isAuthLoading } = useAppSelector(authSelector);
   const { signin } = useAuthActions();
   const registeredLink = useAuthLink(ERoutes.REGISTRATION);
   useAuthRedirect(user, authError);
@@ -30,7 +30,11 @@ export const SignIn = () => {
 
   return (
     <div className={styles['auth-container']}>
-      <AuthForm formTitle={t('title_sign_in')} submit={submit} />
+      <AuthForm
+        formTitle={t('title_sign_in')}
+        isLoading={isAuthLoading}
+        submit={submit}
+      />
       <Link
         className={styles['auth-link']}
         to={registeredLink}

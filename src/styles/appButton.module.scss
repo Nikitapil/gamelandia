@@ -65,7 +65,8 @@
   }
 
   &:disabled {
-    background-color: gray;
+    background: $bg-gray;
+    cursor: not-allowed;
 
     &:hover {
       opacity: 1;
