@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { InvadersBulletModel } from '../models/InvadersBulletModel';
 import { InvadersFieldModel } from '../models/InvadersFieldModel';
 import invadersStyles from '../assets/styles/invaders.module.scss';
-import { ModalContainer } from '../../../components/UI/ModalContainer';
+import { ModalContainer } from '../../../components/UI/ModalContainer/ModalContainer';
 import { InvadersBullet } from './InvadersBullet';
 import { InvadersCell } from './InvadersCell';
 import { InvadersGameOver } from './InvadersGameOver';

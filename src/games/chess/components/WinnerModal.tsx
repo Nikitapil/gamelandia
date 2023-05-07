@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ModalContainer } from '../../../components/UI/ModalContainer';
+import { ModalContainer } from '../../../components/UI/ModalContainer/ModalContainer';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
 
 interface WinnerModalProps {

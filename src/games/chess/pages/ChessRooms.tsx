@@ -4,7 +4,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useTranslation } from 'react-i18next';
 import { TimerModal } from '../components/TimerModal';
 import { RoomsCommon } from '../../components/RoomsCommon';
-import { ModalContainer } from '../../../components/UI/ModalContainer';
+import { ModalContainer } from '../../../components/UI/ModalContainer/ModalContainer';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';

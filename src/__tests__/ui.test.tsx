@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ModalContainer } from '../components/UI/ModalContainer';
+import { ModalContainer } from '../components/UI/ModalContainer/ModalContainer';
 import { renderWithRouter } from '../utils/test/utils';
 
 describe('ui tests', () => {

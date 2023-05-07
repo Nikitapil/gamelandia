@@ -14,7 +14,7 @@ import { Knight } from '../models/figures/Knight';
 import { Queen } from '../models/figures/Queen';
 import { Rook } from '../models/figures/Rook';
 import { Player } from '../models/Player';
-import { ModalContainer } from '../../../components/UI/ModalContainer';
+import { ModalContainer } from '../../../components/UI/ModalContainer/ModalContainer';
 import { Board } from '../models/Board';
 
 interface FiguresModalProps {

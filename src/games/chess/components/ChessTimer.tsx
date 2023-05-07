@@ -2,7 +2,7 @@ import React, { memo, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Colors } from '../models/Colors';
 import { Player } from '../models/Player';
-import { ModalContainer } from '../../../components/UI/ModalContainer';
+import { ModalContainer } from '../../../components/UI/ModalContainer/ModalContainer';
 import { TimerModal } from './TimerModal';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
 
