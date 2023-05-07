@@ -1,4 +1,4 @@
-@import "src/assets/styles/vars";
+@import "../../../assets/styles/vars";
 
 .app-input {
   position: relative;
@@ -60,5 +60,31 @@
     color: #E4E4E4FF;
     -webkit-text-fill-color: #E4E4E4FF;
   }
+}
 
+.password-input {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+
+  button {
+    background: none;
+    border: none;
+    color: $mainColor;
+    width: 20px;
+    height: 20px;
+    align-self: center;
+
+    &:hover {
+      color: $titleColor;
+    }
+
+    &.active {
+      color: $success;
+    }
+  }
+
+  &__field {
+    flex: 1 1 auto;
+  }
 }

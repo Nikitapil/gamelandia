@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useTranslation } from 'react-i18next';
-import appInputStyles from '../../styles/appInput.module.scss';
-import { useInputValidation } from '../../hooks/useInputValidation';
-import { TValidationRules } from '../../utils/validators';
-import { noop } from '../../utils/helpers';
+import appInputStyles from './app-input.module.scss';
+import { useInputValidation } from '../../../hooks/useInputValidation';
+import { TValidationRules } from '../../../utils/validators';
+import { noop } from '../../../utils/helpers';
 
 interface IAppInputProps {
   className?: string;

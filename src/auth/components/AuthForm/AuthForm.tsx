@@ -1,13 +1,12 @@
 import { ChangeEvent, FC, FormEvent, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../../styles/auth.module.scss';
-import { AppInput } from '../../../components/UI/AppInput';
+import { AppInput } from '../../../components/UI/AppInput/AppInput';
 import { AppButton } from '../../../components/UI/AppButton';
 import { TValidationRules } from '../../../utils/validators';
 import { useInputTouch } from '../../../hooks/useInputTouch';
 import { ISignUpAuthRequest } from '../../types';
+import { AppPasswordInput } from '../../../components/UI/AppInput/AppPasswordInput';
 
 interface AuthFormProps {
   formTitle: string;
@@ -32,9 +31,6 @@ export const AuthForm: FC<AuthFormProps> = ({
     password: '',
     username: ''
   });
-  const [passwordType, setPasswordType] = useState<'password' | 'text'>(
-    'password'
-  );
 
   const form = useRef<HTMLFormElement | null>(null);
   const { touch } = useInputTouch(form.current);
@@ -63,11 +59,6 @@ export const AuthForm: FC<AuthFormProps> = ({
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onChangePasswordType = () => {
-    const newPasswordType = passwordType === 'text' ? 'password' : 'text';
-    setPasswordType(newPasswordType);
-  };
-
   return (
     <form className={styles['auth-form']} onSubmit={onSubmit} ref={form}>
       <h2 className={styles['auth-form__title']}>{formTitle}</h2>
@@ -82,28 +73,14 @@ export const AuthForm: FC<AuthFormProps> = ({
         required
         rules={['required', 'email']}
       />
-      <div className={styles['auth-form__password']}>
-        <AppInput
-          type={passwordType}
-          name="password"
-          className={styles['auth-form__password-field']}
-          testId="password-input"
-          value={formData.password}
-          onChange={onInput}
-          onError={onError}
-          label={t('your_password')}
-          required
-          rules={passwordRules}
-        />
-        <button
-          type="button"
-          title="Show password"
-          className={passwordType === 'text' ? styles.active : ''}
-          onClick={onChangePasswordType}
-        >
-          <FontAwesomeIcon icon={faEye} />
-        </button>
-      </div>
+      <AppPasswordInput
+        value={formData.password}
+        onChange={onInput}
+        onError={onError}
+        label={t('your_password')}
+        required
+        rules={passwordRules}
+      />
       {isSignUp && (
         <AppInput
           type="text"
