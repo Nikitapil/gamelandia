@@ -11,6 +11,12 @@ export class NumbersBoardModel {
 
   lastScore: number = 0;
 
+  initNewGame() {
+    this.createCells();
+    this.createElem();
+    this.createElem();
+  }
+
   createCells() {
     for (let i = 0; i < 4; i++) {
       const row = [];

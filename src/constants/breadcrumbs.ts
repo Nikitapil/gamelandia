@@ -89,4 +89,4 @@ export const breadcrumbs = {
     name: 'solitaire',
     path: '/2048'
   }
-};
+} as const;

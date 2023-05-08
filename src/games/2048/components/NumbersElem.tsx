@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import styles from '../assets/styles/numbersGame.module.scss';
+import styles from '../assets/styles/numbers.module.scss';
 import { NumbersElemModel } from '../models/NumbersElemModel';
 import { numberColors } from '../constants';
 

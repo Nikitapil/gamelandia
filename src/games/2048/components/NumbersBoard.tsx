@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSwipeable } from 'react-swipeable';
-import styles from '../assets/styles/numbersGame.module.scss';
+import styles from '../assets/styles/numbers.module.scss';
 import { NumbersBoardModel } from '../models/NumbersBoardModel';
 import { NumbersElem } from './NumbersElem';
 import { ENumbersDirections } from '../constants';
@@ -13,11 +13,13 @@ import { useCreateScore } from '../../../score/hooks/useCreateScore';
 import { EGamesNames } from '../../constants';
 
 export const NumbersBoard = () => {
-  const [board, setBoard] = useState(new NumbersBoardModel());
-  const boardRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
+
   const { user } = useAppSelector(authSelector);
   const createScore = useCreateScore();
+
+  const [board, setBoard] = useState(new NumbersBoardModel());
+  const boardRef = useRef<HTMLDivElement>(null);
 
   const isMobileLayout = useMemo(() => {
     return isMobile();
@@ -26,15 +28,9 @@ export const NumbersBoard = () => {
   const newGame = () => {
     boardRef.current?.focus();
     const newBoard = new NumbersBoardModel();
-    newBoard.createCells();
-    newBoard.createElem();
-    newBoard.createElem();
+    newBoard.initNewGame();
     setBoard(newBoard);
   };
-
-  useEffect(() => {
-    newGame();
-  }, []);
 
   const updateScore = async () => {
     if (user) {
@@ -45,35 +41,33 @@ export const NumbersBoard = () => {
     }
   };
 
-  useEffect(() => {
-    if (board.isGameOver) {
-      updateScore();
-    }
-  }, [board.isGameOver]);
-
-  const move = (direction: ENumbersDirections) => {
+  const move = async (direction: ENumbersDirections) => {
     board.move(direction);
+    if (board.isGameOver) {
+      await updateScore();
+    }
     const newBoard = board.getCopyBoard();
     setBoard(newBoard);
   };
 
-  const keyPressHandler = (e: React.KeyboardEvent) => {
+  const keyPressHandler = async (e: React.KeyboardEvent) => {
     if (board.isGameOver) {
       return;
     }
     if (e.code === 'ArrowUp') {
-      move(ENumbersDirections.TOP);
+      await move(ENumbersDirections.TOP);
     }
     if (e.code === 'ArrowDown') {
-      move(ENumbersDirections.BOTTOM);
+      await move(ENumbersDirections.BOTTOM);
     }
     if (e.code === 'ArrowLeft') {
-      move(ENumbersDirections.LEFT);
+      await move(ENumbersDirections.LEFT);
     }
     if (e.code === 'ArrowRight') {
-      move(ENumbersDirections.RIGHT);
+      await move(ENumbersDirections.RIGHT);
     }
   };
+
   const swipeHandlers = isMobileLayout
     ? // eslint-disable-next-line react-hooks/rules-of-hooks
       useSwipeable({
@@ -85,6 +79,10 @@ export const NumbersBoard = () => {
         delta: 5
       })
     : {};
+
+  useEffect(() => {
+    newGame();
+  }, []);
 
   return (
     <div className={styles['board-container']}>

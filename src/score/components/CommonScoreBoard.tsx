@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
 import commonStyles from '../../styles/common.module.scss';
-import { ScoreTableLoader } from '../../components/UI/ScoreTableLoader';
+import { ScoreTableLoader } from './ScoreTableLoader';
 import { IUser } from '../../auth/types';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { scoreSelector } from '../../store/selectors';
