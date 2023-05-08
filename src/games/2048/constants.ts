@@ -5,6 +5,9 @@ export enum ENumbersDirections {
   RIGHT = 'RIGHT'
 }
 
+export const NUMBERS_CELL_SIZE = 70;
+export const NUMBERS_CELLS_GAP = 10;
+
 type TNumberColors = {
   [key: number]: { background: string; color: string };
 };
@@ -60,4 +63,4 @@ export const numberColors: TNumberColors = {
     background: '#ffc100',
     color: '#fff'
   }
-};
+} as const;
