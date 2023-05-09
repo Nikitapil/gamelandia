@@ -14,6 +14,7 @@ interface AppButtonProps {
   rounded?: boolean;
   customClass?: string;
   testId?: string;
+  isShowed?: boolean;
 }
 
 export const AppButton = ({
@@ -27,7 +28,8 @@ export const AppButton = ({
   type = 'button',
   disabled = false,
   customClass = '',
-  testId = ''
+  testId = '',
+  isShowed = true
 }: AppButtonProps) => {
   const className = useMemo(() => {
     const sizeClass = styles[size];
@@ -36,6 +38,10 @@ export const AppButton = ({
     const roundedClass = rounded ? styles.rounded : '';
     return `${styles['app-button']} ${sizeClass} ${colorClass} ${widthClass} ${roundedClass} ${customClass}`;
   }, [color, customClass, fullWidth, rounded, size]);
+
+  if (!isShowed) {
+    return null;
+  }
 
   return (
     <button
