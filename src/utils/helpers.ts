@@ -20,4 +20,7 @@ export const getRandomFromArray = <T>(array: T[]): T => {
   return array[Math.floor(Math.random() * array.length)];
 };
 
+export const getRandomIntegerWithoutMaxValue = (maxValue: number) =>
+  Math.floor(Math.random() * maxValue);
+
 export const noop = () => {};

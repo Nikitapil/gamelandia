@@ -7,6 +7,8 @@ export enum ENumbersDirections {
 
 export const NUMBERS_CELL_SIZE = 70;
 export const NUMBERS_CELLS_GAP = 10;
+export const NUMBERS_FIELD_SIZE = 4;
+export const NUMBERS_MAX_ELEMS_COUNT = 16;
 
 type TNumberColors = {
   [key: number]: { background: string; color: string };

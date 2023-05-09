@@ -1,6 +1,11 @@
 import { NumbersCellModel } from './NumbersCellModel';
 import { NumbersElemModel } from './NumbersElemModel';
-import { ENumbersDirections } from '../constants';
+import {
+  ENumbersDirections,
+  NUMBERS_FIELD_SIZE,
+  NUMBERS_MAX_ELEMS_COUNT
+} from '../constants';
+import { getRandomIntegerWithoutMaxValue } from '../../../utils/helpers';
 
 export class NumbersBoardModel {
   cells: NumbersCellModel[][] = [];
@@ -17,23 +22,23 @@ export class NumbersBoardModel {
     this.createElem();
   }
 
-  createCells() {
-    for (let i = 0; i < 4; i++) {
+  private createCells() {
+    for (let i = 0; i < NUMBERS_FIELD_SIZE; i++) {
       const row = [];
-      for (let j = 0; j < 4; j++) {
+      for (let j = 0; j < NUMBERS_FIELD_SIZE; j++) {
         row.push(new NumbersCellModel(i, j));
       }
       this.cells.push(row);
     }
   }
 
-  getRandomEmptyCell(): NumbersCellModel {
-    const x = Math.floor(Math.random() * 4);
-    const y = Math.floor(Math.random() * 4);
+  private getRandomEmptyCell(): NumbersCellModel {
+    const x = getRandomIntegerWithoutMaxValue(NUMBERS_FIELD_SIZE);
+    const y = getRandomIntegerWithoutMaxValue(NUMBERS_FIELD_SIZE);
     return this.cells[y][x].elem ? this.getRandomEmptyCell() : this.cells[y][x];
   }
 
-  createElem() {
+  private createElem() {
     const emptyCell = this.getRandomEmptyCell();
     if (emptyCell) {
       this.elems.push(new NumbersElemModel(emptyCell, this));
@@ -80,10 +85,10 @@ export class NumbersBoardModel {
     return null;
   }
 
-  moveUp() {
+  private moveUp() {
     let isMove = false;
-    for (let i = 0; i < 4; i++) {
-      for (let j = 0; j < 4; j++) {
+    for (let i = 0; i < NUMBERS_FIELD_SIZE; i++) {
+      for (let j = 0; j < NUMBERS_FIELD_SIZE; j++) {
         const cell = this.cells[i][j];
         if (cell.elem) {
           const nextCell = this.getVerticalAvailableCell(cell.elem, 1);
@@ -94,16 +99,13 @@ export class NumbersBoardModel {
         }
       }
     }
-    this.cleanElems();
-    if (isMove) {
-      this.createElem();
-    }
+    return isMove;
   }
 
-  moveDown() {
+  private moveDown() {
     let isMove = false;
-    for (let i = 3; i >= 0; i--) {
-      for (let j = 0; j < 4; j++) {
+    for (let i = NUMBERS_FIELD_SIZE - 1; i >= 0; i--) {
+      for (let j = 0; j < NUMBERS_FIELD_SIZE; j++) {
         const cell = this.cells[i][j];
         if (cell.elem) {
           const nextCell = this.getVerticalAvailableCell(cell.elem, -1);
@@ -114,16 +116,13 @@ export class NumbersBoardModel {
         }
       }
     }
-    this.cleanElems();
-    if (isMove) {
-      this.createElem();
-    }
+    return isMove;
   }
 
-  moveLeft() {
+  private moveLeft() {
     let isMove = false;
-    for (let i = 0; i < 4; i++) {
-      for (let j = 0; j < 4; j++) {
+    for (let i = 0; i < NUMBERS_FIELD_SIZE; i++) {
+      for (let j = 0; j < NUMBERS_FIELD_SIZE; j++) {
         const cell = this.cells[i][j];
         if (cell.elem) {
           const nextCell = this.getHorizontalAvailableCell(cell.elem, 1);
@@ -134,16 +133,13 @@ export class NumbersBoardModel {
         }
       }
     }
-    this.cleanElems();
-    if (isMove) {
-      this.createElem();
-    }
+    return isMove;
   }
 
-  moveRight() {
+  private moveRight() {
     let isMove = false;
-    for (let i = 0; i < 4; i++) {
-      for (let j = 3; j >= 0; j--) {
+    for (let i = 0; i < NUMBERS_FIELD_SIZE; i++) {
+      for (let j = NUMBERS_FIELD_SIZE - 1; j >= 0; j--) {
         const cell = this.cells[i][j];
         if (cell.elem) {
           const nextCell = this.getHorizontalAvailableCell(cell.elem, -1);
@@ -154,41 +150,43 @@ export class NumbersBoardModel {
         }
       }
     }
-    this.cleanElems();
-    if (isMove) {
-      this.createElem();
-    }
+    return isMove;
   }
 
   move(direction: ENumbersDirections) {
+    let isMove;
     switch (direction) {
       case ENumbersDirections.TOP:
-        this.moveUp();
+        isMove = this.moveUp();
         break;
       case ENumbersDirections.BOTTOM:
-        this.moveDown();
+        isMove = this.moveDown();
         break;
       case ENumbersDirections.LEFT:
-        this.moveLeft();
+        isMove = this.moveLeft();
         break;
       case ENumbersDirections.RIGHT:
-        this.moveRight();
+        isMove = this.moveRight();
         break;
       default:
-        this.moveUp();
+        isMove = this.moveUp();
+    }
+    this.cleanElems();
+    if (isMove) {
+      this.createElem();
     }
     this.checkIsGameOver();
   }
 
   checkIsGameOver() {
-    if (this.elems.length < 16) {
+    if (this.elems.length < NUMBERS_MAX_ELEMS_COUNT) {
       return false;
     }
     this.isGameOver = !this.elems.some((elem) => elem.checkIsMoveAvailable());
     this.lastScore = Math.max(...this.elems.map((el) => el.value));
   }
 
-  cleanElems() {
+  private cleanElems() {
     this.elems = this.elems.filter(
       (elem) => elem.value === elem.cell.elem?.value
     );
