@@ -77,18 +77,6 @@
   }
 }
 
-.numbers-boards {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  align-items: center;
-
-  @media (max-width: 735px) {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
 @keyframes elemEnter {
   0% {
     opacity: 0;
