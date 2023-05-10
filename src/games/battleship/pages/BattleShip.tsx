@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
-import { doc, setDoc, deleteDoc } from 'firebase/firestore';
+import { doc, setDoc, deleteDoc, DocumentReference } from 'firebase/firestore';
 import { useTranslation } from 'react-i18next';
 import { BattleshipBoard } from '../components/BattleshipBoard';
 import { BattleshipElems } from '../components/BattleshipElems';
@@ -20,6 +20,7 @@ import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector, battleshipSelector } from '../../../store/selectors';
 import { useBattleshipActions } from '../hooks/useBattleshipActions';
 import { FirebaseContext } from '../../../context/firebase-context/FirebaseContext';
+import { TBattleshipRoomData, TPlayerKey } from '../helpers/types';
 
 export const BattleShip = () => {
   const { t } = useTranslation();
@@ -32,20 +33,21 @@ export const BattleShip = () => {
   const { id } = useParams();
   const { user, isAuthLoading } = useAppSelector(authSelector);
   const firestore = useContext(FirebaseContext);
-  const [roomData, loading] = useDocumentData(
-    doc(firestore, 'battleship', id!)
+  const [roomData, loading] = useDocumentData<TBattleshipRoomData>(
+    doc(firestore, 'battleship', id!) as DocumentReference<TBattleshipRoomData>
   );
   const { board, enemyBoard } = useAppSelector(battleshipSelector);
   const { setBoard, setEnemyBoard, setFreeShips } = useBattleshipActions();
   const [isFull, setIsFull] = useState(false);
-  const [myPlayer, setMyPlayer] = useState('');
-  const [secondPlayer, setSecondPlayer] = useState('');
+  const [myPlayer, setMyPlayer] = useState<TPlayerKey>('');
+  const [secondPlayer, setSecondPlayer] = useState<TPlayerKey>('');
   const [isDataFromServer, setIsDataFromServer] = useState(false);
   const [isGameStarted, setIsGameStarted] = useState(false);
   const navigate = useNavigate();
   const [winner, setWinner] = useState('');
 
   useEffect(() => {
+    console.log(roomData);
     if (roomData?.player1 && roomData?.player2) {
       if (
         roomData?.player1.uid !== user?.id &&
@@ -66,7 +68,7 @@ export const BattleShip = () => {
       !roomData?.player2 &&
       user &&
       roomData &&
-      roomData?.player1.uid !== user.id
+      roomData?.player1?.uid !== user.id
     ) {
       const player2 = {
         uid: user.id,
@@ -95,13 +97,14 @@ export const BattleShip = () => {
     if (
       user &&
       roomData &&
+      myPlayer &&
       roomData[myPlayer] &&
-      roomData[myPlayer].cells.length
+      roomData[myPlayer]?.cells.length
     ) {
       setIsDataFromServer(true);
       const newMyBoard = mapFromFireBaseToBattleShip(
-        roomData[myPlayer].cells,
-        roomData[myPlayer].ships,
+        roomData[myPlayer]?.cells || [],
+        roomData[myPlayer]?.ships || [],
         false
       );
       setBoard(newMyBoard);
@@ -109,12 +112,13 @@ export const BattleShip = () => {
     if (
       user &&
       roomData &&
+      secondPlayer &&
       roomData[secondPlayer] &&
-      roomData[secondPlayer].cells.length
+      roomData[secondPlayer]?.cells.length
     ) {
       const newEnemyBoard = mapFromFireBaseToBattleShip(
-        roomData[secondPlayer].cells,
-        roomData[secondPlayer].ships,
+        roomData[secondPlayer]?.cells || [],
+        roomData[secondPlayer]?.ships || [],
         true
       );
       setEnemyBoard(newEnemyBoard);
@@ -159,14 +163,13 @@ export const BattleShip = () => {
       {loading && <HorizotalLoader color="blue" />}
       {roomData?.currentPlayer && (
         <h3 className={battlshipStyles['battleship__current-player']}>
-          {t('current_player')}: {roomData[roomData.currentPlayer].name}
+          {t('current_player')}: {roomData[roomData.currentPlayer]?.name}
         </h3>
       )}
       <div className={battlshipStyles.battleship__boards}>
         <div className={battlshipStyles['battleship__my-board']}>
-          {board && !loading && (
+          {board && !loading && roomData && (
             <BattleshipBoard
-              firestore={firestore}
               secondPlayer={secondPlayer}
               roomData={roomData}
               isEnemy={false}
@@ -174,8 +177,9 @@ export const BattleShip = () => {
           )}
           {board &&
             roomData &&
+            myPlayer &&
             roomData[myPlayer] &&
-            !roomData[myPlayer].isReady && (
+            !roomData[myPlayer]?.isReady && (
               <BattleshipElems
                 roomData={roomData}
                 firestore={firestore}
@@ -184,9 +188,8 @@ export const BattleShip = () => {
             )}
         </div>
         <div className={battlshipStyles['battleship__enemy-board']}>
-          {isGameStarted && enemyBoard ? (
+          {isGameStarted && enemyBoard && roomData ? (
             <BattleshipBoard
-              firestore={firestore}
               secondPlayer={secondPlayer}
               roomData={roomData}
               isEnemy
@@ -196,7 +199,9 @@ export const BattleShip = () => {
               <p className={battlshipStyles['waiting-text']}>
                 {t('waiting_player')}
               </p>
-              {roomData && roomData[myPlayer]?.isReady && <DynoGame />}
+              {roomData && myPlayer && roomData[myPlayer]?.isReady && (
+                <DynoGame />
+              )}
             </div>
           )}
         </div>

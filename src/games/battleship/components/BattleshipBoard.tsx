@@ -1,19 +1,18 @@
-import { Firestore } from 'firebase/firestore';
 import React, { memo, useMemo } from 'react';
 import { BattleshipCell } from './BattleshipCell';
-import battlShipStyles from '../assets/styles/battleship.module.scss';
+import styles from '../assets/styles/battleship.module.scss';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { battleshipSelector } from '../../../store/selectors';
+import { TBattleshipRoomData, TPlayerKey } from '../helpers/types';
 
 interface BattleshipBoardProps {
   isEnemy: boolean;
-  roomData: any;
-  secondPlayer: string;
-  firestore: Firestore;
+  roomData: TBattleshipRoomData;
+  secondPlayer: TPlayerKey;
 }
 
 export const BattleshipBoard = memo(
-  ({ isEnemy, roomData, secondPlayer, firestore }: BattleshipBoardProps) => {
+  ({ isEnemy, roomData, secondPlayer }: BattleshipBoardProps) => {
     const { board, enemyBoard } = useAppSelector(battleshipSelector);
 
     const thisBoard = useMemo(() => {
@@ -21,11 +20,10 @@ export const BattleshipBoard = memo(
     }, [isEnemy, board, enemyBoard]);
 
     return (
-      <div className={battlShipStyles.battleship__board}>
+      <div className={styles.battleship__board}>
         {thisBoard?.cells.map((row) =>
           row.map((cell) => (
             <BattleshipCell
-              firestore={firestore}
               secondPlayer={secondPlayer}
               roomData={roomData}
               cell={cell}
