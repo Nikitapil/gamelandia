@@ -1,21 +1,25 @@
 import { faRotate } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { FC, useMemo } from 'react';
+import { FC, SyntheticEvent, useMemo } from 'react';
 import { BattleShipElemModel } from '../models/BattleShipElemModel';
-import battlShipStyles from '../assets/styles/battleship.module.scss';
-import { useAppSelector } from '../../../hooks/useAppSelector';
-import { battleshipSelector } from '../../../store/selectors';
+import styles from '../assets/styles/battleship.module.scss';
 import { useBattleshipActions } from '../hooks/useBattleshipActions';
+import { BattleshipBoardModel } from '../models/BattleShipBoardModel';
 
-interface BattleShipElemProps {
+interface IBattleShipElemProps {
   elem: BattleShipElemModel;
+  board: BattleshipBoardModel | null;
+  currentFreeShip: BattleShipElemModel | null;
 }
 
-export const BattleShipElem: FC<BattleShipElemProps> = ({ elem }) => {
-  const { board, currentFreeShip } = useAppSelector(battleshipSelector);
+export const BattleShipElem: FC<IBattleShipElemProps> = ({
+  elem,
+  board,
+  currentFreeShip
+}) => {
   const { setFreeShips, setCurrentFreeShip } = useBattleshipActions();
 
-  const changeDirection = (e: React.SyntheticEvent) => {
+  const changeDirection = (e: SyntheticEvent) => {
     e.stopPropagation();
     elem.changeDirection();
     setFreeShips(board?.freeElems || []);
@@ -26,18 +30,17 @@ export const BattleShipElem: FC<BattleShipElemProps> = ({ elem }) => {
   };
 
   const currentClass = useMemo(() => {
-    const curr =
-      elem.id === currentFreeShip?.id ? battlShipStyles['ship-selected'] : '';
-    return `${battlShipStyles['battship-elem']} ${
-      battlShipStyles[`size_${elem.size}`]
-    } ${battlShipStyles[elem.direction]} ${curr}`;
+    const curr = elem.id === currentFreeShip?.id ? styles['ship-selected'] : '';
+    return `${styles['battship-elem']} ${styles[`size_${elem.size}`]} ${
+      styles[elem.direction]
+    } ${curr}`;
   }, [currentFreeShip?.id, elem.direction, elem.id, elem.size]);
 
   return (
     <div className={currentClass} onClick={onChooseElem}>
       {elem.size > 1 && (
         <button
-          className={battlShipStyles['battship-elembtn']}
+          className={styles['battship-elembtn']}
           onClick={changeDirection}
           type="button"
         >

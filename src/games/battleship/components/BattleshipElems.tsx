@@ -25,7 +25,8 @@ export const BattleshipElems: FC<BattleshipElemsProps> = ({
   roomData,
   myPlayer
 }) => {
-  const { freeShips, board } = useAppSelector(battleshipSelector);
+  const { freeShips, board, currentFreeShip } =
+    useAppSelector(battleshipSelector);
   const { setFreeShips, setBoard, setCurrentFreeShip } = useBattleshipActions();
   const { id } = useParams();
   const { t } = useTranslation();
@@ -55,7 +56,14 @@ export const BattleshipElems: FC<BattleshipElemsProps> = ({
   return (
     <div className={battlShipStyles['battleship-elems']}>
       {freeShips.length > 0 ? (
-        freeShips.map((el) => <BattleShipElem key={el.id} elem={el} />)
+        freeShips.map((el) => (
+          <BattleShipElem
+            key={el.id}
+            elem={el}
+            board={board}
+            currentFreeShip={currentFreeShip}
+          />
+        ))
       ) : (
         <AppButton color="danger" onClick={setIsReady} type="button">
           {t('ready')}

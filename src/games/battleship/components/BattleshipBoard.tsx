@@ -5,14 +5,14 @@ import { useAppSelector } from '../../../hooks/useAppSelector';
 import { battleshipSelector } from '../../../store/selectors';
 import { TBattleshipRoomData, TPlayerKey } from '../helpers/types';
 
-interface BattleshipBoardProps {
+interface IBattleshipBoardProps {
   isEnemy: boolean;
   roomData: TBattleshipRoomData;
   secondPlayer: TPlayerKey;
 }
 
 export const BattleshipBoard = memo(
-  ({ isEnemy, roomData, secondPlayer }: BattleshipBoardProps) => {
+  ({ isEnemy, roomData, secondPlayer }: IBattleshipBoardProps) => {
     const { board, enemyBoard } = useAppSelector(battleshipSelector);
 
     const thisBoard = useMemo(() => {

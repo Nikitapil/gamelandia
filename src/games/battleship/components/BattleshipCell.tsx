@@ -9,14 +9,14 @@ import { useBattleshipActions } from '../hooks/useBattleshipActions';
 import { TBattleshipRoomData, TPlayerKey } from '../helpers/types';
 import { useBattleshipService } from '../hooks/useBattleshipService';
 
-interface BattleshipCellProps {
+interface IBattleshipCellProps {
   cell: BattleshipCellModel;
   roomData: TBattleshipRoomData;
   secondPlayer: TPlayerKey;
 }
 
 export const BattleshipCell = memo(
-  ({ cell, roomData, secondPlayer }: BattleshipCellProps) => {
+  ({ cell, roomData, secondPlayer }: IBattleshipCellProps) => {
     const { currentFreeShip, board, enemyBoard } =
       useAppSelector(battleshipSelector);
 
