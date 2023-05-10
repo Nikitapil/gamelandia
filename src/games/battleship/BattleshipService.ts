@@ -1,13 +1,17 @@
 import { Firestore } from 'firebase/firestore';
 import { RoomService } from '../services/rooms/RoomService';
-import { TAttackCellParams, TBattleshipRoomData } from './helpers/types';
+import {
+  TAttackCellParams,
+  TBattleshipRoomData,
+  TSetIsReadyParams
+} from './helpers/types';
 import {
   mapCellsToFirebase,
   mapShipsToFirebase
 } from './helpers/battleShipMappers';
 
 export class BattleshipService extends RoomService<TBattleshipRoomData> {
-  static instance: BattleshipService;
+  private static instance: BattleshipService;
 
   constructor(firestore: Firestore) {
     super({ firestore, gameName: 'battleship' });
@@ -47,6 +51,29 @@ export class BattleshipService extends RoomService<TBattleshipRoomData> {
     if (!isSuccessfullAtack) {
       newData.currentPlayer = playerToAttack;
     }
+
+    await this.setRoomData(roomData.id, newData);
+  }
+
+  async setIsReady({
+    roomData,
+    myPlayer,
+    myCells,
+    myShips
+  }: TSetIsReadyParams) {
+    if (!myPlayer) {
+      return;
+    }
+
+    const newData = {
+      ...roomData,
+      [myPlayer]: {
+        ...roomData[myPlayer],
+        isReady: true,
+        cells: mapCellsToFirebase(myCells),
+        ships: mapShipsToFirebase(myShips)
+      }
+    };
 
     await this.setRoomData(roomData.id, newData);
   }

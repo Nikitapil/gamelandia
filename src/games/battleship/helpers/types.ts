@@ -50,3 +50,10 @@ export type TAttackCellParams = {
   isWinner: boolean;
   isSuccessfullAtack: boolean;
 };
+
+export type TSetIsReadyParams = {
+  roomData: TBattleshipRoomData;
+  myPlayer: TPlayerKey;
+  myCells: BattleshipCellModel[][];
+  myShips: BattleShipElemModel[];
+};

@@ -180,11 +180,7 @@ export const BattleShip = () => {
             myPlayer &&
             roomData[myPlayer] &&
             !roomData[myPlayer]?.isReady && (
-              <BattleshipElems
-                roomData={roomData}
-                firestore={firestore}
-                myPlayer={myPlayer}
-              />
+              <BattleshipElems roomData={roomData} myPlayer={myPlayer} />
             )}
         </div>
         <div className={battlshipStyles['battleship__enemy-board']}>

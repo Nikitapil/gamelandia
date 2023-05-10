@@ -1,70 +1,61 @@
-import React, { FC } from 'react';
-import { Firestore, doc, setDoc } from 'firebase/firestore';
-import { useParams } from 'react-router-dom';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BattleShipElem } from './BattleShipElem';
 import { BattleshipBoardModel } from '../models/BattleShipBoardModel';
-import {
-  mapCellsToFirebase,
-  mapShipsToFirebase
-} from '../helpers/battleShipMappers';
-import battlShipStyles from '../assets/styles/battleship.module.scss';
+import styles from '../assets/styles/battleship.module.scss';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { battleshipSelector } from '../../../store/selectors';
 import { useBattleshipActions } from '../hooks/useBattleshipActions';
+import { TBattleshipRoomData, TPlayerKey } from '../helpers/types';
+import { useBattleshipService } from '../hooks/useBattleshipService';
 
 interface BattleshipElemsProps {
-  roomData: any;
-  firestore: Firestore;
-  myPlayer: string;
+  roomData: TBattleshipRoomData;
+  myPlayer: TPlayerKey;
 }
 
 export const BattleshipElems: FC<BattleshipElemsProps> = ({
-  firestore,
   roomData,
   myPlayer
 }) => {
+  const { t } = useTranslation();
+
   const { freeShips, board, currentFreeShip } =
     useAppSelector(battleshipSelector);
+
   const { setFreeShips, setBoard, setCurrentFreeShip } = useBattleshipActions();
-  const { id } = useParams();
-  const { t } = useTranslation();
+
+  const service = useBattleshipService();
 
   const resetShips = () => {
     const newBoard = new BattleshipBoardModel();
-    newBoard.initCells();
-    newBoard.createAllFreeElems();
+    newBoard.initGame();
     setFreeShips(newBoard.freeElems);
     setBoard(newBoard);
     setCurrentFreeShip(null);
   };
 
   const setIsReady = () => {
-    const newData = {
-      ...roomData,
-      [myPlayer]: {
-        ...roomData[myPlayer],
-        isReady: true,
-        cells: mapCellsToFirebase(board?.cells!),
-        ships: mapShipsToFirebase(board?.ships!)
-      }
-    };
-    setDoc(doc(firestore, 'battleship', id!), newData);
+    service.setIsReady({
+      roomData,
+      myPlayer,
+      myCells: board?.cells || [],
+      myShips: board?.ships || []
+    });
   };
 
   return (
-    <div className={battlShipStyles['battleship-elems']}>
-      {freeShips.length > 0 ? (
-        freeShips.map((el) => (
-          <BattleShipElem
-            key={el.id}
-            elem={el}
-            board={board}
-            currentFreeShip={currentFreeShip}
-          />
-        ))
-      ) : (
+    <div className={styles['battleship-elems']}>
+      {freeShips.map((el) => (
+        <BattleShipElem
+          key={el.id}
+          elem={el}
+          board={board}
+          currentFreeShip={currentFreeShip}
+        />
+      ))}
+      {freeShips.length === 0 && (
         <AppButton color="danger" onClick={setIsReady} type="button">
           {t('ready')}
         </AppButton>

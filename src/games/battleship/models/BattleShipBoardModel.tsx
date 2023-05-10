@@ -16,6 +16,11 @@ export class BattleshipBoardModel {
     this.ships = ships;
   }
 
+  initGame() {
+    this.initCells();
+    this.createAllFreeElems();
+  }
+
   initCells() {
     for (let i = 0; i < 10; i++) {
       const row = [];
