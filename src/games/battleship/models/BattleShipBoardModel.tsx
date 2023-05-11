@@ -1,6 +1,7 @@
 import { EBattleShipElemDirection } from '../helpers/constants';
 import { BattleshipCellModel } from './BattleShipCellModel';
 import { BattleShipElemModel } from './BattleShipElemModel';
+import { getNeighboringCells } from '../helpers/utils';
 
 export class BattleshipBoardModel {
   cells: BattleshipCellModel[][] = [];
@@ -93,21 +94,7 @@ export class BattleshipBoardModel {
     }
     // Add neighboring to elem cells
     cells.forEach((c) => {
-      if (this.cells[c.y + 1]) {
-        cells.push(
-          this.cells[c.y + 1][c.x],
-          this.cells[c.y + 1][c.x + 1],
-          this.cells[c.y + 1][c.x - 1]
-        );
-      }
-      if (this.cells[c.y - 1]) {
-        cells.push(
-          this.cells[c.y - 1][c.x],
-          this.cells[c.y - 1][c.x - 1],
-          this.cells[c.y - 1][c.x + 1]
-        );
-      }
-      cells.push(this.cells[c.y][c.x + 1], this.cells[c.y][c.x - 1]);
+      cells.push(...getNeighboringCells(this.cells, c));
     });
     cells = cells.filter((item) => item);
     return cells.every((item) => item.isEmpty);

@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { BattleshipBoardModel } from './BattleShipBoardModel';
 import { BattleShipElemModel } from './BattleShipElemModel';
+import { getNeighboringCells } from '../helpers/utils';
 
 export class BattleshipCellModel {
   x: number;
@@ -13,7 +14,7 @@ export class BattleshipCellModel {
 
   isAttacked: boolean = false;
 
-  id: number;
+  id: string;
 
   isAddAvailable: boolean = false;
 
@@ -40,23 +41,7 @@ export class BattleshipCellModel {
       const { cells } = this.board;
       let tempCells: BattleshipCellModel[] = [];
       this.elem.cells.forEach((cell) => {
-        const { y } = cell;
-        const { x } = cell;
-        if (cells[y + 1]) {
-          tempCells.push(
-            cells[y + 1][x],
-            cells[y + 1][x + 1],
-            cells[y + 1][x - 1]
-          );
-        }
-        if (cells[y - 1]) {
-          tempCells.push(
-            cells[y - 1][x],
-            cells[y - 1][x + 1],
-            cells[y - 1][x - 1]
-          );
-        }
-        tempCells.push(cells[y][x - 1], cells[y][x + 1]);
+        tempCells.push(...getNeighboringCells(cells, cell));
       });
       tempCells = tempCells.filter((cell) => !!cell && !cell.elem);
       tempCells.forEach((cell) => (cell.isAttacked = true));
