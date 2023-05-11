@@ -11,7 +11,7 @@ export class BattleshipBoardModel {
 
   ships: BattleShipElemModel[] = [];
 
-  constructor(isEnemyBoard = false, ships = []) {
+  constructor(isEnemyBoard = false, ships: BattleShipElemModel[] = []) {
     this.isEnemyBoard = isEnemyBoard;
     this.ships = ships;
   }
@@ -21,7 +21,7 @@ export class BattleshipBoardModel {
     this.createAllFreeElems();
   }
 
-  initCells() {
+  private initCells() {
     for (let i = 0; i < 10; i++) {
       const row = [];
       for (let j = 0; j < 10; j++) {
@@ -56,7 +56,7 @@ export class BattleshipBoardModel {
     );
   }
 
-  createAllFreeElems() {
+  private createAllFreeElems() {
     this.createFourBattleElem();
     this.createThreeBattleElems();
     this.createTwoBattleElems();
@@ -77,6 +77,7 @@ export class BattleshipBoardModel {
   ) {
     this.setAllCellUnavailableForAdd();
     let cells: BattleshipCellModel[] = [];
+    // Add cells under elem
     for (let i = 0; i < currentElem.size; i++) {
       if (currentElem.direction === EBattleShipElemDirection.HORIZONTAL) {
         cells.push(this.cells[cell.y][cell.x + i]);
@@ -90,6 +91,7 @@ export class BattleshipBoardModel {
     if (cells.some((item) => item === undefined)) {
       return false;
     }
+    // Add neighboring to elem cells
     cells.forEach((c) => {
       if (this.cells[c.y + 1]) {
         cells.push(
@@ -121,18 +123,22 @@ export class BattleshipBoardModel {
     }
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  private addShipToCell(cell: BattleshipCellModel, elem: BattleShipElemModel) {
+    cell.elem = elem;
+    elem.cells.push(cell);
+  }
+
   addShipOnBoard(cell: BattleshipCellModel, currentElem: BattleShipElemModel) {
     for (let i = 0; i < currentElem.size; i++) {
-      if (currentElem.direction === EBattleShipElemDirection.HORIZONTAL) {
-        this.cells[cell.y][cell.x + i].elem = currentElem;
-        currentElem.cells.push(this.cells[cell.y][cell.x + i]);
-      } else {
-        this.cells[cell.y + i][cell.x].elem = currentElem;
-        currentElem.cells.push(this.cells[cell.y + i][cell.x]);
-      }
-      this.freeElems = this.freeElems.filter((el) => el.id !== currentElem.id);
-      this.setAllCellUnavailableForAdd();
+      const cellToAdd =
+        currentElem.direction === EBattleShipElemDirection.HORIZONTAL
+          ? this.cells[cell.y][cell.x + i]
+          : this.cells[cell.y + i][cell.x];
+      this.addShipToCell(cellToAdd, currentElem);
     }
+    this.freeElems = this.freeElems.filter((el) => el.id !== currentElem.id);
+    this.setAllCellUnavailableForAdd();
     this.ships.push(currentElem);
   }
 

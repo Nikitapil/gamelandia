@@ -133,8 +133,7 @@ export const BattleShip = () => {
   useEffect(() => {
     if (!isFull && !loading && !isDataFromServer) {
       const newBoard = new BattleshipBoardModel();
-      newBoard.initCells();
-      newBoard.createAllFreeElems();
+      newBoard.initGame();
       setFreeShips(newBoard.freeElems);
       setBoard(newBoard);
     }
