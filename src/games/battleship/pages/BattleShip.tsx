@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useDocumentData } from 'react-firebase-hooks/firestore';
-import { doc, setDoc, deleteDoc, DocumentReference } from 'firebase/firestore';
+import { doc, setDoc, deleteDoc } from 'firebase/firestore';
 import { useTranslation } from 'react-i18next';
 import { BattleshipBoard } from '../components/BattleshipBoard';
 import { BattleshipElems } from '../components/BattleshipElems';
@@ -10,7 +9,7 @@ import { HorizotalLoader } from '../../../components/UI/Loaders/HorizotalLoader'
 import { mapFromFireBaseToBattleShip } from '../helpers/battleShipMappers';
 import { FullRoomMessage } from '../../components/FullRoomMessage';
 import { WinnerCommon } from '../../components/WinnerCommon';
-import battlshipStyles from '../assets/styles/battleship.module.scss';
+import styles from '../assets/styles/battleship.module.scss';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
@@ -20,7 +19,8 @@ import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector, battleshipSelector } from '../../../store/selectors';
 import { useBattleshipActions } from '../hooks/useBattleshipActions';
 import { FirebaseContext } from '../../../context/firebase-context/FirebaseContext';
-import { TBattleshipRoomData, TPlayerKey } from '../helpers/types';
+import { TPlayerKey } from '../helpers/types';
+import { useBattleshipRoomData } from '../hooks/useBattleshipRoomData';
 
 export const BattleShip = () => {
   const { t } = useTranslation();
@@ -31,14 +31,14 @@ export const BattleShip = () => {
     breadcrumbs.battleship
   ]);
   const { id } = useParams();
+
   const { user, isAuthLoading } = useAppSelector(authSelector);
-  const firestore = useContext(FirebaseContext);
-  const [roomData, loading] = useDocumentData<TBattleshipRoomData>(
-    doc(firestore, 'battleship', id!) as DocumentReference<TBattleshipRoomData>
-  );
   const { board, enemyBoard } = useAppSelector(battleshipSelector);
   const { setBoard, setEnemyBoard, setFreeShips } = useBattleshipActions();
-  const [isFull, setIsFull] = useState(false);
+
+  const { roomData, loading, isFull } = useBattleshipRoomData(id!);
+
+  const firestore = useContext(FirebaseContext);
   const [myPlayer, setMyPlayer] = useState<TPlayerKey>('');
   const [secondPlayer, setSecondPlayer] = useState<TPlayerKey>('');
   const [isDataFromServer, setIsDataFromServer] = useState(false);
@@ -47,16 +47,6 @@ export const BattleShip = () => {
   const [winner, setWinner] = useState('');
 
   useEffect(() => {
-    console.log(roomData);
-    if (roomData?.player1 && roomData?.player2) {
-      if (
-        roomData?.player1.uid !== user?.id &&
-        roomData?.player2.uid !== user?.id
-      ) {
-        setIsFull(true);
-        return;
-      }
-    }
     if (!roomData?.player1 && user && roomData) {
       const player1 = {
         uid: user.id,
@@ -137,7 +127,6 @@ export const BattleShip = () => {
       setFreeShips(newBoard.freeElems);
       setBoard(newBoard);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFull, loading, isDataFromServer]);
 
   if (!roomData && !loading && !winner) {
@@ -157,16 +146,16 @@ export const BattleShip = () => {
   }
 
   return (
-    <div className={`container ${battlshipStyles.battleship}`}>
+    <div className={`container ${styles.battleship}`}>
       <h2 className="page-title">{t('battleship')}</h2>
       {loading && <HorizotalLoader color="blue" />}
       {roomData?.currentPlayer && (
-        <h3 className={battlshipStyles['battleship__current-player']}>
+        <h3 className={styles['battleship__current-player']}>
           {t('current_player')}: {roomData[roomData.currentPlayer]?.name}
         </h3>
       )}
-      <div className={battlshipStyles.battleship__boards}>
-        <div className={battlshipStyles['battleship__my-board']}>
+      <div className={styles.battleship__boards}>
+        <div className={styles['battleship__my-board']}>
           {board && !loading && roomData && (
             <BattleshipBoard
               secondPlayer={secondPlayer}
@@ -182,7 +171,7 @@ export const BattleShip = () => {
               <BattleshipElems roomData={roomData} myPlayer={myPlayer} />
             )}
         </div>
-        <div className={battlshipStyles['battleship__enemy-board']}>
+        <div className={styles['battleship__enemy-board']}>
           {isGameStarted && enemyBoard && roomData ? (
             <BattleshipBoard
               secondPlayer={secondPlayer}
@@ -190,10 +179,8 @@ export const BattleShip = () => {
               isEnemy
             />
           ) : (
-            <div className={battlshipStyles['battle-ship__waiting']}>
-              <p className={battlshipStyles['waiting-text']}>
-                {t('waiting_player')}
-              </p>
+            <div className={styles['battle-ship__waiting']}>
+              <p className={styles['waiting-text']}>{t('waiting_player')}</p>
               {roomData && myPlayer && roomData[myPlayer]?.isReady && (
                 <DynoGame />
               )}
