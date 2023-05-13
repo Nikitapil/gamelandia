@@ -1,20 +1,21 @@
-import React, { useContext, useMemo } from 'react';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { doc, collection, setDoc } from 'firebase/firestore';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RoomsCommon } from '../../components/RoomsCommon';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
-import { FirebaseContext } from '../../../context/firebase-context/FirebaseContext';
+import { TBattleshipRoomData } from '../helpers/types';
+import { useRoomsCollection } from '../../hooks/rooms/useRoomsCollection';
 
 export const BattleShipRooms = () => {
   const { t } = useTranslation();
   useTitle(t('battleship'));
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.battleshipRooms]);
-  const firestore = useContext(FirebaseContext);
-  const [rooms] = useCollectionData(collection(firestore, 'battleship'));
-  const createRoom = async () => {
+
+  const { rooms, createRoom } =
+    useRoomsCollection<TBattleshipRoomData>('battleship');
+
+  const addRoom = async () => {
     const newRoom = {
       player1: null,
       player2: null,
@@ -22,22 +23,14 @@ export const BattleShipRooms = () => {
       id: `room_${(rooms?.length || 0) + 1}`,
       name: `Room ${(rooms?.length || 0) + 1}`
     };
-    await setDoc(doc(firestore, 'battleship', newRoom.id), newRoom);
+    await createRoom(newRoom);
   };
 
   const filteredRooms = useMemo(() => {
-    return rooms
-      ?.filter((room) => !room.palyer1 || !room.player2)
-      .sort(
-        (a, b) => parseInt(a.name.match(/\d+/)) - parseInt(b.name.match(/\d+/))
-      );
+    return rooms?.filter((room) => !room.player1 || !room.player2);
   }, [rooms]);
 
   return (
-    <RoomsCommon
-      rooms={filteredRooms}
-      createRoom={createRoom}
-      page="battleship"
-    />
+    <RoomsCommon rooms={filteredRooms} createRoom={addRoom} page="battleship" />
   );
 };
