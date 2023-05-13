@@ -1,4 +1,4 @@
-import { doc, Firestore, setDoc } from 'firebase/firestore';
+import { deleteDoc, doc, Firestore, setDoc } from 'firebase/firestore';
 import { TRoomServiceInitData } from './types';
 
 export class RoomService<T> {
@@ -17,5 +17,9 @@ export class RoomService<T> {
 
   protected async setRoomData(id: string, roomData: T) {
     await setDoc(this.getRoomDoc(id), roomData);
+  }
+
+  async deleteRoom(id: string) {
+    await deleteDoc(this.getRoomDoc(id));
   }
 }

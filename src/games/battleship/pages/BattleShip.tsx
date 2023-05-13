@@ -1,26 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { doc, setDoc, deleteDoc } from 'firebase/firestore';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { BattleshipBoard } from '../components/BattleshipBoard';
-import { BattleshipElems } from '../components/BattleshipElems';
 import { BattleshipBoardModel } from '../models/BattleShipBoardModel';
 import { HorizotalLoader } from '../../../components/UI/Loaders/HorizotalLoader';
-import { mapFromFireBaseToBattleShip } from '../helpers/battleShipMappers';
 import { FullRoomMessage } from '../../components/FullRoomMessage';
 import { WinnerCommon } from '../../components/WinnerCommon';
 import styles from '../assets/styles/battleship.module.scss';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
-import { DynoGame } from '../../dyno/components/DynoGame';
 import { ERoutes } from '../../../constants/routes';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector, battleshipSelector } from '../../../store/selectors';
 import { useBattleshipActions } from '../hooks/useBattleshipActions';
-import { FirebaseContext } from '../../../context/firebase-context/FirebaseContext';
 import { TPlayerKey } from '../helpers/types';
 import { useBattleshipRoomData } from '../hooks/useBattleshipRoomData';
+import { useBattleshipService } from '../hooks/useBattleshipService';
+import { BattleshipMyBoard } from '../components/BattleshipMyBoard';
+import { BattleshipEnemyBoard } from '../components/BattleshipEnemyBoard';
 
 export const BattleShip = () => {
   const { t } = useTranslation();
@@ -37,88 +34,71 @@ export const BattleShip = () => {
   const { setBoard, setEnemyBoard, setFreeShips } = useBattleshipActions();
 
   const { roomData, loading, isFull } = useBattleshipRoomData(id!);
+  const service = useBattleshipService();
 
-  const firestore = useContext(FirebaseContext);
   const [myPlayer, setMyPlayer] = useState<TPlayerKey>('');
   const [secondPlayer, setSecondPlayer] = useState<TPlayerKey>('');
   const [isDataFromServer, setIsDataFromServer] = useState(false);
   const [isGameStarted, setIsGameStarted] = useState(false);
-  const navigate = useNavigate();
   const [winner, setWinner] = useState('');
 
+  const setLocalPlayers = useCallback(() => {
+    if (!user || !roomData) {
+      return;
+    }
+    const myPlayerValue =
+      roomData.player1?.uid === user.id ? 'player1' : 'player2';
+    const secondPlayerValue =
+      roomData.player1?.uid === user.id ? 'player2' : 'player1';
+
+    setMyPlayer(myPlayerValue);
+    setSecondPlayer(secondPlayerValue);
+  }, [roomData, user]);
+
   useEffect(() => {
-    if (!roomData?.player1 && user && roomData) {
-      const player1 = {
-        uid: user.id,
-        name: user.username,
-        cells: []
-      };
-      setDoc(doc(firestore, 'battleship', id!), { ...roomData, player1 });
-    } else if (
-      !roomData?.player2 &&
-      user &&
-      roomData &&
-      roomData?.player1?.uid !== user.id
-    ) {
-      const player2 = {
-        uid: user.id,
-        name: user.username,
-        cells: []
-      };
-      setDoc(doc(firestore, 'battleship', id!), { ...roomData, player2 });
+    if (!user || !roomData) {
+      return;
     }
 
-    if (user && roomData && roomData.player1?.uid === user.id) {
-      setMyPlayer('player1');
-      setSecondPlayer('player2');
-    } else if (user && roomData && roomData.player2?.uid === user.id) {
-      setMyPlayer('player2');
-      setSecondPlayer('player1');
-    }
-    if (roomData && roomData.player1?.isReady && roomData.player2?.isReady) {
-      if (!roomData.currentPlayer) {
-        setDoc(doc(firestore, 'battleship', id!), {
-          ...roomData,
-          currentPlayer: 'player1'
-        });
-      }
-      setIsGameStarted(true);
-    }
-    if (
-      user &&
-      roomData &&
-      myPlayer &&
-      roomData[myPlayer] &&
-      roomData[myPlayer]?.cells.length
-    ) {
+    // Setup players to db
+    service.setPlayers(user, roomData);
+
+    // Setup players to local state
+    setLocalPlayers();
+
+    // Start game if players are both ready
+    const isStarted = service.startGame(roomData);
+    setIsGameStarted(isStarted);
+
+    // Parse my board from db
+    const myBoard = service.getBoardFromFireBase(roomData, myPlayer, false);
+    if (myBoard) {
       setIsDataFromServer(true);
-      const newMyBoard = mapFromFireBaseToBattleShip(
-        roomData[myPlayer]?.cells || [],
-        roomData[myPlayer]?.ships || [],
-        false
-      );
-      setBoard(newMyBoard);
+      setBoard(myBoard);
     }
-    if (
-      user &&
-      roomData &&
-      secondPlayer &&
-      roomData[secondPlayer] &&
-      roomData[secondPlayer]?.cells.length
-    ) {
-      const newEnemyBoard = mapFromFireBaseToBattleShip(
-        roomData[secondPlayer]?.cells || [],
-        roomData[secondPlayer]?.ships || [],
-        true
-      );
-      setEnemyBoard(newEnemyBoard);
+
+    // Parse enemy board from db
+    const enemyBoardFromServer = service.getBoardFromFireBase(
+      roomData,
+      secondPlayer,
+      true
+    );
+    setEnemyBoard(enemyBoardFromServer);
+
+    if (roomData.winner) {
+      setWinner(roomData.winner);
+      service.deleteRoom(roomData.id);
     }
-    if (roomData?.winner) {
-      setWinner(roomData?.winner);
-      deleteDoc(doc(firestore, 'battleship', id!));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [roomData, user, myPlayer]);
+  }, [
+    roomData,
+    user,
+    myPlayer,
+    service,
+    setLocalPlayers,
+    secondPlayer,
+    setEnemyBoard,
+    setBoard
+  ]);
 
   useEffect(() => {
     if (!isFull && !loading && !isDataFromServer) {
@@ -127,14 +107,14 @@ export const BattleShip = () => {
       setFreeShips(newBoard.freeElems);
       setBoard(newBoard);
     }
-  }, [isFull, loading, isDataFromServer]);
+  }, [isFull, loading, isDataFromServer, setFreeShips, setBoard]);
 
   if (!roomData && !loading && !winner) {
-    navigate(ERoutes.BATTLESHIP);
+    return <Navigate to={ERoutes.BATTLESHIP} />;
   }
 
   if (!isAuthLoading && !user) {
-    navigate(`${ERoutes.LOGIN}?page=battleship`);
+    return <Navigate to={`${ERoutes.LOGIN}?page=battleship`} />;
   }
 
   if (isFull) {
@@ -155,38 +135,20 @@ export const BattleShip = () => {
         </h3>
       )}
       <div className={styles.battleship__boards}>
-        <div className={styles['battleship__my-board']}>
-          {board && !loading && roomData && (
-            <BattleshipBoard
-              secondPlayer={secondPlayer}
-              roomData={roomData}
-              isEnemy={false}
-            />
-          )}
-          {board &&
-            roomData &&
-            myPlayer &&
-            roomData[myPlayer] &&
-            !roomData[myPlayer]?.isReady && (
-              <BattleshipElems roomData={roomData} myPlayer={myPlayer} />
-            )}
-        </div>
-        <div className={styles['battleship__enemy-board']}>
-          {isGameStarted && enemyBoard && roomData ? (
-            <BattleshipBoard
-              secondPlayer={secondPlayer}
-              roomData={roomData}
-              isEnemy
-            />
-          ) : (
-            <div className={styles['battle-ship__waiting']}>
-              <p className={styles['waiting-text']}>{t('waiting_player')}</p>
-              {roomData && myPlayer && roomData[myPlayer]?.isReady && (
-                <DynoGame />
-              )}
-            </div>
-          )}
-        </div>
+        <BattleshipMyBoard
+          board={board}
+          loading={loading}
+          myPlayer={myPlayer}
+          secondPlayer={secondPlayer}
+          roomData={roomData}
+        />
+        <BattleshipEnemyBoard
+          isGameStarted={isGameStarted}
+          board={enemyBoard}
+          myPlayer={myPlayer}
+          secondPlayer={secondPlayer}
+          roomData={roomData}
+        />
       </div>
     </div>
   );
