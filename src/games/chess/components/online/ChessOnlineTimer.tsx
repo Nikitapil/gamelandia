@@ -1,8 +1,8 @@
-import React, { memo, useEffect, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IChessTime } from '../../helpers/types';
-import { Colors } from '../../models/Colors';
 import { Player } from '../../models/Player';
+import { formatChessTime } from '../../helpers/utils';
 
 interface ChessOnlineTimerProps {
   time: IChessTime;
@@ -13,51 +13,42 @@ interface ChessOnlineTimerProps {
 
 export const ChessOnlineTimer = memo(
   ({ time, currentPlayer, endGame, setTime }: ChessOnlineTimerProps) => {
-    const timer = useRef<null | ReturnType<typeof setInterval>>(null);
     const { t } = useTranslation();
 
-    const decrementBlackTimer = () => {
-      if (time.black <= 0) {
-        endGame();
-        clearInterval(timer.current!);
-      }
-      setTime({ ...time, black: time.black - 1 });
-    };
+    const timer = useRef<null | ReturnType<typeof setInterval>>(null);
 
-    const decrementWhiteTimer = () => {
-      if (time.white <= 0) {
+    const decrementTimer = useCallback(() => {
+      const key = currentPlayer?.color || 'white';
+      if (time[key] <= 0) {
         endGame();
-        clearInterval(timer.current!);
+        if (timer.current) {
+          clearInterval(timer.current);
+        }
       }
-      setTime({ ...time, white: time.white - 1 });
-    };
+      setTime({ ...time, [key]: time[key] - 1 });
+    }, [currentPlayer?.color, endGame, setTime, time]);
 
-    const startTimer = () => {
+    const startTimer = useCallback(() => {
       if (timer.current) {
         clearInterval(timer.current);
       }
-      const callback =
-        currentPlayer?.color === Colors.WHITE
-          ? decrementWhiteTimer
-          : decrementBlackTimer;
-      timer.current = setInterval(callback, 1000);
-    };
+      timer.current = setInterval(decrementTimer, 1000);
+    }, [decrementTimer]);
 
     useEffect(() => {
       startTimer();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentPlayer, time]);
+    }, [currentPlayer, startTimer, time]);
 
     return (
       <div>
         <div className="chess-timer__time">
           <div className="chess-timer__item">
             {t('black')} -{' '}
-            <div className="time">{(time.black / 60).toFixed(0)}m</div>
+            <div className="time">{formatChessTime(time.black)}m</div>
           </div>
           <div className="chess-timer__item">
             {t('white')} -{' '}
-            <div className="time">{(time.white / 60).toFixed(0)}m</div>
+            <div className="time">{formatChessTime(time.white)}m</div>
           </div>
         </div>
       </div>
