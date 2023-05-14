@@ -1,3 +1,5 @@
+@import "../../../../assets/styles/vars";
+
 .online__loader {
   display: flex;
   flex-direction: column;
@@ -13,4 +15,81 @@
 .chess-dyno {
   max-width: 100%;
   padding: 0 10px;
+}
+
+.chess-timer__time {
+  color: $mainColor;
+}
+
+.chess-timer__item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+
+  .time {
+    border: 2px solid green;
+    border-radius: 5px;
+    padding: 5px;
+    color: $mainColor;
+
+    @media (max-width: 460px) {
+      font-size: 12px;
+      padding: 3px;
+    }
+  }
+}
+
+.chess-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-information {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+
+  .king__attacked {
+    color: red;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 700;
+
+    @media (max-width: 500px) {
+      font-size: 14px;
+    }
+  }
+}
+
+.current-player {
+  color: $mainColor;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 700;
+
+  @media (max-width: 500px) {
+    font-size: 14px;
+  }
+}
+
+.board {
+  width: calc(64px * 8);
+  height: calc(64px * 8);
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 4px 0 12px 12px #0e0d0d;
+
+  @media (max-width: 735px) {
+    width: calc(45px * 8);
+    height: calc(45px * 8);
+  }
+
+  @media (max-width: 550px) {
+    width: calc(32px * 8);
+    height: calc(32px * 8);
+  }
 }

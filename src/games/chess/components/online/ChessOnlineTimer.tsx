@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { IChessTime } from '../../helpers/types';
 import { Player } from '../../models/Player';
 import { formatChessTime } from '../../helpers/utils';
+import styles from '../../assets/styles/chess.module.scss';
 
 interface ChessOnlineTimerProps {
   time: IChessTime;
@@ -41,14 +42,12 @@ export const ChessOnlineTimer = memo(
 
     return (
       <div>
-        <div className="chess-timer__time">
-          <div className="chess-timer__item">
-            {t('black')} -{' '}
-            <div className="time">{formatChessTime(time.black)}m</div>
+        <div className={styles['chess-timer__time']}>
+          <div className={styles['chess-timer__item']}>
+            {t('black')} - <div className={styles.time}>{formatChessTime(time.black)}m</div>
           </div>
-          <div className="chess-timer__item">
-            {t('white')} -{' '}
-            <div className="time">{formatChessTime(time.white)}m</div>
+          <div className={styles['chess-timer__item']}>
+            {t('white')} - <div className={styles.time}>{formatChessTime(time.white)}m</div>
           </div>
         </div>
       </div>

@@ -98,5 +98,7 @@
   "already_registered": "Уже зарегистрированы? Войти.",
   "solitaire": "Пасьянс солитер",
   "solitaire_description": "Классический пасьянс солитер",
-  "user_already_exist": "Пользователь с таким email уже существует"
+  "user_already_exist": "Пользователь с таким email уже существует",
+  "white_king_under_attack": "Шах белому королю",
+  "black_king_under_attack": "Шах черному королю"
 }

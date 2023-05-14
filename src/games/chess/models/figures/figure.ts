@@ -32,9 +32,7 @@ export class Figure {
     if (target.figure?.color === this.color) {
       return false;
     }
-    return !(
-      this.name === FigureNames.KING && target.figure?.name === FigureNames.KING
-    );
+    return !(this.name === FigureNames.KING && target.figure?.name === FigureNames.KING);
   }
 
   // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars

@@ -16,14 +16,9 @@ import { AppButton } from '../../../components/UI/AppButton/AppButton';
 export const Chess = () => {
   const { t } = useTranslation();
   useTitle(t('chess'));
-  useBreadcrumbs([
-    breadcrumbs.main,
-    breadcrumbs.chessTypes,
-    breadcrumbs.chessOffline
-  ]);
+  useBreadcrumbs([breadcrumbs.main, breadcrumbs.chessTypes, breadcrumbs.chessOffline]);
   const [board, setBoard] = useState(new Board());
   const [whitePlayer] = useState(new Player(Colors.WHITE));
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [blackPlayer] = useState(new Player(Colors.BLACK));
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
   const [isTimerModalOpen, setIsTimerModalOpen] = useState(true);
@@ -39,8 +34,7 @@ export const Chess = () => {
 
   const endGame = (color?: string) => {
     if (!color) {
-      const winColor =
-        currentPlayer?.color === Colors.WHITE ? Colors.BLACK : Colors.WHITE;
+      const winColor = currentPlayer?.color === Colors.WHITE ? Colors.BLACK : Colors.WHITE;
       setWinner(winColor);
     }
   };
@@ -51,9 +45,7 @@ export const Chess = () => {
   };
 
   const swapPlayer = () => {
-    setCurrentPlayer(
-      currentPlayer?.color === Colors.WHITE ? blackPlayer : whitePlayer
-    );
+    setCurrentPlayer(currentPlayer?.color === Colors.WHITE ? blackPlayer : whitePlayer);
   };
 
   return (
