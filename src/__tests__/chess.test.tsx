@@ -32,7 +32,15 @@ describe('chess tests', () => {
   });
   test('winner modal should call new game', () => {
     const newGame = jest.fn();
-    render(renderWithRouter(<WinnerModal color="white" isOpened newGame={newGame} />));
+    render(
+      renderWithRouter(
+        <WinnerModal
+          color="white"
+          isOpened
+          newGame={newGame}
+        />
+      )
+    );
     userEvent.click(screen.getByTestId('newGame-btn'));
     expect(newGame).toBeCalled();
   });
@@ -40,14 +48,28 @@ describe('chess tests', () => {
   test('timer modal should call new game', () => {
     const newGame = jest.fn();
     const closeModal = jest.fn();
-    render(renderWithRouter(<TimerModal start={newGame} closeModal={closeModal} />));
+    render(
+      renderWithRouter(
+        <TimerModal
+          start={newGame}
+          closeModal={closeModal}
+        />
+      )
+    );
     userEvent.click(screen.getByTestId('chess-start-button'));
     expect(newGame).toBeCalled();
   });
   test('timer modal time input should set value', () => {
     const newGame = jest.fn();
     const closeModal = jest.fn();
-    render(renderWithRouter(<TimerModal start={newGame} closeModal={closeModal} />));
+    render(
+      renderWithRouter(
+        <TimerModal
+          start={newGame}
+          closeModal={closeModal}
+        />
+      )
+    );
     userEvent.type(screen.getByTestId('time-input'), '12345');
     expect((screen.getByTestId('time-input') as HTMLInputElement).value).toBe('6012345');
   });
@@ -131,7 +153,13 @@ describe('chess tests', () => {
     board.initCells();
     const click = jest.fn();
     render(
-      renderWithRouter(<ChessCellComponent cell={board.cells[0][0]} click={click} selected />)
+      renderWithRouter(
+        <ChessCellComponent
+          cell={board.cells[0][0]}
+          click={click}
+          selected
+        />
+      )
     );
     expect(screen.getByTestId('chess-cell')).toHaveClass('selected');
     userEvent.click(screen.getByTestId('chess-cell'));
@@ -143,7 +171,13 @@ describe('chess tests', () => {
     const click = jest.fn();
     board.cells[0][0].available = true;
     render(
-      renderWithRouter(<ChessCellComponent cell={board.cells[0][0]} click={click} selected />)
+      renderWithRouter(
+        <ChessCellComponent
+          cell={board.cells[0][0]}
+          click={click}
+          selected
+        />
+      )
     );
     expect(screen.getByTestId('available-dot')).toBeInTheDocument();
   });
@@ -155,7 +189,11 @@ describe('chess tests', () => {
     board.cells[0][0].available = true;
     render(
       renderWithRouter(
-        <ChessCellComponent cell={board.cells[0][0]} click={click} selected={false} />
+        <ChessCellComponent
+          cell={board.cells[0][0]}
+          click={click}
+          selected={false}
+        />
       )
     );
     expect(screen.getByTestId('figure-logo')).toBeInTheDocument();

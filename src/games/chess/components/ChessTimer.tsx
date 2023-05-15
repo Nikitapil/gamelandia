@@ -9,17 +9,17 @@ import { IChessTime } from '../helpers/types';
 import { formatChessTime } from '../helpers/utils';
 import styles from '../assets/styles/chess.module.scss';
 
-interface ChessTimerProps {
+interface IChessTimerProps {
   currentPlayer: Player | null;
+  isModalOpen: boolean;
   restart: () => void;
   endGame: () => void;
-  isModalOpen: boolean;
   setIsModalOpen: (bool: boolean) => void;
   setWinner: (color: EChessColors) => void;
 }
 
 export const ChessTimer = memo(
-  ({ currentPlayer, restart, isModalOpen, setIsModalOpen, setWinner }: ChessTimerProps) => {
+  ({ currentPlayer, restart, isModalOpen, setIsModalOpen, setWinner }: IChessTimerProps) => {
     const { t } = useTranslation();
 
     const [time, setTime] = useState<IChessTime>({

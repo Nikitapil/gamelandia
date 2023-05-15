@@ -16,8 +16,9 @@ import { Rook } from '../models/figures/Rook';
 import { Player } from '../models/Player';
 import { ModalContainer } from '../../../components/UI/ModalContainer/ModalContainer';
 import { Board } from '../models/Board';
+import styles from '../assets/styles/chess.module.scss';
 
-interface FiguresModalProps {
+interface IFiguresModalProps {
   closeModal: () => void;
   swapPlayer: () => void;
   currentPlayer: Player | null;
@@ -26,7 +27,7 @@ interface FiguresModalProps {
   isOpened: boolean;
 }
 
-export const FiguresModal: FC<FiguresModalProps> = ({
+export const FiguresModal: FC<IFiguresModalProps> = ({
   currentPlayer,
   cell,
   swapPlayer,
@@ -36,23 +37,25 @@ export const FiguresModal: FC<FiguresModalProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  if (!Cell) {
+  if (!cell || !currentPlayer) {
     return null;
   }
+
   const chooseFigure = (figure: string) => {
-    // eslint-disable-next-line default-case
     switch (figure) {
       case FigureNames.BISHOP:
-        new Bishop(currentPlayer?.color!, cell!);
+        new Bishop(currentPlayer.color, cell);
         break;
       case FigureNames.KNIGHT:
-        new Knight(currentPlayer?.color!, cell!);
+        new Knight(currentPlayer.color, cell);
         break;
       case FigureNames.QUEEN:
-        new Queen(currentPlayer?.color!, cell!);
+        new Queen(currentPlayer.color, cell);
         break;
       case FigureNames.ROOK:
-        new Rook(currentPlayer?.color!, cell!);
+        new Rook(currentPlayer.color, cell);
+        break;
+      default:
         break;
     }
     board.checkIfKingIsUnderAttack();
@@ -67,9 +70,9 @@ export const FiguresModal: FC<FiguresModalProps> = ({
       closeModal={closeModal}
       preventClosing
     >
-      <div className="figures-container">
+      <div className={styles['figures-container']}>
         <button
-          className="figure-button"
+          className={styles['figure-button']}
           onClick={() => chooseFigure(FigureNames.BISHOP)}
           data-testid="bishop-btn"
           type="button"
@@ -77,7 +80,7 @@ export const FiguresModal: FC<FiguresModalProps> = ({
           <FontAwesomeIcon icon={faChessBishop} /> {t('bishop')}
         </button>
         <button
-          className="figure-button"
+          className={styles['figure-button']}
           onClick={() => chooseFigure(FigureNames.KNIGHT)}
           data-testid="knight-btn"
           type="button"
@@ -85,7 +88,7 @@ export const FiguresModal: FC<FiguresModalProps> = ({
           <FontAwesomeIcon icon={faChessKnight} /> {t('knight')}
         </button>
         <button
-          className="figure-button"
+          className={styles['figure-button']}
           onClick={() => chooseFigure(FigureNames.QUEEN)}
           data-testid="queen-btn"
           type="button"
@@ -93,7 +96,7 @@ export const FiguresModal: FC<FiguresModalProps> = ({
           <FontAwesomeIcon icon={faChessQueen} /> {t('queen')}
         </button>
         <button
-          className="figure-button"
+          className={styles['figure-button']}
           onClick={() => chooseFigure(FigureNames.ROOK)}
           data-testid="rook-btn"
           type="button"
