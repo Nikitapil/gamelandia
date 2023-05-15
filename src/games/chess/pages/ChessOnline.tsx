@@ -4,7 +4,7 @@ import { useDocumentData } from 'react-firebase-hooks/firestore';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChessBoardComponent } from '../components/ChessBoardComponent';
-import { LostFigures } from '../components/LostFigures';
+import { LostFigures } from '../components/lost-figures/LostFigures';
 import { ChessOnlineLoader } from '../components/online/ChessOnlineLoader';
 import { ChessOnlineTimer } from '../components/online/ChessOnlineTimer';
 import { FullRoomMessage } from '../../components/FullRoomMessage';

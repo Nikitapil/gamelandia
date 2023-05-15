@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ChessBoardComponent } from '../components/ChessBoardComponent';
 import { ChessTimer } from '../components/ChessTimer';
-import { LostFigures } from '../components/LostFigures';
+import { LostFigures } from '../components/lost-figures/LostFigures';
 import { WinnerModal } from '../components/WinnerModal';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
@@ -12,6 +12,7 @@ import { EChessColors } from '../models/EChessColors';
 import { Player } from '../models/Player';
 import '../assets/styles/chess.scss';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
+import styles from '../assets/styles/chess.module.scss';
 
 export const Chess = () => {
   const { t } = useTranslation();
@@ -77,7 +78,7 @@ export const Chess = () => {
         currentPlayer={currentPlayer}
         swapPlayer={swapPlayer}
       />
-      <div className="lost">
+      <div className={styles.lost}>
         <LostFigures
           title={t('black')}
           figures={board.lostBlackFigures}

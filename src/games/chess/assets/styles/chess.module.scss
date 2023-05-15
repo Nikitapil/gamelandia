@@ -172,3 +172,32 @@
     font-size: 18px;
   }
 }
+
+.lost {
+  margin-left: 10px;
+  align-self: stretch;
+  padding-top: 28px;
+  color: $mainColor;
+  display: flex;
+  flex-direction: column;
+}
+
+.lost-figures {
+  flex: 1 1 auto;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.lost-figures__item {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.lost-figures__title {
+  margin-bottom: 8px;
+}
