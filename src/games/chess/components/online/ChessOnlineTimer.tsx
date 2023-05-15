@@ -5,7 +5,7 @@ import { Player } from '../../models/Player';
 import { formatChessTime } from '../../helpers/utils';
 import styles from '../../assets/styles/chess.module.scss';
 
-interface ChessOnlineTimerProps {
+interface IChessOnlineTimerProps {
   time: IChessTime;
   setTime: (time: IChessTime) => void;
   currentPlayer: Player | null;
@@ -13,7 +13,7 @@ interface ChessOnlineTimerProps {
 }
 
 export const ChessOnlineTimer = memo(
-  ({ time, currentPlayer, endGame, setTime }: ChessOnlineTimerProps) => {
+  ({ time, currentPlayer, endGame, setTime }: IChessOnlineTimerProps) => {
     const { t } = useTranslation();
 
     const timer = useRef<null | ReturnType<typeof setInterval>>(null);

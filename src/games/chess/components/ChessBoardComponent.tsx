@@ -5,11 +5,11 @@ import { FigureNames } from '../helpers/constants';
 import { Board } from '../models/Board';
 import { Cell } from '../models/Cell';
 import { Player } from '../models/Player';
-import { ChessCellComponents } from './ChessCellComponents';
+import { ChessCellComponent } from './ChessCellComponent';
 import { FiguresModal } from './FiguresModal';
 import styles from '../assets/styles/chess.module.scss';
 
-interface ChessBoardComponentProps {
+interface IChessBoardComponentProps {
   board: Board;
   setBoard: (board: Board) => void;
   currentPlayer: Player | null;
@@ -17,7 +17,7 @@ interface ChessBoardComponentProps {
   isClickAvailable?: boolean;
 }
 
-export const ChessBoardComponent: FC<ChessBoardComponentProps> = ({
+export const ChessBoardComponent: FC<IChessBoardComponentProps> = ({
   board,
   setBoard,
   currentPlayer,
@@ -75,7 +75,7 @@ export const ChessBoardComponent: FC<ChessBoardComponentProps> = ({
         {board.cells.map((row) => (
           <React.Fragment key={uuidv4()}>
             {row.map((cell) => (
-              <ChessCellComponents
+              <ChessCellComponent
                 click={onClickCell}
                 key={cell.id}
                 cell={cell}

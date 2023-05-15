@@ -13,7 +13,7 @@ import { FiguresModal } from '../games/chess/components/FiguresModal';
 import { Player } from '../games/chess/models/Player';
 import { Colors } from '../games/chess/models/Colors';
 import { ChessTimer } from '../games/chess/components/ChessTimer';
-import { ChessCellComponents } from '../games/chess/components/ChessCellComponents';
+import { ChessCellComponent } from '../games/chess/components/ChessCellComponent';
 import { rootReducer } from '../store/root-reducer';
 
 jest.spyOn(global, 'setInterval');
@@ -131,7 +131,7 @@ describe('chess tests', () => {
     board.initCells();
     const click = jest.fn();
     render(
-      renderWithRouter(<ChessCellComponents cell={board.cells[0][0]} click={click} selected />)
+      renderWithRouter(<ChessCellComponent cell={board.cells[0][0]} click={click} selected />)
     );
     expect(screen.getByTestId('chess-cell')).toHaveClass('selected');
     userEvent.click(screen.getByTestId('chess-cell'));
@@ -143,7 +143,7 @@ describe('chess tests', () => {
     const click = jest.fn();
     board.cells[0][0].available = true;
     render(
-      renderWithRouter(<ChessCellComponents cell={board.cells[0][0]} click={click} selected />)
+      renderWithRouter(<ChessCellComponent cell={board.cells[0][0]} click={click} selected />)
     );
     expect(screen.getByTestId('available-dot')).toBeInTheDocument();
   });
@@ -155,7 +155,7 @@ describe('chess tests', () => {
     board.cells[0][0].available = true;
     render(
       renderWithRouter(
-        <ChessCellComponents cell={board.cells[0][0]} click={click} selected={false} />
+        <ChessCellComponent cell={board.cells[0][0]} click={click} selected={false} />
       )
     );
     expect(screen.getByTestId('figure-logo')).toBeInTheDocument();

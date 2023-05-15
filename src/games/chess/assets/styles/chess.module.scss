@@ -93,3 +93,61 @@
     height: calc(32px * 8);
   }
 }
+
+.cell {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 48px;
+    height: 48px;
+    position: relative;
+  }
+
+  &.selected {
+    background: $bg-primary;
+  }
+
+  .available {
+    background: $bg-success;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  &.attack-available {
+    background: $bg-danger;
+    border: 1px solid #6d3c01;
+  }
+
+  @media (max-width: 735px) {
+    width: 45px;
+    height: 45px;
+
+    img {
+      width: 34px;
+      height: 34px;
+    }
+  }
+
+  @media (max-width: 550px) {
+    width: 32px;
+    height: 32px;
+
+    img {
+      width: 26px;
+      height: 26px;
+    }
+  }
+}
+
+.black {
+  background-image: linear-gradient(315deg, #503535 0%, #422419 74%);
+}
+
+.white {
+  background-image: linear-gradient(315deg, #e8c99b 0%, #e8bc85 74%);
+}
