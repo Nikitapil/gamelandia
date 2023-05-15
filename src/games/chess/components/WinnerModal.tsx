@@ -3,22 +3,18 @@ import { useTranslation } from 'react-i18next';
 import { ModalContainer } from '../../../components/UI/ModalContainer/ModalContainer';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
 
-interface WinnerModalProps {
+interface IWinnerModalProps {
   color: string;
   newGame: () => void;
   isOpened: boolean;
 }
 
-export const WinnerModal: FC<WinnerModalProps> = ({
-  color,
-  newGame,
-  isOpened
-}) => {
+export const WinnerModal: FC<IWinnerModalProps> = ({ color, newGame, isOpened }) => {
   const { t } = useTranslation();
 
   const winner = useMemo(() => {
     return t(color).toUpperCase();
-  }, [color]);
+  }, [color, t]);
 
   return (
     <ModalContainer
@@ -30,7 +26,7 @@ export const WinnerModal: FC<WinnerModalProps> = ({
         color="dark"
         testId="newGame-btn"
         onClick={newGame}
-        customClass="chess__new-game"
+        customClass="mt-20"
         fullWidth
       >
         {t('new_game')}
