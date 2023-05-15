@@ -201,3 +201,15 @@
 .lost-figures__title {
   margin-bottom: 8px;
 }
+
+.timer-modal {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+.timer-input {
+  height: 30px;
+  margin-bottom: 10px;
+  padding: 0 5px;
+}
