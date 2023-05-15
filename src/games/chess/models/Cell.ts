@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Board } from './Board';
-import { Colors } from './Colors';
+import { EChessColors } from './EChessColors';
 import { Figure } from './figures/figure';
 
 export class Cell {
@@ -8,7 +8,7 @@ export class Cell {
 
   readonly y: number;
 
-  readonly color: Colors;
+  readonly color: EChessColors;
 
   figure: Figure | null;
 
@@ -18,13 +18,7 @@ export class Cell {
 
   id: number;
 
-  constructor(
-    board: Board,
-    x: number,
-    y: number,
-    color: Colors,
-    figure: Figure | null
-  ) {
+  constructor(board: Board, x: number, y: number, color: EChessColors, figure: Figure | null) {
     this.board = board;
     this.x = x;
     this.y = y;
@@ -43,7 +37,7 @@ export class Cell {
 
   addLostfigure(figure: Figure) {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    figure.color === Colors.BLACK
+    figure.color === EChessColors.BLACK
       ? this.board.lostBlackFigures.push(figure)
       : this.board.lostWhightFigures.push(figure);
   }
@@ -60,7 +54,7 @@ export class Cell {
       if (this.board.kings[target.figure?.color!]?.cell!.isUnderAttack()) {
         if (targetFigure) {
           // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-          targetFigure.color === Colors.BLACK
+          targetFigure.color === EChessColors.BLACK
             ? this.board.lostBlackFigures.pop()
             : this.board.lostWhightFigures.pop();
         }

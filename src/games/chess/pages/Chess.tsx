@@ -8,7 +8,7 @@ import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
 import { Board } from '../models/Board';
-import { Colors } from '../models/Colors';
+import { EChessColors } from '../models/EChessColors';
 import { Player } from '../models/Player';
 import '../assets/styles/chess.scss';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
@@ -18,8 +18,8 @@ export const Chess = () => {
   useTitle(t('chess'));
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.chessTypes, breadcrumbs.chessOffline]);
   const [board, setBoard] = useState(new Board());
-  const [whitePlayer] = useState(new Player(Colors.WHITE));
-  const [blackPlayer] = useState(new Player(Colors.BLACK));
+  const [whitePlayer] = useState(new Player(EChessColors.WHITE));
+  const [blackPlayer] = useState(new Player(EChessColors.BLACK));
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
   const [isTimerModalOpen, setIsTimerModalOpen] = useState(true);
   const [winner, setWinner] = useState('');
@@ -34,7 +34,8 @@ export const Chess = () => {
 
   const endGame = (color?: string) => {
     if (!color) {
-      const winColor = currentPlayer?.color === Colors.WHITE ? Colors.BLACK : Colors.WHITE;
+      const winColor =
+        currentPlayer?.color === EChessColors.WHITE ? EChessColors.BLACK : EChessColors.WHITE;
       setWinner(winColor);
     }
   };
@@ -45,7 +46,7 @@ export const Chess = () => {
   };
 
   const swapPlayer = () => {
-    setCurrentPlayer(currentPlayer?.color === Colors.WHITE ? blackPlayer : whitePlayer);
+    setCurrentPlayer(currentPlayer?.color === EChessColors.WHITE ? blackPlayer : whitePlayer);
   };
 
   return (
@@ -77,10 +78,20 @@ export const Chess = () => {
         swapPlayer={swapPlayer}
       />
       <div className="lost">
-        <LostFigures title={t('black')} figures={board.lostBlackFigures} />
-        <LostFigures title={t('white')} figures={board.lostWhightFigures} />
+        <LostFigures
+          title={t('black')}
+          figures={board.lostBlackFigures}
+        />
+        <LostFigures
+          title={t('white')}
+          figures={board.lostWhightFigures}
+        />
       </div>
-      <WinnerModal isOpened={!!winner} newGame={newGame} color={winner} />
+      <WinnerModal
+        isOpened={!!winner}
+        newGame={newGame}
+        color={winner}
+      />
     </div>
   );
 };

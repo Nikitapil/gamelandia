@@ -1,4 +1,4 @@
-import { Colors } from '../models/Colors';
+import { EChessColors } from '../models/EChessColors';
 import { Figure } from '../models/figures/figure';
 
 export enum FigureNames {
@@ -12,5 +12,5 @@ export enum FigureNames {
 }
 
 export type Kings = {
-  [key in Colors]: Figure | null;
+  [key in EChessColors]: Figure | null;
 };

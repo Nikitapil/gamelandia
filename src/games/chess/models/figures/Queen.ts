@@ -1,14 +1,14 @@
 import { FigureNames } from '../../helpers/constants';
 import { Cell } from '../Cell';
-import { Colors } from '../Colors';
+import { EChessColors } from '../EChessColors';
 import { Figure } from './figure';
 import blackLogo from '../../assets/figure-images/black-queen.png';
 import whiteLogo from '../../assets/figure-images/white-queen.png';
 
 export class Queen extends Figure {
-  constructor(color: Colors, cell?: Cell) {
+  constructor(color: EChessColors, cell?: Cell) {
     super(color, cell);
-    this.logo = color === Colors.BLACK ? blackLogo : whiteLogo;
+    this.logo = color === EChessColors.BLACK ? blackLogo : whiteLogo;
     this.name = FigureNames.QUEEN;
   }
 

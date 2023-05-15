@@ -14,13 +14,10 @@ import { IChessTime } from '../helpers/types';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
 import { Board } from '../models/Board';
-import { Colors } from '../models/Colors';
+import { EChessColors } from '../models/EChessColors';
 import { Player } from '../models/Player';
 import '../assets/styles/chess.scss';
-import {
-  chessBoardToFirebaseMapper,
-  mapBoardFromFireBase
-} from '../helpers/chessMapper';
+import { chessBoardToFirebaseMapper, mapBoardFromFireBase } from '../helpers/chessMapper';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
@@ -40,8 +37,8 @@ export const ChessOnline = () => {
   const firestore = useContext(FirebaseContext);
   const [roomData, loading] = useDocumentData(doc(firestore, 'chess', id!));
   const [board, setBoard] = useState<Board>(new Board());
-  const [whitePlayer] = useState(new Player(Colors.WHITE));
-  const [blackPlayer] = useState(new Player(Colors.BLACK));
+  const [whitePlayer] = useState(new Player(EChessColors.WHITE));
+  const [blackPlayer] = useState(new Player(EChessColors.BLACK));
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
   const [winner, setWinner] = useState('');
   const [isFull, setIsFull] = useState(false);
@@ -52,10 +49,7 @@ export const ChessOnline = () => {
       navigate('/login?page=chess/rooms');
     }
     if (user && roomData?.player1 && roomData?.player2) {
-      if (
-        roomData?.player1.uid !== user?.id &&
-        roomData?.player2.uid !== user?.id
-      ) {
+      if (roomData?.player1.uid !== user?.id && roomData?.player2.uid !== user?.id) {
         setIsFull(true);
         return;
       }
@@ -82,19 +76,14 @@ export const ChessOnline = () => {
       const player1 = {
         uid: user.id,
         name: user.username,
-        color: Colors.WHITE
+        color: EChessColors.WHITE
       };
       setDoc(doc(firestore, 'chess', id!), { ...roomData, player1 });
-    } else if (
-      roomData &&
-      user &&
-      !roomData.player2 &&
-      roomData.player1.uid !== user.id
-    ) {
+    } else if (roomData && user && !roomData.player2 && roomData.player1.uid !== user.id) {
       const player2 = {
         uid: user.id,
         name: user.username,
-        color: Colors.BLACK
+        color: EChessColors.BLACK
       };
       setDoc(doc(firestore, 'chess', id!), { ...roomData, player2 });
     }
@@ -112,9 +101,7 @@ export const ChessOnline = () => {
   const endGame = (color?: string) => {
     if (!color) {
       const winnerPlayer =
-        currentPlayer?.color === Colors.WHITE
-          ? roomData?.player2
-          : roomData?.player1;
+        currentPlayer?.color === EChessColors.WHITE ? roomData?.player2 : roomData?.player1;
       setDoc(doc(firestore, 'chess', id!), {
         ...roomData,
         winner: winnerPlayer
@@ -125,9 +112,7 @@ export const ChessOnline = () => {
   const swapPlayer = () => {
     if (roomData) {
       const nextPlayer =
-        currentPlayer?.color === Colors.WHITE
-          ? roomData.player2
-          : roomData.player1;
+        currentPlayer?.color === EChessColors.WHITE ? roomData.player2 : roomData.player1;
       setDoc(doc(firestore, 'chess', id!), {
         ...roomData,
         isGameStarted: true,
@@ -136,9 +121,7 @@ export const ChessOnline = () => {
         time
       });
     }
-    setCurrentPlayer(
-      currentPlayer?.color === Colors.WHITE ? blackPlayer : whitePlayer
-    );
+    setCurrentPlayer(currentPlayer?.color === EChessColors.WHITE ? blackPlayer : whitePlayer);
   };
 
   if (!roomData && !loading && !winner) {
@@ -154,7 +137,12 @@ export const ChessOnline = () => {
   }
 
   if (winner) {
-    return <WinnerCommon page="/chess/rooms" winner={winner} />;
+    return (
+      <WinnerCommon
+        page="/chess/rooms"
+        winner={winner}
+      />
+    );
   }
 
   return (

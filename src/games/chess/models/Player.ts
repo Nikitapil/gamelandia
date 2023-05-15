@@ -1,9 +1,9 @@
-import { Colors } from './Colors';
+import { EChessColors } from './EChessColors';
 
 export class Player {
-  color: Colors;
+  color: EChessColors;
 
-  constructor(color: Colors) {
+  constructor(color: EChessColors) {
     this.color = color;
   }
 }

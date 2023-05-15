@@ -1,14 +1,14 @@
 import { FigureNames } from '../../helpers/constants';
 import { Cell } from '../Cell';
-import { Colors } from '../Colors';
+import { EChessColors } from '../EChessColors';
 import { Figure } from './figure';
 import blackLogo from '../../assets/figure-images/black-knight.png';
 import whiteLogo from '../../assets/figure-images/white-knight.png';
 
 export class Knight extends Figure {
-  constructor(color: Colors, cell?: Cell) {
+  constructor(color: EChessColors, cell?: Cell) {
     super(color, cell);
-    this.logo = color === Colors.BLACK ? blackLogo : whiteLogo;
+    this.logo = color === EChessColors.BLACK ? blackLogo : whiteLogo;
     this.name = FigureNames.KNIGHT;
   }
 

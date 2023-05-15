@@ -14,11 +14,7 @@ import { FirebaseContext } from '../../../context/firebase-context/FirebaseConte
 export const ChessRooms = () => {
   const { t } = useTranslation();
   useTitle(t('chess'));
-  useBreadcrumbs([
-    breadcrumbs.main,
-    breadcrumbs.chessTypes,
-    breadcrumbs.chessRooms
-  ]);
+  useBreadcrumbs([breadcrumbs.main, breadcrumbs.chessTypes, breadcrumbs.chessRooms]);
   const firestore = useContext(FirebaseContext);
   const [rooms] = useCollectionData(collection(firestore, 'chess'));
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,13 +41,20 @@ export const ChessRooms = () => {
 
   return (
     <div className="chess">
-      <RoomsCommon rooms={rooms} page="chess/rooms" createRoom={toggleModal} />
+      <RoomsCommon
+        rooms={rooms}
+        page="chess/rooms"
+        createRoom={toggleModal}
+      />
       <ModalContainer
         closeModal={toggleModal}
         title="Set time of the Game"
         isOpened={isModalOpen}
       >
-        <TimerModal closeModal={toggleModal} start={createRoom} />
+        <TimerModal
+          closeModal={toggleModal}
+          start={createRoom}
+        />
       </ModalContainer>
     </div>
   );

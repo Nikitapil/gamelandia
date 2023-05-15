@@ -11,7 +11,7 @@ import { WinnerModal } from '../games/chess/components/WinnerModal';
 import { TimerModal } from '../games/chess/components/TimerModal';
 import { FiguresModal } from '../games/chess/components/FiguresModal';
 import { Player } from '../games/chess/models/Player';
-import { Colors } from '../games/chess/models/Colors';
+import { EChessColors } from '../games/chess/models/EChessColors';
 import { ChessTimer } from '../games/chess/components/ChessTimer';
 import { ChessCellComponent } from '../games/chess/components/ChessCellComponent';
 import { rootReducer } from '../store/root-reducer';
@@ -55,7 +55,7 @@ describe('chess tests', () => {
   test('FiguresModal should call functions', () => {
     const swapPlayer = jest.fn();
     const closeModal = jest.fn();
-    const player = new Player(Colors.WHITE);
+    const player = new Player(EChessColors.WHITE);
     const board = new Board();
     board.initCells();
     render(
@@ -81,7 +81,7 @@ describe('chess tests', () => {
   });
 
   test('timer component', () => {
-    const player = new Player(Colors.WHITE);
+    const player = new Player(EChessColors.WHITE);
     const restart = jest.fn();
     const endGame = jest.fn();
     let isModalOpen = false;
@@ -103,7 +103,7 @@ describe('chess tests', () => {
     expect(isModalOpen).toBe(true);
   });
   test('timer component intervals', async () => {
-    const player = new Player(Colors.WHITE);
+    const player = new Player(EChessColors.WHITE);
     const restart = jest.fn();
     const endGame = jest.fn();
     let isModalOpen = false;

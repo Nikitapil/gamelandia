@@ -23,7 +23,10 @@ export const TimerModal = memo(({ start, closeModal }: TimerModalProps) => {
   };
 
   return (
-    <div className="timer-modal" data-testid="timer-modal">
+    <div
+      className="timer-modal"
+      data-testid="timer-modal"
+    >
       <label htmlFor="time-input">
         <input
           type="number"

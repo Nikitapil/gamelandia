@@ -1,11 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Colors } from '../Colors';
+import { EChessColors } from '../EChessColors';
 import logo from '../../assets/figure-images/black-king.png';
 import { FigureNames } from '../../helpers/constants';
 import { Cell } from '../Cell';
 
 export class Figure {
-  color: Colors;
+  color: EChessColors;
 
   logo: typeof logo | null;
 
@@ -15,7 +15,7 @@ export class Figure {
 
   id: number;
 
-  constructor(color: Colors, cell?: Cell) {
+  constructor(color: EChessColors, cell?: Cell) {
     this.color = color;
     if (cell) {
       this.cell = cell;

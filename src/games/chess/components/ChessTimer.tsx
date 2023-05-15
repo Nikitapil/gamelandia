@@ -1,10 +1,13 @@
-import React, { memo, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Colors } from '../models/Colors';
+import { EChessColors } from '../models/EChessColors';
 import { Player } from '../models/Player';
 import { ModalContainer } from '../../../components/UI/ModalContainer/ModalContainer';
 import { TimerModal } from './TimerModal';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
+import { IChessTime } from '../helpers/types';
+import { formatChessTime } from '../helpers/utils';
+import styles from '../assets/styles/chess.module.scss';
 
 interface ChessTimerProps {
   currentPlayer: Player | null;
@@ -12,72 +15,47 @@ interface ChessTimerProps {
   endGame: () => void;
   isModalOpen: boolean;
   setIsModalOpen: (bool: boolean) => void;
-  setWinner: (color: Colors) => void;
+  setWinner: (color: EChessColors) => void;
 }
 
 export const ChessTimer = memo(
-  ({
-    currentPlayer,
-    restart,
-    isModalOpen,
-    setIsModalOpen,
-    setWinner
-  }: ChessTimerProps) => {
-    const [blackTime, setBlackTime] = useState(300);
-    const [whiteTime, setWhiteTime] = useState(300);
-    const timer = useRef<null | ReturnType<typeof setInterval>>(null);
+  ({ currentPlayer, restart, isModalOpen, setIsModalOpen, setWinner }: ChessTimerProps) => {
     const { t } = useTranslation();
 
-    const decrementBlackTimer = () => {
-      if (blackTime <= 0) {
-        setWinner(Colors.WHITE);
-        clearInterval(timer.current!);
-      }
-      setBlackTime((prev) => prev - 1);
-    };
+    const [time, setTime] = useState<IChessTime>({
+      black: 300,
+      white: 300
+    });
 
-    const decrementWhiteTimer = () => {
-      if (whiteTime <= 0) {
-        setWinner(Colors.BLACK);
-        clearInterval(timer.current!);
-      }
-      setWhiteTime((prev) => prev - 1);
-    };
+    const timer = useRef<null | ReturnType<typeof setInterval>>(null);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const startTimer = () => {
+    const decrementTimer = useCallback(() => {
+      const key = currentPlayer?.color || 'white';
+
+      if (time[key] <= 0) {
+        const winner = key === 'white' ? EChessColors.BLACK : EChessColors.WHITE;
+        setWinner(winner);
+        if (timer.current) {
+          clearInterval(timer.current);
+        }
+        return;
+      }
+
+      setTime({ ...time, [key]: time[key] - 1 });
+    }, [currentPlayer?.color, setWinner, time]);
+
+    const startTimer = useCallback(() => {
       if (timer.current) {
         clearInterval(timer.current);
       }
-      const callback =
-        currentPlayer?.color === Colors.WHITE
-          ? decrementWhiteTimer
-          : decrementBlackTimer;
-      timer.current = setInterval(callback, 1000);
-    };
+      timer.current = setInterval(decrementTimer, 1000);
+    }, [decrementTimer]);
 
-    useEffect(() => {
-      startTimer();
-    }, [currentPlayer, startTimer]);
-
-    useEffect(() => {
-      if (whiteTime <= 0) {
-        if (timer.current) {
-          clearInterval(timer.current);
-        }
-        setWinner(Colors.BLACK);
-      }
-      if (blackTime <= 0) {
-        if (timer.current) {
-          clearInterval(timer.current);
-        }
-        setWinner(Colors.WHITE);
-      }
-    }, [whiteTime, blackTime, setWinner]);
-
-    const handleRestart = (time: number = 300) => {
-      setBlackTime(time);
-      setWhiteTime(time);
+    const handleRestart = (timeValue: number = 300) => {
+      setTime({
+        white: timeValue,
+        black: timeValue
+      });
       restart();
       setIsModalOpen(false);
     };
@@ -86,34 +64,40 @@ export const ChessTimer = memo(
       setIsModalOpen(false);
     };
 
+    useEffect(() => {
+      startTimer();
+    }, [currentPlayer, startTimer]);
+
     return (
       <div>
         <AppButton
           onClick={() => setIsModalOpen(true)}
-          customClass="chess__restart"
+          customClass={styles.chess__restart}
           testId="chess__restart"
           type="button"
           fullWidth
         >
           {t('restart_game')}
         </AppButton>
-        <div className="chess-timer__time">
-          <div className="chess-timer__item">
-            {t('black')} -{' '}
-            <div className="time">{(blackTime / 60).toFixed(0)}m</div>
+
+        <div className={styles['chess-timer__time']}>
+          <div className={styles['chess-timer__item']}>
+            {t('black')} - <div className={styles.time}>{formatChessTime(time.black)}m</div>
           </div>
-          <div className="chess-timer__item">
-            {' '}
-            {t('white')} -{' '}
-            <div className="time">{(whiteTime / 60).toFixed(0)}m</div>
+          <div className={styles['chess-timer__item']}>
+            {t('white')} - <div className={styles.time}>{formatChessTime(time.white)}m</div>
           </div>
         </div>
+
         <ModalContainer
           isOpened={isModalOpen}
           closeModal={() => handleRestart(3600)}
           title={t('set_game_time')}
         >
-          <TimerModal closeModal={closeModal} start={handleRestart} />
+          <TimerModal
+            closeModal={closeModal}
+            start={handleRestart}
+          />
         </ModalContainer>
       </div>
     );

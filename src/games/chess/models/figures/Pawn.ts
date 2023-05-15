@@ -1,14 +1,14 @@
 import { FigureNames } from '../../helpers/constants';
 import { Cell } from '../Cell';
-import { Colors } from '../Colors';
+import { EChessColors } from '../EChessColors';
 import { Figure } from './figure';
 import blackLogo from '../../assets/figure-images/black-pawn.png';
 import whiteLogo from '../../assets/figure-images/white-pawn.png';
 
 export class Pawn extends Figure {
-  constructor(color: Colors, cell?: Cell) {
+  constructor(color: EChessColors, cell?: Cell) {
     super(color, cell);
-    this.logo = color === Colors.BLACK ? blackLogo : whiteLogo;
+    this.logo = color === EChessColors.BLACK ? blackLogo : whiteLogo;
     this.name = FigureNames.PAWN;
   }
 
@@ -16,13 +16,11 @@ export class Pawn extends Figure {
     if (!super.canMove(target)) {
       return false;
     }
-    const direction = this.cell!.figure?.color === Colors.BLACK ? 1 : -1;
-    const firestStepDirection =
-      this.cell!.figure?.color === Colors.BLACK ? 2 : -2;
+    const direction = this.cell!.figure?.color === EChessColors.BLACK ? 1 : -1;
+    const firestStepDirection = this.cell!.figure?.color === EChessColors.BLACK ? 2 : -2;
     if (
       (target.y === this.cell!.y + direction ||
-        (this.isFirstStep &&
-          target.y === this.cell!.y + firestStepDirection)) &&
+        (this.isFirstStep && target.y === this.cell!.y + firestStepDirection)) &&
       target.x === this.cell!.x &&
       this.cell!.board.getCell(target.x, target.y).isEmpty() &&
       this.cell!.isEmptyVertical(target)
@@ -37,7 +35,7 @@ export class Pawn extends Figure {
   }
 
   checkIfEndOfBoard() {
-    const endY = this.color === Colors.WHITE ? 0 : 7;
+    const endY = this.color === EChessColors.WHITE ? 0 : 7;
     return this.cell!.y === endY;
   }
 
@@ -46,7 +44,7 @@ export class Pawn extends Figure {
   }
 
   get isFirstStep() {
-    const startPoint = this.color === Colors.WHITE ? 6 : 1;
+    const startPoint = this.color === EChessColors.WHITE ? 6 : 1;
     return this.cell?.y === startPoint;
   }
 }
