@@ -85,7 +85,7 @@ export const Chess = () => {
         />
         <LostFigures
           title={t('white')}
-          figures={board.lostWhightFigures}
+          figures={board.lostWhiteFigures}
         />
       </div>
       <WinnerModal

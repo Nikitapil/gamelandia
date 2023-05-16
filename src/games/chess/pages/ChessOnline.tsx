@@ -180,7 +180,7 @@ export const ChessOnline = () => {
         />
         <LostFigures
           title={`${t('white')} ${roomData?.player1.name}`}
-          figures={board.lostWhightFigures}
+          figures={board.lostWhiteFigures}
         />
       </div>
     </div>

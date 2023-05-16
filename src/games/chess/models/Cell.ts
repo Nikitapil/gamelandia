@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { Board } from './Board';
 import { EChessColors } from './EChessColors';
-import { Figure } from './figures/figure';
+import { Figure } from './figures/Figure';
 
 export class Cell {
   readonly x: number;
@@ -36,15 +36,15 @@ export class Cell {
   }
 
   addLostfigure(figure: Figure) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    figure.color === EChessColors.BLACK
-      ? this.board.lostBlackFigures.push(figure)
-      : this.board.lostWhightFigures.push(figure);
+    if (figure.color === EChessColors.BLACK) {
+      this.board.lostBlackFigures.push(figure);
+      return;
+    }
+    this.board.lostWhiteFigures.push(figure);
   }
 
   moveFigure(target: Cell) {
-    if (this.figure && this.figure?.canMove(target)) {
-      this.figure.moveFigure(target);
+    if (this.figure && this.figure.canMove(target)) {
       if (target.figure) {
         this.addLostfigure(target.figure);
       }
@@ -53,12 +53,13 @@ export class Cell {
       this.figure = null;
       if (this.board.kings[target.figure?.color!]?.cell!.isUnderAttack()) {
         if (targetFigure) {
-          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-          targetFigure.color === EChessColors.BLACK
-            ? this.board.lostBlackFigures.pop()
-            : this.board.lostWhightFigures.pop();
+          if (targetFigure.color === EChessColors.BLACK) {
+            this.board.lostBlackFigures.pop();
+          } else {
+            this.board.lostWhiteFigures.pop();
+          }
         }
-        this.setFigure(target.figure!);
+        this.setFigure(target.figure);
         target.setFigure(targetFigure);
         return false;
       }

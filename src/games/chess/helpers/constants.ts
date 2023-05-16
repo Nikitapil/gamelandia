@@ -1,5 +1,5 @@
 import { EChessColors } from '../models/EChessColors';
-import { Figure } from '../models/figures/figure';
+import { Figure } from '../models/figures/Figure';
 
 export enum EFigureNames {
   FIGURE = 'FIGURE',

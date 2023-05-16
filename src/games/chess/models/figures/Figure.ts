@@ -4,10 +4,10 @@ import logo from '../../assets/figure-images/black-king.png';
 import { EFigureNames } from '../../helpers/constants';
 import { Cell } from '../Cell';
 
-export class Figure {
+export abstract class Figure {
   color: EChessColors;
 
-  logo: typeof logo | null;
+  logo: typeof logo;
 
   cell: Cell | null;
 
@@ -15,7 +15,7 @@ export class Figure {
 
   id: number;
 
-  constructor(color: EChessColors, cell?: Cell) {
+  protected constructor(color: EChessColors, cell?: Cell) {
     this.color = color;
     if (cell) {
       this.cell = cell;
@@ -23,7 +23,7 @@ export class Figure {
     } else {
       this.cell = null;
     }
-    this.logo = null;
+    this.logo = '';
     this.name = EFigureNames.FIGURE;
     this.id = uuidv4();
   }
@@ -35,10 +35,6 @@ export class Figure {
     return !(this.name === EFigureNames.KING && target.figure?.name === EFigureNames.KING);
   }
 
-  // eslint-disable-next-line class-methods-use-this,@typescript-eslint/no-unused-vars
-  moveFigure(target: Cell) {}
-
-  // eslint-disable-next-line class-methods-use-this
   checkIfEndOfBoard() {
     return false;
   }

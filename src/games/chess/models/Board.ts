@@ -1,4 +1,4 @@
-import { Figure } from './figures/figure';
+import { Figure } from './figures/Figure';
 import { Knight } from './figures/Knight';
 import { Bishop } from './figures/Bishop';
 import { King } from './figures/King';
@@ -14,7 +14,7 @@ export class Board {
 
   lostBlackFigures: Figure[] = [];
 
-  lostWhightFigures: Figure[] = [];
+  lostWhiteFigures: Figure[] = [];
 
   kings: Kings = {
     white: null,
@@ -102,7 +102,7 @@ export class Board {
     const newBoard = new Board();
     newBoard.cells = this.cells;
     newBoard.lostBlackFigures = this.lostBlackFigures;
-    newBoard.lostWhightFigures = this.lostWhightFigures;
+    newBoard.lostWhiteFigures = this.lostWhiteFigures;
     newBoard.kings = this.kings;
     newBoard.underAttackMessage = this.underAttackMessage;
     return newBoard;

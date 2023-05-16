@@ -6,7 +6,7 @@ import { renderWithRedux, renderWithRouter } from '../utils/test/utils';
 import { Board } from '../games/chess/models/Board';
 import { Cell } from '../games/chess/models/Cell';
 import { King } from '../games/chess/models/figures/King';
-import { Figure } from '../games/chess/models/figures/figure';
+import { Figure } from '../games/chess/models/figures/Figure';
 import { WinnerModal } from '../games/chess/components/WinnerModal';
 import { TimerModal } from '../games/chess/components/TimerModal';
 import { FiguresModal } from '../games/chess/components/FiguresModal';
@@ -305,7 +305,7 @@ describe('chess classes test', () => {
     cell.moveFigure(board.cells[3][0]);
     board.cells[6][1].moveFigure(board.cells[4][1]);
     board.cells[3][0].moveFigure(board.cells[4][1]);
-    expect(board.lostWhightFigures.length).toBe(1);
+    expect(board.lostWhiteFigures.length).toBe(1);
   });
 
   test('cell isEmptyDiagonal', () => {

@@ -1,6 +1,6 @@
 import { Cell } from '../Cell';
 import { EChessColors } from '../EChessColors';
-import { Figure } from './figure';
+import { Figure } from './Figure';
 import blackLogo from '../../assets/figure-images/black-bishop.png';
 import whiteLogo from '../../assets/figure-images/white-bishop.png';
 import { EFigureNames } from '../../helpers/constants';
@@ -13,9 +13,9 @@ export class Bishop extends Figure {
   }
 
   canMove(target: Cell): boolean {
-    if (!super.canMove(target)) {
+    if (!super.canMove(target) || !this.cell) {
       return false;
     }
-    return this.cell!.isEmptyDiagonal(target);
+    return this.cell.isEmptyDiagonal(target);
   }
 }

@@ -4,7 +4,7 @@ import { IFirebaseChessBoard, IFireBaseChessFigure } from './types';
 import { Board } from '../models/Board';
 import { Cell } from '../models/Cell';
 import { Bishop } from '../models/figures/Bishop';
-import { Figure } from '../models/figures/figure';
+import { Figure } from '../models/figures/Figure';
 import { King } from '../models/figures/King';
 import { Knight } from '../models/figures/Knight';
 import { Pawn } from '../models/figures/Pawn';
@@ -30,7 +30,7 @@ export const chessBoardToFirebaseMapper = (board: Board) => {
   return {
     cells: mapCellsToFirebase(board.cells),
     lostBlackFigures: figuresToFirebase(board.lostBlackFigures),
-    lostWhightFigures: figuresToFirebase(board.lostWhightFigures),
+    lostWhightFigures: figuresToFirebase(board.lostWhiteFigures),
     underAttackMessage: board.underAttackMessage
   };
 };
@@ -70,7 +70,7 @@ export const mapBoardFromFireBase = (board: IFirebaseChessBoard) => {
     8
   );
   newBoard.lostBlackFigures = board.lostBlackFigures.map((fig) => createFigure(fig));
-  newBoard.lostWhightFigures = board.lostWhightFigures.map((fig) => createFigure(fig));
+  newBoard.lostWhiteFigures = board.lostWhightFigures.map((fig) => createFigure(fig));
   newBoard.underAttackMessage = board.underAttackMessage;
   return newBoard;
 };

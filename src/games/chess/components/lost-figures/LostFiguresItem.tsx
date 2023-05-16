@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Figure } from '../../models/figures/figure';
+import { Figure } from '../../models/figures/Figure';
 import styles from '../../assets/styles/chess.module.scss';
 
 interface ILostFiguresItemProps {
