@@ -1,9 +1,9 @@
-import { FigureNames } from './constants';
+import { EFigureNames } from './constants';
 import { EChessColors } from '../models/EChessColors';
 
 export interface IFireBaseChessFigure {
   color: EChessColors;
-  name: FigureNames;
+  name: EFigureNames;
 }
 
 export interface IFirebaseChessCell {

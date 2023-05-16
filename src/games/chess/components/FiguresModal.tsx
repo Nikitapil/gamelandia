@@ -7,7 +7,7 @@ import {
   faChessRook
 } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
-import { FigureNames } from '../helpers/constants';
+import { EFigureNames } from '../helpers/constants';
 import { Cell } from '../models/Cell';
 import { Bishop } from '../models/figures/Bishop';
 import { Knight } from '../models/figures/Knight';
@@ -43,16 +43,16 @@ export const FiguresModal: FC<IFiguresModalProps> = ({
 
   const chooseFigure = (figure: string) => {
     switch (figure) {
-      case FigureNames.BISHOP:
+      case EFigureNames.BISHOP:
         new Bishop(currentPlayer.color, cell);
         break;
-      case FigureNames.KNIGHT:
+      case EFigureNames.KNIGHT:
         new Knight(currentPlayer.color, cell);
         break;
-      case FigureNames.QUEEN:
+      case EFigureNames.QUEEN:
         new Queen(currentPlayer.color, cell);
         break;
-      case FigureNames.ROOK:
+      case EFigureNames.ROOK:
         new Rook(currentPlayer.color, cell);
         break;
       default:
@@ -73,7 +73,7 @@ export const FiguresModal: FC<IFiguresModalProps> = ({
       <div className={styles['figures-container']}>
         <button
           className={styles['figure-button']}
-          onClick={() => chooseFigure(FigureNames.BISHOP)}
+          onClick={() => chooseFigure(EFigureNames.BISHOP)}
           data-testid="bishop-btn"
           type="button"
         >
@@ -81,7 +81,7 @@ export const FiguresModal: FC<IFiguresModalProps> = ({
         </button>
         <button
           className={styles['figure-button']}
-          onClick={() => chooseFigure(FigureNames.KNIGHT)}
+          onClick={() => chooseFigure(EFigureNames.KNIGHT)}
           data-testid="knight-btn"
           type="button"
         >
@@ -89,7 +89,7 @@ export const FiguresModal: FC<IFiguresModalProps> = ({
         </button>
         <button
           className={styles['figure-button']}
-          onClick={() => chooseFigure(FigureNames.QUEEN)}
+          onClick={() => chooseFigure(EFigureNames.QUEEN)}
           data-testid="queen-btn"
           type="button"
         >
@@ -97,7 +97,7 @@ export const FiguresModal: FC<IFiguresModalProps> = ({
         </button>
         <button
           className={styles['figure-button']}
-          onClick={() => chooseFigure(FigureNames.ROOK)}
+          onClick={() => chooseFigure(EFigureNames.ROOK)}
           data-testid="rook-btn"
           type="button"
         >

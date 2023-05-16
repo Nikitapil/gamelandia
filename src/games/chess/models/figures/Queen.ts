@@ -1,4 +1,4 @@
-import { FigureNames } from '../../helpers/constants';
+import { EFigureNames } from '../../helpers/constants';
 import { Cell } from '../Cell';
 import { EChessColors } from '../EChessColors';
 import { Figure } from './figure';
@@ -9,7 +9,7 @@ export class Queen extends Figure {
   constructor(color: EChessColors, cell?: Cell) {
     super(color, cell);
     this.logo = color === EChessColors.BLACK ? blackLogo : whiteLogo;
-    this.name = FigureNames.QUEEN;
+    this.name = EFigureNames.QUEEN;
   }
 
   canMove(target: Cell): boolean {

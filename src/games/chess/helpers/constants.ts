@@ -1,7 +1,7 @@
 import { EChessColors } from '../models/EChessColors';
 import { Figure } from '../models/figures/figure';
 
-export enum FigureNames {
+export enum EFigureNames {
   FIGURE = 'FIGURE',
   KING = 'KING',
   KNIGHT = 'KNIGHT',

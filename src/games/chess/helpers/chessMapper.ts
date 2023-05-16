@@ -1,5 +1,5 @@
 import { chunk } from 'lodash';
-import { FigureNames } from './constants';
+import { EFigureNames } from './constants';
 import { IFirebaseChessBoard, IFireBaseChessFigure } from './types';
 import { Board } from '../models/Board';
 import { Cell } from '../models/Cell';
@@ -11,19 +11,19 @@ import { Pawn } from '../models/figures/Pawn';
 import { Queen } from '../models/figures/Queen';
 import { Rook } from '../models/figures/Rook';
 
+const figureToFirebase = ({ name, color }: Figure) => ({ name, color });
+
 const mapCellsToFirebase = (cells: Cell[][]) => {
   return cells.flat().map((cell) => ({
     x: cell.x,
     y: cell.y,
     color: cell.color,
-    figure: cell.figure
-      ? { name: cell.figure?.name, color: cell.figure?.color }
-      : null
+    figure: cell.figure ? figureToFirebase(cell.figure) : null
   }));
 };
 
 const figuresToFirebase = (figures: Figure[]) => {
-  return figures.map((fig) => ({ name: fig.name, color: fig.color }));
+  return figures.map((fig) => figureToFirebase(fig));
 };
 
 export const chessBoardToFirebaseMapper = (board: Board) => {
@@ -36,23 +36,21 @@ export const chessBoardToFirebaseMapper = (board: Board) => {
 };
 
 const createFigure = (figureData: IFireBaseChessFigure, cell?: Cell) => {
-  if (figureData.name === FigureNames.BISHOP) {
-    return new Bishop(figureData.color, cell);
-  }
-  if (figureData.name === FigureNames.KING) {
-    return new King(figureData.color, cell);
-  }
-  if (figureData.name === FigureNames.KNIGHT) {
-    return new Knight(figureData.color, cell);
-  }
-  if (figureData.name === FigureNames.PAWN) {
-    return new Pawn(figureData.color, cell);
-  }
-  if (figureData.name === FigureNames.QUEEN) {
-    return new Queen(figureData.color, cell);
-  }
-  if (figureData.name === FigureNames.ROOK) {
-    return new Rook(figureData.color, cell);
+  switch (figureData.name) {
+    case EFigureNames.BISHOP:
+      return new Bishop(figureData.color, cell);
+    case EFigureNames.KING:
+      return new King(figureData.color, cell);
+    case EFigureNames.KNIGHT:
+      return new Knight(figureData.color, cell);
+    case EFigureNames.PAWN:
+      return new Pawn(figureData.color, cell);
+    case EFigureNames.QUEEN:
+      return new Queen(figureData.color, cell);
+    case EFigureNames.ROOK:
+      return new Rook(figureData.color, cell);
+    default:
+      throw new Error('Unknown figure name');
   }
 };
 
@@ -63,7 +61,7 @@ export const mapBoardFromFireBase = (board: IFirebaseChessBoard) => {
       const newCell = new Cell(newBoard, cell.x, cell.y, cell.color, null);
       if (cell.figure) {
         const figure = createFigure(cell.figure, newCell);
-        if (figure?.name === FigureNames.KING) {
+        if (figure?.name === EFigureNames.KING) {
           newBoard.kings[figure.color] = figure;
         }
       }
@@ -71,12 +69,8 @@ export const mapBoardFromFireBase = (board: IFirebaseChessBoard) => {
     }),
     8
   );
-  newBoard.lostBlackFigures = board.lostBlackFigures.map(
-    (fig) => createFigure(fig)!
-  );
-  newBoard.lostWhightFigures = board.lostWhightFigures.map(
-    (fig) => createFigure(fig)!
-  );
+  newBoard.lostBlackFigures = board.lostBlackFigures.map((fig) => createFigure(fig));
+  newBoard.lostWhightFigures = board.lostWhightFigures.map((fig) => createFigure(fig));
   newBoard.underAttackMessage = board.underAttackMessage;
   return newBoard;
 };

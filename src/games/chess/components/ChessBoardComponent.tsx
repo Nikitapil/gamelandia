@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
-import { FigureNames } from '../helpers/constants';
+import { EFigureNames } from '../helpers/constants';
 import { Board } from '../models/Board';
 import { Cell } from '../models/Cell';
 import { Player } from '../models/Player';
@@ -48,7 +48,7 @@ export const ChessBoardComponent: FC<IChessBoardComponentProps> = ({
       updateSelectedCell(null);
 
       if (move) {
-        if (cell.figure?.name === FigureNames.PAWN && cell.figure?.checkIfEndOfBoard()) {
+        if (cell.figure?.name === EFigureNames.PAWN && cell.figure?.checkIfEndOfBoard()) {
           setPawnCell(cell);
           return;
         }
