@@ -13,7 +13,6 @@ interface IChessTimerProps {
   currentPlayer: Player | null;
   isModalOpen: boolean;
   restart: () => void;
-  endGame: () => void;
   setIsModalOpen: (bool: boolean) => void;
   setWinner: (color: EChessColors) => void;
 }

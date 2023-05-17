@@ -213,3 +213,27 @@
   margin-bottom: 10px;
   padding: 0 5px;
 }
+
+.chess {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10px !important;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+}
+
+.chess_timer {
+  align-self: flex-start;
+  padding-top: 30px;
+  margin-right: 10px;
+
+  @media (max-width: 500px) {
+    align-self: center;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+}

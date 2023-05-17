@@ -18,27 +18,26 @@ export const Chess = () => {
   const { t } = useTranslation();
   useTitle(t('chess'));
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.chessTypes, breadcrumbs.chessOffline]);
+
   const [board, setBoard] = useState(new Board());
   const [whitePlayer] = useState(new Player(EChessColors.WHITE));
   const [blackPlayer] = useState(new Player(EChessColors.BLACK));
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
   const [isTimerModalOpen, setIsTimerModalOpen] = useState(true);
   const [winner, setWinner] = useState('');
+
   const restart = () => {
     setWinner('');
     const newBoard = new Board();
-    newBoard.initCells();
-    newBoard.addFigures();
+    newBoard.initNewGame();
     setBoard(newBoard);
     setCurrentPlayer(whitePlayer);
   };
 
-  const endGame = (color?: string) => {
-    if (!color) {
-      const winColor =
-        currentPlayer?.color === EChessColors.WHITE ? EChessColors.BLACK : EChessColors.WHITE;
-      setWinner(winColor);
-    }
+  const endGame = () => {
+    const winColor =
+      currentPlayer?.color === EChessColors.WHITE ? EChessColors.BLACK : EChessColors.WHITE;
+    setWinner(winColor);
   };
 
   const newGame = () => {
@@ -51,12 +50,11 @@ export const Chess = () => {
   };
 
   return (
-    <div className="chess container">
-      <div className="chess_timer">
+    <div className={`${styles.chess} container`}>
+      <div className={styles.chess_timer}>
         <ChessTimer
           currentPlayer={currentPlayer}
           restart={restart}
-          endGame={endGame}
           isModalOpen={isTimerModalOpen}
           setIsModalOpen={setIsTimerModalOpen}
           setWinner={setWinner}

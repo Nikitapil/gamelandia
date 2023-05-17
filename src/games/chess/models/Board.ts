@@ -23,6 +23,11 @@ export class Board {
 
   underAttackMessage = '';
 
+  public initNewGame() {
+    this.initCells();
+    this.addFigures();
+  }
+
   public initCells() {
     for (let i = 0; i < 8; i++) {
       const row: Cell[] = [];
