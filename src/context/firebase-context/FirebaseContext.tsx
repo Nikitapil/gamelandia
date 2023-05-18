@@ -13,9 +13,5 @@ interface IFirebaseProviderProps {
 }
 
 export const FirebaseProvider = ({ children }: IFirebaseProviderProps) => {
-  return (
-    <FirebaseContext.Provider value={firestore}>
-      {children}
-    </FirebaseContext.Provider>
-  );
+  return <FirebaseContext.Provider value={firestore}>{children}</FirebaseContext.Provider>;
 };

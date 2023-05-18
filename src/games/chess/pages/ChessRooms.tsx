@@ -31,7 +31,7 @@ export const ChessRooms = () => {
         white: timer
       },
       board: null,
-      winner: '',
+      winner: null,
       isGameStarted: false,
       id: `room_${(rooms?.length || 0) + 1}`,
       name: `Room ${(rooms?.length || 0) + 1}`

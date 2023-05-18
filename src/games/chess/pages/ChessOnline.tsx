@@ -1,8 +1,6 @@
-import { deleteDoc, doc, setDoc } from 'firebase/firestore';
-import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { useDocumentData } from 'react-firebase-hooks/firestore';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { ChessBoardComponent } from '../components/ChessBoardComponent';
 import { LostFigures } from '../components/lost-figures/LostFigures';
 import { ChessOnlineLoader } from '../components/online/ChessOnlineLoader';
@@ -16,12 +14,13 @@ import { useTitle } from '../../../hooks/useTitle';
 import { Board } from '../models/Board';
 import { EChessColors } from '../models/EChessColors';
 import { Player } from '../models/Player';
-import '../assets/styles/chess.scss';
-import { chessBoardToFirebaseMapper, mapBoardFromFireBase } from '../helpers/chessMapper';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
-import { FirebaseContext } from '../../../context/firebase-context/FirebaseContext';
+import { useChessOnlineRoomData } from '../hooks/useChessOnlineRoomData';
+import { ERoutes } from '../../../constants/routes';
+import { useChessOnlineService } from '../hooks/useChessOnlineService';
+import styles from '../assets/styles/chess.module.scss';
 
 export const ChessOnline = () => {
   const { t } = useTranslation();
@@ -32,100 +31,76 @@ export const ChessOnline = () => {
     breadcrumbs.chessRooms,
     breadcrumbs.chessOnline
   ]);
+
   const { id } = useParams();
   const { user, isAuthLoading } = useAppSelector(authSelector);
-  const firestore = useContext(FirebaseContext);
-  const [roomData, loading] = useDocumentData(doc(firestore, 'chess', id!));
+  const { roomData, loading, isFull, isReadyToStart } = useChessOnlineRoomData(id!);
+  const service = useChessOnlineService();
+
   const [board, setBoard] = useState<Board>(new Board());
   const [whitePlayer] = useState(new Player(EChessColors.WHITE));
   const [blackPlayer] = useState(new Player(EChessColors.BLACK));
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
   const [winner, setWinner] = useState('');
-  const [isFull, setIsFull] = useState(false);
   const [time, setTime] = useState<IChessTime | null>(null);
-  const navigate = useNavigate();
+
   useEffect(() => {
-    if (!isAuthLoading && !user) {
-      navigate('/login?page=chess/rooms');
+    if (!roomData || !user || winner) {
+      return;
     }
-    if (user && roomData?.player1 && roomData?.player2) {
-      if (roomData?.player1.uid !== user?.id && roomData?.player2.uid !== user?.id) {
-        setIsFull(true);
-        return;
-      }
-      if (!roomData.isGameStarted) {
-        board.initCells();
-        board.addFigures();
-        setDoc(doc(firestore, 'chess', id!), {
-          ...roomData,
-          isGameStarted: true,
-          board: chessBoardToFirebaseMapper(board),
-          currentPlayer: roomData.player1
-        });
-        setTime(roomData.time);
-      }
-    }
-    if (roomData?.board) {
-      const currPlayer = new Player(roomData.currentPlayer.color);
-      const newBoard = mapBoardFromFireBase(roomData.board);
+
+    service.setupPlayers(roomData, user);
+
+    if (isReadyToStart) {
+      const newBoard = new Board();
+      newBoard.initNewGame();
       setBoard(newBoard);
-      setCurrentPlayer(currPlayer);
+      service.startGame(roomData, newBoard);
       setTime(roomData.time);
     }
-    if (roomData && user && !roomData.player1) {
-      const player1 = {
-        uid: user.id,
-        name: user.username,
-        color: EChessColors.WHITE
-      };
-      setDoc(doc(firestore, 'chess', id!), { ...roomData, player1 });
-    } else if (roomData && user && !roomData.player2 && roomData.player1.uid !== user.id) {
-      const player2 = {
-        uid: user.id,
-        name: user.username,
-        color: EChessColors.BLACK
-      };
-      setDoc(doc(firestore, 'chess', id!), { ...roomData, player2 });
+
+    const dataFromFireBase = service.getDataFromFirebase(roomData);
+    if (dataFromFireBase) {
+      setBoard(dataFromFireBase.newBoard);
+      setCurrentPlayer(dataFromFireBase.actualCurrentPlayer);
+      setTime(dataFromFireBase.time);
     }
+
     if (roomData?.winner) {
       setWinner(roomData.winner.name);
-      deleteDoc(doc(firestore, 'chess', id!));
+      service.deleteRoom(roomData.id);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [roomData, user, isAuthLoading]);
+  }, [roomData, user, isAuthLoading, service, isReadyToStart, winner]);
 
   const isClickAvailable = useMemo(() => {
-    return roomData && roomData?.currentPlayer?.uid === user?.id;
+    return roomData?.currentPlayer?.uid === user?.id;
   }, [roomData, user?.id]);
 
-  const endGame = (color?: string) => {
-    if (!color) {
-      const winnerPlayer =
-        currentPlayer?.color === EChessColors.WHITE ? roomData?.player2 : roomData?.player1;
-      setDoc(doc(firestore, 'chess', id!), {
-        ...roomData,
-        winner: winnerPlayer
-      });
+  const endGame = async () => {
+    if (!currentPlayer || !roomData) {
+      return;
     }
+    await service.setWinner(roomData, currentPlayer);
   };
 
-  const swapPlayer = () => {
-    if (roomData) {
-      const nextPlayer =
-        currentPlayer?.color === EChessColors.WHITE ? roomData.player2 : roomData.player1;
-      setDoc(doc(firestore, 'chess', id!), {
-        ...roomData,
-        isGameStarted: true,
-        board: chessBoardToFirebaseMapper(board),
-        currentPlayer: nextPlayer,
+  const swapPlayer = async () => {
+    if (roomData && time) {
+      await service.swapPlayer({
+        roomData,
+        currentPlayer,
+        board,
         time
       });
     }
     setCurrentPlayer(currentPlayer?.color === EChessColors.WHITE ? blackPlayer : whitePlayer);
   };
 
+  if (!isAuthLoading && !user) {
+    return <Navigate to={`${ERoutes.LOGIN}?page=chess/rooms`} />;
+  }
+
   if (!roomData && !loading && !winner) {
-    navigate('/chess/rooms');
+    return <Navigate to={ERoutes.CHESS_ROOMS} />;
   }
 
   if (isFull) {
@@ -146,8 +121,8 @@ export const ChessOnline = () => {
   }
 
   return (
-    <div className="chess container">
-      <div className="chess_timer">
+    <div className={`${styles.chess} container`}>
+      <div className={styles.chess_timer}>
         {time && (
           <ChessOnlineTimer
             setTime={setTime}
@@ -173,13 +148,13 @@ export const ChessOnline = () => {
         swapPlayer={swapPlayer}
         isClickAvailable={isClickAvailable}
       />
-      <div className="lost">
+      <div className={styles.lost}>
         <LostFigures
-          title={`${t('black')} ${roomData?.player2.name}`}
+          title={`${t('black')} ${roomData?.player2?.name}`}
           figures={board.lostBlackFigures}
         />
         <LostFigures
-          title={`${t('white')} ${roomData?.player1.name}`}
+          title={`${t('white')} ${roomData?.player1?.name}`}
           figures={board.lostWhiteFigures}
         />
       </div>

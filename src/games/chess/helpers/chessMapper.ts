@@ -30,7 +30,7 @@ export const chessBoardToFirebaseMapper = (board: Board) => {
   return {
     cells: mapCellsToFirebase(board.cells),
     lostBlackFigures: figuresToFirebase(board.lostBlackFigures),
-    lostWhightFigures: figuresToFirebase(board.lostWhiteFigures),
+    lostWhiteFigures: figuresToFirebase(board.lostWhiteFigures),
     underAttackMessage: board.underAttackMessage
   };
 };
@@ -70,7 +70,7 @@ export const mapBoardFromFireBase = (board: IFirebaseChessBoard) => {
     8
   );
   newBoard.lostBlackFigures = board.lostBlackFigures.map((fig) => createFigure(fig));
-  newBoard.lostWhiteFigures = board.lostWhightFigures.map((fig) => createFigure(fig));
+  newBoard.lostWhiteFigures = board.lostWhiteFigures.map((fig) => createFigure(fig));
   newBoard.underAttackMessage = board.underAttackMessage;
   return newBoard;
 };

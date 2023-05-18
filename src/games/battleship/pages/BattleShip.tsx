@@ -22,11 +22,7 @@ import { BattleshipEnemyBoard } from '../components/BattleshipEnemyBoard';
 export const BattleShip = () => {
   const { t } = useTranslation();
   useTitle(t('battleship'));
-  useBreadcrumbs([
-    breadcrumbs.main,
-    breadcrumbs.battleshipRooms,
-    breadcrumbs.battleship
-  ]);
+  useBreadcrumbs([breadcrumbs.main, breadcrumbs.battleshipRooms, breadcrumbs.battleship]);
   const { id } = useParams();
 
   const { user, isAuthLoading } = useAppSelector(authSelector);
@@ -46,10 +42,8 @@ export const BattleShip = () => {
     if (!user || !roomData) {
       return;
     }
-    const myPlayerValue =
-      roomData.player1?.uid === user.id ? 'player1' : 'player2';
-    const secondPlayerValue =
-      roomData.player1?.uid === user.id ? 'player2' : 'player1';
+    const myPlayerValue = roomData.player1?.uid === user.id ? 'player1' : 'player2';
+    const secondPlayerValue = roomData.player1?.uid === user.id ? 'player2' : 'player1';
 
     setMyPlayer(myPlayerValue);
     setSecondPlayer(secondPlayerValue);
@@ -78,27 +72,14 @@ export const BattleShip = () => {
     }
 
     // Parse enemy board from db
-    const enemyBoardFromServer = service.getBoardFromFireBase(
-      roomData,
-      secondPlayer,
-      true
-    );
+    const enemyBoardFromServer = service.getBoardFromFireBase(roomData, secondPlayer, true);
     setEnemyBoard(enemyBoardFromServer);
 
     if (roomData.winner) {
       setWinner(roomData.winner);
       service.deleteRoom(roomData.id);
     }
-  }, [
-    roomData,
-    user,
-    myPlayer,
-    service,
-    setLocalPlayers,
-    secondPlayer,
-    setEnemyBoard,
-    setBoard
-  ]);
+  }, [roomData, user, myPlayer, service, setLocalPlayers, secondPlayer, setEnemyBoard, setBoard]);
 
   useEffect(() => {
     if (!isFull && !loading && !isDataFromServer) {
@@ -122,7 +103,12 @@ export const BattleShip = () => {
   }
 
   if (winner) {
-    return <WinnerCommon page={`${ERoutes.BATTLESHIP}`} winner={winner} />;
+    return (
+      <WinnerCommon
+        page={`${ERoutes.BATTLESHIP}`}
+        winner={winner}
+      />
+    );
   }
 
   return (

@@ -10,7 +10,6 @@ import { useTitle } from '../../../hooks/useTitle';
 import { Board } from '../models/Board';
 import { EChessColors } from '../models/EChessColors';
 import { Player } from '../models/Player';
-import '../assets/styles/chess.scss';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import styles from '../assets/styles/chess.module.scss';
 

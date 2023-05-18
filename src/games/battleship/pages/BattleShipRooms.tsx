@@ -12,8 +12,7 @@ export const BattleShipRooms = () => {
   useTitle(t('battleship'));
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.battleshipRooms]);
 
-  const { rooms, createRoom } =
-    useRoomsCollection<TBattleshipRoomData>('battleship');
+  const { rooms, createRoom } = useRoomsCollection<TBattleshipRoomData>('battleship');
 
   const addRoom = async () => {
     const newRoom = {
@@ -31,6 +30,10 @@ export const BattleShipRooms = () => {
   }, [rooms]);
 
   return (
-    <RoomsCommon rooms={filteredRooms} createRoom={addRoom} page="battleship" />
+    <RoomsCommon
+      rooms={filteredRooms}
+      createRoom={addRoom}
+      page="battleship"
+    />
   );
 };

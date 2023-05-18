@@ -58,12 +58,7 @@ export class BattleshipService extends RoomService<TBattleshipRoomData> {
     await this.setRoomData(roomData.id, newData);
   }
 
-  async setIsReady({
-    roomData,
-    myPlayer,
-    myCells,
-    myShips
-  }: TSetIsReadyParams) {
+  async setIsReady({ roomData, myPlayer, myCells, myShips }: TSetIsReadyParams) {
     if (!myPlayer) {
       return;
     }
@@ -118,11 +113,7 @@ export class BattleshipService extends RoomService<TBattleshipRoomData> {
     return true;
   }
 
-  getBoardFromFireBase(
-    roomData: TBattleshipRoomData,
-    player: TPlayerKey,
-    isEnemyBoard: boolean
-  ) {
+  getBoardFromFireBase(roomData: TBattleshipRoomData, player: TPlayerKey, isEnemyBoard: boolean) {
     if (!player || !roomData[player] || !roomData[player]?.cells.length) {
       return null;
     }
