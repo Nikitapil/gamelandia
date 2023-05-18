@@ -1,6 +1,4 @@
-import { collection, doc, setDoc } from 'firebase/firestore';
-import React, { useContext, useState } from 'react';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TimerModal } from '../components/TimerModal';
 import { RoomsCommon } from '../../components/RoomsCommon';
@@ -8,15 +6,17 @@ import { ModalContainer } from '../../../components/UI/ModalContainer/ModalConta
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
-import '../assets/styles/chess.scss';
-import { FirebaseContext } from '../../../context/firebase-context/FirebaseContext';
+import { useRoomsCollection } from '../../hooks/rooms/useRoomsCollection';
+import { TChessRoomData } from '../helpers/types';
+import styles from '../assets/styles/chess.module.scss';
 
 export const ChessRooms = () => {
   const { t } = useTranslation();
   useTitle(t('chess'));
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.chessTypes, breadcrumbs.chessRooms]);
-  const firestore = useContext(FirebaseContext);
-  const [rooms] = useCollectionData(collection(firestore, 'chess'));
+
+  const { rooms, createRoom: createChessRoom } = useRoomsCollection<TChessRoomData>('chess');
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
@@ -36,11 +36,11 @@ export const ChessRooms = () => {
       id: `room_${(rooms?.length || 0) + 1}`,
       name: `Room ${(rooms?.length || 0) + 1}`
     };
-    await setDoc(doc(firestore, 'chess', newRoom.id), newRoom);
+    await createChessRoom(newRoom);
   };
 
   return (
-    <div className="chess">
+    <div className={styles.chess}>
       <RoomsCommon
         rooms={rooms}
         page="chess/rooms"

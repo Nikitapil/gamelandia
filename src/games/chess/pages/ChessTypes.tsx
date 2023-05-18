@@ -4,19 +4,26 @@ import { Link } from 'react-router-dom';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
-import '../assets/styles/chess.scss';
 import { ERoutes } from '../../../constants/routes';
+import styles from '../assets/styles/chess.module.scss';
 
 export const ChessTypes = () => {
   const { t } = useTranslation();
   useTitle(t('chess'));
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.chessTypes]);
+
   return (
-    <div className="chess-types">
-      <Link to={`${ERoutes.CHESS_ROOMS}`} className="chessTypes__item">
+    <div className={styles['chess-types']}>
+      <Link
+        to={`${ERoutes.CHESS_ROOMS}`}
+        className={styles.chessTypes__item}
+      >
         Online
       </Link>
-      <Link to={`${ERoutes.CHESS_OFFLINE}`} className="chessTypes__item">
+      <Link
+        to={`${ERoutes.CHESS_OFFLINE}`}
+        className={styles.chessTypes__item}
+      >
         Offline
       </Link>
     </div>

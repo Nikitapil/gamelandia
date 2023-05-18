@@ -16,56 +16,58 @@ interface RoomsCommonProps {
   page: string;
 }
 
-export const RoomsCommon = memo(
-  ({ page, rooms, createRoom }: RoomsCommonProps) => {
-    const { user, isAuthLoading } = useAppSelector(authSelector);
-    const navigate = useNavigate();
-    const { t } = useTranslation();
-    if (isAuthLoading) {
-      return (
-        <div className={commonStyles.rooms__loader}>
-          <HorizotalLoader />
-        </div>
-      );
-    }
-
-    if (!isAuthLoading && !user) {
-      navigate(`${ERoutes.LOGIN}?page=${page}`);
-      if (!toast.isActive('need_login_first')) {
-        toast.info(t('need_login_first') as string, {
-          toastId: 'need_login_first'
-        });
-      }
-    }
+export const RoomsCommon = memo(({ page, rooms, createRoom }: RoomsCommonProps) => {
+  const { user, isAuthLoading } = useAppSelector(authSelector);
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  if (isAuthLoading) {
     return (
-      <div className={`container ${commonStyles.rooms__container}`}>
-        <h2 className="page-title">{t('rooms_title')}</h2>
-        <table className={commonStyles.rooms__table}>
-          <thead>
-            <tr>
-              <td>
-                <AppButton color="success" onClick={createRoom} type="button">
-                  {t('create_room')}
-                </AppButton>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            {rooms?.map((room) => (
-              <tr key={room.id}>
-                <td>
-                  <Link
-                    to={`/${page}/${room.id}`}
-                    className={commonStyles['room-link']}
-                  >
-                    {room.name}
-                  </Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className={commonStyles.rooms__loader}>
+        <HorizotalLoader />
       </div>
     );
   }
-);
+
+  if (!isAuthLoading && !user) {
+    navigate(`${ERoutes.LOGIN}?page=${page}`);
+    if (!toast.isActive('need_login_first')) {
+      toast.info(t('need_login_first') as string, {
+        toastId: 'need_login_first'
+      });
+    }
+  }
+  return (
+    <div className={`container ${commonStyles.rooms__container}`}>
+      <h2 className="page-title">{t('rooms_title')}</h2>
+      <table className={commonStyles.rooms__table}>
+        <thead>
+          <tr>
+            <td>
+              <AppButton
+                color="success"
+                onClick={createRoom}
+                type="button"
+              >
+                {t('create_room')}
+              </AppButton>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          {rooms?.map((room) => (
+            <tr key={room.id}>
+              <td>
+                <Link
+                  to={`/${page}/${room.id}`}
+                  className={commonStyles['room-link']}
+                >
+                  {room.name}
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+});
