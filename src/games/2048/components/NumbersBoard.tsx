@@ -86,7 +86,11 @@ export const NumbersBoard = () => {
 
   return (
     <div className={styles['board-container']}>
-      <AppButton text={t('new_game')} color="success" onClick={newGame} />
+      <AppButton
+        text={t('new_game')}
+        color="success"
+        onClick={newGame}
+      />
       <div
         className={styles.board}
         tabIndex={0}
@@ -98,14 +102,26 @@ export const NumbersBoard = () => {
           <div className={styles['game-over']}>
             <h2>Game Over!!!</h2>
             <p>Score: {board.lastScore}</p>
-            <AppButton text={t('new_game')} color="success" onClick={newGame} />
+            <AppButton
+              text={t('new_game')}
+              color="success"
+              onClick={newGame}
+            />
           </div>
         )}
         {board.cells.map((row) =>
-          row.map((cell) => <div key={cell.id} className={styles.cell} />)
+          row.map((cell) => (
+            <div
+              key={cell.id}
+              className={styles.cell}
+            />
+          ))
         )}
         {board.elems.map((elem) => (
-          <NumbersElem elem={elem} key={elem.id} />
+          <NumbersElem
+            elem={elem}
+            key={elem.id}
+          />
         ))}
       </div>
     </div>

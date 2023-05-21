@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
@@ -76,12 +70,21 @@ export const AimGame = () => {
   }, [createScore, remainingTime, score]);
 
   return (
-    <div className={`container ${styles['aim-game']}`} data-testid="aim-page">
+    <div
+      className={`container ${styles['aim-game']}`}
+      data-testid="aim-page"
+    >
       <h2 className="page-title">Aim Game</h2>
 
-      <GameWithScore game={EGamesNames.AIM} user={user}>
+      <GameWithScore
+        game={EGamesNames.AIM}
+        user={user}
+      >
         <div className={styles['game-controls']}>
-          <div className={finishClass} data-testid="aim-score">
+          <div
+            className={finishClass}
+            data-testid="aim-score"
+          >
             {t('score')}: {score}
           </div>
           <div className={finishClass}>
@@ -97,7 +100,10 @@ export const AimGame = () => {
           />
         </div>
         <div className={styles.field}>
-          <Aim aimDot={aimDot} updateDot={updateDot} />
+          <Aim
+            aimDot={aimDot}
+            updateDot={updateDot}
+          />
         </div>
       </GameWithScore>
     </div>

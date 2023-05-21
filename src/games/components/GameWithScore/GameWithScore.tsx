@@ -10,15 +10,14 @@ interface IGameWithScoreProps {
   children: ReactNode;
 }
 
-export const GameWithScore = ({
-  game,
-  user,
-  children
-}: IGameWithScoreProps) => {
+export const GameWithScore = ({ game, user, children }: IGameWithScoreProps) => {
   return (
     <div className={styles.boards}>
       <div>{children}</div>
-      <CommonScoreBoard game={game} user={user} />
+      <CommonScoreBoard
+        game={game}
+        user={user}
+      />
     </div>
   );
 };

@@ -5,3 +5,6 @@ export const INVADER_CELL_WIDTH = 37.5;
 export const INVADER_CELL_HEIGHT = 30;
 export const INVADERS_FIELD_WIDTH = 562;
 export const INVADERS_GUN_STEP = 8;
+export const INVADERS_FIELD_X_END = 555;
+export const INVADERS_FIELD_Y_END = 340;
+export const INVADERS_FIELD_HEIGHT = 400;

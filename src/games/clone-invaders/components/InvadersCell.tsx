@@ -1,12 +1,13 @@
 import React, { useEffect, useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpaghettiMonsterFlying } from '@fortawesome/free-solid-svg-icons';
-import invadersStyles from '../assets/styles/invaders.module.scss';
+import styles from '../assets/styles/invaders.module.scss';
 import { InvadersCellModel } from '../models/InvadersCellModel';
 import { InvadersBulletModel } from '../models/InvadersBulletModel';
 import { EInvadersDirections } from '../types';
+import { INVADERS_FIELD_HEIGHT, INVADERS_FIELD_X_END, INVADERS_FIELD_Y_END } from '../constants';
 
-interface InvadersCellProps {
+interface IInvadersCellProps {
   cell: InvadersCellModel;
   bullet: InvadersBulletModel | null;
   destroyBullet: () => void;
@@ -20,7 +21,7 @@ export const InvadersCell = ({
   destroyBullet,
   increaseScore,
   gameOver
-}: InvadersCellProps) => {
+}: IInvadersCellProps) => {
   const cellStyle = useMemo(() => {
     return {
       top: `${cell.y}px`,
@@ -31,36 +32,39 @@ export const InvadersCell = ({
   useEffect(() => {
     if (cell.isWithElem) {
       if (
-        (cell.x >= 555 && cell.field.direction === EInvadersDirections.RIGHT) ||
+        (cell.x >= INVADERS_FIELD_X_END && cell.field.direction === EInvadersDirections.RIGHT) ||
         (cell.x <= 0 &&
           !cell.field.isFirstMove &&
           cell.field.direction === EInvadersDirections.LEFT)
       ) {
         cell.changeDirection();
       }
-      if (cell.y >= 340) {
-        gameOver();
-      }
-    }
-  }, [cell.x, cell, gameOver]);
 
-  useEffect(() => {
-    if (bullet && cell.isWithElem) {
-      const inTheArea =
-        bullet.x >= cell.x &&
-        bullet.x <= cell.cellEnd.xEnd &&
-        bullet.y <= 400 - cell.y &&
-        bullet.y >= 400 - cell.cellEnd.yEnd;
-      if (inTheArea) {
-        cell.destroyElem();
-        destroyBullet();
-        increaseScore();
+      if (cell.y >= INVADERS_FIELD_Y_END) {
+        gameOver();
+        return;
+      }
+
+      if (bullet) {
+        const inTheArea =
+          bullet.x >= cell.x &&
+          bullet.x <= cell.cellEnd.xEnd &&
+          bullet.y <= INVADERS_FIELD_HEIGHT - cell.y &&
+          bullet.y >= INVADERS_FIELD_HEIGHT - cell.cellEnd.yEnd;
+        if (inTheArea) {
+          cell.destroyElem();
+          destroyBullet();
+          increaseScore();
+        }
       }
     }
-  }, [bullet, cell, destroyBullet, increaseScore]);
+  }, [cell.x, cell, gameOver, bullet, destroyBullet, increaseScore]);
 
   return (
-    <div className={invadersStyles.cell} style={cellStyle}>
+    <div
+      className={styles.cell}
+      style={cellStyle}
+    >
       {cell.isWithElem && <FontAwesomeIcon icon={faSpaghettiMonsterFlying} />}
     </div>
   );
