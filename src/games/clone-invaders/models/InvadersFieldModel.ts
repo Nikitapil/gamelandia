@@ -2,7 +2,12 @@ import { EInvadersDirections } from '../types';
 import { InvadersBulletModel } from './InvadersBulletModel';
 import { InvadersCellModel } from './InvadersCellModel';
 import { InvadersGunModel } from './InvadersGunModel';
-import { INVADERS_FIELD_Y_END } from '../constants';
+import {
+  INVADERS_CELL_HEIGHT_WITH_MARGIN,
+  INVADERS_CELL_WIDTH_WITH_MARGIN,
+  INVADERS_FIELD_Y_END,
+  INVADERS_WIDTH_STEP
+} from '../constants';
 
 export class InvadersFieldModel {
   cells: InvadersCellModel[][] = [];
@@ -25,7 +30,13 @@ export class InvadersFieldModel {
     for (let i = 0; i < 5; i++) {
       const row = [];
       for (let j = 0; j < 10; j++) {
-        row.push(new InvadersCellModel(j * 45, i * 35 + 20, this));
+        row.push(
+          new InvadersCellModel(
+            j * INVADERS_CELL_WIDTH_WITH_MARGIN,
+            i * INVADERS_CELL_HEIGHT_WITH_MARGIN + 20,
+            this
+          )
+        );
       }
       this.cells.push(row);
     }
@@ -59,11 +70,13 @@ export class InvadersFieldModel {
   move() {
     this.cells.forEach((row) => {
       row.forEach((cell) => {
-        cell.x = this.direction === EInvadersDirections.RIGHT ? cell.x + 10 : cell.x - 10;
+        cell.x =
+          this.direction === EInvadersDirections.RIGHT
+            ? cell.x + INVADERS_WIDTH_STEP
+            : cell.x - INVADERS_WIDTH_STEP;
         cell.y += this.nextY;
         if (cell.y > INVADERS_FIELD_Y_END && cell.isWithElem) {
           this.isGameOver = true;
-          console.log(cell);
         }
       });
     });
