@@ -8,3 +8,4 @@ export const INVADERS_GUN_STEP = 8;
 export const INVADERS_FIELD_X_END = 555;
 export const INVADERS_FIELD_Y_END = 340;
 export const INVADERS_FIELD_HEIGHT = 400;
+export const INVADERS_GUN_MIDDLE = 12;

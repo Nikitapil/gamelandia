@@ -2,6 +2,7 @@ import { EInvadersDirections } from '../types';
 import { InvadersBulletModel } from './InvadersBulletModel';
 import { InvadersCellModel } from './InvadersCellModel';
 import { InvadersGunModel } from './InvadersGunModel';
+import { INVADERS_FIELD_Y_END } from '../constants';
 
 export class InvadersFieldModel {
   cells: InvadersCellModel[][] = [];
@@ -17,6 +18,8 @@ export class InvadersFieldModel {
   gun = new InvadersGunModel(0);
 
   bullet: InvadersBulletModel | null = null;
+
+  isGameOver = false;
 
   initCells(): void {
     for (let i = 0; i < 5; i++) {
@@ -42,6 +45,7 @@ export class InvadersFieldModel {
     newBoard.isFirstMove = false;
     newBoard.gun = this.gun;
     newBoard.bullet = this.bullet;
+    newBoard.isGameOver = this.isGameOver;
     return newBoard;
   }
 
@@ -55,11 +59,12 @@ export class InvadersFieldModel {
   move() {
     this.cells.forEach((row) => {
       row.forEach((cell) => {
-        cell.x =
-          this.direction === EInvadersDirections.RIGHT
-            ? cell.x + 10
-            : cell.x - 10;
+        cell.x = this.direction === EInvadersDirections.RIGHT ? cell.x + 10 : cell.x - 10;
         cell.y += this.nextY;
+        if (cell.y > INVADERS_FIELD_Y_END && cell.isWithElem) {
+          this.isGameOver = true;
+          console.log(cell);
+        }
       });
     });
     this.nextY = 0;
@@ -67,8 +72,6 @@ export class InvadersFieldModel {
   }
 
   get isEmpty() {
-    return (
-      this.cells.length && this.cells.flat().every((cell) => !cell.isWithElem)
-    );
+    return this.cells.length && this.cells.flat().every((cell) => !cell.isWithElem);
   }
 }

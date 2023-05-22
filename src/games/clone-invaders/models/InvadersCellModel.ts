@@ -1,10 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { InvadersFieldModel } from './InvadersFieldModel';
-import {
-  INVADER_CELL_HEIGHT,
-  INVADER_CELL_WIDTH,
-  INVADERS_HEIGHT_STEP
-} from '../constants';
+import { INVADER_CELL_HEIGHT, INVADER_CELL_WIDTH, INVADERS_HEIGHT_STEP } from '../constants';
 
 export class InvadersCellModel {
   x: number;

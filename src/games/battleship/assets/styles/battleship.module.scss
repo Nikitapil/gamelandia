@@ -10,6 +10,7 @@
   width: 300px;
   display: flex;
   flex-wrap: wrap;
+  box-shadow: $shadow-black-common;
 }
 
 .battleship__cell {

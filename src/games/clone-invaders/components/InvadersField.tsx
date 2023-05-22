@@ -2,8 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { InvadersBulletModel } from '../models/InvadersBulletModel';
 import { InvadersFieldModel } from '../models/InvadersFieldModel';
-import invadersStyles from '../assets/styles/invaders.module.scss';
-import { ModalContainer } from '../../../components/UI/ModalContainer/ModalContainer';
+import styles from '../assets/styles/invaders.module.scss';
 import { InvadersBullet } from './InvadersBullet';
 import { InvadersCell } from './InvadersCell';
 import { InvadersGameOver } from './InvadersGameOver';
@@ -11,40 +10,63 @@ import { InvadersGun } from './InvadersGun';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { useCreateScore } from '../../../score/hooks/useCreateScore';
 import { EGamesNames } from '../../constants';
+import { INVADERS_FIELD_HEIGHT, INVADERS_GUN_MIDDLE } from '../constants';
 
 export const InvadersField = () => {
+  const { t } = useTranslation();
+  const createScore = useCreateScore();
+
   const [board, setBoard] = useState(new InvadersFieldModel());
   const [bullet, setBullet] = useState<InvadersBulletModel | null>(null);
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [timer, setTimer] = useState(350);
+
   const bulletInterval = useRef<null | ReturnType<typeof setInterval>>(null);
   const gameInterval = useRef<null | ReturnType<typeof setInterval>>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const createScore = useCreateScore();
-  const { t } = useTranslation();
-  const move = useCallback(() => {
-    board.move();
+
+  const updateBoard = useCallback(() => {
     const newBoard = board.copyBoard();
     setBoard(newBoard);
   }, [board]);
 
+  const destroyBullet = useCallback(() => {
+    bullet?.destroy();
+    setBullet(null);
+    if (bulletInterval.current) {
+      clearInterval(bulletInterval.current);
+    }
+    bulletInterval.current = null;
+  }, [bullet]);
+
+  const onGameOver = useCallback(() => {
+    setGameOver(true);
+    destroyBullet();
+    setBoard(new InvadersFieldModel());
+    if (gameInterval.current) {
+      clearInterval(gameInterval.current);
+    }
+    setTimer(350);
+    createScore({
+      value: score,
+      gameName: EGamesNames.CLONE_INVADERS
+    });
+  }, [score, createScore, destroyBullet]);
+
+  const move = useCallback(() => {
+    board.move();
+    updateBoard();
+  }, [board, updateBoard]);
+
   const onStartGame = useCallback(() => {
     board.startGame();
-    const newBoard = board.copyBoard();
-    setBoard(newBoard);
+    updateBoard();
     gameInterval.current = setInterval(() => move(), timer);
     if (containerRef.current) {
       containerRef.current.focus();
     }
-  }, [board, move, timer]);
-
-  const destroyBullet = useCallback(() => {
-    bullet?.destroy();
-    setBullet(null);
-    clearInterval(bulletInterval.current!);
-    bulletInterval.current = null;
-  }, [bullet]);
+  }, [board, move, timer, updateBoard]);
 
   const moveBullet = useCallback(() => {
     if (bullet?.isDestroyed) {
@@ -52,34 +74,38 @@ export const InvadersField = () => {
       return;
     }
     if (bullet) {
-      bullet!.move();
-      if (bullet.y === 400) {
+      bullet.move();
+      if (bullet.y === INVADERS_FIELD_HEIGHT) {
         destroyBullet();
         return;
       }
-      const newBullet = bullet!.copyBullet();
+      const newBullet = bullet.copyBullet();
       setBullet(newBullet);
     }
   }, [bullet, destroyBullet]);
 
-  const onGunMove = (e: React.KeyboardEvent) => {
+  const onGunMove = async (e: React.KeyboardEvent) => {
     if (e.code === 'ArrowRight') {
       board.gun.toRight();
-      const newBoard = board.copyBoard();
-      setBoard(newBoard);
+      updateBoard();
     }
     if (e.code === 'ArrowLeft') {
       board.gun.toLeft();
-      const newBoard = board.copyBoard();
-      setBoard(newBoard);
+      updateBoard();
     }
     if (e.code === 'Space') {
       if (!bullet) {
-        const bull = new InvadersBulletModel(board.gun.x + 12);
+        const bull = new InvadersBulletModel(board.gun.x + INVADERS_GUN_MIDDLE);
         setBullet(bull);
       }
     }
   };
+
+  useEffect(() => {
+    if (board.isGameOver) {
+      onGameOver();
+    }
+  }, [board.isGameOver, onGameOver]);
 
   useEffect(() => {
     if (bullet && !bulletInterval.current) {
@@ -94,25 +120,14 @@ export const InvadersField = () => {
       }
       destroyBullet();
       setBoard(new InvadersFieldModel());
-      clearInterval(gameInterval.current!);
+      if (gameInterval.current) {
+        clearInterval(gameInterval.current);
+      }
       onStartGame();
     }
   }, [board.isEmpty, destroyBullet, onStartGame, timer]);
 
   const increaseScore = () => setScore((prev) => prev + 20);
-
-  useEffect(() => {
-    if (gameOver) {
-      destroyBullet();
-      setBoard(new InvadersFieldModel());
-      clearInterval(gameInterval.current!);
-      setTimer(350);
-      createScore({
-        value: score,
-        gameName: EGamesNames.CLONE_INVADERS
-      });
-    }
-  }, [createScore, destroyBullet, gameOver, score]);
 
   const closeModal = () => {
     setGameOver(false);
@@ -121,7 +136,7 @@ export const InvadersField = () => {
 
   return (
     <div
-      className={invadersStyles.invaders__field}
+      className={styles.invaders__field}
       onKeyDown={onGunMove}
       tabIndex={0}
       ref={containerRef}
@@ -131,18 +146,17 @@ export const InvadersField = () => {
           onClick={onStartGame}
           text="Start"
           color="transparent"
-          customClass={invadersStyles.start}
+          customClass={styles.start}
         />
       )}
       {board.isGameStarted && (
-        <div className={invadersStyles['invaders__field-cells']}>
-          <p className={invadersStyles.score}>
+        <div className={styles['invaders__field-cells']}>
+          <p className={styles.score}>
             {t('score')}: {score}
           </p>
           {board.cells.map((row) =>
             row.map((cell) => (
               <InvadersCell
-                gameOver={() => setGameOver(true)}
                 increaseScore={increaseScore}
                 bullet={bullet}
                 destroyBullet={destroyBullet}
@@ -155,9 +169,11 @@ export const InvadersField = () => {
           <InvadersGun gun={board.gun} />
         </div>
       )}
-      <ModalContainer closeModal={closeModal} isOpened={gameOver}>
-        <InvadersGameOver score={score} closeModal={closeModal} />
-      </ModalContainer>
+      <InvadersGameOver
+        score={score}
+        closeModal={closeModal}
+        isOpened={gameOver}
+      />
     </div>
   );
 };

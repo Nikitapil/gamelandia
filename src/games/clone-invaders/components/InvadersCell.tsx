@@ -5,22 +5,20 @@ import styles from '../assets/styles/invaders.module.scss';
 import { InvadersCellModel } from '../models/InvadersCellModel';
 import { InvadersBulletModel } from '../models/InvadersBulletModel';
 import { EInvadersDirections } from '../types';
-import { INVADERS_FIELD_HEIGHT, INVADERS_FIELD_X_END, INVADERS_FIELD_Y_END } from '../constants';
+import { INVADERS_FIELD_HEIGHT, INVADERS_FIELD_X_END } from '../constants';
 
 interface IInvadersCellProps {
   cell: InvadersCellModel;
   bullet: InvadersBulletModel | null;
   destroyBullet: () => void;
   increaseScore: () => void;
-  gameOver: () => void;
 }
 
 export const InvadersCell = ({
   cell,
   bullet,
   destroyBullet,
-  increaseScore,
-  gameOver
+  increaseScore
 }: IInvadersCellProps) => {
   const cellStyle = useMemo(() => {
     return {
@@ -40,11 +38,6 @@ export const InvadersCell = ({
         cell.changeDirection();
       }
 
-      if (cell.y >= INVADERS_FIELD_Y_END) {
-        gameOver();
-        return;
-      }
-
       if (bullet) {
         const inTheArea =
           bullet.x >= cell.x &&
@@ -58,7 +51,7 @@ export const InvadersCell = ({
         }
       }
     }
-  }, [cell.x, cell, gameOver, bullet, destroyBullet, increaseScore]);
+  }, [cell.x, cell, bullet, destroyBullet, increaseScore]);
 
   return (
     <div
