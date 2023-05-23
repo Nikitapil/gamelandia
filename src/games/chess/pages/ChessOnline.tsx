@@ -6,7 +6,7 @@ import { LostFigures } from '../components/lost-figures/LostFigures';
 import { ChessOnlineLoader } from '../components/online/ChessOnlineLoader';
 import { ChessOnlineTimer } from '../components/online/ChessOnlineTimer';
 import { FullRoomMessage } from '../../components/FullRoomMessage/FullRoomMessage';
-import { WinnerCommon } from '../../components/WinnerCommon';
+import { WinnerCommon } from '../../components/WinnerCommon/WinnerCommon';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { IChessTime } from '../helpers/types';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';

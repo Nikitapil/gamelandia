@@ -1,0 +1,17 @@
+@import "../../../assets/styles/vars";
+
+.winner__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.winner__title {
+  font-size: 24px;
+  color: $mainColor;
+}
+
+.link {
+  color: $titleColor;
+}
