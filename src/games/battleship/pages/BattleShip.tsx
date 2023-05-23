@@ -3,7 +3,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BattleshipBoardModel } from '../models/BattleShipBoardModel';
 import { HorizotalLoader } from '../../../components/UI/Loaders/HorizotalLoader';
-import { FullRoomMessage } from '../../components/FullRoomMessage';
+import { FullRoomMessage } from '../../components/FullRoomMessage/FullRoomMessage';
 import { WinnerCommon } from '../../components/WinnerCommon';
 import styles from '../assets/styles/battleship.module.scss';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
