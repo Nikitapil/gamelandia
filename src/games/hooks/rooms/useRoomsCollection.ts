@@ -3,8 +3,9 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { collection, CollectionReference, doc, setDoc } from 'firebase/firestore';
 import { FirebaseContext } from '../../../context/firebase-context/FirebaseContext';
 
-interface IBaseRoomData {
+export interface IBaseRoomData {
   id: string;
+  name: string;
 }
 
 export const useRoomsCollection = <T>(gameName: string) => {

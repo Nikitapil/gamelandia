@@ -1,28 +1,29 @@
-import { DocumentData } from 'firebase/firestore';
 import React, { memo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import { HorizotalLoader } from '../../components/UI/Loaders/HorizotalLoader';
-import commonStyles from '../../styles/common.module.scss';
-import { AppButton } from '../../components/UI/AppButton/AppButton';
-import { ERoutes } from '../../constants/routes';
-import { useAppSelector } from '../../hooks/useAppSelector';
-import { authSelector } from '../../store/selectors';
+import { HorizotalLoader } from '../../../components/UI/Loaders/HorizotalLoader';
+import styles from './rooms-common.module.scss';
+import { AppButton } from '../../../components/UI/AppButton/AppButton';
+import { ERoutes } from '../../../constants/routes';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { authSelector } from '../../../store/selectors';
+import { IBaseRoomData } from '../../hooks/rooms/useRoomsCollection';
 
 interface RoomsCommonProps {
   createRoom: (() => Promise<void>) | (() => void);
-  rooms: DocumentData[] | undefined;
   page: string;
+  rooms?: IBaseRoomData[];
 }
 
 export const RoomsCommon = memo(({ page, rooms, createRoom }: RoomsCommonProps) => {
+  const { t } = useTranslation();
   const { user, isAuthLoading } = useAppSelector(authSelector);
   const navigate = useNavigate();
-  const { t } = useTranslation();
+
   if (isAuthLoading) {
     return (
-      <div className={commonStyles.rooms__loader}>
+      <div className={styles.rooms__loader}>
         <HorizotalLoader />
       </div>
     );
@@ -37,12 +38,12 @@ export const RoomsCommon = memo(({ page, rooms, createRoom }: RoomsCommonProps) 
     }
   }
   return (
-    <div className={`container ${commonStyles.rooms__container}`}>
+    <div className={`container ${styles.rooms__container}`}>
       <h2 className="page-title">{t('rooms_title')}</h2>
-      <table className={commonStyles.rooms__table}>
+      <table className={styles.rooms__table}>
         <thead>
           <tr>
-            <td>
+            <th>
               <AppButton
                 color="success"
                 onClick={createRoom}
@@ -50,7 +51,7 @@ export const RoomsCommon = memo(({ page, rooms, createRoom }: RoomsCommonProps) 
               >
                 {t('create_room')}
               </AppButton>
-            </td>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -59,7 +60,7 @@ export const RoomsCommon = memo(({ page, rooms, createRoom }: RoomsCommonProps) 
               <td>
                 <Link
                   to={`/${page}/${room.id}`}
-                  className={commonStyles['room-link']}
+                  className={styles['room-link']}
                 >
                   {room.name}
                 </Link>

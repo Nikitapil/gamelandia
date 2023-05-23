@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TimerModal } from '../components/TimerModal';
-import { RoomsCommon } from '../../components/RoomsCommon';
+import { RoomsCommon } from '../../components/RoomsCommon/RoomsCommon';
 import { ModalContainer } from '../../../components/UI/ModalContainer/ModalContainer';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
