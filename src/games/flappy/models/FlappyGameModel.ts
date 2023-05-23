@@ -23,16 +23,20 @@ export class FlappyGameModel {
     this.addNewPipe();
   }
 
+  move() {
+    this.movePipes();
+    this.bird.moveDown();
+    this.checkIfGameOver();
+    this.updateScore();
+  }
+
   removeFirstPipe() {
     this.pipes.shift();
   }
 
-  movePipes() {
+  private movePipes() {
     this.pipes.forEach((pipe) => pipe.move());
-    if (
-      this.pipes[this.pipes.length - 1]?.right >
-      PIPE_WIDTH * FLAPPY_PIPES_BETWEEN_FACTOR
-    ) {
+    if (this.pipes[this.pipes.length - 1]?.right > PIPE_WIDTH * FLAPPY_PIPES_BETWEEN_FACTOR) {
       this.addNewPipe();
     }
   }
@@ -55,20 +59,19 @@ export class FlappyGameModel {
     return newGame;
   }
 
-  updateScore() {
+  private updateScore() {
     if (this.pipes[0]?.right === FLAPPY_INTERSECTION_END) {
       this.score++;
     }
   }
 
-  checkIfGameOver() {
+  private checkIfGameOver() {
     for (let i = 0; i < this.pipes.length; i++) {
       const pipe = this.pipes[i];
       if (
         pipe.right > FLAPPY_INTERSECTION_START &&
         pipe.right < FLAPPY_INTERSECTION_END &&
-        (this.bird.top + FLAPPY_BIRD_HEIGHT >=
-          FLAPPY_FIELD_HEIGHT - pipe.bottomHeight ||
+        (this.bird.top + FLAPPY_BIRD_HEIGHT >= FLAPPY_FIELD_HEIGHT - pipe.bottomHeight ||
           this.bird.top <= pipe.topHeight + FLAPPY_BIRD_TOP_FAULT)
       ) {
         this.gameOver();
