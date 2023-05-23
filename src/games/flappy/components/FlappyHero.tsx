@@ -1,22 +1,28 @@
 import React, { useMemo } from 'react';
 import birdPic from '../assets/images/bird.png';
-import flappyStyles from '../assets/styles/flappy.module.scss';
+import styles from '../assets/styles/flappy.module.scss';
 import { FlappyGameModel } from '../models/FlappyGameModel';
 
-interface FlappyHeroProps {
+interface IFlappyHeroProps {
   game: FlappyGameModel;
 }
 
-export const FlappyHero = ({ game }: FlappyHeroProps) => {
-  const styles = useMemo(() => {
+export const FlappyHero = ({ game }: IFlappyHeroProps) => {
+  const heroStyles = useMemo(() => {
     return {
       top: game.bird.top
     };
   }, [game]);
 
   return (
-    <div className={flappyStyles.bird} style={styles}>
-      <img src={birdPic} alt="bird" />
+    <div
+      className={styles.bird}
+      style={heroStyles}
+    >
+      <img
+        src={birdPic}
+        alt="bird"
+      />
     </div>
   );
 };

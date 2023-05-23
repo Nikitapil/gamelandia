@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
-import flappyStyles from '../assets/styles/flappy.module.scss';
+import styles from '../assets/styles/flappy.module.scss';
 import { FlappyPipeModel } from '../models/FlappyPipeModel';
 
-interface FlappyPipeProps {
+interface IFlappyPipeProps {
   pipe: FlappyPipeModel;
 }
 
-export const FlappyPipe = ({ pipe }: FlappyPipeProps) => {
+export const FlappyPipe = ({ pipe }: IFlappyPipeProps) => {
   const pipeStyles = useMemo(() => {
     return {
       right: `${pipe.right}px`
@@ -26,9 +26,18 @@ export const FlappyPipe = ({ pipe }: FlappyPipeProps) => {
   }, [pipe.bottomHeight]);
 
   return (
-    <div className={flappyStyles.pipe} style={pipeStyles}>
-      <div className={flappyStyles.pipe__top} style={topPipeStyles} />
-      <div className={flappyStyles.pipe__bottom} style={bottomPipeStyles} />
+    <div
+      className={styles.pipe}
+      style={pipeStyles}
+    >
+      <div
+        className={styles.pipe__top}
+        style={topPipeStyles}
+      />
+      <div
+        className={styles.pipe__bottom}
+        style={bottomPipeStyles}
+      />
     </div>
   );
 };
