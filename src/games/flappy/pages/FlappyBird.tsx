@@ -1,18 +1,19 @@
 import React from 'react';
-import flappyStyles from '../assets/styles/flappy.module.scss';
+import styles from '../assets/styles/flappy.module.scss';
 import { FlappyField } from '../components/FlappyField';
 import { useTitle } from '../../../hooks/useTitle';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
-import { CommonScoreBoard } from '../../../score/components/CommonScoreBoard';
 import { useCreateScore } from '../../../score/hooks/useCreateScore';
 import { EGamesNames } from '../../constants';
+import { GameWithScore } from '../../components/GameWithScore/GameWithScore';
 
 export const FlappyBird = () => {
   useTitle('Flappy Bird');
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.flappy]);
+
   const { user } = useAppSelector(authSelector);
   const createScore = useCreateScore();
 
@@ -24,12 +25,14 @@ export const FlappyBird = () => {
   };
 
   return (
-    <div className={`container ${flappyStyles['flappy-container']}`}>
+    <div className={`container ${styles['flappy-container']}`}>
       <h2 className="page-title">FlappyBird</h2>
-      <div className={flappyStyles['flappy-boards']}>
+      <GameWithScore
+        game={EGamesNames.FLAPPY}
+        user={user}
+      >
         <FlappyField onUpdateScore={updateScores} />
-        <CommonScoreBoard user={user} game={EGamesNames.FLAPPY} />
-      </div>
+      </GameWithScore>
     </div>
   );
 };
