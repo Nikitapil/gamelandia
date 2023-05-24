@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import back from '../assets/card-images/back.jpeg';
-import matchStyles from '../assets/styles/match.module.scss';
+import styles from '../assets/styles/match.module.scss';
 
 interface MatchCardProps {
   onClick: (name: string, id: number) => void;
@@ -11,31 +11,33 @@ interface MatchCardProps {
   disabled: boolean;
 }
 
-export const MatchCard = memo(
-  ({ flipped, pic, name, onClick, id, disabled }: MatchCardProps) => {
-    const clickHandeler = () => {
-      onClick(name, id);
-    };
+export const MatchCard = memo(({ flipped, pic, name, onClick, id, disabled }: MatchCardProps) => {
+  const clickHandler = () => {
+    onClick(name, id);
+  };
 
-    return (
-      <button
-        className={`${matchStyles.matchcard} ${
-          flipped ? matchStyles.flipped : ''
-        }`}
-        onClick={clickHandeler}
-        disabled={disabled}
-        data-testid="match-card"
-        type="button"
-      >
-        <div className={matchStyles.flipper}>
-          <div className={matchStyles.front}>
-            <img src={back} alt="shrek cat" />
-          </div>
-          <div className={matchStyles.back}>
-            <img src={pic} alt="shrek cat" />
-          </div>
+  return (
+    <button
+      className={`${styles.matchcard} ${flipped ? styles.flipped : ''}`}
+      onClick={clickHandler}
+      disabled={disabled}
+      data-testid="match-card"
+      type="button"
+    >
+      <div className={styles.flipper}>
+        <div className={styles.front}>
+          <img
+            src={back}
+            alt="shrek cat"
+          />
         </div>
-      </button>
-    );
-  }
-);
+        <div className={styles.back}>
+          <img
+            src={pic}
+            alt="match card"
+          />
+        </div>
+      </div>
+    </button>
+  );
+});
