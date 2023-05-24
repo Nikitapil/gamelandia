@@ -18,11 +18,8 @@ export class FlappyPipeModel {
   game: FlappyGameModel;
 
   constructor(game: FlappyGameModel) {
-    this.topHeight = Math.floor(
-      Math.random() * MAX_PIPE_HEIGHT + MIN_PIPE_HEIGHT
-    );
-    this.bottomHeight =
-      FLAPPY_FIELD_HEIGHT - this.topHeight - FLAPPY_DIFFERENCE_HEIGHT;
+    this.topHeight = Math.floor(Math.random() * MAX_PIPE_HEIGHT + MIN_PIPE_HEIGHT);
+    this.bottomHeight = FLAPPY_FIELD_HEIGHT - this.topHeight - FLAPPY_DIFFERENCE_HEIGHT;
     this.right = 0;
     this.game = game;
   }

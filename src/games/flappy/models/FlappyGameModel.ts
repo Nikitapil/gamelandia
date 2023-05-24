@@ -3,6 +3,7 @@ import {
   FLAPPY_BIRD_HEIGHT,
   FLAPPY_BIRD_TOP_FAULT,
   FLAPPY_FIELD_HEIGHT,
+  FLAPPY_FIELD_PADDING,
   FLAPPY_INTERSECTION_END,
   FLAPPY_INTERSECTION_START,
   FLAPPY_PIPES_BETWEEN_FACTOR,
@@ -15,7 +16,7 @@ export class FlappyGameModel {
 
   isGameOver = false;
 
-  bird: FlappyBirdModel = new FlappyBirdModel(this);
+  bird: FlappyBirdModel = new FlappyBirdModel();
 
   score = 0;
 
@@ -66,6 +67,9 @@ export class FlappyGameModel {
   }
 
   private checkIfGameOver() {
+    if (this.bird.top > FLAPPY_FIELD_HEIGHT - FLAPPY_FIELD_PADDING) {
+      this.gameOver();
+    }
     for (let i = 0; i < this.pipes.length; i++) {
       const pipe = this.pipes[i];
       if (
