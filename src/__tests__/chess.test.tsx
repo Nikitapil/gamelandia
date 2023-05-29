@@ -105,7 +105,6 @@ describe('chess tests', () => {
   test('timer component', () => {
     const player = new Player(EChessColors.WHITE);
     const restart = jest.fn();
-    const endGame = jest.fn();
     let isModalOpen = false;
     const setIsModalOpen = jest.fn(() => (isModalOpen = !isModalOpen));
     const setWinner = jest.fn();
@@ -113,7 +112,6 @@ describe('chess tests', () => {
       renderWithRouter(
         <ChessTimer
           restart={restart}
-          endGame={endGame}
           currentPlayer={player}
           setIsModalOpen={setIsModalOpen}
           isModalOpen={isModalOpen}
@@ -127,7 +125,6 @@ describe('chess tests', () => {
   test('timer component intervals', async () => {
     const player = new Player(EChessColors.WHITE);
     const restart = jest.fn();
-    const endGame = jest.fn();
     let isModalOpen = false;
     const setIsModalOpen = jest.fn(() => (isModalOpen = !isModalOpen));
     const setWinner = jest.fn();
@@ -135,7 +132,6 @@ describe('chess tests', () => {
       renderWithRouter(
         <ChessTimer
           restart={restart}
-          endGame={endGame}
           currentPlayer={player}
           setIsModalOpen={setIsModalOpen}
           isModalOpen={isModalOpen}

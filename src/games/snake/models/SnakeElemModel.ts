@@ -2,7 +2,7 @@ import { SnakeCellModel } from './SnakeCellModel';
 import { SnakeModel } from './SnakeModel';
 
 export class SnakeElemModel {
-  cell: SnakeCellModel | null;
+  cell: SnakeCellModel;
 
   snake: SnakeModel;
 

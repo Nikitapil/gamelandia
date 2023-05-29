@@ -4,11 +4,11 @@ import { faAppleWhole } from '@fortawesome/free-solid-svg-icons';
 import { SnakeCellModel } from '../models/SnakeCellModel';
 import snakeStyle from '../assets/styles/snake.module.scss';
 
-interface SnakeCellProps {
+interface ISnakeCellProps {
   cell: SnakeCellModel;
 }
 
-export const SnakeCell: FC<SnakeCellProps> = ({ cell }) => {
+export const SnakeCell: FC<ISnakeCellProps> = ({ cell }) => {
   const classes = useMemo(() => {
     const base = snakeStyle['snake-cell'];
     if (cell.elem) {
@@ -17,9 +17,5 @@ export const SnakeCell: FC<SnakeCellProps> = ({ cell }) => {
     return base;
   }, [cell.elem]);
 
-  return (
-    <div className={classes}>
-      {cell.food && <FontAwesomeIcon icon={faAppleWhole} />}
-    </div>
-  );
+  return <div className={classes}>{cell.food && <FontAwesomeIcon icon={faAppleWhole} />}</div>;
 };

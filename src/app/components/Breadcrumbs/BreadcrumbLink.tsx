@@ -10,23 +10,26 @@ interface IBreadcrumbLinkProps {
   lastIdx: number;
 }
 
-export const BreadcrumbLink = ({
-  breadcrumb,
-  idx,
-  lastIdx
-}: IBreadcrumbLinkProps) => {
+export const BreadcrumbLink = ({ breadcrumb, idx, lastIdx }: IBreadcrumbLinkProps) => {
   const { t } = useTranslation();
 
   if (idx === lastIdx) {
     return (
-      <p key={breadcrumb.id} className={styles.text}>
+      <p
+        key={breadcrumb.id}
+        className={styles.text}
+      >
         {t(breadcrumb.name)}
       </p>
     );
   }
 
   return (
-    <Link className={styles.link} key={breadcrumb.id} to={breadcrumb.path}>
+    <Link
+      className={styles.link}
+      key={breadcrumb.id}
+      to={breadcrumb.path}
+    >
       {t(breadcrumb.name)} /
     </Link>
   );

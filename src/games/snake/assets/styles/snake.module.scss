@@ -1,12 +1,5 @@
 @import "../../../../assets/styles/vars";
 
-.snake__title {
-  font-size: 32px;
-  color: $titleColor;
-  font-family: "Permanent Marker", cursive;
-  margin-bottom: 10px;
-}
-
 .snake__container {
   display: flex;
   flex-direction: column;
@@ -31,7 +24,7 @@
   width: 20px;
   height: 20px;
   border: 1px solid #2fa8ff;
-  color: rgb(157, 255, 0);
+  color: $success;
   font-size: 16px;
   display: flex;
   align-items: center;
@@ -44,7 +37,7 @@
 }
 
 .with-snake {
-  background-color: #adff2f;
+  background: $success;
 }
 
 .snake__btns {
@@ -59,20 +52,6 @@
   }
 }
 
-.snake__btn {
-  border: none;
-  padding: 0 5px;
-  background-color: #3bf851;
-  border-radius: 6px;
-  transition: 0.4s;
-  height: 25px;
-  font-size: 22px;
-
-  &:hover {
-    background-color: #48b73c;
-  }
-}
-
 .snake__difficulty {
   display: flex;
   gap: 8px;
@@ -81,26 +60,6 @@
 
   p {
     color: $mainColor;
-  }
-
-  button {
-    background-color: $titleColor;
-    border: none;
-    border-radius: 6px;
-    transition: 0.4s;
-    padding: 0 5px;
-
-    &:hover {
-      background-color: #3c9eb7;
-    }
-  }
-}
-
-.snake-current-level {
-  background: #3bf851 !important;
-
-  &:hover {
-    background-color: #48b73c !important;
   }
 }
 
@@ -118,68 +77,4 @@
     flex-direction: column;
     align-items: center;
   }
-}
-
-.score-board {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  border: 2px solid black;
-  align-self: flex-start;
-  border-radius: 15px;
-  background-color: rgba(0, 0, 0, 0.273);
-  margin-right: -200px;
-
-  @media (max-width: 780px) {
-    margin-right: 0;
-  }
-
-  @media (max-width: 625px) {
-    margin: 0 auto;
-  }
-}
-
-.score-board__title {
-  color: #3bf851;
-  text-align: center;
-  font-weight: 700;
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.score-board_value {
-  color: $titleColor;
-  display: flex;
-  justify-content: space-between;
-
-  &:not(:last-child) {
-    margin-bottom: 5px;
-    border-bottom: 1px solid $mainColor;
-    padding-bottom: 5px;
-  }
-}
-
-.score-board__item {
-  &:first-child {
-    margin-bottom: 10px;
-  }
-}
-
-.snake__controlls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-}
-
-.snake-controlls__btn {
-  background: none;
-  border: none;
-  font-size: 34px;
-  color: #3bf851;
-}
-
-.snake-controlls__sides {
-  display: flex;
-  gap: 90px;
 }

@@ -1,21 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCircleChevronDown,
-  faCircleChevronLeft,
-  faCircleChevronRight,
-  faCircleChevronUp
-} from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 import { SnakeBoard } from '../components/SnakeBoard';
-import {
-  ESnakeDirections,
-  snakeLevels,
-  snakeLevelsOptions,
-  TSnakeLevels
-} from '../constants';
+import { ESnakeDirections, snakeLevels, snakeLevelsOptions, TSnakeLevels } from '../constants';
 import { SnakeBoardModel } from '../models/SnakeBoardModel';
-import snakeStyles from '../assets/styles/snake.module.scss';
+import styles from '../assets/styles/snake.module.scss';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
@@ -23,28 +11,37 @@ import { isMobile } from '../../../utils/helpers';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
-import { CommonScoreBoard } from '../../../score/components/CommonScoreBoard';
 import { useCreateScore } from '../../../score/hooks/useCreateScore';
 import { AppRadioButton } from '../../../components/UI/AppRadioButton/AppRadioButton';
 import { EGamesNames } from '../../constants';
+import { useFocus } from '../../../hooks/useFocus';
+import { MobileButtons } from '../../components/MobileButtons/MobileButtons';
+import { GameWithScore } from '../../components/GameWithScore/GameWithScore';
 
 export const Snake = () => {
+  const { t } = useTranslation();
   useTitle('Snake');
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.snake]);
-  const snakeContainer = useRef<HTMLDivElement | null>(null);
+
   const [board, setBoard] = useState<SnakeBoardModel | null>(null);
   const [gameOver, setGameOver] = useState('');
   const [isClickAvailable, setIsClickAvailable] = useState(true);
   const [timer, setTimer] = useState<TSnakeLevels>(100);
   const [isNewGameButtonDisabled, setIsNewGameButtonDisabled] = useState(false);
+
   const movingTimeOut = useRef<null | ReturnType<typeof setInterval>>(null);
+  const snakeContainer = useRef<HTMLDivElement | null>(null);
+  useFocus(snakeContainer);
+
   const { user } = useAppSelector(authSelector);
   const createScore = useCreateScore();
-  const { t } = useTranslation();
 
   const onMove = () => {
-    board?.snake?.move();
-    setBoard(board?.updateBoard()!);
+    if (!board) {
+      return;
+    }
+    board.snake?.move();
+    setBoard(board.updateBoard());
   };
 
   const startMoving = () => {
@@ -54,7 +51,7 @@ export const Snake = () => {
     movingTimeOut.current = setInterval(onMove, timer);
   };
 
-  const redisableClick = () => {
+  const reDisableClick = () => {
     setIsClickAvailable(false);
     setTimeout(() => {
       setIsClickAvailable(true);
@@ -64,56 +61,32 @@ export const Snake = () => {
   const newGame = () => {
     setGameOver('');
     const newBoard = new SnakeBoardModel();
-    newBoard.initCells();
-    newBoard?.addSnake();
-    newBoard?.addFood();
+    newBoard.startGame();
     setBoard(newBoard);
   };
 
-  const onKeyPress = (e: React.KeyboardEvent, btn: null | string = null) => {
-    if (board?.snake && isClickAvailable && !gameOver) {
-      if (
-        (e.code === 'ArrowRight' || btn === 'right') &&
-        board.snake.direction !== ESnakeDirections.LEFT &&
-        board.snake.direction !== ESnakeDirections.RIGHT
-      ) {
-        board?.snake?.changeDirection(ESnakeDirections.RIGHT);
-        startMoving();
-        redisableClick();
+  const changeDirection = (direction: ESnakeDirections) => {
+    board?.snake?.changeDirection(direction);
+    startMoving();
+    reDisableClick();
+  };
+
+  const onKeyPress = (e: React.KeyboardEvent | null, btn: null | string = null) => {
+    if (board?.snake && isClickAvailable && !gameOver && isNewGameButtonDisabled) {
+      if ((e?.code === 'ArrowRight' || btn === 'right') && board.snake.isCurrentVertical) {
+        changeDirection(ESnakeDirections.RIGHT);
       }
-      if (
-        (e.code === 'ArrowDown' || btn === 'down') &&
-        board.snake.direction !== ESnakeDirections.TOP &&
-        board.snake.direction !== ESnakeDirections.BOTTOM
-      ) {
-        board?.snake?.changeDirection(ESnakeDirections.BOTTOM);
-        startMoving();
-        redisableClick();
+      if ((e?.code === 'ArrowDown' || btn === 'down') && board.snake.isCurrentHorizontal) {
+        changeDirection(ESnakeDirections.BOTTOM);
       }
-      if (
-        (e.code === 'ArrowUp' || btn === 'up') &&
-        board.snake.direction !== ESnakeDirections.TOP &&
-        board.snake.direction !== ESnakeDirections.BOTTOM
-      ) {
-        board?.snake?.changeDirection(ESnakeDirections.TOP);
-        startMoving();
-        redisableClick();
+      if ((e?.code === 'ArrowUp' || btn === 'up') && board.snake.isCurrentHorizontal) {
+        changeDirection(ESnakeDirections.TOP);
       }
-      if (
-        (e.code === 'ArrowLeft' || btn === 'left') &&
-        board.snake.direction !== ESnakeDirections.LEFT &&
-        board.snake.direction !== ESnakeDirections.RIGHT
-      ) {
-        board?.snake?.changeDirection(ESnakeDirections.LEFT);
-        startMoving();
-        redisableClick();
+      if ((e?.code === 'ArrowLeft' || btn === 'left') && board.snake.isCurrentVertical) {
+        changeDirection(ESnakeDirections.LEFT);
       }
     }
   };
-
-  useEffect(() => {
-    newGame();
-  }, []);
 
   const onStartGame = () => {
     if (!isNewGameButtonDisabled) {
@@ -122,6 +95,14 @@ export const Snake = () => {
       startMoving();
     }
   };
+
+  const isShowMobileBtns = useMemo(() => {
+    return isMobile();
+  }, []);
+
+  useEffect(() => {
+    newGame();
+  }, []);
 
   useEffect(() => {
     if (board?.gameOver) {
@@ -141,26 +122,23 @@ export const Snake = () => {
     }
   }, [board?.gameOver, board?.score, createScore, timer, user]);
 
-  const isShowMobileBtns = useMemo(() => {
-    return isMobile();
-  }, []);
-
-  useEffect(() => {
-    snakeContainer.current?.focus();
-  }, []);
-
   return (
     <div
-      className={`${snakeStyles.snake__container} container`}
+      className={`${styles.snake__container} container`}
       onKeyDown={onKeyPress}
       data-testid="snake-page"
       tabIndex={0}
       ref={snakeContainer}
     >
-      <h2 className={snakeStyles.snake__title}>Snake Game</h2>
-      <div className={snakeStyles.snake__btns}>
+      <h2 className="page-title">Snake Game</h2>
+      <div className={styles.snake__btns}>
         {!isNewGameButtonDisabled && (
-          <AppButton color="success" onClick={newGame} type="button" size="lg">
+          <AppButton
+            color="success"
+            onClick={newGame}
+            type="button"
+            size="lg"
+          >
             {t('new_game')}
           </AppButton>
         )}
@@ -180,7 +158,7 @@ export const Snake = () => {
         </p>
       </div>
       {!isNewGameButtonDisabled && (
-        <div className={snakeStyles.snake__difficulty}>
+        <div className={styles.snake__difficulty}>
           <p>{t('difficulty')}:</p>
           <AppRadioButton
             options={snakeLevelsOptions}
@@ -190,45 +168,14 @@ export const Snake = () => {
           />
         </div>
       )}
-      <p className={snakeStyles['snake__game-over']}>{gameOver}</p>
-      <div className={snakeStyles.snake__boards}>
+      <p className={styles['snake__game-over']}>{gameOver}</p>
+      <GameWithScore
+        game={EGamesNames.SNAKE}
+        user={user}
+      >
         <SnakeBoard board={board} />
-        {isShowMobileBtns && (
-          <div className={snakeStyles.snake__controlls}>
-            <button
-              onClick={(e: any) => onKeyPress(e, 'up')}
-              className={snakeStyles['snake-controlls__btn']}
-              type="button"
-            >
-              <FontAwesomeIcon icon={faCircleChevronUp} />
-            </button>
-            <div className={snakeStyles['snake-controlls__sides']}>
-              <button
-                onClick={(e: any) => onKeyPress(e, 'left')}
-                className={snakeStyles['snake-controlls__btn']}
-                type="button"
-              >
-                <FontAwesomeIcon icon={faCircleChevronLeft} />
-              </button>
-              <button
-                onClick={(e: any) => onKeyPress(e, 'right')}
-                className={snakeStyles['snake-controlls__btn']}
-                type="button"
-              >
-                <FontAwesomeIcon icon={faCircleChevronRight} />
-              </button>
-            </div>
-            <button
-              onClick={(e: any) => onKeyPress(e, 'down')}
-              className={snakeStyles['snake-controlls__btn']}
-              type="button"
-            >
-              <FontAwesomeIcon icon={faCircleChevronDown} />
-            </button>
-          </div>
-        )}
-        <CommonScoreBoard game={EGamesNames.SNAKE} user={user} />
-      </div>
+        {isShowMobileBtns && <MobileButtons onClick={onKeyPress} />}
+      </GameWithScore>
     </div>
   );
 };

@@ -9,9 +9,7 @@ import './assets/styles/index.scss';
 import { store } from './store';
 import { FirebaseProvider } from './context/firebase-context/FirebaseContext';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <Suspense fallback={<RoundLoader />}>
     <Provider store={store}>
