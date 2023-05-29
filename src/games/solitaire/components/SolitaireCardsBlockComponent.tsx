@@ -31,11 +31,12 @@ export const SolitaireCardsBlockComponent = ({
 
   return (
     <div className={styles.block}>
-      {block?.cards.length === 0 && (
-        <SolitaireEmptyCard clickHandler={clickHandler} />
-      )}
+      {block?.cards.length === 0 && <SolitaireEmptyCard clickHandler={clickHandler} />}
       {block?.cards?.map((card) => (
-        <div className={styles.block__item} key={card.id}>
+        <div
+          className={styles.block__item}
+          key={card.id}
+        >
           <SolitaireCardComponent
             key={card.id}
             card={card}

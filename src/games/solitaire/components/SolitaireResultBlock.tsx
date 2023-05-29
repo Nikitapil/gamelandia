@@ -32,7 +32,10 @@ export const SolitaireResultBlock = ({
     <div className={styles.block}>
       {block?.cards.length === 0 && <SolitaireEmptyCard />}
       {block?.cards.map((card) => (
-        <div className={styles['block__result-item']} key={card.id}>
+        <div
+          className={styles['block__result-item']}
+          key={card.id}
+        >
           <SolitaireCardComponent
             card={card}
             currentCards={currentCards}

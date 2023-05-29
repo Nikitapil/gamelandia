@@ -6,9 +6,7 @@ interface SolitaireEmptyCardProps {
   clickHandler?: () => void;
 }
 
-export const SolitaireEmptyCard = ({
-  clickHandler
-}: SolitaireEmptyCardProps) => {
+export const SolitaireEmptyCard = ({ clickHandler }: SolitaireEmptyCardProps) => {
   const onClick = () => {
     if (clickHandler) {
       clickHandler();
@@ -16,7 +14,10 @@ export const SolitaireEmptyCard = ({
   };
 
   return (
-    <div className={`${styles.card} ${styles.card__empty}`} onClick={onClick}>
+    <div
+      className={`${styles.card} ${styles.card__empty}`}
+      onClick={onClick}
+    >
       <FaBan />
     </div>
   );
