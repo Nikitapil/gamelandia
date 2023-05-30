@@ -1,4 +1,5 @@
 @import "../../../../assets/styles/vars";
+
 .tictac-board {
   width: 240px;
   height: 240px;
@@ -29,20 +30,6 @@
   color: $titleColor;
   font-family: "Permanent Marker", cursive;
   margin-bottom: 10px;
-}
-
-.tic-tac__restart {
-  border: none;
-  padding: 0 5px;
-  background-color: $titleColor;
-  border-radius: 6px;
-  transition: 0.4s;
-  margin-bottom: 10px;
-  font-size: 20px;
-
-  &:hover {
-    background-color: #5ce1ff;
-  }
 }
 
 .tictac__winner {

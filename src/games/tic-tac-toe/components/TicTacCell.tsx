@@ -2,14 +2,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { FC } from 'react';
 import { ticTacIcons } from '../constants';
 import { TicCell } from '../models/TicCell';
-import tictacStyles from '../assets/styles/tictac.module.scss';
+import styles from '../assets/styles/tictac.module.scss';
 
-interface TicTacCellProps {
+interface ITicTacCellProps {
   cell: TicCell;
   clickOnCell: (cell: TicCell) => void;
 }
 
-export const TicTacCell: FC<TicTacCellProps> = ({ cell, clickOnCell }) => {
+export const TicTacCell: FC<ITicTacCellProps> = ({ cell, clickOnCell }) => {
   const clickHandler = () => {
     clickOnCell(cell);
   };
@@ -18,7 +18,7 @@ export const TicTacCell: FC<TicTacCellProps> = ({ cell, clickOnCell }) => {
     <div
       data-testid="tic-tac-cell"
       onClick={clickHandler}
-      className={tictacStyles['tictac-cell']}
+      className={styles['tictac-cell']}
     >
       {cell.icon && <FontAwesomeIcon icon={ticTacIcons[cell.icon]} />}
     </div>

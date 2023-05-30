@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TicBoard } from '../models/TicBoard';
 import { TicCell } from '../models/TicCell';
 import { TicTacCell } from './TicTacCell';
-import tictacStyles from '../assets/styles/tictac.module.scss';
+import styles from '../assets/styles/tictac.module.scss';
 
-interface TicTacBoardProps {
+interface ITicTacBoardProps {
   board: TicBoard;
   setBoard: (board: TicBoard) => void;
   winner: string;
@@ -14,7 +14,7 @@ interface TicTacBoardProps {
   setDraw: (draw: boolean) => void;
 }
 
-export const TicTacBoard: FC<TicTacBoardProps> = ({
+export const TicTacBoard: FC<ITicTacBoardProps> = ({
   board,
   setBoard,
   winner,
@@ -23,6 +23,7 @@ export const TicTacBoard: FC<TicTacBoardProps> = ({
   setDraw
 }) => {
   const { t } = useTranslation();
+
   const clickOnCell = (cell: TicCell) => {
     if (!cell.icon && !winner) {
       const newBoard = cell.click();
@@ -36,19 +37,32 @@ export const TicTacBoard: FC<TicTacBoardProps> = ({
     }
   };
 
+  const winnerText = useMemo(() => {
+    if (!winner && !draw) {
+      return '';
+    }
+    return winner ? `${t(winner)} ${t('wins')}!!!` : `${t('draw')}!!!`;
+  }, [draw, t, winner]);
+
   return (
     <div className="board-container">
-      {winner && (
-        <h2 data-testid="winner-text" className={tictacStyles.tictac__winner}>
-          {t(winner)} {t('wins')}!!!
+      {winnerText && (
+        <h2
+          data-testid="winner-text"
+          className={styles.tictac__winner}
+        >
+          {winnerText}
         </h2>
       )}
-      {draw && <h2 className={tictacStyles.tictac__winner}>{t('draw')}!!!</h2>}
-      <div className={tictacStyles['tictac-board']}>
+      <div className={styles['tictac-board']}>
         {!!board.cells.length &&
           board.cells.map((row) =>
             row.map((cell) => (
-              <TicTacCell clickOnCell={clickOnCell} cell={cell} key={cell.id} />
+              <TicTacCell
+                clickOnCell={clickOnCell}
+                cell={cell}
+                key={cell.id}
+              />
             ))
           )}
       </div>
