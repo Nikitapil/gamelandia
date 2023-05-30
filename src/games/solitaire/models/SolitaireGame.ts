@@ -48,14 +48,11 @@ export class SolitaireGame {
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   changeBlockForCards(newBlock: SolitaireCardsBlock, cardArr: SolitaireCard[]) {
-    if (
-      !newBlock.cards.length &&
-      cardArr[0]?.name !== ESolitaireCardNames.KING
-    ) {
+    if (!newBlock.cards.length && cardArr[0]?.name !== ESolitaireCardNames.KING) {
       return;
     }
+
     const newBlockLastCard = newBlock.cards[newBlock.cards.length - 1];
     if (newBlockLastCard) {
       const firstCardFromArr = cardArr[0];
@@ -66,6 +63,7 @@ export class SolitaireGame {
         return;
       }
     }
+
     const prevBlock = cardArr[0]?.block;
     cardArr.forEach((card) => {
       card.changeBlock(newBlock);
@@ -93,8 +91,7 @@ export class SolitaireGame {
         (resultBlock) =>
           resultBlock.cards[0]?.suit === card.suit &&
           resultBlock.cards[resultBlock.cards.length - 1]?.value &&
-          card.value - resultBlock.cards[resultBlock.cards.length - 1].value ===
-            1
+          card.value - resultBlock.cards[resultBlock.cards.length - 1].value === 1
       );
       if (block) {
         card.changeBlock(block);
@@ -118,8 +115,6 @@ export class SolitaireGame {
   }
 
   checkWinner() {
-    return this.resultBlocks.every(
-      (block) => block.cards.length === cardNamesCount
-    );
+    return this.resultBlocks.every((block) => block.cards.length === cardNamesCount);
   }
 }

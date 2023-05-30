@@ -16,12 +16,11 @@ export const Solitaire = () => {
   const { t } = useTranslation();
   useTitle(t('solitaire'));
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.solitaire]);
+
   const [game, setGame] = useState<SolitaireGame | null>(null);
   const [key, setKey] = useState(uuid.v4());
   const [isWin, setIsWin] = useState(false);
-  const [currentCards, setCurrentCards] = useState<SolitaireCard[] | null>(
-    null
-  );
+  const [currentCards, setCurrentCards] = useState<SolitaireCard[] | null>(null);
 
   const startGame = () => {
     setIsWin(false);
@@ -58,7 +57,10 @@ export const Solitaire = () => {
   }, []);
 
   return (
-    <div key={key} className={`container ${styles.solitaire}`}>
+    <div
+      key={key}
+      className={`container ${styles.solitaire}`}
+    >
       <h1 className="page-title">Solitaire</h1>
       <div className={styles.win}>
         {isWin && <p className={styles.win__text}>{t('you_win')}!!!</p>}
