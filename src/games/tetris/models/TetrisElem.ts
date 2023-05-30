@@ -9,11 +9,7 @@ export class TetrisElem {
 
   figure: TetrisFigureModel;
 
-  constructor(
-    color: ETetrisColors,
-    cell: TetrisCellModel,
-    figure: TetrisFigureModel
-  ) {
+  constructor(color: ETetrisColors, cell: TetrisCellModel, figure: TetrisFigureModel) {
     this.color = color;
     this.cell = cell;
     this.cell.elem = this;

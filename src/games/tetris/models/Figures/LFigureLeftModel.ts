@@ -12,8 +12,10 @@ export class LFigureLeftModel extends TetrisFigureModel {
   }
 
   get nextCells() {
-    const { y } = this.baseElem!.cell;
-    const { x } = this.baseElem!.cell;
+    if (!this.baseElem) {
+      return { right: [], down: [], left: [], up: [] };
+    }
+    const { y, x } = this.baseElem.cell;
     return {
       right: [
         this.board.getCell(y - 1, x),

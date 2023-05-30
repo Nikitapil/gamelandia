@@ -47,11 +47,5 @@ export const L_FIGURE_POSSIBLE_DIRECTIONS = [
   ETetrisDirections.LEFT
 ];
 export const SQUARE_FIGURE_POSSIBLE_DIRECTIONS = [ETetrisDirections.UP];
-export const SKEW_FIGURE_POSSIBLE_DIRECTIONS = [
-  ETetrisDirections.UP,
-  ETetrisDirections.DOWN
-];
-export const STRAIGHT_FIGURE_POSSIBLE_DIRECTIONS = [
-  ETetrisDirections.UP,
-  ETetrisDirections.DOWN
-];
+export const SKEW_FIGURE_POSSIBLE_DIRECTIONS = [ETetrisDirections.UP, ETetrisDirections.DOWN];
+export const STRAIGHT_FIGURE_POSSIBLE_DIRECTIONS = [ETetrisDirections.UP, ETetrisDirections.DOWN];

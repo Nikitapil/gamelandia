@@ -1,7 +1,4 @@
-import {
-  ETetrisColors,
-  STRAIGHT_FIGURE_POSSIBLE_DIRECTIONS
-} from '../../constants';
+import { ETetrisColors, STRAIGHT_FIGURE_POSSIBLE_DIRECTIONS } from '../../constants';
 import { TetrisBoardModel } from '../TetrisBoardModel';
 import { TetrisElem } from '../TetrisElem';
 import { TetrisFigureModel } from './TetrisFigureModel';
@@ -15,8 +12,10 @@ export class StraightFigureModel extends TetrisFigureModel {
   }
 
   get nextCells() {
-    const { y } = this.baseElem!.cell;
-    const { x } = this.baseElem!.cell;
+    if (!this.baseElem) {
+      return { right: [], down: [], left: [], up: [] };
+    }
+    const { y, x } = this.baseElem.cell;
     return {
       right: [],
       left: [],

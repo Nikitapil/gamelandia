@@ -1,8 +1,5 @@
 import { TetrisBoardModel } from '../TetrisBoardModel';
-import {
-  ETetrisColors,
-  SKEW_FIGURE_POSSIBLE_DIRECTIONS
-} from '../../constants';
+import { ETetrisColors, SKEW_FIGURE_POSSIBLE_DIRECTIONS } from '../../constants';
 import { TetrisFigureModel } from './TetrisFigureModel';
 import { TetrisElem } from '../TetrisElem';
 
@@ -15,8 +12,10 @@ export class SkewFigureLeftModel extends TetrisFigureModel {
   }
 
   get nextCells() {
-    const { y } = this.baseElem!.cell;
-    const { x } = this.baseElem!.cell;
+    if (!this.baseElem) {
+      return { right: [], down: [], left: [], up: [] };
+    }
+    const { y, x } = this.baseElem.cell;
     return {
       right: [],
       left: [],

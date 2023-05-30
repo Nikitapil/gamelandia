@@ -2,11 +2,11 @@ import React, { useMemo } from 'react';
 import { TetrisCellModel } from '../models/TetrisCellModel';
 import tetrisStyle from '../assets/styles/tetris.module.scss';
 
-interface TetrisCellProps {
+interface ITetrisCellProps {
   cell: TetrisCellModel;
 }
 
-export const TetrisCell = ({ cell }: TetrisCellProps) => {
+export const TetrisCell = ({ cell }: ITetrisCellProps) => {
   const colorClass = useMemo(() => {
     return tetrisStyle[`bg-${cell.elem?.color}`] || '';
   }, [cell.elem]);

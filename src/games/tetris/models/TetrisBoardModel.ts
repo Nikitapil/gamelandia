@@ -36,9 +36,7 @@ export class TetrisBoardModel {
   }
 
   clearRows() {
-    const rowsToClear = this.cells.filter((row) =>
-      row.every((cell) => !!cell.elem)
-    );
+    const rowsToClear = this.cells.filter((row) => row.every((cell) => !!cell.elem));
     if (rowsToClear.length) {
       rowsToClear.forEach((row) => {
         const index = this.cells.indexOf(row);

@@ -20,10 +20,7 @@ export class TetrisFigureModel {
 
   currentDirection: ETetrisDirections = ETetrisDirections.UP;
 
-  constructor(
-    board: TetrisBoardModel,
-    possibleDirections: ETetrisDirections[]
-  ) {
+  constructor(board: TetrisBoardModel, possibleDirections: ETetrisDirections[]) {
     this.id = uuidv4();
     this.board = board;
     this.possibleDirections = possibleDirections;
@@ -73,15 +70,13 @@ export class TetrisFigureModel {
     }
   }
 
-  createElement() {
+  protected createElement() {
     if (
-      this.nextCells[this.currentDirection].some(
-        (cell) => !!cell.elem && cell.elem.figure !== this
-      )
+      this.nextCells[this.currentDirection].some((cell) => !!cell.elem && cell.elem.figure !== this)
     ) {
       return;
     }
-    this.destroyNobaseElems();
+    this.destroyNoBaseElems();
     this.updateElems(this.nextCells[this.currentDirection]);
   }
 
@@ -100,28 +95,29 @@ export class TetrisFigureModel {
       }
       this.createElement();
     } catch (error) {
-      if (this.baseElem!.cell.y >= 17 || this.baseElem!.cell.y < 1) {
+      if (!this.baseElem || this.baseElem.cell.y >= 17 || this.baseElem.cell.y < 1) {
         return;
       }
-      if (this.baseElem!.cell.x < 5) {
+      if (this.baseElem.cell.x < 5) {
         this.moveRight();
         this.changeDirection(this.currentDirection);
       }
-      if (this.baseElem!.cell.x > 5) {
+      if (this.baseElem.cell.x > 5) {
         this.moveLeft();
         this.changeDirection(this.currentDirection);
       }
     }
   }
 
-  updateElems(nextCells: TetrisCellModel[]) {
-    const newElems = nextCells.map(
-      (cell) => new TetrisElem(this.color, cell, this)
-    );
-    this.elems = [this.baseElem!, ...newElems];
+  protected updateElems(nextCells: TetrisCellModel[]) {
+    if (!this.baseElem) {
+      return;
+    }
+    const newElems = nextCells.map((cell) => new TetrisElem(this.color, cell, this));
+    this.elems = [this.baseElem, ...newElems];
   }
 
-  destroyNobaseElems() {
+  protected destroyNoBaseElems() {
     this.elems.forEach((el) => {
       if (el !== this.baseElem) {
         el.destroyElem();
@@ -129,7 +125,6 @@ export class TetrisFigureModel {
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   get nextCells(): ITetrisNextCells {
     return {
       right: [],

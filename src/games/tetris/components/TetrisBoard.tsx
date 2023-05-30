@@ -4,15 +4,20 @@ import { TetrisBoardModel } from '../models/TetrisBoardModel';
 import { TetrisCell } from './TetrisCell';
 import tetrisStyle from '../assets/styles/tetris.module.scss';
 
-interface TetrisBoardProps {
+interface ITetrisBoardProps {
   board: TetrisBoardModel;
 }
 
-export const TetrisBoard = ({ board }: TetrisBoardProps) => {
+export const TetrisBoard = ({ board }: ITetrisBoardProps) => {
   return (
     <div className={tetrisStyle.board}>
       {board.cells.map((row) =>
-        row.map((cell) => <TetrisCell cell={cell} key={uuidv4()} />)
+        row.map((cell) => (
+          <TetrisCell
+            cell={cell}
+            key={uuidv4()}
+          />
+        ))
       )}
     </div>
   );

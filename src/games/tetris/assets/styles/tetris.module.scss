@@ -93,33 +93,3 @@
   display: flex;
   gap: 5px;
 }
-
-.tetris-boards {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-
-  @media (max-width: 610px) {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-.mobile__controlls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-}
-
-.mobile-controlls__btn {
-  background: none;
-  border: none;
-  font-size: 34px;
-  color: #3bf851;
-}
-
-.mobile-controlls__sides {
-  display: flex;
-  gap: 90px;
-}
