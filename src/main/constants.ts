@@ -11,8 +11,10 @@ import flappy from './assets/game-pictures/flappy.png';
 import aim from './assets/game-pictures/aim.png';
 import numbers from './assets/game-pictures/2048.png';
 import solitaire from './assets/game-pictures/solitaire.jpeg';
+import { IGameCard } from './types';
+import { IStringObject } from '../types/common';
 
-export const constants = [
+export const gamesCards: IGameCard[] = [
   {
     id: 11,
     gameName: '2048',
@@ -135,11 +137,7 @@ export const constants = [
   }
 ];
 
-interface IGamePics {
-  [key: string]: string;
-}
-
-export const gamePics: IGamePics = {
+export const gamePics: IStringObject = {
   default: defaultPic,
   quizzer,
   chess,

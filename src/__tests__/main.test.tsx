@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { MainPageCard } from '../main/components/MainPageCard';
-import { OutSidePageCard } from '../main/components/OutSideGameCard';
+import { InternalGameCard } from '../main/components/InternalGameCard';
+import { OutSideGameCard } from '../main/components/OutSideGameCard';
 import { renderWithRouter } from '../utils/test/utils';
 
 describe('mainpage tests', () => {
@@ -19,7 +19,20 @@ describe('mainpage tests', () => {
   // });
   test('gameCard outside', () => {
     render(
-      renderWithRouter(<OutSidePageCard to="" gameName="" description="" />)
+      renderWithRouter(
+        <OutSideGameCard
+          card={{
+            id: 123,
+            gameName: 'outside game',
+            pictureName: 'default',
+            description: 'game',
+            labels: [],
+            mobileSuitable: true,
+            path: 'path',
+            isOutside: true
+          }}
+        />
+      )
     );
     const img = screen.getByTestId('game-pic');
     expect((img as HTMLImageElement).src).not.toBe(undefined);
@@ -28,7 +41,18 @@ describe('mainpage tests', () => {
   test('gameCard inside', () => {
     render(
       renderWithRouter(
-        <MainPageCard to="" gameName="" description="" labels={[]} />
+        <InternalGameCard
+          card={{
+            id: 123,
+            gameName: 'internal game',
+            pictureName: 'default',
+            description: 'game',
+            labels: [],
+            mobileSuitable: true,
+            path: 'path',
+            isOutside: true
+          }}
+        />
       )
     );
     const img = screen.getByTestId('game-pic');

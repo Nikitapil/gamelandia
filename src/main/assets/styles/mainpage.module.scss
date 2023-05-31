@@ -22,9 +22,10 @@
   overflow: hidden;
   text-decoration: none;
   transition: 0.4s;
+  box-shadow: $shadow-black-common;
 
   &:hover {
-    border: 2px solid $titleColor;
+    background: $bg-white-glass;
   }
 }
 
@@ -71,9 +72,10 @@
 
 .game-label {
   color: black;
-  background-color: #adff2f;
+  background: $bg-success;
   padding: 1px 5px;
   border-radius: 5px;
+  text-transform: uppercase;
 }
 
 .labeles__container {
