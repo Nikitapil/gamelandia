@@ -18,9 +18,7 @@ export class TicBoard {
 
   updateBoard() {
     this.currentPlayer =
-      this.currentPlayer === ETicTacIcons.XMARK
-        ? ETicTacIcons.CIRCLE
-        : ETicTacIcons.XMARK;
+      this.currentPlayer === ETicTacIcons.XMARK ? ETicTacIcons.CIRCLE : ETicTacIcons.XMARK;
 
     const newBoard = new TicBoard();
     newBoard.cells = this.cells;
@@ -28,26 +26,22 @@ export class TicBoard {
     return newBoard;
   }
 
-  checkWinner() {
+  private checkWinner() {
     const checkArrays = [...this.cells];
-    const checkArraysHorizontal1 = [];
-    const checkArraysHorizontal2 = [];
+    const checkArraysDiagonal1 = [];
+    const checkArraysDiagonal2 = [];
     const checkColumns = [];
     for (let i = 0; i < this.cells.length; i++) {
-      checkArraysHorizontal1.push(this.cells[i][i]);
+      checkArraysDiagonal1.push(this.cells[i][i]);
       const revers = Math.abs(i - 2);
-      checkArraysHorizontal2.push(this.cells[i][revers]);
+      checkArraysDiagonal2.push(this.cells[i][revers]);
       const coll = [];
       for (let j = 0; j < 3; j++) {
         coll.push(this.cells[j][i]);
       }
       checkColumns.push(coll);
     }
-    checkArrays.push(
-      checkArraysHorizontal1,
-      checkArraysHorizontal2,
-      ...checkColumns
-    );
+    checkArrays.push(checkArraysDiagonal1, checkArraysDiagonal2, ...checkColumns);
     return checkArrays.some((row) =>
       row.every((cell) => cell.icon === row[0].icon && cell.icon !== null)
     );
