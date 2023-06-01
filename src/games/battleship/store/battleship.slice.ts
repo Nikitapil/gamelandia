@@ -33,14 +33,10 @@ export const battleshipSlice = createSlice({
       }
       state.enemyBoard = board;
     },
-    setCurrentFreeShip(
-      state,
-      action: TReduxAction<BattleShipElemModel | null>
-    ) {
+    setCurrentFreeShip(state, action: TReduxAction<BattleShipElemModel | null>) {
       state.currentFreeShip = action.payload;
     }
   }
 });
 
-export const { reducer: battleshipReducer, actions: battleshipActions } =
-  battleshipSlice;
+export const { reducer: battleshipReducer, actions: battleshipActions } = battleshipSlice;

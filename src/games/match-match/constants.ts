@@ -9,8 +9,9 @@ import giene from './assets/card-images/giene.jpeg';
 import littledog from './assets/card-images/littledog.jpeg';
 import racoon from './assets/card-images/racoon.jpeg';
 import wolf from './assets/card-images/wolf.png';
+import { ICard } from './types';
 
-export const matchMatchPics = [
+export const matchMatchPics: ICard[] = [
   {
     name: 'birds',
     pic: birds,
@@ -71,6 +72,7 @@ export const matchMatchPics = [
     name: 'racoon',
     pic: racoon,
     flipped: false,
+    disabled: false,
     id: uuidv4()
   },
   {

@@ -1,8 +1,8 @@
-export const shuffleArray = (arr: any[]) => {
+export const shuffleArray = <T>(arr: T[]): T[] => {
   return arr.sort(() => Math.random() - 0.5);
 };
 
-export const getUniqArrayObjects = (arr: any[]) => {
+export const getUniqArrayObjects = <T>(arr: T[]): T[] => {
   return arr.map((item) => ({ ...item }));
 };
 
