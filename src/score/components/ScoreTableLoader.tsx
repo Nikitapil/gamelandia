@@ -1,9 +1,9 @@
 import React from 'react';
-import commonStyles from '../../styles/common.module.scss';
+import styles from '../assets/styles/scores.module.scss';
 
 export const ScoreTableLoader = () => {
   return (
-    <div className={commonStyles['score-board__loader']}>
+    <div className={styles['score-board__loader']}>
       <div />
       <div />
       <div />

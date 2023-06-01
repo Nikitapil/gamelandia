@@ -1,18 +1,19 @@
-@import "../assets/styles/vars";
+@import "../../../assets/styles/vars";
 
 .score-board {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  border: 2px solid black;
+  border: 1px solid black;
   align-self: flex-start;
   border-radius: 15px;
-  background-color: rgba(0, 0, 0, 0.273);
+  background-color: $bg-black-glass;
   min-height: 310px;
+  box-shadow: $shadow-black-common;
 }
 
 .score-board__title {
-  color: #3bf851;
+  color: $success;
   text-align: center;
   font-weight: 700;
   font-size: 18px;
@@ -33,7 +34,7 @@
 }
 
 .my-score {
-  color: #3bf851;
+  color: $success;
 }
 
 .score-board__loader {
@@ -42,7 +43,7 @@
 
   div {
     height: 15px;
-    background: $titleColor;
+    background: $bg-light-green;
     position: relative;
 
     &:not(:last-child) {
@@ -58,7 +59,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      background: rgb(252, 252, 252);
+      background: $bg-gray;
       height: 100%;
       width: 100%;
       animation: leftToRight 2s linear infinite;
@@ -71,7 +72,7 @@
     left: -220px;
     opacity: 0;
   } 100% {
-    left: 220px;
-  opacity: 0.8;
-      }
+      left: 220px;
+      opacity: 0.8;
+    }
 }
