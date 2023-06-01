@@ -18,12 +18,7 @@ export class BattleshipCellModel {
 
   isAddAvailable: boolean = false;
 
-  constructor(
-    y: number,
-    x: number,
-    board: BattleshipBoardModel,
-    isAttacked = false
-  ) {
+  constructor(y: number, x: number, board: BattleshipBoardModel, isAttacked = false) {
     this.y = y;
     this.x = x;
     this.board = board;

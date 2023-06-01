@@ -28,10 +28,7 @@ export const mapCellsFromFirebase = (cells: BattleshipCellModel[]) => {
   return chunk(cells, 10);
 };
 
-export const mapShipsFromFireBase = (
-  ships: IFirebaseShip[],
-  board: BattleshipBoardModel
-) => {
+export const mapShipsFromFireBase = (ships: IFirebaseShip[], board: BattleshipBoardModel) => {
   return ships.map((ship) => {
     const cells = ship.cells.map((cell) => board.cells[cell.y][cell.x]);
     const newShip = new BattleShipElemModel(ship.size, ship.direction);
@@ -48,10 +45,7 @@ export const mapFromFireBaseToBattleShip = (
 ) => {
   const newBoard = new BattleshipBoardModel(isEnemyBoard);
   newBoard.cells = mapCellsFromFirebase(
-    cells.map(
-      (cell) =>
-        new BattleshipCellModel(cell.y, cell.x, newBoard, cell.isAttacked)
-    )
+    cells.map((cell) => new BattleshipCellModel(cell.y, cell.x, newBoard, cell.isAttacked))
   );
   newBoard.ships = mapShipsFromFireBase(ships, newBoard);
   return newBoard;

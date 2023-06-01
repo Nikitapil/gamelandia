@@ -24,9 +24,7 @@ export const AppPasswordInput = ({
   rules,
   disabled = false
 }: IAppPasswordInputProps) => {
-  const [passwordType, setPasswordType] = useState<'password' | 'text'>(
-    'password'
-  );
+  const [passwordType, setPasswordType] = useState<'password' | 'text'>('password');
 
   const onChangePasswordType = () => {
     const newPasswordType = passwordType === 'text' ? 'password' : 'text';

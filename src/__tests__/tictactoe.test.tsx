@@ -55,7 +55,12 @@ describe('tic tac toe components', () => {
     });
     const cell = new TicCell(board, 0, 0);
     render(
-      renderWithRouter(<TicTacCell cell={cell} clickOnCell={clickOnCell} />)
+      renderWithRouter(
+        <TicTacCell
+          cell={cell}
+          clickOnCell={clickOnCell}
+        />
+      )
     );
     userEvent.click(screen.getByTestId('tic-tac-cell'));
     expect(clickOnCell).toBeCalled();

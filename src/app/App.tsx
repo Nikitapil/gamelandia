@@ -44,27 +44,87 @@ function App() {
           <LanguageDropdown />
         </div>
         <Routes>
-          <Route path={ERoutes.MAIN} element={<MainPage />} />
-          <Route path={ERoutes.UNKNOWN} element={<NotFound />} />
-          <Route path={ERoutes.MATCH_MATCH} element={<MatchMatch />} />
-          <Route path={ERoutes.FLAPPY} element={<FlappyBird />} />
-          <Route path={ERoutes.CHESS} element={<ChessTypes />} />
-          <Route path={ERoutes.CHESS_OFFLINE} element={<Chess />} />
-          <Route path={ERoutes.AIM_GAME} element={<AimGame />} />
-          <Route path={ERoutes.NUMBERS} element={<NumbersGame />} />
-          <Route path={ERoutes.SOLITAIRE} element={<Solitaire />} />
-          <Route path={ERoutes.CHESS_ROOMS} element={<ChessRooms />} />
-          <Route path={ERoutes.CHESS_ROOMS_ID} element={<ChessOnline />} />
-          <Route path={ERoutes.TIC_TAC} element={<TicTacToe />} />
-          <Route path={ERoutes.SNAKE} element={<Snake />} />
-          <Route path={ERoutes.BATTLESHIP} element={<BattleShipRooms />} />
-          <Route path={ERoutes.INVADERS} element={<CloneInvaders />} />
-          <Route path={ERoutes.TETRIS} element={<Tetris />} />
-          <Route path={ERoutes.BATTLESHIP_ID} element={<BattleShip />} />
-          <Route path={ERoutes.REGISTRATION} element={<SignUp />} />
-          <Route path={ERoutes.LOGIN} element={<SignIn />} />
+          <Route
+            path={ERoutes.MAIN}
+            element={<MainPage />}
+          />
+          <Route
+            path={ERoutes.UNKNOWN}
+            element={<NotFound />}
+          />
+          <Route
+            path={ERoutes.MATCH_MATCH}
+            element={<MatchMatch />}
+          />
+          <Route
+            path={ERoutes.FLAPPY}
+            element={<FlappyBird />}
+          />
+          <Route
+            path={ERoutes.CHESS}
+            element={<ChessTypes />}
+          />
+          <Route
+            path={ERoutes.CHESS_OFFLINE}
+            element={<Chess />}
+          />
+          <Route
+            path={ERoutes.AIM_GAME}
+            element={<AimGame />}
+          />
+          <Route
+            path={ERoutes.NUMBERS}
+            element={<NumbersGame />}
+          />
+          <Route
+            path={ERoutes.SOLITAIRE}
+            element={<Solitaire />}
+          />
+          <Route
+            path={ERoutes.CHESS_ROOMS}
+            element={<ChessRooms />}
+          />
+          <Route
+            path={ERoutes.CHESS_ROOMS_ID}
+            element={<ChessOnline />}
+          />
+          <Route
+            path={ERoutes.TIC_TAC}
+            element={<TicTacToe />}
+          />
+          <Route
+            path={ERoutes.SNAKE}
+            element={<Snake />}
+          />
+          <Route
+            path={ERoutes.BATTLESHIP}
+            element={<BattleShipRooms />}
+          />
+          <Route
+            path={ERoutes.INVADERS}
+            element={<CloneInvaders />}
+          />
+          <Route
+            path={ERoutes.TETRIS}
+            element={<Tetris />}
+          />
+          <Route
+            path={ERoutes.BATTLESHIP_ID}
+            element={<BattleShip />}
+          />
+          <Route
+            path={ERoutes.REGISTRATION}
+            element={<SignUp />}
+          />
+          <Route
+            path={ERoutes.LOGIN}
+            element={<SignIn />}
+          />
         </Routes>
-        <ToastContainer position="top-right" autoClose={2000} />
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+        />
       </main>
     </div>
   );

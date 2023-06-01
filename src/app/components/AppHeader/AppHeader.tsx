@@ -24,7 +24,10 @@ export const AppHeader = () => {
         <nav className={styles['header__nav-bar']}>
           <ul className={styles['nav-bar__links']}>
             <li>
-              <Link className={styles['nav-bar__link']} to={`${ERoutes.MAIN}`}>
+              <Link
+                className={styles['nav-bar__link']}
+                to={`${ERoutes.MAIN}`}
+              >
                 {t('main')}
               </Link>
             </li>

@@ -10,21 +10,19 @@ interface IBattleshipBoardProps {
   board: BattleshipBoardModel;
 }
 
-export const BattleshipBoard = memo(
-  ({ roomData, secondPlayer, board }: IBattleshipBoardProps) => {
-    return (
-      <div className={styles.battleship__board}>
-        {board?.cells.map((row) =>
-          row.map((cell) => (
-            <BattleshipCell
-              secondPlayer={secondPlayer}
-              roomData={roomData}
-              cell={cell}
-              key={cell.id}
-            />
-          ))
-        )}
-      </div>
-    );
-  }
-);
+export const BattleshipBoard = memo(({ roomData, secondPlayer, board }: IBattleshipBoardProps) => {
+  return (
+    <div className={styles.battleship__board}>
+      {board?.cells.map((row) =>
+        row.map((cell) => (
+          <BattleshipCell
+            secondPlayer={secondPlayer}
+            roomData={roomData}
+            cell={cell}
+            key={cell.id}
+          />
+        ))
+      )}
+    </div>
+  );
+});

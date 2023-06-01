@@ -72,10 +72,7 @@ export class BattleshipBoardModel {
     });
   }
 
-  checkIsAddAvailable(
-    cell: BattleshipCellModel,
-    currentElem: BattleShipElemModel
-  ) {
+  checkIsAddAvailable(cell: BattleshipCellModel, currentElem: BattleShipElemModel) {
     this.setAllCellUnavailableForAdd();
     let cells: BattleshipCellModel[] = [];
     // Add cells under elem

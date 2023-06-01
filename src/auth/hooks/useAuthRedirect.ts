@@ -13,9 +13,7 @@ export const useAuthRedirect = (user: IUser | null, error: string) => {
   useEffect(() => {
     if (user) {
       const pageFromParams = searchParams.get('page');
-      const pageToRedirect = pageFromParams
-        ? `/${pageFromParams}`
-        : ERoutes.MAIN;
+      const pageToRedirect = pageFromParams ? `/${pageFromParams}` : ERoutes.MAIN;
       navigate(pageToRedirect);
     }
   }, [navigate, searchParams, user]);

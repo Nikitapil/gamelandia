@@ -12,11 +12,7 @@ interface IBattleShipElemProps {
   currentFreeShip: BattleShipElemModel | null;
 }
 
-export const BattleShipElem: FC<IBattleShipElemProps> = ({
-  elem,
-  board,
-  currentFreeShip
-}) => {
+export const BattleShipElem: FC<IBattleShipElemProps> = ({ elem, board, currentFreeShip }) => {
   const { setFreeShips, setCurrentFreeShip } = useBattleshipActions();
 
   const changeDirection = (e: SyntheticEvent) => {
@@ -37,7 +33,10 @@ export const BattleShipElem: FC<IBattleShipElemProps> = ({
   }, [currentFreeShip?.id, elem.direction, elem.id, elem.size]);
 
   return (
-    <div className={currentClass} onClick={onChooseElem}>
+    <div
+      className={currentClass}
+      onClick={onChooseElem}
+    >
       {elem.size > 1 && (
         <button
           className={styles['battship-elembtn']}

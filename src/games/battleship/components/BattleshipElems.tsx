@@ -15,14 +15,10 @@ interface BattleshipElemsProps {
   myPlayer: TPlayerKey;
 }
 
-export const BattleshipElems: FC<BattleshipElemsProps> = ({
-  roomData,
-  myPlayer
-}) => {
+export const BattleshipElems: FC<BattleshipElemsProps> = ({ roomData, myPlayer }) => {
   const { t } = useTranslation();
 
-  const { freeShips, board, currentFreeShip } =
-    useAppSelector(battleshipSelector);
+  const { freeShips, board, currentFreeShip } = useAppSelector(battleshipSelector);
 
   const { setFreeShips, setBoard, setCurrentFreeShip } = useBattleshipActions();
 
@@ -56,11 +52,19 @@ export const BattleshipElems: FC<BattleshipElemsProps> = ({
         />
       ))}
       {freeShips.length === 0 && (
-        <AppButton color="danger" onClick={setIsReady} type="button">
+        <AppButton
+          color="danger"
+          onClick={setIsReady}
+          type="button"
+        >
           {t('ready')}
         </AppButton>
       )}
-      <AppButton color="danger" onClick={resetShips} type="button">
+      <AppButton
+        color="danger"
+        onClick={resetShips}
+        type="button"
+      >
         {t('reset_ships')}
       </AppButton>
     </div>

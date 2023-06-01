@@ -1,12 +1,4 @@
-import {
-  ChangeEvent,
-  FC,
-  FormEvent,
-  useCallback,
-  useMemo,
-  useRef,
-  useState
-} from 'react';
+import { ChangeEvent, FC, FormEvent, useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../../assets/styles/auth.module.scss';
 import { AppInput } from '../../../components/UI/AppInput/AppInput';
@@ -23,12 +15,7 @@ interface AuthFormProps {
   isLoading: boolean;
 }
 
-export const AuthForm: FC<AuthFormProps> = ({
-  formTitle,
-  submit,
-  isLoading,
-  isSignUp = false
-}) => {
+export const AuthForm: FC<AuthFormProps> = ({ formTitle, submit, isLoading, isSignUp = false }) => {
   const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
@@ -70,7 +57,11 @@ export const AuthForm: FC<AuthFormProps> = ({
   };
 
   return (
-    <form className={styles['auth-form']} onSubmit={onSubmit} ref={form}>
+    <form
+      className={styles['auth-form']}
+      onSubmit={onSubmit}
+      ref={form}
+    >
       <h2 className={styles['auth-form__title']}>{formTitle}</h2>
       <AppInput
         type="email"

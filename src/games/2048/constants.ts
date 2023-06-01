@@ -33,18 +33,15 @@ export const numberColors: TNumberColors = {
     color: '#fff'
   },
   32: {
-    background:
-      'linear-gradient(110.1deg, rgb(241, 115, 30) 18.9%, rgb(231, 29, 54) 90.7%)',
+    background: 'linear-gradient(110.1deg, rgb(241, 115, 30) 18.9%, rgb(231, 29, 54) 90.7%)',
     color: '#fff'
   },
   64: {
-    background:
-      'linear-gradient(25deg, rgb(214, 76, 127), rgb(238, 71, 88) 50%)',
+    background: 'linear-gradient(25deg, rgb(214, 76, 127), rgb(238, 71, 88) 50%)',
     color: '#fff'
   },
   128: {
-    background:
-      'linear-gradient(109.6deg, rgb(255, 219, 47) 11.2%, rgb(244, 253, 0) 100.2%)',
+    background: 'linear-gradient(109.6deg, rgb(255, 219, 47) 11.2%, rgb(244, 253, 0) 100.2%)',
     color: '#766e65'
   },
   256: {
@@ -53,8 +50,7 @@ export const numberColors: TNumberColors = {
     color: '#766e65'
   },
   512: {
-    background:
-      'linear-gradient(179deg, rgb(255, 129, 27) -27.5%, rgb(245, 255, 56) 94.7%)',
+    background: 'linear-gradient(179deg, rgb(255, 129, 27) -27.5%, rgb(245, 255, 56) 94.7%)',
     color: '#fff'
   },
   1024: {

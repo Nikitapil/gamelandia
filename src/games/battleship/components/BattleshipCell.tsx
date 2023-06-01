@@ -15,84 +15,77 @@ interface IBattleshipCellProps {
   secondPlayer: TPlayerKey;
 }
 
-export const BattleshipCell = memo(
-  ({ cell, roomData, secondPlayer }: IBattleshipCellProps) => {
-    const { currentFreeShip, board, enemyBoard } =
-      useAppSelector(battleshipSelector);
+export const BattleshipCell = memo(({ cell, roomData, secondPlayer }: IBattleshipCellProps) => {
+  const { currentFreeShip, board, enemyBoard } = useAppSelector(battleshipSelector);
 
-    const { setBoard, setFreeShips, setCurrentFreeShip } =
-      useBattleshipActions();
+  const { setBoard, setFreeShips, setCurrentFreeShip } = useBattleshipActions();
 
-    const service = useBattleshipService();
+  const service = useBattleshipService();
 
-    const onMouseOver = () => {
-      if (currentFreeShip && cell.isEmpty) {
-        const isAddAvailable = board?.checkIsAddAvailable(
-          cell,
-          currentFreeShip
-        );
-        if (isAddAvailable) {
-          board?.highlightCells(cell, currentFreeShip);
-        }
-        setBoard(board);
+  const onMouseOver = () => {
+    if (currentFreeShip && cell.isEmpty) {
+      const isAddAvailable = board?.checkIsAddAvailable(cell, currentFreeShip);
+      if (isAddAvailable) {
+        board?.highlightCells(cell, currentFreeShip);
       }
-    };
+      setBoard(board);
+    }
+  };
 
-    const onClick = () => {
-      if (currentFreeShip && cell.isAddAvailable) {
-        board?.addShipOnBoard(cell, currentFreeShip);
-        setBoard(board);
-        setFreeShips(board?.freeElems!);
-        setCurrentFreeShip(null);
-      }
-      if (
-        cell.board.isEnemyBoard &&
-        roomData.currentPlayer !== secondPlayer &&
-        !cell.isAttacked
-      ) {
-        cell.setIsAttacked();
-        const isWinner = !!enemyBoard?.checkWinner();
-        service.attackCell({
-          roomData,
-          isWinner,
-          playerToAttack: secondPlayer,
-          playerToAttackCells: enemyBoard?.cells || [],
-          playerToAttackShips: enemyBoard?.ships || [],
-          isSuccessfullAtack: !!cell.elem
-        });
-      }
-    };
+  const onClick = () => {
+    if (currentFreeShip && cell.isAddAvailable) {
+      board?.addShipOnBoard(cell, currentFreeShip);
+      setBoard(board);
+      setFreeShips(board?.freeElems!);
+      setCurrentFreeShip(null);
+    }
+    if (cell.board.isEnemyBoard && roomData.currentPlayer !== secondPlayer && !cell.isAttacked) {
+      cell.setIsAttacked();
+      const isWinner = !!enemyBoard?.checkWinner();
+      service.attackCell({
+        roomData,
+        isWinner,
+        playerToAttack: secondPlayer,
+        playerToAttackCells: enemyBoard?.cells || [],
+        playerToAttackShips: enemyBoard?.ships || [],
+        isSuccessfullAtack: !!cell.elem
+      });
+    }
+  };
 
-    const icon = useMemo(() => {
-      if (cell.isAttacked) {
-        return cell.elem
-          ? {
-              className: styles['battleship__under-attack'],
-              icon: faXmark
-            }
-          : { className: styles.battleship__missed, icon: faCircle };
-      }
-      return null;
-    }, [cell.elem, cell.isAttacked]);
+  const icon = useMemo(() => {
+    if (cell.isAttacked) {
+      return cell.elem
+        ? {
+            className: styles['battleship__under-attack'],
+            icon: faXmark
+          }
+        : { className: styles.battleship__missed, icon: faCircle };
+    }
+    return null;
+  }, [cell.elem, cell.isAttacked]);
 
-    const className = useMemo(() => {
-      const classes = [styles.battleship__cell];
-      if (cell.isAddAvailable) {
-        classes.push(styles['battship-highlighted']);
-      }
-      if (cell.elem && !cell.board.isEnemyBoard) {
-        classes.push(styles['with-ship']);
-      }
-      if (cell.elem?.isDestroyed) {
-        classes.push(styles.battleship__destroyed);
-      }
-      return classes.join(' ');
-    }, [cell.board.isEnemyBoard, cell.elem, cell.isAddAvailable]);
+  const className = useMemo(() => {
+    const classes = [styles.battleship__cell];
+    if (cell.isAddAvailable) {
+      classes.push(styles['battship-highlighted']);
+    }
+    if (cell.elem && !cell.board.isEnemyBoard) {
+      classes.push(styles['with-ship']);
+    }
+    if (cell.elem?.isDestroyed) {
+      classes.push(styles.battleship__destroyed);
+    }
+    return classes.join(' ');
+  }, [cell.board.isEnemyBoard, cell.elem, cell.isAddAvailable]);
 
-    return (
-      <div className={className} onMouseOver={onMouseOver} onClick={onClick}>
-        {icon && <FontAwesomeIcon {...icon} />}
-      </div>
-    );
-  }
-);
+  return (
+    <div
+      className={className}
+      onMouseOver={onMouseOver}
+      onClick={onClick}
+    >
+      {icon && <FontAwesomeIcon {...icon} />}
+    </div>
+  );
+});

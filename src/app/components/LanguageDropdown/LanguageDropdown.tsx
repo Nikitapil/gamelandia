@@ -20,14 +20,16 @@ export const LanguageDropdown = () => {
   const changeState = () => setIsOpen(!isOpen);
 
   return (
-    <div className={`${styles['language-dropdown']}`} ref={dropdownRef}>
+    <div
+      className={`${styles['language-dropdown']}`}
+      ref={dropdownRef}
+    >
       <button
         type="button"
         className={styles['language-dropdown__open']}
         onClick={changeState}
       >
-        <span className={styles.lang}>{i18n.language}</span>{' '}
-        <FontAwesomeIcon icon={faGlobe} />
+        <span className={styles.lang}>{i18n.language}</span> <FontAwesomeIcon icon={faGlobe} />
       </button>
       {isOpen && (
         <div className={styles['language-dropdown__body']}>

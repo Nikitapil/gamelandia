@@ -32,9 +32,7 @@ export class NumbersElemModel {
     this.x = cell.x;
     if (cell.elem) {
       this.value += cell.elem.value;
-      this.board.elems = this.board.elems.filter(
-        (elem) => elem.id !== cell.elem?.id
-      );
+      this.board.elems = this.board.elems.filter((elem) => elem.id !== cell.elem?.id);
       cell.elem = null;
     }
     cell.elem = this;

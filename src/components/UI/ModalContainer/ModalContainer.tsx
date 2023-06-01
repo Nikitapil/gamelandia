@@ -37,7 +37,11 @@ export const ModalContainer: FC<ModalContainerProps> = ({
   };
 
   return (
-    <Transition in={isOpened} timeout={200} unmountOnExit>
+    <Transition
+      in={isOpened}
+      timeout={200}
+      unmountOnExit
+    >
       {(state) => (
         <div
           className={`${styles.modal} ${state} modal`}

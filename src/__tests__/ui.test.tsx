@@ -8,7 +8,10 @@ describe('ui tests', () => {
     const closeModal = jest.fn();
     render(
       renderWithRouter(
-        <ModalContainer isOpened closeModal={closeModal}>
+        <ModalContainer
+          isOpened
+          closeModal={closeModal}
+        >
           123
         </ModalContainer>
       )

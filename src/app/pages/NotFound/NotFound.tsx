@@ -17,7 +17,10 @@ export const NotFound = () => {
         <div className={styles.info}>
           <h2 className={styles.title}>{t('sorry')}</h2>
           <p className={styles.text}>{t('page_not_found')}</p>
-          <Link className={styles.link} to={`${ERoutes.MAIN}`}>
+          <Link
+            className={styles.link}
+            to={`${ERoutes.MAIN}`}
+          >
             {t('go_to_main')}
           </Link>
         </div>

@@ -25,10 +25,9 @@ $api.interceptors.response.use(
       try {
         // eslint-disable-next-line no-underscore-dangle
         originalRequest._isRetry = true;
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/auth/refresh`,
-          { withCredentials: true }
-        );
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/refresh`, {
+          withCredentials: true
+        });
         localStorage.setItem('token', response.data.accessToken);
         return await $api.request(originalRequest);
       } catch (e) {

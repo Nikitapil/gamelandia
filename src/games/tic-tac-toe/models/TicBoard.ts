@@ -26,7 +26,7 @@ export class TicBoard {
     return newBoard;
   }
 
-  private checkWinner() {
+  checkWinner() {
     const checkArrays = [...this.cells];
     const checkArraysDiagonal1 = [];
     const checkArraysDiagonal2 = [];

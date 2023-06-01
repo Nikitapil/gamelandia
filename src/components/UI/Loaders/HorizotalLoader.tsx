@@ -4,9 +4,7 @@ import './loaders.scss';
 interface HorizotalLoaderProps {
   color?: 'white' | 'blue';
 }
-export const HorizotalLoader: FC<HorizotalLoaderProps> = ({
-  color = 'white'
-}) => {
+export const HorizotalLoader: FC<HorizotalLoaderProps> = ({ color = 'white' }) => {
   return (
     <div className={`lds-ellipsis ${color}`}>
       <div />

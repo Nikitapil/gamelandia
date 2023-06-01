@@ -1,10 +1,6 @@
 import { NumbersCellModel } from './NumbersCellModel';
 import { NumbersElemModel } from './NumbersElemModel';
-import {
-  ENumbersDirections,
-  NUMBERS_FIELD_SIZE,
-  NUMBERS_MAX_ELEMS_COUNT
-} from '../constants';
+import { ENumbersDirections, NUMBERS_FIELD_SIZE, NUMBERS_MAX_ELEMS_COUNT } from '../constants';
 import { getRandomIntegerWithoutMaxValue } from '../../../utils/helpers';
 
 export class NumbersBoardModel {
@@ -187,9 +183,7 @@ export class NumbersBoardModel {
   }
 
   private cleanElems() {
-    this.elems = this.elems.filter(
-      (elem) => elem.value === elem.cell.elem?.value
-    );
+    this.elems = this.elems.filter((elem) => elem.value === elem.cell.elem?.value);
   }
 
   getCopyBoard() {

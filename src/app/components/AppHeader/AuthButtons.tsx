@@ -13,11 +13,7 @@ interface IAuthButtonsProps {
   onSignOut: () => void;
 }
 
-export const AuthButtons = ({
-  isAuthLoading,
-  user,
-  onSignOut
-}: IAuthButtonsProps) => {
+export const AuthButtons = ({ isAuthLoading, user, onSignOut }: IAuthButtonsProps) => {
   const { t } = useTranslation();
 
   if (isAuthLoading) {
@@ -32,7 +28,10 @@ export const AuthButtons = ({
     return (
       <>
         <li>
-          <Link className={styles['nav-bar__link']} to={`${ERoutes.LOGIN}`}>
+          <Link
+            className={styles['nav-bar__link']}
+            to={`${ERoutes.LOGIN}`}
+          >
             {t('sign_in')}
           </Link>
         </li>

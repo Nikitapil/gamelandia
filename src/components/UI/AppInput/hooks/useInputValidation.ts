@@ -1,13 +1,7 @@
 import { useEffect, useState } from 'react';
-import {
-  inputValidators,
-  TValidationRules
-} from '../../../../utils/validators';
+import { inputValidators, TValidationRules } from '../../../../utils/validators';
 
-export const useInputValidation = (
-  value: string,
-  rules: TValidationRules[]
-) => {
+export const useInputValidation = (value: string, rules: TValidationRules[]) => {
   const [touched, setTouched] = useState(false);
   const [error, setError] = useState('');
   useEffect(() => {
