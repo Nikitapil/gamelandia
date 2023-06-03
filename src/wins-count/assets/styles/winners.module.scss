@@ -1,0 +1,23 @@
+@import "../../../assets/styles/vars";
+
+.winners-container {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.winner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font-size: 20px;
+
+  &:not(:last-child) {
+    border-bottom: 2px solid black;
+  }
+}
+
+.my {
+  font-weight: 700;
+}

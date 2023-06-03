@@ -11,6 +11,9 @@ import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { useTitle } from '../../../hooks/useTitle';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
+import { GameTitleWithWinners } from '../../components/GameTitleWithWinners';
+import { EGamesNames } from '../../constants';
+import { useUpdateWinsCount } from '../../../wins-count/hooks/useUpdateWinsCount';
 
 export const Solitaire = () => {
   const { t } = useTranslation();
@@ -21,6 +24,8 @@ export const Solitaire = () => {
   const [key, setKey] = useState(uuid.v4());
   const [isWin, setIsWin] = useState(false);
   const [currentCards, setCurrentCards] = useState<SolitaireCard[] | null>(null);
+
+  const updateWinsCount = useUpdateWinsCount();
 
   const startGame = () => {
     setIsWin(false);
@@ -43,6 +48,9 @@ export const Solitaire = () => {
     const isWinner = game?.checkWinner();
     if (isWinner) {
       setIsWin(true);
+      updateWinsCount({
+        gameName: EGamesNames.SOLITAIRE
+      });
     }
   };
 
@@ -57,11 +65,11 @@ export const Solitaire = () => {
   }, []);
 
   return (
-    <div
-      key={key}
-      className={`container ${styles.solitaire}`}
-    >
-      <h1 className="page-title">Solitaire</h1>
+    <div className={`container ${styles.solitaire}`}>
+      <GameTitleWithWinners
+        title="Solitaire"
+        gameName={EGamesNames.SOLITAIRE}
+      />
       <div className={styles.win}>
         {isWin && <p className={styles.win__text}>{t('you_win')}!!!</p>}
         <AppButton
@@ -71,7 +79,10 @@ export const Solitaire = () => {
           customClass="mb-m"
         />
       </div>
-      <div className={styles.field}>
+      <div
+        key={key}
+        className={styles.field}
+      >
         <div className={styles.field__top}>
           <div className={styles.deck}>
             <div
