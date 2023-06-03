@@ -15,6 +15,7 @@ import { EChessColors } from '../games/chess/models/EChessColors';
 import { ChessTimer } from '../games/chess/components/ChessTimer';
 import { ChessCellComponent } from '../games/chess/components/ChessCellComponent';
 import { rootReducer } from '../store/root-reducer';
+import App from '../app/App';
 
 jest.spyOn(global, 'setInterval');
 jest.spyOn(global, 'clearInterval');
@@ -207,11 +208,10 @@ describe('chess tests', () => {
     userEvent.click(screen.getByTestId('newGame-btn'));
     expect(screen.getByTestId('timer-modal')).toBeInTheDocument();
   });
-  // TODO change store for tests and fix it
-  // test('should render types with right breadcrumbs', () => {
-  //   render(renderWithRedux(<App />, '/chess', store));
-  //   expect(screen.getByText('chess')).toBeInTheDocument();
-  // });
+  test('should render types with right breadcrumbs', () => {
+    render(renderWithRedux(<App />, '/chess', store));
+    expect(screen.getByText('chess')).toBeInTheDocument();
+  });
 });
 
 describe('chess classes test', () => {
