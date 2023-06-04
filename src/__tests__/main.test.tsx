@@ -1,17 +1,19 @@
 import { render, screen } from '@testing-library/react';
+import { configureStore } from '@reduxjs/toolkit';
 import userEvent from '@testing-library/user-event';
-import { createStore } from 'redux';
-import App from '../App';
-import { AuthForm } from '../components/Auth/AuthForm';
-import { MainPageCard } from '../components/main/MainPageCard';
-import { OutSidePageCard } from '../components/main/OutSideGameCard';
-import { rootReducer } from '../redux/root-reducer';
+import { InternalGameCard } from '../main/components/InternalGameCard';
+import { OutSideGameCard } from '../main/components/OutSideGameCard';
 import { renderWithRedux, renderWithRouter } from '../utils/test/utils';
+import { rootReducer } from '../store/root-reducer';
+import App from '../app/App';
+import { AuthForm } from '../auth/components/AuthForm/AuthForm';
 
 describe('mainpage tests', () => {
   let store: any;
   beforeEach(() => {
-    store = createStore(rootReducer);
+    store = configureStore({
+      reducer: rootReducer
+    });
   });
 
   test('all render main page', () => {
@@ -21,7 +23,20 @@ describe('mainpage tests', () => {
   });
   test('gameCard outside', () => {
     render(
-      renderWithRouter(<OutSidePageCard to="" gameName="" description="" />)
+      renderWithRouter(
+        <OutSideGameCard
+          card={{
+            id: 123,
+            gameName: 'outside game',
+            pictureName: 'default',
+            description: 'game',
+            labels: [],
+            mobileSuitable: true,
+            path: 'path',
+            isOutside: true
+          }}
+        />
+      )
     );
     const img = screen.getByTestId('game-pic');
     expect((img as HTMLImageElement).src).not.toBe(undefined);
@@ -30,7 +45,18 @@ describe('mainpage tests', () => {
   test('gameCard inside', () => {
     render(
       renderWithRouter(
-        <MainPageCard to="" gameName="" description="" labels={[]} />
+        <InternalGameCard
+          card={{
+            id: 123,
+            gameName: 'internal game',
+            pictureName: 'default',
+            description: 'game',
+            labels: [],
+            mobileSuitable: true,
+            path: 'path',
+            isOutside: true
+          }}
+        />
       )
     );
     const img = screen.getByTestId('game-pic');
@@ -39,14 +65,13 @@ describe('mainpage tests', () => {
 
   test('should work authForm', () => {
     const submit = jest.fn();
-    const setDisplayName = jest.fn();
     render(
       renderWithRouter(
         <AuthForm
           formTitle=""
           submit={submit}
           isSignUp
-          setDisplayName={setDisplayName}
+          isLoading={false}
         />
       )
     );
@@ -58,7 +83,6 @@ describe('mainpage tests', () => {
     const password = screen.getByTestId('password-input');
     userEvent.type(password, '12345678');
     expect(displayName).toContainHTML('12345');
-    expect(setDisplayName).toBeCalled();
     userEvent.click(screen.getByTestId('submit'));
     expect(submit).toBeCalled();
   });

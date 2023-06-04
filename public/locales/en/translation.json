@@ -97,5 +97,9 @@
   "password_error": "Invalid password: minimum length: 8",
   "already_registered": "Already registered? Sign in",
   "solitaire": "Solitaire",
-  "solitaire_description": "Classic solitaire game"
+  "solitaire_description": "Classic solitaire game",
+  "user_already_exist": "User already exists",
+  "white_king_under_attack": "White king is under attack",
+  "black_king_under_attack": "Black king is under attack",
+  "top_winners": "Top winners"
 }

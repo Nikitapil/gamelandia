@@ -1,0 +1,45 @@
+@import "../../../assets/styles/vars";
+@import "../../../assets/styles/mixins";
+
+.page {
+  color: $mainColor;
+  margin: 0 auto;
+  max-width: fit-content;
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+  margin-bottom: 20px;
+}
+
+.numbers {
+  @include adaptive-value(font-size, 300, 90);
+  padding: 20px 20px 20px 0;
+  border-right: 2px solid $mainColor;
+  color: $titleColor;
+}
+
+.info {
+  padding-left: 20px;
+}
+
+.title {
+  @include adaptive-value(font-size, 60, 28);
+  margin-bottom: 10px;
+}
+
+.text {
+  @include adaptive-value(font-size, 30, 16);
+  margin-bottom: 15px;
+  max-width: 400px;
+}
+
+.link {
+  @include adaptive-value(font-size, 26, 16);
+  color: $mainColor;
+  transition: 0.4s;
+  font-weight: 300;
+
+  &:hover {
+    color: $titleColor;
+  }
+}

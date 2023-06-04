@@ -1,0 +1,27 @@
+@import "nullstyle";
+@import "vars";
+@import "fonts";
+@import "spacings";
+@import "utils";
+
+body {
+  font-family: "Ubuntu", sans-serif;
+}
+
+.container {
+  max-width: $containerWidth + px;
+  margin: 0 auto;
+  padding: 5px 20px;
+}
+
+.main {
+  min-height: calc(100vh - 80px);
+  background: linear-gradient(179.4deg, rgb(12, 20, 69) -16.9%, rgb(71, 30, 84) 119.9%);
+}
+
+.page-title {
+  font-size: 32px;
+  color: $titleColor;
+  font-family: "Permanent Marker", cursive;
+  margin-bottom: 10px;
+}

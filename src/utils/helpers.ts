@@ -1,8 +1,8 @@
-export const shuffleArray = (arr: any[]) => {
+export const shuffleArray = <T>(arr: T[]): T[] => {
   return arr.sort(() => Math.random() - 0.5);
 };
 
-export const getuniqArrayObjects = (arr: any[]) => {
+export const getUniqArrayObjects = <T>(arr: T[]): T[] => {
   return arr.map((item) => ({ ...item }));
 };
 
@@ -19,5 +19,8 @@ export const getRandomBoolean = (): boolean => {
 export const getRandomFromArray = <T>(array: T[]): T => {
   return array[Math.floor(Math.random() * array.length)];
 };
+
+export const getRandomIntegerWithoutMaxValue = (maxValue: number) =>
+  Math.floor(Math.random() * maxValue);
 
 export const noop = () => {};

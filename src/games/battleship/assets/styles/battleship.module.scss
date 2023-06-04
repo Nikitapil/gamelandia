@@ -1,0 +1,149 @@
+@import "../../../../assets/styles/vars";
+
+.battleship {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.battleship__board {
+  width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: $shadow-black-common;
+}
+
+.battleship__cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid $titleColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.battleship-elems {
+  width: 300px;
+  border: 2px solid $titleColor;
+  margin-top: 20px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.battship-elem {
+
+  &.VERTICAL {
+    width: 30px;
+  }
+
+  &.HORIZONTAL {
+    height: 30px;
+  }
+
+  height: 30px;
+  border: 2px solid $titleColor;
+  background: #00c4f04a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.size_4 {
+    width: 120px;
+
+    &.VERTICAL {
+      width: 30px;
+      height: 120px;
+    }
+  }
+
+  &.size_3 {
+    width: 90px;
+
+    &.VERTICAL {
+      width: 30px;
+      height: 90px;
+    }
+  }
+
+  &.size_2 {
+    width: 60px;
+
+    &.VERTICAL {
+      width: 30px;
+      height: 60px;
+    }
+  }
+
+  &.size_1 {
+    width: 30px;
+
+    &.VERTICAL {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.battship-elembtn {
+  border: none;
+  background: none;
+  color: $mainColor;
+}
+
+.ship-selected {
+  border: 2px solid #ff0000;
+}
+
+.battship-highlighted {
+  background-color: green;
+}
+
+.with-ship {
+  background-color: #00c4f04a;
+}
+
+.battleship__boards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.battleship__missed {
+  font-size: 8px;
+  color: $mainColor;
+}
+
+.battleship__under-attack {
+  font-size: 28px;
+  color: red;
+  font-weight: 700;
+}
+
+.battleship__destroyed {
+  background-color: #ff00009d;
+
+  .battleship__under-attack {
+    color: black;
+  }
+}
+
+.battleship__current-player {
+  color: $mainColor;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.battle-ship__waiting {
+  width: 300px;
+  height: 300px;
+  padding: 5px;
+  color: $mainColor;
+  font-size: 18px;
+  border: 1px solid $titleColor;
+
+  .waiting-text {
+    margin-bottom: 25px;
+  }
+}

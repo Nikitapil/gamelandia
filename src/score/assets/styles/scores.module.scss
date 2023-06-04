@@ -1,0 +1,78 @@
+@import "../../../assets/styles/vars";
+
+.score-board {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid black;
+  align-self: flex-start;
+  border-radius: 15px;
+  background-color: $bg-black-glass;
+  min-height: 310px;
+  box-shadow: $shadow-black-common;
+}
+
+.score-board__title {
+  color: $success;
+  text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.score-board_value {
+  color: $titleColor;
+  display: flex;
+  justify-content: space-between;
+  gap: 80px;
+
+  &:not(:last-child) {
+    margin-bottom: 5px;
+    border-bottom: 1px solid $mainColor;
+    padding-bottom: 5px;
+  }
+}
+
+.my-score {
+  color: $success;
+}
+
+.score-board__loader {
+  width: 200px;
+  position: relative;
+
+  div {
+    height: 15px;
+    background: $bg-light-green;
+    position: relative;
+
+    &:not(:last-child) {
+      margin-bottom: 12px;
+      border-bottom: 1px solid $mainColor;
+      padding-bottom: 5px;
+    }
+
+    overflow: hidden;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: $bg-gray;
+      height: 100%;
+      width: 100%;
+      animation: leftToRight 2s linear infinite;
+    }
+  }
+}
+
+@keyframes leftToRight {
+  0% {
+    left: -220px;
+    opacity: 0;
+  } 100% {
+      left: 220px;
+      opacity: 0.8;
+    }
+}

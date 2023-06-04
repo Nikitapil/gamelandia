@@ -1,14 +1,12 @@
 import { render, screen } from '@testing-library/react';
-import { createStore } from 'redux';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import userEvent from '@testing-library/user-event';
-import { SnakeBoard } from '../components/snake/SnakeBoard';
-import { SnakeBoardModel } from '../models/snake/SnakeBoardModel';
-import { Snake } from '../Pages/Snake';
-import { rootReducer } from '../redux/root-reducer';
+import { configureStore } from '@reduxjs/toolkit';
+import { SnakeBoard } from '../games/snake/components/SnakeBoard';
+import { SnakeBoardModel } from '../games/snake/models/SnakeBoardModel';
+import { Snake } from '../games/snake/pages/Snake';
 import { renderWithRedux, renderWithRouter } from '../utils/test/utils';
+import { rootReducer } from '../store/root-reducer';
 
-jest.mock('react-firebase-hooks/auth');
 jest.spyOn(global, 'setTimeout');
 jest.spyOn(global, 'setInterval');
 jest.spyOn(global, 'clearInterval');
@@ -16,7 +14,9 @@ jest.spyOn(global, 'clearInterval');
 describe('snake tests', () => {
   let store: any;
   beforeEach(() => {
-    store = createStore(rootReducer);
+    store = configureStore({
+      reducer: rootReducer
+    });
   });
 
   test('should render snake board', () => {
@@ -26,34 +26,24 @@ describe('snake tests', () => {
   });
 
   test('should render snake page', async () => {
-    (useAuthState as any).mockReturnValue([null, false]);
-    render(
-      renderWithRedux(<Snake auth={{ currentUser: null } as any} />, '/', store)
-    );
+    render(renderWithRedux(<Snake />, '/', store));
     expect(screen.getByTestId('snake-page')).toBeInTheDocument();
   });
 
-  test('should change levels', () => {
-    (useAuthState as any).mockReturnValue([null, false]);
-    render(
-      renderWithRedux(<Snake auth={{ currentUser: null } as any} />, '/', store)
-    );
-    const easyBtn = screen.getByTestId('easy-level');
-    const mediumBtn = screen.getByTestId('medium-level');
-    const hardBtn = screen.getByTestId('hard-level');
+  test('should change levels', async () => {
+    render(renderWithRedux(<Snake />, '/', store));
+    const easyBtn = screen.getByTestId('Easy-level');
+    const mediumBtn = screen.getByTestId('Medium-level');
     userEvent.click(easyBtn);
-    expect(easyBtn).toHaveClass('success');
+    expect(screen.getByTestId('Easy-level')).toHaveClass('success');
     userEvent.click(mediumBtn);
     expect(mediumBtn).toHaveClass('success');
-    userEvent.click(hardBtn);
-    expect(hardBtn).toHaveClass('success');
+    userEvent.click(screen.getByTestId('Hard-level'));
+    expect(screen.getByTestId('Hard-level')).toHaveClass('success');
   });
 
   test('should recall timer', () => {
-    (useAuthState as any).mockReturnValue([null, false]);
-    render(
-      renderWithRedux(<Snake auth={{ currentUser: null } as any} />, '/', store)
-    );
+    render(renderWithRedux(<Snake />, '/', store));
     userEvent.click(screen.getByTestId('start-game'));
     expect(setInterval).toBeCalled();
     userEvent.keyboard('{arrowdown}');

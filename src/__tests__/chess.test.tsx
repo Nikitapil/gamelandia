@@ -1,21 +1,21 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { createStore } from 'redux';
-import { Chess } from '../Pages/Chess';
+import { configureStore } from '@reduxjs/toolkit';
+import { Chess } from '../games/chess/pages/Chess';
 import { renderWithRedux, renderWithRouter } from '../utils/test/utils';
-import { Board } from '../models/chess/Board';
-import { Cell } from '../models/chess/Cell';
-import { King } from '../models/chess/figures/King';
-import { Figure } from '../models/chess/figures/figure';
-import { WinnerModal } from '../components/Chess/WinnerModal';
-import { TimerModal } from '../components/Chess/TimerModal';
-import { FiguresModal } from '../components/Chess/FiguresModal';
-import { Player } from '../models/chess/Player';
-import { Colors } from '../models/chess/Colors';
-import { ChessTimer } from '../components/Chess/ChessTimer';
-import { ChessCellComponents } from '../components/Chess/ChessCellComponents';
-import { rootReducer } from '../redux/root-reducer';
-import App from '../App';
+import { Board } from '../games/chess/models/Board';
+import { Cell } from '../games/chess/models/Cell';
+import { King } from '../games/chess/models/figures/King';
+import { Figure } from '../games/chess/models/figures/Figure';
+import { WinnerModal } from '../games/chess/components/WinnerModal';
+import { TimerModal } from '../games/chess/components/TimerModal';
+import { FiguresModal } from '../games/chess/components/FiguresModal';
+import { Player } from '../games/chess/models/Player';
+import { EChessColors } from '../games/chess/models/EChessColors';
+import { ChessTimer } from '../games/chess/components/ChessTimer';
+import { ChessCellComponent } from '../games/chess/components/ChessCellComponent';
+import { rootReducer } from '../store/root-reducer';
+import App from '../app/App';
 
 jest.spyOn(global, 'setInterval');
 jest.spyOn(global, 'clearInterval');
@@ -23,7 +23,9 @@ jest.spyOn(global, 'clearInterval');
 describe('chess tests', () => {
   let store: any;
   beforeEach(() => {
-    store = createStore(rootReducer);
+    store = configureStore({
+      reducer: rootReducer
+    });
   });
   test('timer should be in the document', () => {
     render(renderWithRedux(<Chess />, '/', store));
@@ -32,7 +34,13 @@ describe('chess tests', () => {
   test('winner modal should call new game', () => {
     const newGame = jest.fn();
     render(
-      renderWithRouter(<WinnerModal color="white" isOpened newGame={newGame} />)
+      renderWithRouter(
+        <WinnerModal
+          color="white"
+          isOpened
+          newGame={newGame}
+        />
+      )
     );
     userEvent.click(screen.getByTestId('newGame-btn'));
     expect(newGame).toBeCalled();
@@ -42,7 +50,12 @@ describe('chess tests', () => {
     const newGame = jest.fn();
     const closeModal = jest.fn();
     render(
-      renderWithRouter(<TimerModal start={newGame} closeModal={closeModal} />)
+      renderWithRouter(
+        <TimerModal
+          start={newGame}
+          closeModal={closeModal}
+        />
+      )
     );
     userEvent.click(screen.getByTestId('chess-start-button'));
     expect(newGame).toBeCalled();
@@ -51,18 +64,21 @@ describe('chess tests', () => {
     const newGame = jest.fn();
     const closeModal = jest.fn();
     render(
-      renderWithRouter(<TimerModal start={newGame} closeModal={closeModal} />)
+      renderWithRouter(
+        <TimerModal
+          start={newGame}
+          closeModal={closeModal}
+        />
+      )
     );
     userEvent.type(screen.getByTestId('time-input'), '12345');
-    expect((screen.getByTestId('time-input') as HTMLInputElement).value).toBe(
-      '6012345'
-    );
+    expect((screen.getByTestId('time-input') as HTMLInputElement).value).toBe('6012345');
   });
 
   test('FiguresModal should call functions', () => {
     const swapPlayer = jest.fn();
     const closeModal = jest.fn();
-    const player = new Player(Colors.WHITE);
+    const player = new Player(EChessColors.WHITE);
     const board = new Board();
     board.initCells();
     render(
@@ -88,9 +104,8 @@ describe('chess tests', () => {
   });
 
   test('timer component', () => {
-    const player = new Player(Colors.WHITE);
+    const player = new Player(EChessColors.WHITE);
     const restart = jest.fn();
-    const endGame = jest.fn();
     let isModalOpen = false;
     const setIsModalOpen = jest.fn(() => (isModalOpen = !isModalOpen));
     const setWinner = jest.fn();
@@ -98,7 +113,6 @@ describe('chess tests', () => {
       renderWithRouter(
         <ChessTimer
           restart={restart}
-          endGame={endGame}
           currentPlayer={player}
           setIsModalOpen={setIsModalOpen}
           isModalOpen={isModalOpen}
@@ -110,9 +124,8 @@ describe('chess tests', () => {
     expect(isModalOpen).toBe(true);
   });
   test('timer component intervals', async () => {
-    const player = new Player(Colors.WHITE);
+    const player = new Player(EChessColors.WHITE);
     const restart = jest.fn();
-    const endGame = jest.fn();
     let isModalOpen = false;
     const setIsModalOpen = jest.fn(() => (isModalOpen = !isModalOpen));
     const setWinner = jest.fn();
@@ -120,7 +133,6 @@ describe('chess tests', () => {
       renderWithRouter(
         <ChessTimer
           restart={restart}
-          endGame={endGame}
           currentPlayer={player}
           setIsModalOpen={setIsModalOpen}
           isModalOpen={isModalOpen}
@@ -139,7 +151,11 @@ describe('chess tests', () => {
     const click = jest.fn();
     render(
       renderWithRouter(
-        <ChessCellComponents cell={board.cells[0][0]} click={click} selected />
+        <ChessCellComponent
+          cell={board.cells[0][0]}
+          click={click}
+          selected
+        />
       )
     );
     expect(screen.getByTestId('chess-cell')).toHaveClass('selected');
@@ -153,7 +169,11 @@ describe('chess tests', () => {
     board.cells[0][0].available = true;
     render(
       renderWithRouter(
-        <ChessCellComponents cell={board.cells[0][0]} click={click} selected />
+        <ChessCellComponent
+          cell={board.cells[0][0]}
+          click={click}
+          selected
+        />
       )
     );
     expect(screen.getByTestId('available-dot')).toBeInTheDocument();
@@ -166,7 +186,7 @@ describe('chess tests', () => {
     board.cells[0][0].available = true;
     render(
       renderWithRouter(
-        <ChessCellComponents
+        <ChessCellComponent
           cell={board.cells[0][0]}
           click={click}
           selected={false}
@@ -237,14 +257,14 @@ describe('chess classes test', () => {
     board.addFigures();
     board.kings.white!.cell!.isUnderAttack = jest.fn(() => true);
     board.checkIfKingIsUnderAttack();
-    expect(board.underAttackMessage).toBe('White king is under attack');
+    expect(board.underAttackMessage).toBe('white_king_under_attack');
   });
   test('Black King under attack', () => {
     board.initCells();
     board.addFigures();
     board.kings.black!.cell!.isUnderAttack = jest.fn(() => true);
     board.checkIfKingIsUnderAttack();
-    expect(board.underAttackMessage).toBe('Black king is under attack');
+    expect(board.underAttackMessage).toBe('black_king_under_attack');
   });
   test('Shouldnt be underattack message', () => {
     board.initCells();
@@ -281,7 +301,7 @@ describe('chess classes test', () => {
     cell.moveFigure(board.cells[3][0]);
     board.cells[6][1].moveFigure(board.cells[4][1]);
     board.cells[3][0].moveFigure(board.cells[4][1]);
-    expect(board.lostWhightFigures.length).toBe(1);
+    expect(board.lostWhiteFigures.length).toBe(1);
   });
 
   test('cell isEmptyDiagonal', () => {

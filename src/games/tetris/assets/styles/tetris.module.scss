@@ -1,0 +1,95 @@
+@import "../../../../assets/styles/vars";
+
+.color-blue {
+  color: $tetrisBlue;
+}
+
+.color-green {
+  color: $tetrisGreen;
+}
+
+.color-yellow {
+  color: $tetrisYellow;
+}
+
+.color-orange {
+  color: $tetrisOrange;
+}
+
+.color-red {
+  color: $tetrisRed;
+}
+
+.bg-blue {
+  background: $bg-purple;
+}
+
+.bg-green {
+  background: $bg-success;
+}
+
+.bg-yellow {
+  background: $bg-yellow;
+}
+
+.bg-orange {
+  background: $bg-orange;
+}
+
+.bg-red {
+  background: $bg-danger;
+}
+
+.bg-white {
+  background: $bg-white;
+}
+
+.bg-black {
+  background: $bg-light-green;
+}
+
+.tetris-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 48px;
+
+  @media (max-width: 610px) {
+    font-size: 22px;
+  }
+}
+
+.board {
+  width: 200px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cell {
+  width: 20px;
+  height: 20px;
+  border: 1px solid $titleColor;
+}
+
+.game-over {
+  color: $tetrisRed;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.game-btn {
+  margin-bottom: 10px;
+}
+
+.score {
+  color: #3bf851;
+}
+
+.controlls {
+  display: flex;
+  gap: 5px;
+}

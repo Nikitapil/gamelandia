@@ -1,0 +1,80 @@
+@import "../../../../assets/styles/vars";
+
+.snake__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.snake-board {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 400px;
+
+  @media (max-width: 625px) {
+    margin: 0 auto;
+  }
+
+  @media (max-width: 445px) {
+    max-width: 300px;
+  }
+}
+
+.snake-cell {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #2fa8ff;
+  color: $success;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 445px) {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.with-snake {
+  background: $success;
+}
+
+.snake__btns {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  margin-bottom: 10px;
+  align-items: center;
+
+  p {
+    color: $mainColor;
+  }
+}
+
+.snake__difficulty {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+
+  p {
+    color: $mainColor;
+  }
+}
+
+.snake__game-over {
+  font-size: 18px;
+  color: red;
+  text-transform: uppercase;
+}
+.snake__boards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  @media (max-width: 520px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}

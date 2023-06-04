@@ -1,4 +1,4 @@
-import { shuffleArray, getuniqArrayObjects } from '../utils/helpers';
+import { shuffleArray, getUniqArrayObjects } from '../utils/helpers';
 
 describe('helpers functions tests', () => {
   test('shuffle array', () => {
@@ -8,6 +8,6 @@ describe('helpers functions tests', () => {
 
   test('unique objects', () => {
     const arr = [{ a: 1, b: 2 }];
-    expect(getuniqArrayObjects(arr)[0]).not.toBe(arr[0]);
+    expect(getUniqArrayObjects(arr)[0]).not.toBe(arr[0]);
   });
 });

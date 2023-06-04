@@ -48,6 +48,7 @@
         "jsx-a11y/mouse-events-have-key-events": "off",
         "react/jsx-props-no-spreading": "off",
         "prefer-destructuring": "off",
-        "react/no-unescaped-entities": "off"
+        "react/no-unescaped-entities": "off",
+        "class-methods-use-this": "off"
     }
 }

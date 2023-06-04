@@ -1,0 +1,55 @@
+.header {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  background: radial-gradient(circle at 24.1% 68.8%, rgb(0, 0, 0) 0%, rgb(50, 50, 50) 99.4%);
+
+  &__container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    color: #00c4f0;
+    font-family: "Permanent Marker", cursive;
+    font-size: 32px;
+  }
+}
+
+.nav-bar {
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__link {
+    color: #e4e4e4;
+    text-decoration: none;
+    transition: 0.4s;
+    cursor: pointer;
+
+    @media (max-width: 465px) {
+      font-size: 12px;
+    }
+
+    &:hover {
+      color: #00c4f0;
+    }
+  }
+}
+
+.logout-btn {
+  color: #e4e4e4;
+  border: none;
+  background: none;
+  transition: 0.4s;
+
+  @media (max-width: 465px) {
+    font-size: 12px !important;
+    padding-bottom: 0 !important;
+  }
+}

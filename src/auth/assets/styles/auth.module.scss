@@ -1,0 +1,56 @@
+@import "../../../assets/styles/vars";
+.auth-container {
+  width: fit-content;
+  margin: 0 auto;
+  height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 320px;
+  padding: 15px;
+  border: 2px solid $titleColor;
+  border-radius: 10px;
+  box-shadow: -3px 3px 8px #000000;
+}
+
+.auth-form__title {
+  color: $titleColor;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.auth-form__input {
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+}
+
+.auth-form__button {
+  background-color: $titleColor;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.49);
+  transition: 0.4s;
+
+  &:hover {
+    background-color: #0094f0;
+  }
+
+  &:active {
+    background-color: $titleColor;
+  }
+}
+
+.auth-link {
+  color: $titleColor;
+  margin-top: 12px;
+  align-self: flex-end;
+}

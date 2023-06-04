@@ -1,0 +1,14 @@
+export const BULLET_START_POSITION = 30;
+export const BULLET_MOVE_STEP = 5;
+export const INVADERS_HEIGHT_STEP = 10;
+export const INVADERS_WIDTH_STEP = 10;
+export const INVADER_CELL_WIDTH = 37.5;
+export const INVADER_CELL_HEIGHT = 30;
+export const INVADERS_FIELD_WIDTH = 562;
+export const INVADERS_GUN_STEP = 8;
+export const INVADERS_FIELD_X_END = 555;
+export const INVADERS_FIELD_Y_END = 340;
+export const INVADERS_FIELD_HEIGHT = 400;
+export const INVADERS_GUN_MIDDLE = 12;
+export const INVADERS_CELL_WIDTH_WITH_MARGIN = 45;
+export const INVADERS_CELL_HEIGHT_WITH_MARGIN = 45;

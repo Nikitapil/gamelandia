@@ -1,0 +1,46 @@
+@import "../../../../assets/styles/vars";
+.aim-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.field {
+  width: 300px;
+  height: 350px;
+  background: $dark;
+  box-shadow: #000000 0 0 12px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.aim {
+  background: $titleColor;
+  border-radius: 10px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.game-controls {
+  color: $success;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.finished {
+  font-size: 18px;
+  color: $danger;
+}
+
+.fields-container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+
+  @media (max-width: 610px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
