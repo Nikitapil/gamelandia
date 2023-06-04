@@ -30,9 +30,7 @@ describe('aim game tests', () => {
     expect(screen.getByTestId('aim-page')).toBeInTheDocument();
     const aim = screen.getByTestId('aim-dot');
     userEvent.click(aim);
-    expect(screen.getByTestId('aim-score').textContent?.includes('1')).toBe(
-      true
-    );
+    expect(screen.getByTestId('aim-score').textContent?.includes('1')).toBe(true);
   });
 
   test('should start timer', () => {
@@ -41,9 +39,7 @@ describe('aim game tests', () => {
     expect(screen.getByTestId('aim-page')).toBeInTheDocument();
     const aim = screen.getByTestId('aim-dot');
     userEvent.click(aim);
-    expect(screen.getByTestId('aim-score').textContent?.includes('1')).toBe(
-      true
-    );
+    expect(screen.getByTestId('aim-score').textContent?.includes('1')).toBe(true);
     expect(setInterval).toBeCalled();
   });
 });
