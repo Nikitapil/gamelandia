@@ -29,7 +29,10 @@ export const SignUp = () => {
   };
 
   return (
-    <div className={authStyles['auth-container']} data-testid="signup-page">
+    <div
+      className={authStyles['auth-container']}
+      data-testid="signup-page"
+    >
       <AuthForm
         formTitle={t('sign_up')}
         isLoading={isAuthLoading}

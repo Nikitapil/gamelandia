@@ -32,7 +32,10 @@ export const BattleshipMyBoard = ({
         board={board}
       />
       {myPlayer && !roomData[myPlayer]?.isReady && (
-        <BattleshipElems roomData={roomData} myPlayer={myPlayer} />
+        <BattleshipElems
+          roomData={roomData}
+          myPlayer={myPlayer}
+        />
       )}
     </div>
   );

@@ -3,15 +3,11 @@ import { IAuthResponse, IBaseAuthRequest, ISignUpAuthRequest } from './types';
 import $api from '../api/api';
 
 export class AuthService {
-  static async signUp(
-    userData: ISignUpAuthRequest
-  ): Promise<AxiosResponse<IAuthResponse>> {
+  static async signUp(userData: ISignUpAuthRequest): Promise<AxiosResponse<IAuthResponse>> {
     return $api.post<IAuthResponse>('/auth/signup', userData);
   }
 
-  static async signIn(
-    userData: IBaseAuthRequest
-  ): Promise<AxiosResponse<IAuthResponse>> {
+  static async signIn(userData: IBaseAuthRequest): Promise<AxiosResponse<IAuthResponse>> {
     return $api.post<IAuthResponse>('/auth/signin', userData);
   }
 
