@@ -42,6 +42,9 @@ export const NumbersBoard = () => {
   };
 
   const move = async (direction: ENumbersDirections) => {
+    if (board.isGameOver) {
+      return;
+    }
     board.move(direction);
     if (board.isGameOver) {
       await updateScore();
