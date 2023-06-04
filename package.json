@@ -44,6 +44,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "CI=false && react-scripts build",
+    "build:prod": "dotenv -e .env.prod react-scripts build",
     "test": "react-scripts test ",
     "eject": "react-scripts eject",
     "test:cover": "react-scripts test --coverage src",
@@ -82,6 +83,7 @@
   "devDependencies": {
     "@types/lodash": "^4.14.182",
     "@types/react-transition-group": "^4.4.5",
+    "dotenv-cli": "^7.2.1",
     "eslint": "8.22.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
