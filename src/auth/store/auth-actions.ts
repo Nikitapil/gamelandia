@@ -2,6 +2,7 @@ import { IBaseAuthRequest, ISignUpAuthRequest } from '../types';
 import { AppDispatch } from '../../store';
 import { authSlice } from './auth.slice';
 import { AuthService } from '../AuthService';
+import { removeToken, setToken } from '../../utils/token-helpers';
 
 export const signup = (userData: ISignUpAuthRequest) => {
   return async (dispatch: AppDispatch) => {
@@ -10,7 +11,7 @@ export const signup = (userData: ISignUpAuthRequest) => {
       dispatch(authSlice.actions.setAuthError(''));
       const response = await AuthService.signUp(userData);
       const { user, accessToken } = response.data;
-      localStorage.setItem('token', accessToken);
+      setToken(accessToken);
       dispatch(authSlice.actions.setUser(user));
     } catch (e: any) {
       dispatch(authSlice.actions.setAuthError(e?.response?.data?.message));
@@ -27,7 +28,7 @@ export const signin = (userData: IBaseAuthRequest) => {
       dispatch(authSlice.actions.setAuthError(''));
       const response = await AuthService.signIn(userData);
       const { user, accessToken } = response.data;
-      localStorage.setItem('token', accessToken);
+      setToken(accessToken);
       dispatch(authSlice.actions.setUser(user));
     } catch (e: any) {
       dispatch(authSlice.actions.setAuthError(e?.response?.data?.message));
@@ -43,7 +44,7 @@ export const refresh = () => {
       dispatch(authSlice.actions.setIsAuthLoading(true));
       const response = await AuthService.refresh();
       const { user, accessToken } = response.data;
-      localStorage.setItem('token', accessToken);
+      setToken(accessToken);
       dispatch(authSlice.actions.setUser(user));
     } catch (e: any) {
       dispatch(authSlice.actions.setUser(null));
@@ -57,7 +58,7 @@ export const logout = () => {
     try {
       dispatch(authSlice.actions.setIsAuthLoading(true));
       await AuthService.logout();
-      localStorage.removeItem('token');
+      removeToken();
       dispatch(authSlice.actions.setUser(null));
     } catch (e: any) {
       localStorage.removeItem('token');

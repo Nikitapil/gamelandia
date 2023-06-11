@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getToken, setToken } from '../utils/token-helpers';
 
 const $api = axios.create({
   withCredentials: true,
@@ -6,7 +7,7 @@ const $api = axios.create({
 });
 
 $api.interceptors.request.use((config) => {
-  config.headers!.Authorization = `Bearer ${localStorage.getItem('token')}`;
+  config.headers!.Authorization = `Bearer ${getToken()}`;
   return config;
 });
 
@@ -28,7 +29,7 @@ $api.interceptors.response.use(
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/refresh`, {
           withCredentials: true
         });
-        localStorage.setItem('token', response.data.accessToken);
+        setToken(response.data.accessToken);
         return await $api.request(originalRequest);
       } catch (e) {
         throw error;
