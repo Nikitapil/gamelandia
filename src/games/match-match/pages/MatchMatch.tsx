@@ -10,6 +10,9 @@ import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { matchMatchPics } from '../constants';
+import { useUpdateWinsCount } from '../../../wins-count/hooks/useUpdateWinsCount';
+import { EGamesNames } from '../../constants';
+import { GameTitleWithWinners } from '../../components/GameTitleWithWinners';
 
 export const MatchMatch = () => {
   const { t } = useTranslation();
@@ -21,6 +24,8 @@ export const MatchMatch = () => {
   const [isWin, setIsWin] = useState(false);
   const [isLoose, setIsLoose] = useState(false);
   const [attempts, setAttempts] = useState(0);
+
+  const updateWinsCount = useUpdateWinsCount();
 
   const revertCard = (id: number, idSecond?: number) => {
     setCards(
@@ -35,12 +40,18 @@ export const MatchMatch = () => {
   };
 
   const checkFinish = () => {
+    if (isWin || isLoose) {
+      return;
+    }
     if (attempts >= 25) {
       setIsLoose(true);
       return;
     }
     if (cards.every((card) => card.flipped)) {
       setIsWin(true);
+      updateWinsCount({
+        gameName: EGamesNames.MATCH
+      });
     }
   };
 
@@ -103,7 +114,10 @@ export const MatchMatch = () => {
 
   return (
     <div className={`${styles.match} container`}>
-      <h1 className={styles.match__title}>Match-Match Game</h1>
+      <GameTitleWithWinners
+        title="Match-Match Game"
+        gameName={EGamesNames.MATCH}
+      />
       <p className={styles.match__description}>{t('match_page_description')}</p>
       <p className={styles.match__description}>
         {t('attempts')}:<span className={styles.attempts_counter}> {attempts}/25</span>
