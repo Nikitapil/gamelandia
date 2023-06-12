@@ -8,6 +8,8 @@ import { battleshipSelector } from '../../../store/selectors';
 import { useBattleshipActions } from '../hooks/useBattleshipActions';
 import { TBattleshipRoomData, TPlayerKey } from '../helpers/types';
 import { useBattleshipService } from '../hooks/useBattleshipService';
+import { useUpdateWinsCount } from '../../../wins-count/hooks/useUpdateWinsCount';
+import { EGamesNames } from '../../constants';
 
 interface IBattleshipCellProps {
   cell: BattleshipCellModel;
@@ -21,6 +23,8 @@ export const BattleshipCell = memo(({ cell, roomData, secondPlayer }: IBattleshi
   const { setBoard, setFreeShips, setCurrentFreeShip } = useBattleshipActions();
 
   const service = useBattleshipService();
+
+  const updateWinsCount = useUpdateWinsCount();
 
   const onMouseOver = () => {
     if (currentFreeShip && cell.isEmpty) {
@@ -50,6 +54,11 @@ export const BattleshipCell = memo(({ cell, roomData, secondPlayer }: IBattleshi
         playerToAttackShips: enemyBoard?.ships || [],
         isSuccessfullAtack: !!cell.elem
       });
+      if (isWinner) {
+        updateWinsCount({
+          gameName: EGamesNames.BATTLESHIP
+        });
+      }
     }
   };
 

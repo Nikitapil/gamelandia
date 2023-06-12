@@ -18,6 +18,8 @@ import { useBattleshipRoomData } from '../hooks/useBattleshipRoomData';
 import { useBattleshipService } from '../hooks/useBattleshipService';
 import { BattleshipMyBoard } from '../components/BattleshipMyBoard';
 import { BattleshipEnemyBoard } from '../components/BattleshipEnemyBoard';
+import { GameTitleWithWinners } from '../../components/GameTitleWithWinners';
+import { EGamesNames } from '../../constants';
 
 export const BattleShip = () => {
   const { t } = useTranslation();
@@ -113,7 +115,10 @@ export const BattleShip = () => {
 
   return (
     <div className={`container ${styles.battleship}`}>
-      <h2 className="page-title">{t('battleship')}</h2>
+      <GameTitleWithWinners
+        title={t('battleship')}
+        gameName={EGamesNames.BATTLESHIP}
+      />
       {loading && <HorizotalLoader color="blue" />}
       {roomData?.currentPlayer && (
         <h3 className={styles['battleship__current-player']}>
