@@ -21,6 +21,9 @@ import { useChessOnlineRoomData } from '../hooks/useChessOnlineRoomData';
 import { ERoutes } from '../../../router/constants';
 import { useChessOnlineService } from '../hooks/useChessOnlineService';
 import styles from '../assets/styles/chess.module.scss';
+import { useUpdateWinsCount } from '../../../wins-count/hooks/useUpdateWinsCount';
+import { EGamesNames } from '../../constants';
+import { GameTitleWithWinners } from '../../components/GameTitleWithWinners';
 
 export const ChessOnline = () => {
   const { t } = useTranslation();
@@ -43,6 +46,8 @@ export const ChessOnline = () => {
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
   const [winner, setWinner] = useState('');
   const [time, setTime] = useState<IChessTime | null>(null);
+
+  const updateWinsCount = useUpdateWinsCount();
 
   useEffect(() => {
     if (!roomData || !user || winner) {
@@ -68,9 +73,14 @@ export const ChessOnline = () => {
 
     if (roomData?.winner) {
       setWinner(roomData.winner.name);
+      if (roomData.winner.uid === user.id) {
+        updateWinsCount({
+          gameName: EGamesNames.CHESS
+        });
+      }
       service.deleteRoom(roomData.id);
     }
-  }, [roomData, user, isAuthLoading, service, isReadyToStart, winner]);
+  }, [roomData, user, isAuthLoading, service, isReadyToStart, winner, updateWinsCount]);
 
   const isClickAvailable = useMemo(() => {
     return roomData?.currentPlayer?.uid === user?.id;
@@ -121,42 +131,48 @@ export const ChessOnline = () => {
   }
 
   return (
-    <div className={`${styles.chess} container`}>
-      <div className={styles.chess_timer}>
-        {time && (
-          <ChessOnlineTimer
-            setTime={setTime}
-            time={time}
-            endGame={endGame}
-            currentPlayer={currentPlayer}
-          />
-        )}
-        <AppButton
-          color="danger"
-          testId="give-up-btn"
-          disabled={!isClickAvailable}
-          onClick={() => endGame()}
-          type="button"
-        >
-          {t('give_up')}
-        </AppButton>
-      </div>
-      <ChessBoardComponent
-        board={board}
-        setBoard={setBoard}
-        currentPlayer={currentPlayer}
-        swapPlayer={swapPlayer}
-        isClickAvailable={isClickAvailable}
+    <div className={`container ${styles['chess-container']}`}>
+      <GameTitleWithWinners
+        title={t('chess_online')}
+        gameName={EGamesNames.CHESS}
       />
-      <div className={styles.lost}>
-        <LostFigures
-          title={`${t('black')} ${roomData?.player2?.name}`}
-          figures={board.lostBlackFigures}
+      <div className={`${styles.chess}`}>
+        <div className={styles.chess_timer}>
+          {time && (
+            <ChessOnlineTimer
+              setTime={setTime}
+              time={time}
+              endGame={endGame}
+              currentPlayer={currentPlayer}
+            />
+          )}
+          <AppButton
+            color="danger"
+            testId="give-up-btn"
+            disabled={!isClickAvailable}
+            onClick={() => endGame()}
+            type="button"
+          >
+            {t('give_up')}
+          </AppButton>
+        </div>
+        <ChessBoardComponent
+          board={board}
+          setBoard={setBoard}
+          currentPlayer={currentPlayer}
+          swapPlayer={swapPlayer}
+          isClickAvailable={isClickAvailable}
         />
-        <LostFigures
-          title={`${t('white')} ${roomData?.player1?.name}`}
-          figures={board.lostWhiteFigures}
-        />
+        <div className={styles.lost}>
+          <LostFigures
+            title={`${t('black')} ${roomData?.player2?.name}`}
+            figures={board.lostBlackFigures}
+          />
+          <LostFigures
+            title={`${t('white')} ${roomData?.player1?.name}`}
+            figures={board.lostWhiteFigures}
+          />
+        </div>
       </div>
     </div>
   );
