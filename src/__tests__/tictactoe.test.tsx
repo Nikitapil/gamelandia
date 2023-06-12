@@ -91,7 +91,9 @@ describe('tic tac toe components', () => {
     board.initCells();
     let winner = '';
     const setBoard = jest.fn();
-    const setWinner = jest.fn(() => (winner = '123'));
+    const setWinner = jest.fn(() => {
+      winner = '123';
+    });
     const setDraw = jest.fn();
     board.checkWinner = jest.fn(() => true);
     render(

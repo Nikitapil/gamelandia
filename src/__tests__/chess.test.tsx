@@ -111,7 +111,9 @@ describe('chess tests', () => {
     const player = new Player(EChessColors.WHITE);
     const restart = jest.fn();
     let isModalOpen = false;
-    const setIsModalOpen = jest.fn(() => (isModalOpen = !isModalOpen));
+    const setIsModalOpen = jest.fn(() => {
+      isModalOpen = !isModalOpen;
+    });
     const setWinner = jest.fn();
     render(
       renderWithRouter(
@@ -131,7 +133,9 @@ describe('chess tests', () => {
     const player = new Player(EChessColors.WHITE);
     const restart = jest.fn();
     let isModalOpen = false;
-    const setIsModalOpen = jest.fn(() => (isModalOpen = !isModalOpen));
+    const setIsModalOpen = jest.fn(() => {
+      isModalOpen = !isModalOpen;
+    });
     const setWinner = jest.fn();
     render(
       renderWithRouter(
