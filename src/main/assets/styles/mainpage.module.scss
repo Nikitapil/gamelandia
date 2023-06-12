@@ -9,7 +9,6 @@
 .main-page__title {
   color: $mainColor;
   font-size: 28px;
-  margin-bottom: 20px;
   padding-top: 5px;
 }
 
@@ -68,6 +67,17 @@
   grid-template-columns: repeat(auto-fit, 300px);
   gap: 20px;
   justify-content: center;
+
+  &.rows {
+    display: block;
+
+    .game-card {
+      flex-direction: row;
+      align-items: center;
+      max-width: 100%;
+      margin-bottom: 15px;
+    }
+  }
 }
 
 .game-label {
@@ -83,4 +93,34 @@
   flex-wrap: wrap;
   gap: 5px;
   margin-top: 5px;
+}
+
+.views-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.view-button {
+  background: none;
+  border: none;
+  color: $mainColor;
+  font-size: 20px;
+  transition: 0.4s;
+  padding: 0;
+  margin-bottom: -3px;
+
+  &:hover {
+    color: $success;
+  }
+
+  .active-view {
+    color: $success;
+  }
+}
+
+.header {
+  display: flex;
+  gap: 15px;
+  align-items: flex-end;
+  margin-bottom: 20px;
 }

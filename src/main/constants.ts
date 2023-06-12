@@ -151,3 +151,8 @@ export const gamePics: IStringObject = {
   numbers,
   solitaire
 };
+
+export enum EGamesViews {
+  PLATE = 'plate',
+  ROWS = 'rows'
+}
