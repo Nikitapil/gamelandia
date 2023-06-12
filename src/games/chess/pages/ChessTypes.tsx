@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
-import { ERoutes } from '../../../constants/routes';
+import { ERoutes } from '../../../router/constants';
 import styles from '../assets/styles/chess.module.scss';
 
 export const ChessTypes = () => {

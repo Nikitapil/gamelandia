@@ -18,7 +18,7 @@ import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
 import { useChessOnlineRoomData } from '../hooks/useChessOnlineRoomData';
-import { ERoutes } from '../../../constants/routes';
+import { ERoutes } from '../../../router/constants';
 import { useChessOnlineService } from '../hooks/useChessOnlineService';
 import styles from '../assets/styles/chess.module.scss';
 

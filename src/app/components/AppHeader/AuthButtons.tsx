@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { IUser } from '../../../auth/types';
 import { HorizotalLoader } from '../../../components/UI/Loaders/HorizotalLoader';
 import styles from './header.module.scss';
-import { ERoutes } from '../../../constants/routes';
+import { ERoutes } from '../../../router/constants';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
 
 interface IAuthButtonsProps {

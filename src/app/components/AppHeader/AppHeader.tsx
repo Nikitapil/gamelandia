@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styles from './header.module.scss';
-import { ERoutes } from '../../../constants/routes';
+import { ERoutes } from '../../../router/constants';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector } from '../../../store/selectors';
 import { useAuthActions } from '../../../auth/hooks/useAuthActions';

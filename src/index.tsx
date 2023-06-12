@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { Suspense } from 'react';
+import { ToastContainer } from 'react-toastify';
 import App from './app/App';
 import { RoundLoader } from './components/UI/Loaders/RoundLoader';
 import './i18n';
@@ -14,9 +14,11 @@ root.render(
   <Suspense fallback={<RoundLoader />}>
     <Provider store={store}>
       <FirebaseProvider>
-        <BrowserRouter basename="/gamelandia">
-          <App />
-        </BrowserRouter>
+        <App />
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+        />
       </FirebaseProvider>
     </Provider>
   </Suspense>

@@ -7,7 +7,7 @@ import { useBreadcrumbs } from '../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../constants/breadcrumbs';
 import { useTitle } from '../../hooks/useTitle';
 import { useAuthRedirect } from '../hooks/useAuthRedirect';
-import { ERoutes } from '../../constants/routes';
+import { ERoutes } from '../../router/constants';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { authSelector } from '../../store/selectors';
 import { useAuthActions } from '../hooks/useAuthActions';

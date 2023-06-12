@@ -4,7 +4,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import App from '../app/App';
 import { MatchCard } from '../games/match-match/components/MatchCard';
 import { rootReducer } from '../store/root-reducer';
-import { renderWithRedux, renderWithRouter } from '../utils/test/utils';
+import { renderWithRedux, renderWithReduxInsideLayout, renderWithRouter } from '../utils/test/utils';
+import { MatchMatch } from '../games/match-match/pages/MatchMatch';
 
 describe('match-match game', () => {
   let store: any;
@@ -46,7 +47,7 @@ describe('match-match game', () => {
     expect(screen.getByTestId('match-card')).toHaveClass('flipped');
   });
   test('should render page with right breadcrumbs', () => {
-    render(renderWithRedux(<App />, '/match-match', store));
+    render(renderWithReduxInsideLayout(<MatchMatch />, store));
     expect(screen.getByText('match_match')).toBeInTheDocument();
   });
 });

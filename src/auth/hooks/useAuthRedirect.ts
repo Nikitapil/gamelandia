@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import { ERoutes } from '../../constants/routes';
+import { ERoutes } from '../../router/constants';
 import { IUser } from '../types';
 
 export const useAuthRedirect = (user: IUser | null, error: string) => {

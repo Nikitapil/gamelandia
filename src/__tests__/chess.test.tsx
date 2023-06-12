@@ -2,7 +2,11 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { configureStore } from '@reduxjs/toolkit';
 import { Chess } from '../games/chess/pages/Chess';
-import { renderWithRedux, renderWithRouter } from '../utils/test/utils';
+import {
+  renderWithRedux,
+  renderWithReduxInsideLayout,
+  renderWithRouter
+} from '../utils/test/utils';
 import { Board } from '../games/chess/models/Board';
 import { Cell } from '../games/chess/models/Cell';
 import { King } from '../games/chess/models/figures/King';
@@ -15,7 +19,7 @@ import { EChessColors } from '../games/chess/models/EChessColors';
 import { ChessTimer } from '../games/chess/components/ChessTimer';
 import { ChessCellComponent } from '../games/chess/components/ChessCellComponent';
 import { rootReducer } from '../store/root-reducer';
-import App from '../app/App';
+import { ChessTypes } from '../games/chess/pages/ChessTypes';
 
 jest.spyOn(global, 'setInterval');
 jest.spyOn(global, 'clearInterval');
@@ -209,7 +213,7 @@ describe('chess tests', () => {
     expect(screen.getByTestId('timer-modal')).toBeInTheDocument();
   });
   test('should render types with right breadcrumbs', () => {
-    render(renderWithRedux(<App />, '/chess', store));
+    render(renderWithReduxInsideLayout(<ChessTypes />, store));
     expect(screen.getByText('chess')).toBeInTheDocument();
   });
 });

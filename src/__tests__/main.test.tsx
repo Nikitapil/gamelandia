@@ -5,8 +5,8 @@ import { InternalGameCard } from '../main/components/InternalGameCard';
 import { OutSideGameCard } from '../main/components/OutSideGameCard';
 import { renderWithRedux, renderWithRouter } from '../utils/test/utils';
 import { rootReducer } from '../store/root-reducer';
-import App from '../app/App';
 import { AuthForm } from '../auth/components/AuthForm/AuthForm';
+import { MainPage } from '../main/pages/MainPage';
 
 describe('mainpage tests', () => {
   let store: any;
@@ -16,8 +16,8 @@ describe('mainpage tests', () => {
     });
   });
 
-  test('all render main page', () => {
-    render(renderWithRedux(<App />, '/', store));
+  test('render main page', () => {
+    render(renderWithRedux(<MainPage />, '/', store));
     const mainPage = screen.getByTestId('main-page');
     expect(mainPage).toBeInTheDocument();
   });

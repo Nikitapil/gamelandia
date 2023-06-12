@@ -9,7 +9,7 @@ import styles from '../assets/styles/battleship.module.scss';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
 import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { useTitle } from '../../../hooks/useTitle';
-import { ERoutes } from '../../../constants/routes';
+import { ERoutes } from '../../../router/constants';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { authSelector, battleshipSelector } from '../../../store/selectors';
 import { useBattleshipActions } from '../hooks/useBattleshipActions';

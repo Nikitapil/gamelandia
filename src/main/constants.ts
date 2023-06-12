@@ -1,4 +1,4 @@
-import { ERoutes } from '../constants/routes';
+import { ERoutes } from '../router/constants';
 import defaultPic from './assets/game-pictures/default.png';
 import quizzer from './assets/game-pictures/quizzer.png';
 import chess from './assets/game-pictures/chess.jpeg';
