@@ -1,10 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { configureStore } from '@reduxjs/toolkit';
-import App from '../app/App';
 import { MatchCard } from '../games/match-match/components/MatchCard';
 import { rootReducer } from '../store/root-reducer';
-import { renderWithRedux, renderWithReduxInsideLayout, renderWithRouter } from '../utils/test/utils';
+import { renderWithReduxInsideLayout, renderWithRouter } from '../utils/test/utils';
 import { MatchMatch } from '../games/match-match/pages/MatchMatch';
 
 describe('match-match game', () => {
