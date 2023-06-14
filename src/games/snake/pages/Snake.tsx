@@ -96,6 +96,11 @@ export const Snake = () => {
     }
   };
 
+  const selectLevel = (level: TSnakeLevels) => {
+    newGame();
+    setTimer(level);
+  };
+
   const isShowMobileBtns = useMemo(() => {
     return isMobile();
   }, []);
@@ -163,7 +168,7 @@ export const Snake = () => {
           <AppRadioButton
             options={snakeLevelsOptions}
             value={timer}
-            setValue={setTimer}
+            setValue={selectLevel}
             dataTestId="level"
           />
         </div>

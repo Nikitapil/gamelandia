@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { memo, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../assets/styles/scores.module.scss';
 import { ScoreTableLoader } from './ScoreTableLoader';
@@ -16,7 +16,7 @@ interface CommonScoreBoardProps {
   user: IUser | null;
 }
 
-export const CommonScoreBoard = ({ game, user }: CommonScoreBoardProps) => {
+export const CommonScoreBoard = memo(({ game, user }: CommonScoreBoardProps) => {
   const { t } = useTranslation();
   const [currentLevel, setCurrentLevel] = useState(EGamesLevels.EASY);
 
@@ -63,4 +63,4 @@ export const CommonScoreBoard = ({ game, user }: CommonScoreBoardProps) => {
       ))}
     </div>
   );
-};
+});
