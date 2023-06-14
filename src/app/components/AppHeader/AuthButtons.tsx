@@ -48,15 +48,20 @@ export const AuthButtons = ({ isAuthLoading, user, onSignOut }: IAuthButtonsProp
   }
 
   return (
-    <li>
-      <AppButton
-        color="transparent"
-        customClass={styles['logout-btn']}
-        onClick={onSignOut}
-        type="button"
-      >
-        {t('logout')}
-      </AppButton>
-    </li>
+    <>
+      <li>
+        <p className={styles.username}>{user.username}</p>
+      </li>
+      <li>
+        <AppButton
+          color="danger"
+          customClass={styles['logout-btn']}
+          onClick={onSignOut}
+          type="button"
+        >
+          {t('logout')}
+        </AppButton>
+      </li>
+    </>
   );
 };

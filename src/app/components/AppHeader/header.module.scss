@@ -1,3 +1,5 @@
+@import "../../../assets/styles/vars";
+
 .header {
   min-height: 80px;
   display: flex;
@@ -12,9 +14,15 @@
   }
 
   &__title {
-    color: #00c4f0;
+    color: $titleColor;
     font-family: "Permanent Marker", cursive;
     font-size: 32px;
+    text-decoration: none;
+    transition: 0.3s;
+
+    &:hover {
+      text-shadow: $titleColor 1px 0 10px;
+    }
   }
 }
 
@@ -23,21 +31,26 @@
   &__links {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
   }
 
   &__link {
-    color: #e4e4e4;
+    color: $dark;
     text-decoration: none;
     transition: 0.4s;
     cursor: pointer;
+    background: $mainColor;
+    padding: 5px 10px;
+    box-shadow: $shadow-black-common;
+    border-radius: 5px;
+    font-weight: 700;
 
     @media (max-width: 465px) {
       font-size: 12px;
     }
 
     &:hover {
-      color: #00c4f0;
+      opacity: 0.7;
     }
   }
 }
@@ -52,4 +65,8 @@
     font-size: 12px !important;
     padding-bottom: 0 !important;
   }
+}
+
+.username {
+  color: $success;
 }
