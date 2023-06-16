@@ -17,5 +17,7 @@ export enum ERoutes {
   TETRIS = '/tetris',
   REGISTRATION = '/registration',
   LOGIN = '/login',
-  SOLITAIRE = '/solitaire'
+  SOLITAIRE = '/solitaire',
+  PROFILE = 'profile',
+  PROFILE_STATISTICS = 'profile/statistics'
 }

@@ -101,5 +101,12 @@
   "user_already_exist": "User already exists",
   "white_king_under_attack": "White king is under attack",
   "black_king_under_attack": "Black king is under attack",
-  "top_winners": "Top winners"
+  "top_winners": "Top winners",
+  "cancel": "Cancel",
+  "change": "Change",
+  "profile": "Profile",
+  "username": "Username",
+  "password": "Password",
+  "new_password": "New password",
+  "repeat_new_password": "Repeat new password"
 }
