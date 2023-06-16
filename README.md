@@ -2,6 +2,8 @@
 
 Link to published project https://nikitapil.github.io/gamelandia/  
 
+Link to backend part https://github.com/Nikitapil/gamelandia-backend
+
 Game application. There you can find and play some different games. Also I will add there links to my other projects that is similar to games.
 
 ## Technologies used
