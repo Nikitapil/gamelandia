@@ -108,5 +108,12 @@
   "username": "Имя пользователя",
   "password": "Пароль",
   "new_password": "Новый пароль",
-  "repeat_new_password": "Повторите новый пароль"
+  "repeat_new_password": "Повторите новый пароль",
+  "statistics": "Статистика",
+  "numbers": 2048,
+  "flappy": "Flappy Bird",
+  "aim": "Aim Game",
+  "match": "Match-Match Game",
+  "tic_tac_toe": "Крестики-нолики",
+  "dyno": "Dyno"
 }

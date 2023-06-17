@@ -108,5 +108,12 @@
   "username": "Username",
   "password": "Password",
   "new_password": "New password",
-  "repeat_new_password": "Repeat new password"
+  "repeat_new_password": "Repeat new password",
+  "statistics": "Statistics",
+  "numbers": 2048,
+  "flappy": "Flappy Bird",
+  "aim": "Aim Game",
+  "match": "Match-Match Game",
+  "tic_tac_toe": "Tic Tac Toe",
+  "dyno": "Dyno"
 }
