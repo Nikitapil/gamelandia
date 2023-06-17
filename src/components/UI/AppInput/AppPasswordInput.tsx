@@ -13,6 +13,7 @@ interface IAppPasswordInputProps {
   required?: boolean;
   rules?: TValidationRules[];
   disabled?: boolean;
+  name?: string;
 }
 
 export const AppPasswordInput = ({
@@ -22,7 +23,8 @@ export const AppPasswordInput = ({
   label,
   required,
   rules,
-  disabled = false
+  disabled = false,
+  name = 'password'
 }: IAppPasswordInputProps) => {
   const [passwordType, setPasswordType] = useState<'password' | 'text'>('password');
 
@@ -35,7 +37,7 @@ export const AppPasswordInput = ({
     <div className={styles['password-input']}>
       <AppInput
         type={passwordType}
-        name="password"
+        name={name}
         className={styles['password-input__field']}
         testId="password-input"
         value={value}

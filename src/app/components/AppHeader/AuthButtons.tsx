@@ -50,7 +50,12 @@ export const AuthButtons = ({ isAuthLoading, user, onSignOut }: IAuthButtonsProp
   return (
     <>
       <li>
-        <p className={styles.username}>{user.username}</p>
+        <Link
+          className={styles['nav-bar__link']}
+          to={`${ERoutes.PROFILE}`}
+        >
+          {user.username}
+        </Link>
       </li>
       <li>
         <AppButton

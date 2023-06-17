@@ -12,6 +12,7 @@ interface ModalContainerProps {
   isOpened: boolean;
   title?: string;
   preventClosing?: boolean;
+  bg?: 'dark' | 'light';
 }
 
 export const ModalContainer: FC<ModalContainerProps> = ({
@@ -19,7 +20,8 @@ export const ModalContainer: FC<ModalContainerProps> = ({
   closeModal,
   preventClosing,
   isOpened,
-  title = ''
+  title = '',
+  bg = 'light'
 }) => {
   const modalref = useRef<HTMLDivElement>(null);
   useFocus(modalref);
@@ -51,7 +53,7 @@ export const ModalContainer: FC<ModalContainerProps> = ({
           ref={modalref}
         >
           <div
-            className={`${styles.modal__content} modal__content`}
+            className={`${styles.modal__content} ${styles[bg]} modal__content`}
             onClick={(e) => e.stopPropagation()}
             data-testid="modal-content"
           >
