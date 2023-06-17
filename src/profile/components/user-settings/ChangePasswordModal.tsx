@@ -3,13 +3,19 @@ import { useTranslation } from 'react-i18next';
 import { ModalContainer } from '../../../components/UI/ModalContainer/ModalContainer';
 import { AppPasswordInput } from '../../../components/UI/AppInput/AppPasswordInput';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
+import styles from '../../assets/styles/profile.module.scss';
 
 interface IChangePasswordModalProps {
   isOpened: boolean;
   closeModal: () => void;
+  submit: (value: string) => void;
 }
 
-export const ChangePasswordModal = ({ closeModal, isOpened }: IChangePasswordModalProps) => {
+export const ChangePasswordModal = ({
+  closeModal,
+  isOpened,
+  submit
+}: IChangePasswordModalProps) => {
   const { t } = useTranslation();
 
   const [values, setValues] = useState({
@@ -30,6 +36,10 @@ export const ChangePasswordModal = ({ closeModal, isOpened }: IChangePasswordMod
     setErrors((errs) => ({ ...errs, [name]: error }));
   }, []);
 
+  const onSubmit = () => {
+    submit(values.password);
+  };
+
   const isSubmitAvailable = useMemo(() => {
     return (
       !!values.password &&
@@ -46,7 +56,7 @@ export const ChangePasswordModal = ({ closeModal, isOpened }: IChangePasswordMod
       title={`${t('change')} ${t('password')}`}
       bg="dark"
     >
-      <div className="mt-m mb-m">
+      <div className={styles['password-controls']}>
         <AppPasswordInput
           value={values.password}
           onChange={onChangeValue}
@@ -76,6 +86,7 @@ export const ChangePasswordModal = ({ closeModal, isOpened }: IChangePasswordMod
           color="success"
           size="lg"
           disabled={!isSubmitAvailable}
+          onClick={onSubmit}
         />
       </div>
     </ModalContainer>

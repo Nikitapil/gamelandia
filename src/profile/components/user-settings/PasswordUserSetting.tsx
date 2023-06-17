@@ -4,7 +4,11 @@ import styles from '../../assets/styles/profile.module.scss';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
 import { ChangePasswordModal } from './ChangePasswordModal';
 
-export const PasswordUserSetting = () => {
+interface IPasswordUserSettingProps {
+  submit: (value: string) => void;
+}
+
+export const PasswordUserSetting = ({ submit }: IPasswordUserSettingProps) => {
   const { t } = useTranslation();
 
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -25,6 +29,7 @@ export const PasswordUserSetting = () => {
       <ChangePasswordModal
         isOpened={isModalOpened}
         closeModal={closeModal}
+        submit={submit}
       />
     </div>
   );

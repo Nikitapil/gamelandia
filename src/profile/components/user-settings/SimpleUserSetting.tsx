@@ -9,9 +9,15 @@ interface ISimpleUserSettingProps {
   title: string;
   initialValue: string;
   rules: TValidationRules[];
+  submit: (value: string) => void;
 }
 
-export const SimpleUserSetting = ({ title, initialValue, rules }: ISimpleUserSettingProps) => {
+export const SimpleUserSetting = ({
+  title,
+  initialValue,
+  rules,
+  submit
+}: ISimpleUserSettingProps) => {
   const { t } = useTranslation();
 
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -35,6 +41,7 @@ export const SimpleUserSetting = ({ title, initialValue, rules }: ISimpleUserSet
         title={title}
         rules={rules}
         closeModal={closeModal}
+        submit={submit}
       />
     </div>
   );

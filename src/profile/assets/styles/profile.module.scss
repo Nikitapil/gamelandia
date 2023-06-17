@@ -23,3 +23,11 @@
     color: $success;
   }
 }
+
+.password-controls {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}

@@ -11,6 +11,7 @@ interface IChangeUserSettingModalProps {
   title: string;
   initialValue: string;
   rules: TValidationRules[];
+  submit: (value: string) => void;
 }
 
 export const ChangeUserSettingModal = ({
@@ -18,7 +19,8 @@ export const ChangeUserSettingModal = ({
   isOpened,
   title,
   initialValue,
-  rules
+  rules,
+  submit
 }: IChangeUserSettingModalProps) => {
   const { t } = useTranslation();
 
@@ -26,6 +28,10 @@ export const ChangeUserSettingModal = ({
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+  };
+
+  const onSubmit = () => {
+    submit(value);
   };
 
   return (
@@ -54,6 +60,7 @@ export const ChangeUserSettingModal = ({
           color="success"
           size="lg"
           disabled={!value}
+          onClick={onSubmit}
         />
       </div>
     </ModalContainer>
