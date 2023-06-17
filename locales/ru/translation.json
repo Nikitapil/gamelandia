@@ -101,5 +101,12 @@
   "user_already_exist": "Пользователь с таким email уже существует",
   "white_king_under_attack": "Шах белому королю",
   "black_king_under_attack": "Шах черному королю",
-  "top_winners": "Топ победителей"
+  "top_winners": "Топ победителей",
+  "cancel": "Отмена",
+  "change": "Изменить",
+  "profile": "Профиль",
+  "username": "Имя пользователя",
+  "password": "Пароль",
+  "new_password": "Новый пароль",
+  "repeat_new_password": "Повторите новый пароль"
 }
