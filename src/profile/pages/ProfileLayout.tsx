@@ -6,8 +6,9 @@ import { authSelector } from '../../store/selectors';
 import { RoundLoader } from '../../components/UI/Loaders/RoundLoader';
 import { ERoutes } from '../../router/constants';
 import styles from '../assets/styles/profile.module.scss';
+import { ProfileNavigation } from '../components/ProfileNavigation';
 
-export const ProfileCommon = () => {
+export const ProfileLayout = () => {
   const { t } = useTranslation();
   const { user, isAuthLoading } = useAppSelector(authSelector);
 
@@ -26,7 +27,7 @@ export const ProfileCommon = () => {
   return (
     <div className={`container ${styles.profile}`}>
       <h1 className="page-title">{t('profile')}</h1>
-      {/* TODO add profile navigation */}
+      <ProfileNavigation />
       <div className="w-100">
         <Outlet context={user} />
       </div>

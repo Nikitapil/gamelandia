@@ -20,8 +20,9 @@ import { Tetris } from '../games/tetris/pages/Tetris';
 import { BattleShip } from '../games/battleship/pages/BattleShip';
 import { SignUp } from '../auth/pages/SignUp';
 import { SignIn } from '../auth/pages/SignIn';
-import { ProfileCommon } from '../profile/pages/ProfileCommon';
+import { ProfileLayout } from '../profile/pages/ProfileLayout';
 import { Profile } from '../profile/pages/Profile';
+import { ProfileStatistics } from '../profile/pages/ProfileStatistics';
 
 export const router = createBrowserRouter(
   [
@@ -104,11 +105,15 @@ export const router = createBrowserRouter(
         },
         {
           path: ERoutes.PROFILE,
-          element: <ProfileCommon />,
+          element: <ProfileLayout />,
           children: [
             {
               index: true,
               element: <Profile />
+            },
+            {
+              path: ERoutes.PROFILE_STATISTICS,
+              element: <ProfileStatistics />
             }
           ]
         }
