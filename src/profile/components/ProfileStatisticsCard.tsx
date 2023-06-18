@@ -15,12 +15,12 @@ export const ProfileStatisticsCard = ({ statisticsItem }: IProfileStatisticsCard
       <div className={styles['statistics-card__info']}>
         {statisticsItem.score && (
           <p>
-            Your best score: <span>{statisticsItem.score.value}</span>
+            {t('your_best_score')}: <span>{statisticsItem.score.value}</span>
           </p>
         )}
         {statisticsItem.winsCount && (
           <p>
-            Your wins count: <span>{statisticsItem.winsCount.value}</span>
+            {t('your_wins_count')}: <span>{statisticsItem.winsCount.value}</span>
           </p>
         )}
       </div>

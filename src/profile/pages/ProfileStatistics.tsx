@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useProfileActions } from '../hooks/useProfileActions';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { statisticsSelector } from '../../store/selectors';
@@ -7,6 +8,8 @@ import { ProfileStatisticsCard } from '../components/ProfileStatisticsCard';
 import styles from '../assets/styles/profile.module.scss';
 
 export const ProfileStatistics = () => {
+  const { t } = useTranslation();
+
   const { getGameStatistics } = useProfileActions();
   const { isLoading, gameStatistics } = useAppSelector(statisticsSelector);
 
@@ -24,7 +27,7 @@ export const ProfileStatistics = () => {
 
   return (
     <div className={styles.statistics}>
-      <h3 className={styles.statistics__title}>Games statisctics</h3>
+      <h3 className={styles.statistics__title}>{t('games_statistics')}</h3>
       {gameStatistics.map((game) => (
         <ProfileStatisticsCard
           key={game.name}

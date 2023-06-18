@@ -115,5 +115,9 @@
   "aim": "Aim Game",
   "match": "Match-Match Game",
   "tic_tac_toe": "Tic Tac Toe",
-  "dyno": "Dyno"
+  "dyno": "Dyno",
+  "games_statistics": "Games statisctics",
+  "your_best_score": "Your best score",
+  "your_wins_count": "Your wins count",
+  "winners_table": "Winners table"
 }

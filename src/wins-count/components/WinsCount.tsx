@@ -42,7 +42,7 @@ export const WinsCount = ({ gameName }: IWinsCountProps) => {
   return (
     <div>
       <AppButton
-        text="Winners table"
+        text={t('winners_table')}
         onClick={open}
         color="dark"
       />
