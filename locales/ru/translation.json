@@ -115,5 +115,9 @@
   "aim": "Aim Game",
   "match": "Match-Match Game",
   "tic_tac_toe": "Крестики-нолики",
-  "dyno": "Dyno"
+  "dyno": "Dyno",
+  "games_statistics": "Игровая статистика",
+  "your_best_score": "Ваш рекорд",
+  "your_wins_count": "Ваше количество побед",
+  "winners_table": "Победители"
 }
