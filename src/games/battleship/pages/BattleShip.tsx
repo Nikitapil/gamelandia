@@ -27,7 +27,7 @@ export const BattleShip = () => {
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.battleshipRooms, breadcrumbs.battleship]);
   const { id } = useParams();
 
-  const { user, isAuthLoading } = useAppSelector(authSelector);
+  const { user } = useAppSelector(authSelector);
   const { board, enemyBoard } = useAppSelector(battleshipSelector);
   const { setBoard, setEnemyBoard, setFreeShips } = useBattleshipActions();
 
@@ -94,10 +94,6 @@ export const BattleShip = () => {
 
   if (!roomData && !loading && !winner) {
     return <Navigate to={ERoutes.BATTLESHIP} />;
-  }
-
-  if (!isAuthLoading && !user) {
-    return <Navigate to={`${ERoutes.LOGIN}?page=battleship`} />;
   }
 
   if (isFull) {

@@ -105,10 +105,6 @@ export const ChessOnline = () => {
     setCurrentPlayer(currentPlayer?.color === EChessColors.WHITE ? blackPlayer : whitePlayer);
   };
 
-  if (!isAuthLoading && !user) {
-    return <Navigate to={`${ERoutes.LOGIN}?page=chess/rooms`} />;
-  }
-
   if (!roomData && !loading && !winner) {
     return <Navigate to={ERoutes.CHESS_ROOMS} />;
   }
