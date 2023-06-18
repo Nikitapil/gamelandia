@@ -1,28 +1,14 @@
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { authSelector } from '../../store/selectors';
-import { RoundLoader } from '../../components/UI/Loaders/RoundLoader';
-import { ERoutes } from '../../router/constants';
 import styles from '../assets/styles/profile.module.scss';
 import { ProfileNavigation } from '../components/ProfileNavigation';
 
 export const ProfileLayout = () => {
   const { t } = useTranslation();
-  const { user, isAuthLoading } = useAppSelector(authSelector);
-
-  if (isAuthLoading) {
-    return (
-      <div className="container">
-        <RoundLoader />
-      </div>
-    );
-  }
-
-  if (!user) {
-    return <Navigate to={ERoutes.MAIN} />;
-  }
+  const { user } = useAppSelector(authSelector);
 
   return (
     <div className={`container ${styles.profile}`}>

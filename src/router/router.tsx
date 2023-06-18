@@ -23,6 +23,7 @@ import { SignIn } from '../auth/pages/SignIn';
 import { ProfileLayout } from '../profile/pages/ProfileLayout';
 import { Profile } from '../profile/pages/Profile';
 import { ProfileStatistics } from '../profile/pages/ProfileStatistics';
+import { ProtectedRouteWithAuth } from '../components/ProtectedRouteWithAuth';
 
 export const router = createBrowserRouter(
   [
@@ -65,11 +66,19 @@ export const router = createBrowserRouter(
         },
         {
           path: ERoutes.CHESS_ROOMS,
-          element: <ChessRooms />
+          element: (
+            <ProtectedRouteWithAuth>
+              <ChessRooms />
+            </ProtectedRouteWithAuth>
+          )
         },
         {
           path: ERoutes.CHESS_ROOMS_ID,
-          element: <ChessOnline />
+          element: (
+            <ProtectedRouteWithAuth>
+              <ChessOnline />
+            </ProtectedRouteWithAuth>
+          )
         },
         {
           path: ERoutes.TIC_TAC,
@@ -81,7 +90,11 @@ export const router = createBrowserRouter(
         },
         {
           path: ERoutes.BATTLESHIP,
-          element: <BattleShipRooms />
+          element: (
+            <ProtectedRouteWithAuth>
+              <BattleShipRooms />
+            </ProtectedRouteWithAuth>
+          )
         },
         {
           path: ERoutes.INVADERS,
@@ -93,7 +106,11 @@ export const router = createBrowserRouter(
         },
         {
           path: ERoutes.BATTLESHIP_ID,
-          element: <BattleShip />
+          element: (
+            <ProtectedRouteWithAuth>
+              <BattleShip />
+            </ProtectedRouteWithAuth>
+          )
         },
         {
           path: ERoutes.REGISTRATION,
@@ -105,7 +122,11 @@ export const router = createBrowserRouter(
         },
         {
           path: ERoutes.PROFILE,
-          element: <ProfileLayout />,
+          element: (
+            <ProtectedRouteWithAuth>
+              <ProfileLayout />
+            </ProtectedRouteWithAuth>
+          ),
           children: [
             {
               index: true,
