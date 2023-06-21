@@ -1,11 +1,14 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IAuthSliceState, IUser } from '../types';
+import { ERestorePasswordSteps } from '../constants';
 
 const initialState: IAuthSliceState = {
   user: null,
   isAuthLoading: true,
-  authError: ''
+  authError: '',
+  isRestorePasswordLoading: false,
+  restorePasswordStep: ERestorePasswordSteps.GET_EMAIL
 };
 
 export const authSlice = createSlice({
@@ -20,6 +23,12 @@ export const authSlice = createSlice({
     },
     setAuthError(state, action: PayloadAction<string>) {
       state.authError = action.payload;
+    },
+    setIsRestorePasswordLoading(state, action: PayloadAction<boolean>) {
+      state.isRestorePasswordLoading = action.payload;
+    },
+    setRestorePasswordStep(state, action: PayloadAction<ERestorePasswordSteps>) {
+      state.restorePasswordStep = action.payload;
     }
   }
 });

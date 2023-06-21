@@ -18,4 +18,15 @@ export class AuthService {
   static async logout(): Promise<AxiosResponse<IAuthResponse>> {
     return $api.get<IAuthResponse>('/auth/logout');
   }
+
+  static async getRestoreKey(email: string): Promise<AxiosResponse> {
+    return $api.post('/auth/get_restore_password_key', { email });
+  }
+
+  static async restorePassword(
+    key: string,
+    password: string
+  ): Promise<AxiosResponse<IAuthResponse>> {
+    return $api.put<IAuthResponse>('/auth/restore_password', { key, password });
+  }
 }

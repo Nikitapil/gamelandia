@@ -119,5 +119,11 @@
   "games_statistics": "Игровая статистика",
   "your_best_score": "Ваш рекорд",
   "your_wins_count": "Ваше количество побед",
-  "winners_table": "Победители"
+  "winners_table": "Победители",
+  "restore_password": "Восстановить пароль",
+  "write_your_email": "Укажите ваш email",
+  "set_password": "Укажите новый пароль",
+  "next": "Далее",
+  "secret_key_description": "Секретный ключ был отправлен вам на email, пожалуйста введите его в поле ниже и установите новый пароль",
+  "secret_key": "Секретный ключ"
 }

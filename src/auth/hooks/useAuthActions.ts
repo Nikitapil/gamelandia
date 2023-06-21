@@ -1,7 +1,14 @@
 import { useDispatch } from 'react-redux';
 import { useMemo } from 'react';
 import { bindActionCreators } from 'redux';
-import { logout, refresh, signin, signup } from '../store/auth-actions';
+import {
+  getRestorePasswordKey,
+  logout,
+  refresh,
+  restorePassword,
+  signin,
+  signup
+} from '../store/auth-actions';
 
 export const useAuthActions = () => {
   const dispatch = useDispatch();
@@ -11,7 +18,9 @@ export const useAuthActions = () => {
       signup,
       signin,
       refresh,
-      logout
+      logout,
+      getRestorePasswordKey,
+      restorePassword
     };
     return bindActionCreators(actions, dispatch);
   }, [dispatch]);
