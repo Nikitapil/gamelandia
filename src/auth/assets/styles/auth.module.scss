@@ -54,3 +54,18 @@
   margin-top: 12px;
   align-self: flex-end;
 }
+
+.password-form {
+  color: $mainColor;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 10px;
+
+  &__text {
+    font-size: 18px;
+    padding: 0 5px;
+    text-align: center;
+    color: $titleColor;
+  }
+}

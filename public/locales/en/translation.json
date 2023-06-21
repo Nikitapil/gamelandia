@@ -119,5 +119,11 @@
   "games_statistics": "Games statisctics",
   "your_best_score": "Your best score",
   "your_wins_count": "Your wins count",
-  "winners_table": "Winners table"
+  "winners_table": "Winners table",
+  "restore_password": "Restore password",
+  "write_your_email": "Write your email",
+  "set_password": "Set new password",
+  "next": "Next",
+  "secret_key_description": "Secret key was sent to your email, place it in the field below and set new password",
+  "secret_key": "Secret key"
 }

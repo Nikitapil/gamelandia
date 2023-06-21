@@ -3,7 +3,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import userEvent from '@testing-library/user-event';
 import { InternalGameCard } from '../main/components/InternalGameCard';
 import { OutSideGameCard } from '../main/components/OutSideGameCard';
-import { renderWithRedux, renderWithRouter } from '../utils/test/utils';
+import {
+  renderWithRedux,
+  renderWithReduxInsideLayout,
+  renderWithRouter
+} from '../utils/test/utils';
 import { rootReducer } from '../store/root-reducer';
 import { AuthForm } from '../auth/components/AuthForm/AuthForm';
 import { MainPage } from '../main/pages/MainPage';
@@ -66,13 +70,14 @@ describe('mainpage tests', () => {
   test('should work authForm', () => {
     const submit = jest.fn();
     render(
-      renderWithRouter(
+      renderWithReduxInsideLayout(
         <AuthForm
           formTitle=""
           submit={submit}
           isSignUp
           isLoading={false}
-        />
+        />,
+        store
       )
     );
     const email = screen.getByTestId('email-input');

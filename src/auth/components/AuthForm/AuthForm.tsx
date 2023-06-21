@@ -7,6 +7,7 @@ import { TValidationRules } from '../../../utils/validators';
 import { useInputTouch } from '../../../hooks/useInputTouch';
 import { ISignUpAuthRequest } from '../../types';
 import { AppPasswordInput } from '../../../components/UI/AppInput/AppPasswordInput';
+import { RestorePasswordModal } from '../RestorePasswordModal/RestorePasswordModal';
 
 interface AuthFormProps {
   formTitle: string;
@@ -17,6 +18,8 @@ interface AuthFormProps {
 
 export const AuthForm: FC<AuthFormProps> = ({ formTitle, submit, isLoading, isSignUp = false }) => {
   const { t } = useTranslation();
+
+  const [isRestorePasswordModalOpened, setIsRestorePasswordModalOpened] = useState(false);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -47,6 +50,9 @@ export const AuthForm: FC<AuthFormProps> = ({ formTitle, submit, isLoading, isSi
       submit(formData);
     }
   };
+
+  const openRestorePasswordModal = () => setIsRestorePasswordModalOpened(true);
+  const closeRestorePasswordModal = () => setIsRestorePasswordModalOpened(false);
 
   const onError = useCallback((name: string, err: string) => {
     setFormErrors((errors) => ({ ...errors, [name]: err }));
@@ -84,6 +90,15 @@ export const AuthForm: FC<AuthFormProps> = ({ formTitle, submit, isLoading, isSi
         onError={onError}
         onChange={onInput}
       />
+      {!isSignUp && (
+        <AppButton
+          text={t('restore_password')}
+          customClass="align-self-start"
+          color="dark"
+          size="sm"
+          onClick={openRestorePasswordModal}
+        />
+      )}
       {isSignUp && (
         <AppInput
           type="text"
@@ -108,6 +123,11 @@ export const AuthForm: FC<AuthFormProps> = ({ formTitle, submit, isLoading, isSi
       >
         {formTitle}
       </AppButton>
+      <RestorePasswordModal
+        isOpened={isRestorePasswordModalOpened}
+        closeModal={closeRestorePasswordModal}
+        initialEmail={formData.email}
+      />
     </form>
   );
 };

@@ -1,3 +1,5 @@
+import { ERestorePasswordSteps } from './constants';
+
 export interface IUser {
   id: number;
   username: string;
@@ -8,6 +10,8 @@ export interface IAuthSliceState {
   user: IUser | null;
   isAuthLoading: boolean;
   authError: string;
+  isRestorePasswordLoading: boolean;
+  restorePasswordStep: ERestorePasswordSteps;
 }
 
 export interface IBaseAuthRequest {
