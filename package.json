@@ -43,8 +43,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false && react-scripts build",
-    "build:prod": "dotenv -e .env.prod react-scripts build",
+    "build": "CI=false && react-scripts build && cd build && cp index.html 404.html",
+    "build:prod": "dotenv -e .env.prod react-scripts build && cd build && cp index.html 404.html",
     "test": "react-scripts test ",
     "eject": "react-scripts eject",
     "test:cover": "react-scripts test --coverage src",
