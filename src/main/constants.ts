@@ -60,7 +60,7 @@ export const gamesCards: IGameCard[] = [
     gameName: 'quizzer',
     pictureName: 'quizzer',
     description: 'quizzer_description',
-    path: 'https://nikitapil.github.io/quizzer/',
+    path: 'https://nikitapil.github.io/quizzer-app/',
     isOutside: true,
     labels: [],
     mobileSuitable: true
