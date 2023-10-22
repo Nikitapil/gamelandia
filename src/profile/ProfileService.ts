@@ -11,4 +11,8 @@ export class ProfileService {
   static async getGamesStatistics(): Promise<AxiosResponse<IGameStatistics[]>> {
     return $api.get<IGameStatistics[]>('/games/my_statistics');
   }
+
+  static async deleteProfile(id: number) {
+    return $api.delete(`/users/delete/${id}`);
+  }
 }

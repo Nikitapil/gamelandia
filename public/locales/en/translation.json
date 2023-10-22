@@ -125,5 +125,8 @@
   "set_password": "Set new password",
   "next": "Next",
   "secret_key_description": "Secret key was sent to your email, place it in the field below and set new password",
-  "secret_key": "Secret key"
+  "secret_key": "Secret key",
+  "confirm": "Confirm",
+  "delete_profile": "Delete Profile",
+  "delete": "Delete"
 }

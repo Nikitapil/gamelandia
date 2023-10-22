@@ -1,0 +1,16 @@
+.confirm-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 70px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.buttons {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
