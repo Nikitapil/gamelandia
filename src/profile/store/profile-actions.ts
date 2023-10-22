@@ -13,7 +13,9 @@ export const editUser = (editUserRequest: IEditUserRequest) => {
       const { data } = await ProfileService.editUser(editUserRequest);
       dispatch(authSlice.actions.setUser(data));
     } catch (e: any) {
-      toast.error(e?.response?.data?.message || 'Error while editing user');
+      toast.error(
+        e?.response?.data?.message?.[0] || e?.response?.data?.message || 'Error while editing user'
+      );
     } finally {
       dispatch(authSlice.actions.setIsAuthLoading(false));
     }
