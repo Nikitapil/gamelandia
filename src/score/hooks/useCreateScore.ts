@@ -5,7 +5,7 @@ import { useScoreActions } from './useScoreActions';
 import { ICreateScoreRequest } from '../types';
 
 export const useCreateScore = () => {
-  const user = useAppSelector(authSelector);
+  const { user } = useAppSelector(authSelector);
   const { createScore } = useScoreActions();
 
   return useCallback(
