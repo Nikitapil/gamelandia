@@ -14,7 +14,9 @@ export const editUser = (editUserRequest: IEditUserRequest) => {
       dispatch(authSlice.actions.setUser(data));
     } catch (e: any) {
       toast.error(
-        e?.response?.data?.message?.[0] || e?.response?.data?.message || 'Error while editing user'
+        e?.response?.data?.message?.toString() ||
+          e?.response?.data?.message ||
+          'Error while editing user'
       );
     } finally {
       dispatch(authSlice.actions.setIsAuthLoading(false));
