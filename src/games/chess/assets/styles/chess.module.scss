@@ -240,9 +240,9 @@
 
 .chess-types {
   padding: 20px;
-  height: 100%;
-  height: calc(100vh - 80px);
+  height: auto;
   display: flex;
+  margin-top: 16vh;
   justify-content: center;
   align-items: center;
   flex-direction: column;
