@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/gamelandia/static/css/main.c1f832b0.css",
-    "main.js": "/gamelandia/static/js/main.bf03216e.js",
+    "main.css": "/gamelandia/static/css/main.34de8041.css",
+    "main.js": "/gamelandia/static/js/main.c73e0f20.js",
     "static/media/Ubuntu-Light.ttf": "/gamelandia/static/media/Ubuntu-Light.0dd2d5986e2731a16ee7.ttf",
     "static/media/Ubuntu-Regular.ttf": "/gamelandia/static/media/Ubuntu-Regular.1cbb1b79a23478cc89ad.ttf",
     "static/media/Ubuntu-Bold.ttf": "/gamelandia/static/media/Ubuntu-Bold.fec2d0f1431a6114a6ce.ttf",
@@ -23,11 +23,11 @@
     "static/media/wolf.png": "/gamelandia/static/media/wolf.b9be2f0007bb9ca44052.png",
     "index.html": "/gamelandia/index.html",
     "static/media/getFetch.cjs": "/gamelandia/static/media/getFetch.c780682470504fffbd04.cjs",
-    "main.c1f832b0.css.map": "/gamelandia/static/css/main.c1f832b0.css.map",
-    "main.bf03216e.js.map": "/gamelandia/static/js/main.bf03216e.js.map"
+    "main.34de8041.css.map": "/gamelandia/static/css/main.34de8041.css.map",
+    "main.c73e0f20.js.map": "/gamelandia/static/js/main.c73e0f20.js.map"
   },
   "entrypoints": [
-    "static/css/main.c1f832b0.css",
-    "static/js/main.bf03216e.js"
+    "static/css/main.34de8041.css",
+    "static/js/main.c73e0f20.js"
   ]
 }
