@@ -76,6 +76,10 @@
       align-items: center;
       max-width: 100%;
       margin-bottom: 15px;
+
+      .game-card__picture {
+        flex: 1 1 400px;
+      }
     }
   }
 }

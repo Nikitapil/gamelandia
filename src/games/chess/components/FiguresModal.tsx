@@ -71,6 +71,7 @@ export const FiguresModal: FC<IFiguresModalProps> = ({
       preventClosing
     >
       <div className={styles['figures-container']}>
+        {/* TODO change this with constant array and list mapping */}
         <button
           className={styles['figure-button']}
           onClick={() => chooseFigure(EFigureNames.BISHOP)}
