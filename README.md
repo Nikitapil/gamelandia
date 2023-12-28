@@ -10,7 +10,7 @@ Game application. There you can find and play some different games. Also I will 
 
 React, React-router-dom, React Hooks, Redux, Redux-toolkit, Typescript, i18n, OOP, Fontawesome, react testing library, ract transition group, react-icons, react-toastify, axios, firebase,  Html, Scss, eslint, husky, github actions.
 
-## Game List
+## Games List
 * 2048 Game
 * Clone invaders
 * Snake Game
