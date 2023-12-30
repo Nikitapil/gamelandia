@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { configureStore } from '@reduxjs/toolkit';
+import { act } from 'react-dom/test-utils';
 import { Chess } from '../games/chess/pages/Chess';
 import {
   renderWithRedux,
@@ -213,7 +214,10 @@ describe('chess tests', () => {
     expect(screen.queryByTestId('timer-modal')).not.toBeInTheDocument();
     userEvent.click(screen.getByTestId('give-up-btn'));
     expect(screen.getByTestId('newGame-btn')).toBeInTheDocument();
-    userEvent.click(screen.getByTestId('newGame-btn'));
+    // eslint-disable-next-line testing-library/no-unnecessary-act
+    act(() => {
+      screen.getByTestId('newGame-btn').click();
+    });
     expect(screen.getByTestId('timer-modal')).toBeInTheDocument();
   });
   test('should render types with right breadcrumbs', () => {
