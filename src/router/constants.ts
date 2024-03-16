@@ -19,5 +19,6 @@ export enum ERoutes {
   LOGIN = '/login',
   SOLITAIRE = '/solitaire',
   PROFILE = '/profile',
-  PROFILE_STATISTICS = 'statistics'
+  PROFILE_STATISTICS = 'statistics',
+  LIFE = 'life'
 }

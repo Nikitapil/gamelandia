@@ -24,6 +24,7 @@ import { ProfileLayout } from '../profile/pages/ProfileLayout';
 import { Profile } from '../profile/pages/Profile';
 import { ProfileStatistics } from '../profile/pages/ProfileStatistics';
 import { ProtectedRouteWithAuth } from '../components/ProtectedRouteWithAuth';
+import Life from '../games/life/pages/Life';
 
 export const router = createBrowserRouter(
   [
@@ -103,6 +104,10 @@ export const router = createBrowserRouter(
         {
           path: ERoutes.TETRIS,
           element: <Tetris />
+        },
+        {
+          path: ERoutes.LIFE,
+          element: <Life />
         },
         {
           path: ERoutes.BATTLESHIP_ID,

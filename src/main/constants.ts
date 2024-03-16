@@ -1,4 +1,7 @@
 import { ERoutes } from '../router/constants';
+import { IGameCard } from './types';
+import { IStringObject } from '../types/common';
+
 import defaultPic from './assets/game-pictures/default.png';
 import quizzer from './assets/game-pictures/quizzer.png';
 import chess from './assets/game-pictures/chess.jpg';
@@ -11,8 +14,7 @@ import flappy from './assets/game-pictures/flappy.jpg';
 import aim from './assets/game-pictures/aim.png';
 import numbers from './assets/game-pictures/2048.png';
 import solitaire from './assets/game-pictures/solitaire.jpeg';
-import { IGameCard } from './types';
-import { IStringObject } from '../types/common';
+import lifeGame from './assets/game-pictures/lifeGame.png';
 
 export const gamesCards: IGameCard[] = [
   {
@@ -134,6 +136,16 @@ export const gamesCards: IGameCard[] = [
     isOutside: false,
     labels: ['2 players'],
     mobileSuitable: true
+  },
+  {
+    id: 15,
+    gameName: 'life_game',
+    pictureName: 'lifeGame',
+    description: 'life_game_description',
+    path: ERoutes.LIFE,
+    isOutside: false,
+    labels: ['Single player'],
+    mobileSuitable: true
   }
 ];
 
@@ -149,7 +161,8 @@ export const gamePics: IStringObject = {
   flappy,
   aim,
   numbers,
-  solitaire
+  solitaire,
+  lifeGame
 };
 
 export enum EGamesViews {

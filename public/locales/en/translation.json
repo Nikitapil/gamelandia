@@ -128,5 +128,7 @@
   "secret_key": "Secret key",
   "confirm": "Confirm",
   "delete_profile": "Delete Profile",
-  "delete": "Delete"
+  "delete": "Delete",
+  "life_game": "Life game",
+  "life_game_description": "The Life game, is a cellular automaton. It is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. "
 }
