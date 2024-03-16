@@ -1,5 +1,5 @@
-import React from 'react';
 import styles from '../assets/styles/life.module.scss';
+
 import { LifeCell } from '../models/LifeCell';
 
 interface ILifeBoardCellProps {

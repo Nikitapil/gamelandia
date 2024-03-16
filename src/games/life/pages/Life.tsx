@@ -1,12 +1,14 @@
-import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from '../assets/styles/life.module.scss';
+
 import LifeGameBoard from '../components/LifeGameBoard';
 
-// TODO i18n
 const Life = () => {
+  const { t } = useTranslation();
+
   return (
     <div className={`container ${styles.life}`}>
-      <h2 className="page-title">Life game</h2>
+      <h2 className="page-title">{t('life_game')}</h2>
       <LifeGameBoard />
     </div>
   );

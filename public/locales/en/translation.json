@@ -128,5 +128,6 @@
   "secret_key": "Secret key",
   "confirm": "Confirm",
   "delete_profile": "Delete Profile",
-  "delete": "Delete"
+  "delete": "Delete",
+  "life_game": "Life game"
 }

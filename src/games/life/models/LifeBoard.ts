@@ -1,5 +1,11 @@
 import { LifeCell } from './LifeCell';
+
 import { LIFE_BOARD_SIZE } from '../constants';
+
+interface IReducedCellsByStatus {
+  alive: LifeCell[];
+  dead: LifeCell[];
+}
 
 export class LifeBoard {
   cells: LifeCell[][] = [];
@@ -36,7 +42,7 @@ export class LifeBoard {
 
   private getReducedByStatusCells(cells: LifeCell[]) {
     return cells.reduce(
-      (acc: { dead: LifeCell[]; alive: LifeCell[] }, item) => {
+      (acc: IReducedCellsByStatus, item) => {
         if (item?.isAlive) {
           acc.alive.push(item);
         } else {

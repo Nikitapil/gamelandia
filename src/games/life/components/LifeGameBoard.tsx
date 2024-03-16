@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { LifeBoard } from '../models/LifeBoard';
-import LifeBoardCell from './LifeBoardCell';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import styles from '../assets/styles/life.module.scss';
+
+import { LifeBoard } from '../models/LifeBoard';
+
+import LifeBoardCell from './LifeBoardCell';
 import { AppButton } from '../../../components/UI/AppButton/AppButton';
 
 const LifeGameBoard = () => {
   const [game, setGame] = useState(new LifeBoard());
   const [gameInterval, setGameInterval] = useState<ReturnType<typeof setInterval> | null>(null);
   const [isGameStarted, setIsGameStarted] = useState(false);
+
+  const { t } = useTranslation();
 
   const initBoard = () => {
     const newGame = new LifeBoard();
@@ -19,7 +25,7 @@ const LifeGameBoard = () => {
     setGame(game.updateBoard());
   };
 
-  const doCellsStep = () => {
+  const moveCells = () => {
     if (game.cells.length) {
       game.moveCells();
       onUpdate();
@@ -31,7 +37,7 @@ const LifeGameBoard = () => {
       clearInterval(gameInterval);
     }
     setIsGameStarted(true);
-    const interval = setInterval(doCellsStep, 500);
+    const interval = setInterval(moveCells, 500);
     setGameInterval(interval);
   };
 
@@ -50,8 +56,22 @@ const LifeGameBoard = () => {
 
   return (
     <div>
-      {!isGameStarted && <AppButton onClick={onStartMoving}>Start</AppButton>}
-      {isGameStarted && <AppButton onClick={restart}>Restart</AppButton>}
+      {!isGameStarted && (
+        <AppButton
+          customClass="mx-auto mb-m"
+          color="success"
+          text={t('start_game')}
+          onClick={onStartMoving}
+        />
+      )}
+      {isGameStarted && (
+        <AppButton
+          customClass="mx-auto mb-m"
+          color="success"
+          text={t('restart_game')}
+          onClick={restart}
+        />
+      )}
       <div className={styles.board}>
         {game.cells.map((row) => {
           return row.map((cell) => (

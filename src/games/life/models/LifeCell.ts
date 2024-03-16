@@ -1,4 +1,4 @@
-interface ILifeCellParams {
+interface ILifeCellConstructorParams {
   x: number;
   y: number;
 }
@@ -10,7 +10,7 @@ export class LifeCell {
 
   isAlive = false;
 
-  constructor({ x, y }: ILifeCellParams) {
+  constructor({ x, y }: ILifeCellConstructorParams) {
     this.x = x;
     this.y = y;
   }
