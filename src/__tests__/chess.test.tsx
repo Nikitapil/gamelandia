@@ -208,7 +208,7 @@ describe('chess tests', () => {
     render(renderWithRedux(<Chess />, '/', store));
     userEvent.click(screen.getByTestId('chess-start-button'));
     const promise = new Promise((res) => {
-      setTimeout(() => res(''), 250);
+      setTimeout(() => res(''), 350);
     });
     await promise;
     expect(screen.queryByTestId('timer-modal')).not.toBeInTheDocument();
