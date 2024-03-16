@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/gamelandia/static/css/main.4c240d5b.css",
-    "main.js": "/gamelandia/static/js/main.4fcec7a6.js",
+    "main.css": "/gamelandia/static/css/main.4e521dbc.css",
+    "main.js": "/gamelandia/static/js/main.746b0ef8.js",
     "static/media/quizzer.png": "/gamelandia/static/media/quizzer.68312003826565dc04a2.png",
     "static/media/Ubuntu-Light.ttf": "/gamelandia/static/media/Ubuntu-Light.0dd2d5986e2731a16ee7.ttf",
     "static/media/Ubuntu-Regular.ttf": "/gamelandia/static/media/Ubuntu-Regular.1cbb1b79a23478cc89ad.ttf",
@@ -16,6 +16,7 @@
     "static/media/fox.png": "/gamelandia/static/media/fox.dc10dce8373975167d6e.png",
     "static/media/clone-invaders.jpg": "/gamelandia/static/media/clone-invaders.2d65cbd0abe734f85926.jpg",
     "static/media/chess.jpg": "/gamelandia/static/media/chess.95f034211cac57210a17.jpg",
+    "static/media/lifeGame.png": "/gamelandia/static/media/lifeGame.6780641729f8eb164617.png",
     "static/media/ticTacToe.jpeg": "/gamelandia/static/media/ticTacToe.b82b91a9c9407e06e42d.jpeg",
     "static/media/Orbitron-Regular.ttf": "/gamelandia/static/media/Orbitron-Regular.23a1d6c3def1d738a011.ttf",
     "static/media/Orbitron-Bold.ttf": "/gamelandia/static/media/Orbitron-Bold.386734f5392fcb3f726c.ttf",
@@ -24,11 +25,11 @@
     "static/media/wolf.png": "/gamelandia/static/media/wolf.b9be2f0007bb9ca44052.png",
     "index.html": "/gamelandia/index.html",
     "static/media/getFetch.cjs": "/gamelandia/static/media/getFetch.c780682470504fffbd04.cjs",
-    "main.4c240d5b.css.map": "/gamelandia/static/css/main.4c240d5b.css.map",
-    "main.4fcec7a6.js.map": "/gamelandia/static/js/main.4fcec7a6.js.map"
+    "main.4e521dbc.css.map": "/gamelandia/static/css/main.4e521dbc.css.map",
+    "main.746b0ef8.js.map": "/gamelandia/static/js/main.746b0ef8.js.map"
   },
   "entrypoints": [
-    "static/css/main.4c240d5b.css",
-    "static/js/main.4fcec7a6.js"
+    "static/css/main.4e521dbc.css",
+    "static/js/main.746b0ef8.js"
   ]
 }
