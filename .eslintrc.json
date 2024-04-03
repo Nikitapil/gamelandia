@@ -49,6 +49,7 @@
         "react/jsx-props-no-spreading": "off",
         "prefer-destructuring": "off",
         "react/no-unescaped-entities": "off",
-        "class-methods-use-this": "off"
+        "class-methods-use-this": "off",
+        "no-continue": "off"
     }
 }

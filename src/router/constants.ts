@@ -20,5 +20,6 @@ export enum ERoutes {
   SOLITAIRE = '/solitaire',
   PROFILE = '/profile',
   PROFILE_STATISTICS = 'statistics',
-  LIFE = 'life'
+  LIFE = 'life',
+  BRICK = 'brick'
 }

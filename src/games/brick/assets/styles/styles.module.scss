@@ -1,0 +1,12 @@
+@import "../../../../assets/styles/vars";
+
+.brick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.canvas {
+  background: $bg-light-green;
+  border-radius: 8px;
+}
