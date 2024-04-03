@@ -88,5 +88,10 @@ export const breadcrumbs = {
     id: 'breadcrumb+solitaire',
     name: 'solitaire',
     path: '/2048'
+  },
+  life: {
+    id: 'breadcrumb+life',
+    name: 'life_game',
+    path: '/life'
   }
 } as const;
