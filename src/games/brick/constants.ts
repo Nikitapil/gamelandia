@@ -8,7 +8,7 @@ export const START_BALL_Y_POSITION = CANVAS_HEIGHT - 30;
 export const BALL_RADIUS = 10;
 export const START_BALL_X_VELOCITY = 2;
 export const START_BALL_Y_VELOCITY = -2;
-export const BALL_COLOR = 'lime';
+export const BALL_COLOR = '#00c4f0';
 
 // paddle
 export const PADDLE_HEIGHT = 10;
