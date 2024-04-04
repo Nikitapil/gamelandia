@@ -22,5 +22,6 @@ React, React-router-dom, React Hooks, Redux, Redux-toolkit, Typescript, i18n, OO
 * Aim Game
 * Match-Match Game
 * Tic Tac Toe
+* Life Game
 * Dyno game (on 404 page and waiting pages for online games)
 * Quizzer (link to my another game project for quiz games)
