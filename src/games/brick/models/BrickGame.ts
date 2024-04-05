@@ -48,11 +48,34 @@ export class BrickGameModel {
 
   animationFrameId = 0;
 
-  updateCallback: (model: BrickGameModel) => void;
+  isGameOver = false;
+
+  private readonly updateCallback: (model: BrickGameModel) => void;
 
   constructor(canvas: HTMLCanvasElement, updateCallback: (model: BrickGameModel) => void) {
     this.ctx = canvas.getContext('2d');
+    this.clear();
     this.updateCallback = updateCallback;
+    this.fillBricksArray();
+    this.drawBricks();
+    this.drawBall();
+    this.drawPaddle();
+    this.updateCallback(this);
+  }
+
+  private clear() {
+    if (!this.ctx) {
+      return;
+    }
+    this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  }
+
+  private drawText(text: string) {
+    if (!this.ctx) {
+      return;
+    }
+    this.ctx.font = '48px serif';
+    this.ctx.fillText(text, CANVAS_WIDTH / 3.7, CANVAS_HEIGHT / 3);
   }
 
   private setStartValues = () => {
@@ -127,9 +150,15 @@ export class BrickGameModel {
     if (!this.lives) {
       this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
       this.isGameRunning = false;
+      if (this.animationFrameId) {
+        cancelAnimationFrame(this.animationFrameId);
+      }
+      this.isGameOver = true;
+      this.drawText('Game Over!!!');
     } else {
       this.setStartValues();
     }
+    this.updateCallback(this);
   }
 
   private checkBrickCollision() {
@@ -186,6 +215,7 @@ export class BrickGameModel {
     if (this.ctx && this.bricks.length && this.checkIfAllBricksOut()) {
       this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
       this.isGameRunning = false;
+      this.setStartValues();
       this.startGame();
     }
   }

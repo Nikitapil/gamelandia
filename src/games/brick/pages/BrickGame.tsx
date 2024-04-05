@@ -6,19 +6,31 @@ import { BrickGameModel } from '../models/BrickGame';
 const BrickGame = () => {
   const [game, setGame] = useState<BrickGameModel | null>(null);
   const [score, setScore] = useState<number>(0);
+  const [lives, setLives] = useState<number>(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const gameRef = useRef<HTMLDivElement>(null);
 
   const updateGame = (gameInstance: BrickGameModel) => {
     setScore(gameInstance.score);
+    setLives(gameInstance.lives);
   };
 
-  useEffect(() => {
+  const newGame = useCallback(() => {
     setGame(() => (canvasRef.current ? new BrickGameModel(canvasRef.current, updateGame) : null));
   }, []);
+
+  useEffect(() => {
+    newGame();
+    gameRef.current?.focus();
+  }, [newGame]);
 
   const keyDownHandler = useCallback(
     (e: React.KeyboardEvent) => {
       if (!game) return;
+      if (game.isGameOver) {
+        newGame();
+        return;
+      }
       if (!game.isGameRunning) {
         game.startGame();
       } else if (e.key === 'ArrowRight') {
@@ -27,7 +39,7 @@ const BrickGame = () => {
         game.isPaddleMoveLeft = true;
       }
     },
-    [game]
+    [game, newGame]
   );
 
   const keyUpHandler = useCallback(
@@ -47,10 +59,14 @@ const BrickGame = () => {
       onKeyDown={keyDownHandler}
       onKeyUp={keyUpHandler}
       tabIndex={0}
+      ref={gameRef}
     >
       <div className={`container ${styles.brick}`}>
         <h2 className="page-title">Brick Game</h2>
-        <p className={styles.score}>Score: {score}</p>
+        <div className={styles.meta}>
+          <p>Score: {score}</p>
+          <p>Lives: {lives}</p>
+        </div>
         <canvas
           ref={canvasRef}
           className={styles.canvas}

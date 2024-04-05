@@ -7,10 +7,13 @@
 }
 
 .canvas {
-  background: $bg-light-green;
+  background: $bg-success-light;
   border-radius: 8px;
 }
 
-.score {
+.meta {
+  display: flex;
+  gap: 44px;
   color: $mainColor;
+  margin-bottom: 12px;
 }
