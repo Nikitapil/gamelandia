@@ -32,21 +32,21 @@ export class BrickGameModel {
 
   paddleXPosition = START_PADDLE_X_POSITION;
 
+  isPaddleMoveRight = false;
+
+  isPaddleMoveLeft = false;
+
   bricks: Brick[][] = [];
 
   score = 0;
 
   lives = 3;
 
-  isGameRunning = false;
-
   ctx: CanvasRenderingContext2D | null;
 
-  isPaddleMoveRight = false;
-
-  isPaddleMoveLeft = false;
-
   animationFrameId = 0;
+
+  isGameRunning = false;
 
   isGameOver = false;
 
@@ -60,6 +60,10 @@ export class BrickGameModel {
     this.drawBricks();
     this.drawBall();
     this.drawPaddle();
+    this.update();
+  }
+
+  private update() {
     this.updateCallback(this);
   }
 
@@ -68,6 +72,12 @@ export class BrickGameModel {
       return;
     }
     this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  }
+
+  private cancelAnimation() {
+    if (this.animationFrameId) {
+      cancelAnimationFrame(this.animationFrameId);
+    }
   }
 
   private drawText(text: string) {
@@ -108,6 +118,10 @@ export class BrickGameModel {
     this.ctx.closePath();
   }
 
+  private changeBallYDirection() {
+    this.ballYVelocity = -this.ballYVelocity;
+  }
+
   private drawPaddle() {
     if (!this.ctx) {
       return;
@@ -137,9 +151,10 @@ export class BrickGameModel {
       this.ballXPosition > this.paddleXPosition &&
       this.ballXPosition < this.paddleXPosition + PADDLE_WIDTH
     ) {
-      this.ballYVelocity = -this.ballYVelocity;
+      this.changeBallYDirection();
       return true;
     }
+    return false;
   }
 
   private checkBottomCollision() {
@@ -148,17 +163,15 @@ export class BrickGameModel {
     }
     this.lives--;
     if (!this.lives) {
-      this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+      this.clear();
       this.isGameRunning = false;
-      if (this.animationFrameId) {
-        cancelAnimationFrame(this.animationFrameId);
-      }
+      this.cancelAnimation();
       this.isGameOver = true;
       this.drawText('Game Over!!!');
     } else {
       this.setStartValues();
     }
-    this.updateCallback(this);
+    this.update();
   }
 
   private checkBrickCollision() {
@@ -173,10 +186,10 @@ export class BrickGameModel {
         const yCollision =
           this.ballYPosition > currentBrick.y && this.ballYPosition < currentBrick.y + BRICK_HEIGHT;
         if (xCollision && yCollision) {
-          this.ballYVelocity = -this.ballYVelocity;
+          this.changeBallYDirection();
           currentBrick.isVisible = false;
           this.score++;
-          this.updateCallback(this);
+          this.update();
         }
       }
     }
@@ -188,7 +201,7 @@ export class BrickGameModel {
     if (nextXPosition < BALL_RADIUS || nextXPosition > CANVAS_WIDTH - BALL_RADIUS) {
       this.ballXVelocity = -this.ballXVelocity;
     } else if (nextYPosition < BALL_RADIUS) {
-      this.ballYVelocity = -this.ballYVelocity;
+      this.changeBallYDirection();
     } else if (nextYPosition > CANVAS_HEIGHT - BALL_RADIUS) {
       if (!this.checkPaddleCollision()) {
         this.checkBottomCollision();
@@ -213,7 +226,7 @@ export class BrickGameModel {
 
   private checkIfNextLevel() {
     if (this.ctx && this.bricks.length && this.checkIfAllBricksOut()) {
-      this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+      this.clear();
       this.isGameRunning = false;
       this.setStartValues();
       this.startGame();
@@ -224,10 +237,8 @@ export class BrickGameModel {
     if (!this.isGameRunning || !this.ctx) {
       return;
     }
-    if (this.animationFrameId) {
-      cancelAnimationFrame(this.animationFrameId);
-    }
-    this.ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    this.cancelAnimation();
+    this.clear();
     this.drawBricks();
     this.drawBall();
     this.drawPaddle();
