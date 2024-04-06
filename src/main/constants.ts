@@ -15,6 +15,7 @@ import aim from './assets/game-pictures/aim.png';
 import numbers from './assets/game-pictures/2048.png';
 import solitaire from './assets/game-pictures/solitaire.jpeg';
 import lifeGame from './assets/game-pictures/lifeGame.png';
+import brick from './assets/game-pictures/brick.png';
 
 export const gamesCards: IGameCard[] = [
   {
@@ -98,6 +99,16 @@ export const gamesCards: IGameCard[] = [
     mobileSuitable: false
   },
   {
+    id: 16,
+    gameName: 'brick_game',
+    pictureName: 'brick',
+    description: 'brick_game_description',
+    path: ERoutes.BRICK,
+    isOutside: false,
+    labels: ['Single player'],
+    mobileSuitable: false
+  },
+  {
     id: 9,
     gameName: 'flappy_bird',
     pictureName: 'flappy',
@@ -162,7 +173,8 @@ export const gamePics: IStringObject = {
   aim,
   numbers,
   solitaire,
-  lifeGame
+  lifeGame,
+  brick
 };
 
 export enum EGamesViews {
