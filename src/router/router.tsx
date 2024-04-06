@@ -25,6 +25,7 @@ import { Profile } from '../profile/pages/Profile';
 import { ProfileStatistics } from '../profile/pages/ProfileStatistics';
 import { ProtectedRouteWithAuth } from '../components/ProtectedRouteWithAuth';
 import Life from '../games/life/pages/Life';
+import BrickGame from '../games/brick/pages/BrickGame';
 
 export const router = createBrowserRouter(
   [
@@ -108,6 +109,10 @@ export const router = createBrowserRouter(
         {
           path: ERoutes.LIFE,
           element: <Life />
+        },
+        {
+          path: ERoutes.BRICK,
+          element: <BrickGame />
         },
         {
           path: ERoutes.BATTLESHIP_ID,
