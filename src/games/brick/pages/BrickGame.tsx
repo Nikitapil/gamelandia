@@ -22,9 +22,7 @@ const BrickGame = () => {
   const updateGame = useCallback((gameInstance: BrickGameModel) => {
     setScore(gameInstance.score);
     setLives(gameInstance.lives);
-    if (gameInstance.isGameOver) {
-      setIsGameOver(true);
-    }
+    setIsGameOver(gameInstance.isGameOver);
   }, []);
 
   const newGame = useCallback(() => {
