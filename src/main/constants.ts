@@ -16,6 +16,7 @@ import numbers from './assets/game-pictures/2048.png';
 import solitaire from './assets/game-pictures/solitaire.jpeg';
 import lifeGame from './assets/game-pictures/lifeGame.png';
 import brick from './assets/game-pictures/brick.png';
+import asteroid from './assets/game-pictures/asteroid-warrior.png';
 
 export const gamesCards: IGameCard[] = [
   {
@@ -79,6 +80,16 @@ export const gamesCards: IGameCard[] = [
     mobileSuitable: true
   },
   {
+    id: 8,
+    gameName: 'asteroid_warrior',
+    pictureName: 'asteroid',
+    description: 'asteroid_description',
+    path: ERoutes.ASTEROID,
+    isOutside: false,
+    labels: ['offline', 'Single player', 'Not suitable for mobile'],
+    mobileSuitable: false
+  },
+  {
     id: 14,
     gameName: 'solitaire',
     pictureName: 'solitaire',
@@ -105,7 +116,7 @@ export const gamesCards: IGameCard[] = [
     description: 'brick_game_description',
     path: ERoutes.BRICK,
     isOutside: false,
-    labels: ['Single player'],
+    labels: ['Single player', 'Not suitable for mobile'],
     mobileSuitable: false
   },
   {
@@ -174,7 +185,8 @@ export const gamePics: IStringObject = {
   numbers,
   solitaire,
   lifeGame,
-  brick
+  brick,
+  asteroid
 };
 
 export enum EGamesViews {

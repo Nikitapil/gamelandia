@@ -134,5 +134,6 @@
   "lives": "Попытки",
   "brick_game": "Brick Game",
   "brick_game_description": "Классическая игра в теннис с кирпичной стеной",
-  "asteroid_warrior": "Asteroid Warrior"
+  "asteroid_warrior": "Asteroid Warrior",
+  "asteroid_description": "Отправляйтесь в эпическое космическое приключение в Asteroid Warrior! Пробирайтесь сквозь море космических обломков, вооружившись своим бластером."
 }
