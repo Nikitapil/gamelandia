@@ -3,21 +3,24 @@ import {
   CANVAS_WIDTH,
   ASTEROID_GAME_FRAME_INTERVAL,
   STARSHIP_SIZE,
-  ASTEROIDS_SIZE
+  ASTEROIDS_SIZE,
+  MAX_HEALTH
 } from '../constants';
-import { TVoidFunction } from '../../../types/common';
-import { CanvasModel } from '../../models/canvas/CanvasModel';
-import { AsteroidStars } from './AsteroidStars';
-import { AsteroidStarship } from './AsteroidStarship';
 import {
   STARSHIP_TEMPLATE_COLORS,
   STARSHIP_TEMPLATE_DEFAULT
 } from '../canvas-templates/startshipTemplates';
-import { Asteroids } from './AsteroidsModel';
 import {
   ASTEROID_TEMPLATE_COLORS,
   ASTEROID_TEMPLATE_DEFAULT
 } from '../canvas-templates/asteroidsTemplates';
+
+import { TVoidFunction } from '../../../types/common';
+
+import { CanvasModel } from '../../models/canvas/CanvasModel';
+import { AsteroidStars } from './AsteroidStars';
+import { AsteroidStarship } from './AsteroidStarship';
+import { Asteroids } from './AsteroidsModel';
 import { AsteroidShots } from './AsteroidShots';
 
 export class AsteroidGame extends CanvasModel {
@@ -29,7 +32,7 @@ export class AsteroidGame extends CanvasModel {
 
   shotsModel: AsteroidShots;
 
-  health = 200;
+  health = MAX_HEALTH;
 
   score = 0;
 
@@ -89,6 +92,7 @@ export class AsteroidGame extends CanvasModel {
         startTime = timeStamp;
         drawCallbacks.forEach((fn) => fn());
       }
+
       this.animationFrameId = requestAnimationFrame(frameTimerFn);
     };
 
@@ -110,13 +114,15 @@ export class AsteroidGame extends CanvasModel {
     });
   }
 
-  checkAsteroidsInterSection() {
+  checkAsteroidsIntersection() {
     const starShipYEnd = this.starShipModel.y + this.starShipModel.starshipHeight;
     const starShipXEnd = this.starShipModel.x + this.starShipModel.starshipWidth;
+
     for (let i = 0; i < this.asteroidsModel.asteroids.length; i++) {
       const asteroid = this.asteroidsModel.asteroids[i];
       const asteroidYEnd = asteroid.y + this.asteroidsModel.asteroidHeight;
       const asteroidXEnd = asteroid.x + this.asteroidsModel.asteroidWidth;
+
       if (
         this.starShipModel.y < asteroidYEnd &&
         starShipYEnd > asteroid.y &&
@@ -128,7 +134,7 @@ export class AsteroidGame extends CanvasModel {
           this.gameOver();
           return;
         }
-      } else if (this.health < 200) {
+      } else if (this.health < MAX_HEALTH) {
         this.health += 0.0002;
       }
 
@@ -159,7 +165,7 @@ export class AsteroidGame extends CanvasModel {
       () => this.starShipModel.render(),
       () => this.asteroidsModel.moveAsteroid(),
       () => this.shotsModel.moveShots(),
-      () => this.checkAsteroidsInterSection()
+      () => this.checkAsteroidsIntersection()
     ]);
 
     framePlay();

@@ -2,8 +2,11 @@ import {
   CanvasTemplateRenderer,
   ICanvasTemplateRendererParams
 } from '../../models/canvas/CanvasTemplateRenderer';
+
 import { ICoordsModel } from '../../../types/common';
+
 import { getRandomIntegerWithoutMaxValue } from '../../../utils/helpers';
+
 import { ASTEROIDS_MIN_COUNT, ASTEROIDS_SPEED } from '../constants';
 
 interface IAsteroidsModelParams extends ICanvasTemplateRendererParams {
@@ -26,7 +29,7 @@ export class Asteroids extends CanvasTemplateRenderer {
 
   asteroidWidth: number;
 
-  consistensy = 10000;
+  consistency = 10000;
 
   constructor({
     canvas,
@@ -50,7 +53,7 @@ export class Asteroids extends CanvasTemplateRenderer {
   private generateAsteroids() {
     for (let y = 0; y < this.canvasHeight; y++) {
       for (let x = this.canvasWidth; x < this.canvasWidth * 5; x++) {
-        const random = getRandomIntegerWithoutMaxValue(this.consistensy);
+        const random = getRandomIntegerWithoutMaxValue(this.consistency);
         if (random === 100) {
           this.asteroids.push({ y, x, initialX: x });
         }
@@ -71,7 +74,7 @@ export class Asteroids extends CanvasTemplateRenderer {
       this.render({ x: asteroid.x, y: asteroid.y });
     });
     if (this.asteroids.length < ASTEROIDS_MIN_COUNT) {
-      this.consistensy--;
+      this.consistency--;
       this.generateAsteroids();
     }
   }

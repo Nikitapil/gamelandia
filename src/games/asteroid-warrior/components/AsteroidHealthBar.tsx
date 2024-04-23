@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+
 import styles from '../assets/styles/styles.module.scss';
 
 interface IAsteroidHealthBarProps {

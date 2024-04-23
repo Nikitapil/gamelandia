@@ -1,6 +1,9 @@
 import { CanvasModel } from '../../models/canvas/CanvasModel';
+
 import { ICoordsModel } from '../../../types/common';
+
 import { getRandomIntegerWithoutMaxValue } from '../../../utils/helpers';
+
 import { STAR_HEIGHT, STAR_WIDTH, STARS_SPEED } from '../constants';
 
 interface IAsteroidStarsParams {

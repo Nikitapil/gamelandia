@@ -17,3 +17,5 @@ export const ASTEROIDS_MIN_COUNT = 5;
 export const SHOT_WIDTH = 4;
 export const SHOT_HEIGHT = 2;
 export const SHOT_SPEED = 10;
+
+export const MAX_HEALTH = 200;

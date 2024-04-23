@@ -1,5 +1,7 @@
 import { CanvasModel } from '../../models/canvas/CanvasModel';
+
 import { ICoordsModel } from '../../../types/common';
+
 import { SHOT_HEIGHT, SHOT_SPEED, SHOT_WIDTH } from '../constants';
 
 export class AsteroidShots extends CanvasModel {

@@ -1,29 +1,40 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { CANVAS_HEIGHT, CANVAS_WIDTH } from '../constants';
-import styles from '../assets/styles/styles.module.scss';
-import { AsteroidGame } from '../models/AsteroidGame';
-import AsteroidHealthBar from '../components/AsteroidHealthBar';
-import { useAppSelector } from '../../../hooks/useAppSelector';
-import { authSelector } from '../../../store/selectors';
-import { GameWithScore } from '../../components/GameWithScore/GameWithScore';
+import { useTranslation } from 'react-i18next';
+
+import { CANVAS_HEIGHT, CANVAS_WIDTH, MAX_HEALTH } from '../constants';
+import { breadcrumbs } from '../../../constants/breadcrumbs';
 import { EGamesNames } from '../../constants';
+
+import { AsteroidGame } from '../models/AsteroidGame';
+
+import { authSelector } from '../../../store/selectors';
+
+import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useCreateScore } from '../../../score/hooks/useCreateScore';
 import { useTitle } from '../../../hooks/useTitle';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
-import { breadcrumbs } from '../../../constants/breadcrumbs';
+
+import { GameWithScore } from '../../components/GameWithScore/GameWithScore';
+import AsteroidHealthBar from '../components/AsteroidHealthBar';
+
+import styles from '../assets/styles/styles.module.scss';
 
 export const AsteroidWarrior = () => {
   useTitle('Asteroid Warrior');
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.asteroid]);
 
+  const { t } = useTranslation();
+
   const [game, setGame] = useState<AsteroidGame | null>(null);
   const [score, setScore] = useState(0);
-  const [health, setHealth] = useState(200);
+  const [health, setHealth] = useState(MAX_HEALTH);
   const [isGameOver, setIsGameOver] = useState(false);
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const gameRef = useRef<HTMLDivElement>(null);
 
   const { user } = useAppSelector(authSelector);
+
   const createScore = useCreateScore();
 
   const updateGame = useCallback(
@@ -32,7 +43,7 @@ export const AsteroidWarrior = () => {
       setHealth(gameInstance.health);
       setIsGameOver(gameInstance.isGameOver);
       if (gameInstance.isGameOver) {
-        createScore({ value: gameInstance.score, gameName: EGamesNames.ASTEROID });
+        await createScore({ value: gameInstance.score, gameName: EGamesNames.ASTEROID });
       }
     },
     [createScore]
@@ -74,6 +85,7 @@ export const AsteroidWarrior = () => {
   useEffect(() => {
     gameRef?.current?.focus();
   }, [game, updateGame]);
+
   return (
     <GameWithScore
       game={EGamesNames.ASTEROID}
@@ -81,6 +93,7 @@ export const AsteroidWarrior = () => {
     >
       <div className="cntainer game-page-container">
         <h2 className="page-title">Asteroid warrior</h2>
+
         <div className={styles['game-meta']}>
           <p>Score: {score}</p>
           <AsteroidHealthBar
@@ -90,7 +103,7 @@ export const AsteroidWarrior = () => {
         </div>
 
         {(!game || isGameOver) && (
-          <p className={styles.instruction}>Press any button to start a new game</p>
+          <p className={styles.instruction}>{t('press_button_to_start')}</p>
         )}
 
         <div

@@ -2,6 +2,7 @@ import {
   CanvasTemplateRenderer,
   ICanvasTemplateRendererParams
 } from '../../models/canvas/CanvasTemplateRenderer';
+
 import { STARSHIP_SPEED } from '../constants';
 
 interface IAsteroidStarshipParams extends ICanvasTemplateRendererParams {
@@ -38,8 +39,10 @@ export class AsteroidStarship extends CanvasTemplateRenderer {
 
     this.starshipHeight = template.length * sizeCoef;
     this.starshipWidth = template[0].length * sizeCoef;
+
     this.x = canvasWidth * 0.1;
     this.y = canvasHeight / 2 - this.starshipHeight;
+
     this.canvasHeight = canvasHeight;
     this.canvasWidth = canvasWidth;
   }
