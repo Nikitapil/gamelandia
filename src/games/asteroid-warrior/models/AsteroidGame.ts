@@ -129,7 +129,11 @@ export class AsteroidGame extends CanvasModel {
           return;
         }
       } else if (this.health < 200) {
-        this.health += 0.0005;
+        this.health += 0.0002;
+      }
+
+      if (asteroid.x <= 0) {
+        this.health -= 0.8;
       }
       const shotIndex = this.shotsModel.shots.findIndex(
         (shot) =>

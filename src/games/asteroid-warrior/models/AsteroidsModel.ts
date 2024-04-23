@@ -16,7 +16,7 @@ interface IAsteroid extends ICoordsModel {
 }
 
 export class Asteroids extends CanvasTemplateRenderer {
-  asteroids: IAsteroid[] = []; // { x: number, y: number, initX: number }
+  asteroids: IAsteroid[] = [];
 
   canvasHeight: number;
 

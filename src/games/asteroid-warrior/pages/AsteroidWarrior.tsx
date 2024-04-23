@@ -3,6 +3,11 @@ import { CANVAS_HEIGHT, CANVAS_WIDTH } from '../constants';
 import styles from '../assets/styles/styles.module.scss';
 import { AsteroidGame } from '../models/AsteroidGame';
 import AsteroidHealthBar from '../components/AsteroidHealthBar';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { authSelector } from '../../../store/selectors';
+import { GameWithScore } from '../../components/GameWithScore/GameWithScore';
+import { EGamesNames } from '../../constants';
+import { useCreateScore } from '../../../score/hooks/useCreateScore';
 
 export const AsteroidWarrior = () => {
   const [game, setGame] = useState<AsteroidGame | null>(null);
@@ -12,11 +17,20 @@ export const AsteroidWarrior = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const gameRef = useRef<HTMLDivElement>(null);
 
-  const updateGame = useCallback((gameInstance: AsteroidGame) => {
-    setScore(gameInstance.score);
-    setHealth(gameInstance.health);
-    setIsGameOver(gameInstance.isGameOver);
-  }, []);
+  const { user } = useAppSelector(authSelector);
+  const createScore = useCreateScore();
+
+  const updateGame = useCallback(
+    async (gameInstance: AsteroidGame) => {
+      setScore(gameInstance.score);
+      setHealth(gameInstance.health);
+      setIsGameOver(gameInstance.isGameOver);
+      if (gameInstance.isGameOver) {
+        createScore({ value: gameInstance.score, gameName: EGamesNames.ASTEROID });
+      }
+    },
+    [createScore]
+  );
 
   const startNewGame = useCallback(() => {
     if (canvasRef.current) {
@@ -55,33 +69,38 @@ export const AsteroidWarrior = () => {
     gameRef?.current?.focus();
   }, [game, updateGame]);
   return (
-    <div className="cntainer game-page-container">
-      <h2 className="page-title">Asteroid warrior</h2>
-      <div className={styles['game-meta']}>
-        <p>Score: {score}</p>
-        <AsteroidHealthBar
-          maxHealth={200}
-          currentHealth={health}
-        />
-      </div>
+    <GameWithScore
+      game={EGamesNames.ASTEROID}
+      user={user}
+    >
+      <div className="cntainer game-page-container">
+        <h2 className="page-title">Asteroid warrior</h2>
+        <div className={styles['game-meta']}>
+          <p>Score: {score}</p>
+          <AsteroidHealthBar
+            maxHealth={200}
+            currentHealth={health}
+          />
+        </div>
 
-      {(!game || isGameOver) && (
-        <p className={styles.instruction}>Press any button to start a new game</p>
-      )}
+        {(!game || isGameOver) && (
+          <p className={styles.instruction}>Press any button to start a new game</p>
+        )}
 
-      <div
-        ref={gameRef}
-        onKeyUp={keyUpHandler}
-        onKeyDown={keyDownHandler}
-        tabIndex={0}
-      >
-        <canvas
-          ref={canvasRef}
-          className={styles.canvas}
-          width={CANVAS_WIDTH}
-          height={CANVAS_HEIGHT}
-        />
+        <div
+          ref={gameRef}
+          onKeyUp={keyUpHandler}
+          onKeyDown={keyDownHandler}
+          tabIndex={0}
+        >
+          <canvas
+            ref={canvasRef}
+            className={styles.canvas}
+            width={CANVAS_WIDTH}
+            height={CANVAS_HEIGHT}
+          />
+        </div>
       </div>
-    </div>
+    </GameWithScore>
   );
 };

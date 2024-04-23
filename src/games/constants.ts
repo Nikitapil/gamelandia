@@ -11,7 +11,8 @@ export enum EGamesNames {
   MATCH = 'match',
   TIC_TAC_TOE = 'tic_tac_toe',
   DYNO = 'dyno',
-  BRICK = 'brick'
+  BRICK = 'brick',
+  ASTEROID = 'asteroid'
 }
 
 export enum EGamesLevels {
