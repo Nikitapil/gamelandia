@@ -21,5 +21,6 @@ export enum ERoutes {
   PROFILE = '/profile',
   PROFILE_STATISTICS = 'statistics',
   LIFE = 'life',
-  BRICK = 'brick'
+  BRICK = 'brick',
+  ASTEROID = 'asteroid'
 }

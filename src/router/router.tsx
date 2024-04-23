@@ -26,6 +26,7 @@ import { ProfileStatistics } from '../profile/pages/ProfileStatistics';
 import { ProtectedRouteWithAuth } from '../components/ProtectedRouteWithAuth';
 import Life from '../games/life/pages/Life';
 import BrickGame from '../games/brick/pages/BrickGame';
+import { AsteroidWarrior } from '../games/asteroid-warrior/pages/AsteroidWarrior';
 
 export const router = createBrowserRouter(
   [
@@ -113,6 +114,10 @@ export const router = createBrowserRouter(
         {
           path: ERoutes.BRICK,
           element: <BrickGame />
+        },
+        {
+          path: ERoutes.ASTEROID,
+          element: <AsteroidWarrior />
         },
         {
           path: ERoutes.BATTLESHIP_ID,

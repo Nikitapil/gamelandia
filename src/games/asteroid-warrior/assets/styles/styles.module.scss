@@ -1,0 +1,33 @@
+@import "../../../../assets/styles/vars";
+
+.canvas {
+  background: #000;
+  border-radius: 8px;
+}
+
+.health-bar {
+  border: 2px solid $primary;
+  height: 20px;
+  width: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  div {
+    height: 100%;
+  }
+}
+
+.game-meta {
+  color: $mainColor;
+  display: flex;
+  gap: 24px;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.instruction {
+  font-size: 32px;
+  color: $mainColor;
+  position: absolute;
+  top: 200px;
+}

@@ -93,5 +93,10 @@ export const breadcrumbs = {
     id: 'breadcrumb+life',
     name: 'life_game',
     path: '/life'
+  },
+  asteroid: {
+    id: 'breadcrumb+asteroid',
+    name: 'asteroid_warrior',
+    path: '/asteroid'
   }
 } as const;

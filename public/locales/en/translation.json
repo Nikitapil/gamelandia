@@ -133,5 +133,7 @@
   "life_game_description": "The Life game, is a cellular automaton. It is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. ",
   "lives": "Lives",
   "brick_game": "Brick Game",
-  "brick_game_description": "Play Tennis against a Wall of Bricks."
+  "brick_game_description": "Play Tennis against a Wall of Bricks.",
+  "asteroid_warrior": "Asteroid Warrior",
+  "asteroid_description": "Embark on an epic space adventure in Asteroid Warrior! Navigate through a sea of space debris, armed with your blaster."
 }
