@@ -8,8 +8,14 @@ import { authSelector } from '../../../store/selectors';
 import { GameWithScore } from '../../components/GameWithScore/GameWithScore';
 import { EGamesNames } from '../../constants';
 import { useCreateScore } from '../../../score/hooks/useCreateScore';
+import { useTitle } from '../../../hooks/useTitle';
+import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
+import { breadcrumbs } from '../../../constants/breadcrumbs';
 
 export const AsteroidWarrior = () => {
+  useTitle('Asteroid Warrior');
+  useBreadcrumbs([breadcrumbs.main, breadcrumbs.asteroid]);
+
   const [game, setGame] = useState<AsteroidGame | null>(null);
   const [score, setScore] = useState(0);
   const [health, setHealth] = useState(200);
