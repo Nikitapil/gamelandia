@@ -135,5 +135,6 @@
   "brick_game": "Brick Game",
   "brick_game_description": "Play Tennis against a Wall of Bricks.",
   "asteroid_warrior": "Asteroid Warrior",
-  "asteroid_description": "Embark on an epic space adventure in Asteroid Warrior! Navigate through a sea of space debris, armed with your blaster."
+  "asteroid_description": "Embark on an epic space adventure in Asteroid Warrior! Navigate through a sea of space debris, armed with your blaster.",
+  "press_button_to_start": "Press any button to start a new game"
 }
