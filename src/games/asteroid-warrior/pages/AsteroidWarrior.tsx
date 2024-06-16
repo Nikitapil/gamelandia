@@ -96,7 +96,7 @@ export const AsteroidWarrior = () => {
       game={EGamesNames.ASTEROID}
       user={user}
     >
-      <div className="cntainer game-page-container">
+      <div className="container game-page-container">
         <h2 className="page-title">Asteroid warrior</h2>
 
         <div className={styles['game-meta']}>

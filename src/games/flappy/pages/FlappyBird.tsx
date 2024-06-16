@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from '../assets/styles/flappy.module.scss';
 import { FlappyField } from '../components/FlappyField';
 import { useTitle } from '../../../hooks/useTitle';
 import { useBreadcrumbs } from '../../../app/hooks/useBreadcrumbs';
@@ -25,7 +24,7 @@ export const FlappyBird = () => {
   };
 
   return (
-    <div className={`container ${styles['flappy-container']}`}>
+    <div className="container game-page-container">
       <h2 className="page-title">FlappyBird</h2>
       <GameWithScore
         game={EGamesNames.FLAPPY}

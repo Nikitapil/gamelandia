@@ -129,7 +129,7 @@ export const Snake = () => {
 
   return (
     <div
-      className={`${styles.snake__container} container`}
+      className="game-page-container container"
       onKeyDown={onKeyPress}
       data-testid="snake-page"
       tabIndex={0}

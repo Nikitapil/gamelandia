@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import styles from '../assets/styles/life.module.scss';
 
 import LifeGameBoard from '../components/LifeGameBoard';
 import { useTitle } from '../../../hooks/useTitle';
@@ -13,7 +12,7 @@ const Life = () => {
   useBreadcrumbs([breadcrumbs.main, breadcrumbs.life]);
 
   return (
-    <div className={`container ${styles.life}`}>
+    <div className="container game-page-container">
       <h2 className="page-title">{t('life_game')}</h2>
       <LifeGameBoard />
     </div>

@@ -15,7 +15,7 @@ export const NumbersGame = () => {
   const { user } = useAppSelector(authSelector);
 
   return (
-    <div className={`container ${styles.page}`}>
+    <div className={`container game-page-container ${styles.page}`}>
       <h1 className="page-title">2048 Game</h1>
       <GameWithScore
         game={EGamesNames.NUMBERS}

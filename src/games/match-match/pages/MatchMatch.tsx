@@ -113,7 +113,7 @@ export const MatchMatch = () => {
   }, [isWin, isLoose]);
 
   return (
-    <div className={`${styles.match} container`}>
+    <div className="game-page-container container">
       <GameTitleWithWinners
         title="Match-Match Game"
         gameName={EGamesNames.MATCH}

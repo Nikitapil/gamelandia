@@ -15,7 +15,7 @@ export const CloneInvaders = () => {
   const { user } = useAppSelector(authSelector);
 
   return (
-    <div className={`container ${styles.invaders}`}>
+    <div className={`container game-page-container ${styles.invaders}`}>
       <h2 className="page-title">Clone invaders</h2>
       <GameWithScore
         game={EGamesNames.CLONE_INVADERS}

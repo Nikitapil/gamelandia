@@ -31,7 +31,7 @@ export const TicTacToe = () => {
 
   return (
     <div
-      className={`container ${styles['tic-tac-container']}`}
+      className={`container game-page-container ${styles['tic-tac-container']}`}
       data-testid="tic-tac-page"
     >
       <h1 className={styles['tic-tac__title']}>{t('tic_tac')}</h1>

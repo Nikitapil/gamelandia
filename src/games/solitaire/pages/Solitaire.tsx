@@ -65,7 +65,7 @@ export const Solitaire = () => {
   }, []);
 
   return (
-    <div className={`container ${styles.solitaire}`}>
+    <div className="container game-page-container">
       <GameTitleWithWinners
         title="Solitaire"
         gameName={EGamesNames.SOLITAIRE}

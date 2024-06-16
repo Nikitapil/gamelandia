@@ -86,7 +86,7 @@ const BrickGame = () => {
         tabIndex={0}
         ref={gameRef}
       >
-        <div className={`container ${styles.brick}`}>
+        <div className="container game-page-container">
           <h2 className="page-title">Brick Game</h2>
           <div className={styles.meta}>
             <p>

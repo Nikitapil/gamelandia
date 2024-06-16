@@ -71,7 +71,7 @@ export const AimGame = () => {
 
   return (
     <div
-      className={`container ${styles['aim-game']}`}
+      className="container game-page-container"
       data-testid="aim-page"
     >
       <h2 className="page-title">Aim Game</h2>

@@ -127,7 +127,7 @@ export const ChessOnline = () => {
   }
 
   return (
-    <div className={`container ${styles['chess-container']}`}>
+    <div className="container game-page-container">
       <GameTitleWithWinners
         title={t('chess_online')}
         gameName={EGamesNames.CHESS}

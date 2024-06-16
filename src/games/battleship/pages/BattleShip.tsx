@@ -110,7 +110,7 @@ export const BattleShip = () => {
   }
 
   return (
-    <div className={`container ${styles.battleship}`}>
+    <div className="container game-page-container">
       <GameTitleWithWinners
         title={t('battleship')}
         gameName={EGamesNames.BATTLESHIP}

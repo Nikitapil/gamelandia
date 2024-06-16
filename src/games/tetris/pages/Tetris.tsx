@@ -131,7 +131,7 @@ export const Tetris = () => {
 
   return (
     <div
-      className={`container ${style['tetris-container']}`}
+      className="container game-page-container"
       onKeyDown={onKeyPress}
       ref={gameRef}
       tabIndex={0}
