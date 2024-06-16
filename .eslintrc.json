@@ -50,6 +50,7 @@
         "prefer-destructuring": "off",
         "react/no-unescaped-entities": "off",
         "class-methods-use-this": "off",
-        "no-continue": "off"
+        "no-continue": "off",
+        "@typescript-eslint/no-duplicate-enum-values": "error"
     }
 }

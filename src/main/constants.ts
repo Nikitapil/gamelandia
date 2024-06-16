@@ -18,9 +18,27 @@ import lifeGame from './assets/game-pictures/lifeGame.png';
 import brick from './assets/game-pictures/brick.png';
 import asteroid from './assets/game-pictures/asteroid-warrior.png';
 
+enum EGamesIds {
+  NUMBERS = 0,
+  SNAKE = 1,
+  BATTLESHIP = 2,
+  CHESS = 3,
+  QUIZZER = 4,
+  TETRIS = 5,
+  ASTEROID_WARRIOR = 6,
+  SOLITAIRE = 7,
+  CLONE_INVADERS = 8,
+  BRICK_GAME = 9,
+  FLAPPY_BIRD = 10,
+  AIM_GAME = 11,
+  MATCH_MATCH = 12,
+  TIC_TAC_TOE = 13,
+  LIFE_GAME = 14
+}
+
 export const gamesCards: IGameCard[] = [
   {
-    id: 11,
+    id: EGamesIds.NUMBERS,
     gameName: '2048',
     pictureName: 'numbers',
     description: 'numbers_description',
@@ -30,7 +48,7 @@ export const gamesCards: IGameCard[] = [
     mobileSuitable: true
   },
   {
-    id: 5,
+    id: EGamesIds.SNAKE,
     gameName: 'snake',
     pictureName: 'snake',
     description: 'snake_description',
@@ -40,7 +58,7 @@ export const gamesCards: IGameCard[] = [
     mobileSuitable: true
   },
   {
-    id: 6,
+    id: EGamesIds.BATTLESHIP,
     gameName: 'battleship',
     pictureName: 'battleship',
     description: 'battleship_description',
@@ -50,7 +68,7 @@ export const gamesCards: IGameCard[] = [
     mobileSuitable: true
   },
   {
-    id: 3,
+    id: EGamesIds.CHESS,
     gameName: 'chess',
     pictureName: 'chess',
     description: 'chess_description',
@@ -60,7 +78,7 @@ export const gamesCards: IGameCard[] = [
     mobileSuitable: true
   },
   {
-    id: 2,
+    id: EGamesIds.QUIZZER,
     gameName: 'quizzer',
     pictureName: 'quizzer',
     description: 'quizzer_description',
@@ -70,7 +88,7 @@ export const gamesCards: IGameCard[] = [
     mobileSuitable: true
   },
   {
-    id: 8,
+    id: EGamesIds.TETRIS,
     gameName: 'tetris',
     pictureName: 'tetris',
     description: 'tetris_description',
@@ -80,7 +98,7 @@ export const gamesCards: IGameCard[] = [
     mobileSuitable: true
   },
   {
-    id: 8,
+    id: EGamesIds.ASTEROID_WARRIOR,
     gameName: 'asteroid_warrior',
     pictureName: 'asteroid',
     description: 'asteroid_description',
@@ -90,7 +108,7 @@ export const gamesCards: IGameCard[] = [
     mobileSuitable: false
   },
   {
-    id: 14,
+    id: EGamesIds.SOLITAIRE,
     gameName: 'solitaire',
     pictureName: 'solitaire',
     description: 'solitaire_description',
@@ -100,7 +118,7 @@ export const gamesCards: IGameCard[] = [
     mobileSuitable: true
   },
   {
-    id: 7,
+    id: EGamesIds.CLONE_INVADERS,
     gameName: 'clone_invaders',
     pictureName: 'cloneInvaders',
     description: 'invaders_description',
@@ -110,7 +128,7 @@ export const gamesCards: IGameCard[] = [
     mobileSuitable: false
   },
   {
-    id: 16,
+    id: EGamesIds.BRICK_GAME,
     gameName: 'brick_game',
     pictureName: 'brick',
     description: 'brick_game_description',
@@ -120,7 +138,7 @@ export const gamesCards: IGameCard[] = [
     mobileSuitable: false
   },
   {
-    id: 9,
+    id: EGamesIds.FLAPPY_BIRD,
     gameName: 'flappy_bird',
     pictureName: 'flappy',
     description: 'flappy_description',
@@ -130,7 +148,7 @@ export const gamesCards: IGameCard[] = [
     mobileSuitable: false
   },
   {
-    id: 10,
+    id: EGamesIds.AIM_GAME,
     gameName: 'aim_game',
     pictureName: 'aim',
     description: 'aim_game_description',
@@ -140,7 +158,7 @@ export const gamesCards: IGameCard[] = [
     mobileSuitable: true
   },
   {
-    id: 1,
+    id: EGamesIds.MATCH_MATCH,
     gameName: 'match_match',
     pictureName: 'default',
     description: 'match_match_description',
@@ -150,7 +168,7 @@ export const gamesCards: IGameCard[] = [
     mobileSuitable: true
   },
   {
-    id: 4,
+    id: EGamesIds.TIC_TAC_TOE,
     gameName: 'tic_tac',
     pictureName: 'ticTacToe',
     description: 'tic_tac_description',
@@ -160,7 +178,7 @@ export const gamesCards: IGameCard[] = [
     mobileSuitable: true
   },
   {
-    id: 15,
+    id: EGamesIds.LIFE_GAME,
     gameName: 'life_game',
     pictureName: 'lifeGame',
     description: 'life_game_description',
