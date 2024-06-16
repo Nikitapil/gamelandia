@@ -84,6 +84,11 @@ export const AsteroidWarrior = () => {
 
   useEffect(() => {
     gameRef?.current?.focus();
+    return () => {
+      if (game) {
+        game.stopGame();
+      }
+    };
   }, [game, updateGame]);
 
   return (

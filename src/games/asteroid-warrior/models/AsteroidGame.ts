@@ -171,6 +171,10 @@ export class AsteroidGame extends CanvasModel {
     framePlay();
   }
 
+  stopGame() {
+    cancelAnimationFrame(this.animationFrameId);
+  }
+
   gameOver(): void {
     this.isGameOver = true;
     cancelAnimationFrame(this.animationFrameId);
